@@ -1,0 +1,35 @@
+<div class="card" id="card">
+  <div class="card-header">
+    <h5 class="mb=0">
+      <h2>Welcome</h2>
+    </h5>
+  </div>
+  <div class="card-body" id="card-body" style="margin: auto">
+    <form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)" action="" class="container-fluid">
+      <div class="form-row">
+        <div class="col-12">
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" class="form-control" ngModel name="email" required email>
+          </div>
+        </div>
+      </div>
+      <br>
+      <div class="form-row">
+          <div class="col-12">
+            <div class="form-group">
+              <label for="password">Password</label>
+              <input type="password" id="password" class="form-control" ngModel name="Password" required>
+            </div>
+          </div>
+        </div>
+      <div  class="form-row">
+        <div class="col-12">
+          <div class="form-group">
+            <button type='submit' class="btn btn-primary" [disabled]="!loginForm.valid">Login</button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

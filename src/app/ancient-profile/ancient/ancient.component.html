@@ -1,0 +1,15 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-2" style="transform: translate(-50%, 50%);">
+            <app-ancient-image [name]="ancient.name" [hairImagePath]="ancient.getImagePath(0)" [skinImagePath]="ancient.getImagePath(1)" [shirtImagePath]="ancient.getImagePath(2)" [pantsImagePath]="ancient.getImagePath(3)"></app-ancient-image>
+        </div>
+        <div class="col-md-9">
+            <app-ancient-details></app-ancient-details>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <app-ancient-definitions></app-ancient-definitions>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,19 @@
+#card{
+    width: 300px;
+    height: 400px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, 40%);
+}
+#card_text{
+    width: 100px;
+    height: 25px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-56%, 200%);
+}
+label, input{
+    box-sizing: content-box;
+  }

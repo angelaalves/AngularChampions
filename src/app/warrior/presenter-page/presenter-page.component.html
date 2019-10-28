@@ -1,0 +1,12 @@
+<div class="Profile_container" id="Profile_container">
+    <div class="row">
+        <div class="col-md-2" style="margin-left: auto;margin-right: auto;">
+            <app-image [name]="warrior.name" [hairImagePath]="warrior.getImagePath(0)" [skinImagePath]="warrior.getImagePath(1)" [shirtImagePath]="warrior.getImagePath(2)" [pantsImagePath]="warrior.getImagePath(3)"></app-image>
+        </div>
+        <div class="col-md-9" style="margin-left: 50px;">
+            <app-warrior-details-xp [XP]="warrior.xp"></app-warrior-details-xp>
+            <hr>
+            <app-warrior-details-coins [coinsGive]="warrior.coinsGive" [coinsReceive]="warrior.coinsReceived"></app-warrior-details-coins>
+        </div>
+    </div>
+</div>
