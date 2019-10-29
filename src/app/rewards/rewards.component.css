@@ -74,3 +74,13 @@
     color: black;
     background-color: transparent;
   }
+
+  #left {
+    float: left;
+    width: 65%;
+    overflow: hidden;
+  }
+  
+  #right {
+    overflow: hidden;
+  }
