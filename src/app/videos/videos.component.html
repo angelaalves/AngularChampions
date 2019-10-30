@@ -1,36 +1,56 @@
-<body>
-    <section>
-        <nav>
+<div id="main">
+    <div id="left" style="display: inline-block; ">
+        <button class="btn btn-link" type="button"><img src="../../assets/AppImages/Videos.png" alt="text"
+                class="img-responsive" style="height:40%;width: 40%; display: inline-block;"></button>
+        <h3 style="text-align: center;">Videos</h3>
+    </div>
+
+    <div id="right">
+        <div class="split right">
             <div class="centered">
-                <div class="col-xs-4" style="text-align: center;">
-                    <button class="btn btn-link" type="button"><img src="https://images.vexels.com/media/users/3/153065/isolated/preview/ba0a47019b13d2bf2adfe0d8a1656fd0---cone-plana-de-claquete-by-vexels.png" alt="text" class="img-responsive" style="max-height: 50px;"></button>
-                    <h3>Videos</h3>
-                </div>
-            </div>
-        </nav>
-          
-        <article>
-            <div class="split right">
-                <div class="centered">
-                    <ul class="list-group">
+                <ul class="list-group">
+                    <div class="btn-group dropright" appDropdown>
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             Java
                             <span class="badge badge-primary badge-pill">14</span>
                         </li>
+                        <ul class="dropdown-menu">
+                            <li><a style="cursor: pointer;" (click)="addEvent()">Add Event</a></li>
+                            <li><a style="cursor: pointer;" (click)="addUser()">Add User</a></li>
+                            <li><a style="cursor: pointer;" (click)="addSkin()">Add Skin</a></li>
+                            <li><a style="cursor: pointer;" (click)="addGuild()">Add Guild</a></li>
+                        </ul>
+                    </div>
+                    <div class="btn-group dropright" appDropdown>
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             Spring
                             <span class="badge badge-primary badge-pill">2</span>
                         </li>
+                        <ul class="dropdown-menu">
+                            <li><a style="cursor: pointer;" (click)="addEvent()">Add Event</a></li>
+                            <li><a style="cursor: pointer;" (click)="addUser()">Add User</a></li>
+                            <li><a style="cursor: pointer;" (click)="addSkin()">Add Skin</a></li>
+                            <li><a style="cursor: pointer;" (click)="addGuild()">Add Guild</a></li>
+                        </ul>
+                    </div>
+                    <div class="btn-group dropright" appDropdown>
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             Angular
                             <span class="badge badge-primary badge-pill">1</span>
                         </li>
-                    </ul>   
-                </div>
+                        <ul class="dropdown-menu">
+                            <li><a style="cursor: pointer;" (click)="addEvent()">Add Event</a></li>
+                            <li><a style="cursor: pointer;" (click)="addUser()">Add User</a></li>
+                            <li><a style="cursor: pointer;" (click)="addSkin()">Add Skin</a></li>
+                            <li><a style="cursor: pointer;" (click)="addGuild()">Add Guild</a></li>
+                        </ul>
+                    </div>
+
+                </ul>
             </div>
-            <div>
-                <button type='submit' class="btn btn-primary">Save</button>
-            </div>
-        </article>
-    </section>
-</body>
+        </div>
+        <div>
+            <button type='submit' class="btn btn-primary">Save</button>
+        </div>
+    </div>
+</div>
