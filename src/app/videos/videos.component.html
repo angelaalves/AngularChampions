@@ -9,41 +9,48 @@
         <div class="split right">
             <div class="centered">
                 <ul class="list-group">
-                    <div class="btn-group dropright" appDropdown>
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            Java
-                            <span class="badge badge-primary badge-pill">14</span>
-                        </li>
-                        <ul class="dropdown-menu">
-                            <li><a style="cursor: pointer;" (click)="addEvent()">Add Event</a></li>
-                            <li><a style="cursor: pointer;" (click)="addUser()">Add User</a></li>
-                            <li><a style="cursor: pointer;" (click)="addSkin()">Add Skin</a></li>
-                            <li><a style="cursor: pointer;" (click)="addGuild()">Add Guild</a></li>
-                        </ul>
-                    </div>
-                    <div class="btn-group dropright" appDropdown>
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            Spring
-                            <span class="badge badge-primary badge-pill">2</span>
-                        </li>
-                        <ul class="dropdown-menu">
-                            <li><a style="cursor: pointer;" (click)="addEvent()">Add Event</a></li>
-                            <li><a style="cursor: pointer;" (click)="addUser()">Add User</a></li>
-                            <li><a style="cursor: pointer;" (click)="addSkin()">Add Skin</a></li>
-                            <li><a style="cursor: pointer;" (click)="addGuild()">Add Guild</a></li>
-                        </ul>
-                    </div>
-                    <div class="btn-group dropright" appDropdown>
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            Angular
-                            <span class="badge badge-primary badge-pill">1</span>
-                        </li>
-                        <ul class="dropdown-menu">
-                            <li><a style="cursor: pointer;" (click)="addEvent()">Add Event</a></li>
-                            <li><a style="cursor: pointer;" (click)="addUser()">Add User</a></li>
-                            <li><a style="cursor: pointer;" (click)="addSkin()">Add Skin</a></li>
-                            <li><a style="cursor: pointer;" (click)="addGuild()">Add Guild</a></li>
-                        </ul>
+                    <div id="tabela">
+                        <tr></tr>
+                        <div class="btn-group dropright" appDropdown>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                Java
+                                <span class="badge badge-primary badge-pill">14</span>
+                            </li>
+                            <ul class="dropdown-menu">
+                                <input type="checkbox" name="Videos" value="Watched"> Introduction<br>
+                                <input type="checkbox" name="Videos" value="Watched"> Part1<br>
+                                <input type="checkbox" name="Videos" value="Watched"> Part2<br>
+                                <input type="checkbox" name="Videos" value="Watched"> End<br>
+                            </ul>
+                        </div>
+                        <tr></tr>
+                        <div class="btn-group dropright" appDropdown>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                Spring
+                                <span class="badge badge-primary badge-pill">2</span>
+                            </li>
+                            <ul class="dropdown-menu">
+                                <input type="checkbox" name="Videos" value="Watched"> Introduction<br>
+                                <input type="checkbox" name="Videos" value="Watched"> Part1<br>
+                                <input type="checkbox" name="Videos" value="Watched"> Part2<br>
+                                <input type="checkbox" name="Videos" value="Watched"> End<br>
+                            </ul>
+                        </div>
+                        <tr>
+                            <div class="btn-group dropright" appDropdown>
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    Angular
+                                    <span class="badge badge-primary badge-pill">1</span>
+                                </li>
+                                <ul class="dropdown-menu">
+                                    <input type="checkbox" name="Videos" value="Watched"> Introduction<br>
+                                    <input type="checkbox" name="Videos" value="Watched"> Part1<br>
+                                    <input type="checkbox" name="Videos" value="Watched"> Part2<br>
+                                    <input type="checkbox" name="Videos" value="Watched"> End<br>
+                                </ul>
+                            </div>
+                        </tr>
+
                     </div>
 
                 </ul>
