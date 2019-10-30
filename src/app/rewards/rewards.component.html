@@ -1,58 +1,49 @@
-<body>
-    <section>
-        <div>
+<div id="main">
+    <div id="left" style="display: inline-block; ">
+        <button class="btn btn-link" type="button"><img src="../../assets/AppImages/Reward.png" alt="text"
+                class="img-responsive" style="height:40%;width: 40%; display: inline-block;">
+        </button>
+        <h3 style="text-align: center;">Reward</h3>
+    </div>
 
+
+    <div id="right">
+        <div class="split right" style="margin-top: 5%;">
             <div class="centered">
-                <div class="col-xs-4" style="text-align: center;">
-                    <div id="left">
-                        <button class="btn btn-link" type="button"><img src="../../assets/AppImages/Reward.png"
-                                alt="text" class="img-responsive" style="height: 300px;width: 300px;">
-                        </button>
-                        <h3>Reward</h3>
-                    </div>
+                <div>
+                    <label>From</label>
+                    <input type="text" style="margin-left: 1em;">
+                </div>
+                <div style="margin-top: 3%;">
+                    <label>To</label>
+                    <input type="text " style="margin-left: 3em;">
                 </div>
             </div>
-
-
-            <div id="rigth">
-                <div class="split right" style="margin-top: 5%;">
-                    <div class="centered">
-                        <div>
-                            <label>From:</label>
-                            <input type="text" style="margin-left: 1em;">
-                        </div>
-                        <div style="margin-top: 3%;">
-                            <label>To:</label>
-                            <input type="text" style="margin-left: 1em;">
-                        </div>
-                    </div>
-                    <div>
-                        <div style="margin-top: 3%;">
-                            <img src="../../assets/AppImages/clock.png" width="40" height="70">
-                            <input type="text" style="margin-left: 1em;">
-                            <input type="text" style="margin-left: 1em;">
-                            <img src="../../assets/AppImages/ChampiesToGive1.png" style="margin-left: 1em;" width="60"
-                                height="60">
-                        </div>
-                        <div style="margin-top: 3%;">
-                            <label id="labelWhy">Why</label>
-                        </div>
-                        <div style="margin-top: 3%;">
-                            <textarea rows="6" cols="60"></textarea>
-                        </div>
-                    </div>
+            <div>
+                <div style="margin-top: 3%;">
+                    <img src="../../assets/AppImages/clock.png" width="40" height="70">
+                    <input type="text" style="margin-left: 1em;">
+                    <input type="text" style="margin-left: 1em;">
+                    <img src="../../assets/AppImages/ChampiesToGive1.png" style="margin-left: 1em;" width="60"
+                        height="60">
                 </div>
-                <footer>
-                    <div>
-                        <button type="submit" class="btn btn-link" style="text-align: center;">
-                            <span style="font-size: 350%" id="letterSend">&#9993;</span>
-                            <footer>
-                                <label id="send">Send</label>
-                            </footer>
-                        </button>
-                    </div>
-                </footer>
+                <div style="margin-top: 3%;">
+                    <label id="labelWhy">Why</label>
+                </div>
+                <div style="margin-top: 3%;">
+                    <textarea rows="7" cols="60"></textarea>
+                </div>
             </div>
         </div>
-    </section>
-</body>
+        <footer id="letterSend">
+            <aside>
+                <button type="submit" class="btn btn-link" style="text-align: center;">
+                    <span style="font-size: 350%">&#9993;</span>
+                    <aside>
+                        <label id="send">Send</label>
+                    </aside>
+                </button>
+            </aside>
+        </footer>
+    </div>
+</div>

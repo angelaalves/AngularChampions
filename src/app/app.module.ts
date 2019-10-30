@@ -53,7 +53,6 @@ import { AddGuildListComponent } from './guild-list-start/guild-list/add-guild-l
 import { PresenterPageComponent } from './warrior/presenter-page/presenter-page.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ImageMakerComponent } from './image-maker/image-maker.component';
-import { NgImageSliderModule } from 'ng-image-slider';
 
 @NgModule({
   declarations: [
@@ -115,8 +114,7 @@ import { NgImageSliderModule } from 'ng-image-slider';
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
-    BrowserAnimationsModule, 
-    NgImageSliderModule
+    BrowserAnimationsModule
   ],
   providers: [PlayerService],
   bootstrap: [AppComponent]
