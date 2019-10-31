@@ -50,7 +50,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 
 export class HairSkins{
     @ViewChild('nav', {read: DragScrollComponent, static:false}) ds: DragScrollComponent;
-
+    
     constructor(private router: Router, private route: ActivatedRoute){}
 
     moveLeft() {
