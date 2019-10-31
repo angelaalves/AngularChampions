@@ -10,6 +10,7 @@
   #main{
     position: absolute;
     margin: 10%;
+    /*display: inline;*/
   }
 
   #main>div{
@@ -26,7 +27,8 @@
 
   #right{
     text-align: center;
-    float: center;
+    /*margin: auto;
+    float: center;*/
     width: 70%;
     height: 1187px;
   }

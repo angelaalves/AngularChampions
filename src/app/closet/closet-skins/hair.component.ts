@@ -1,4 +1,4 @@
-import { Component, ViewChild, OnInit } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { DragScrollComponent } from 'ngx-drag-scroll';
 import { Router, ActivatedRoute } from '@angular/router';
 
@@ -7,7 +7,7 @@ import { Router, ActivatedRoute } from '@angular/router';
     templateUrl: './closet-skins.component.html',
     styleUrls: ['./closet-skins.component.css'],
     template:`
-    <drag-scroll #navegar>
+    <drag-scroll #nav>
       <img drag-scroll-item src="../../../assets/Hair/HairLongBlack.png" style="width:15%" (click)="skinSelected()"/>
       <img drag-scroll-item src="../../../assets/Hair/HairLongBlonde.png" style="width:15%" (click)="skinSelected()"/>
       <img drag-scroll-item src="../../../assets/Hair/HairLongBlue.png" style="width:15%" (click)="skinSelected()"/>
@@ -49,7 +49,7 @@ import { Router, ActivatedRoute } from '@angular/router';
   })
 
 export class HairSkins{
-    @ViewChild('navegar', {read: DragScrollComponent, static:false}) ds: DragScrollComponent;
+    @ViewChild('nav', {read: DragScrollComponent, static:false}) ds: DragScrollComponent;
 
     constructor(private router: Router, private route: ActivatedRoute){}
 
