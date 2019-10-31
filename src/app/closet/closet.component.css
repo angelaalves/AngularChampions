@@ -6,3 +6,27 @@
   *{
     font-family: karmatic-arcade;
   }
+  
+  #main{
+    position: absolute;
+    margin: 10%;
+  }
+
+  #main>div{
+    float:left;
+  }
+
+  #left{
+    margin: auto;
+    text-align: left;
+    float: center;
+    width: 30%;
+    height: 1187px;
+  }
+
+  #right{
+    text-align: center;
+    float: center;
+    width: 70%;
+    height: 1187px;
+  }

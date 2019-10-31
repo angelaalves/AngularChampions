@@ -5,7 +5,7 @@
     height: 100%;
     background-image: url(../assets/AppImages/Bachgroumd.png);
     background-size: cover;
-     image-rendering: crisp-edges;
+    image-rendering: crisp-edges;
 }
 ::-webkit-scrollbar{
     width: 8px;
