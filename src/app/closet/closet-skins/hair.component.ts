@@ -40,8 +40,7 @@ import { Router, ActivatedRoute } from '@angular/router';
         height: 50px
         width: 50px
         background-color: transparent
-        
-      }
+  
       `]
   })
 

@@ -16,6 +16,8 @@ import { Component, ViewChild } from '@angular/core';
           height: 50px
           width: 50px
         }
+
+        
         `]
     })
   
