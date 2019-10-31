@@ -1,0 +1,5 @@
+.skinsscroll{
+  scrollbar-base-color: transparent;;
+    overflow-y: scroll;
+    height: 500px;
+}

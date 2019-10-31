@@ -12,6 +12,7 @@ import { Component, ViewChild } from '@angular/core';
       `,
       styles: [`
         drag-scroll {
+          
           height: 50px
           width: 50px
         }

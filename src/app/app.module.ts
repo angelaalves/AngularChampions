@@ -53,7 +53,6 @@ import { AddGuildListComponent } from './guild-list-start/guild-list/add-guild-l
 import { PresenterPageComponent } from './warrior/presenter-page/presenter-page.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ImageMakerComponent } from './image-maker/image-maker.component';
-import { NgbCarouselConfig, NgbCarousel, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { DragScrollModule } from 'ngx-drag-scroll';
 import { HairSkins } from './closet/closet-skins/hair.component';
 import { OtherSkins } from './closet/closet-skins/other.component';
@@ -130,7 +129,7 @@ import { TopSkins } from './closet/closet-skins/top.component';
     BrowserAnimationsModule,
     DragScrollModule
   ],
-  providers: [PlayerService, NgbCarouselConfig],
+  providers: [PlayerService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

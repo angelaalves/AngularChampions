@@ -26,11 +26,7 @@ import { Router, ActivatedRoute } from '@angular/router';
       <img drag-scroll-item src="../../../assets/SkinColor/MaleRed.png" style="width:15%" (click)="skinSelected()"/>
       <img drag-scroll-item src="../../../assets/SkinColor/MaleWhite.png" style="width:15%" (click)="skinSelected()"/>
       </drag-scroll>
-      <div>
-        <button (click)="moveLeft()">Left</button>
-        <button (click)="moveRight()">Right</button>
-        <button (click)="moveTo(15)">Last</button>
-      </div>
+    
       `,
       styles: [`
         drag-scroll {
