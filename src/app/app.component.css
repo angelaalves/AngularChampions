@@ -7,7 +7,7 @@
     background-size: cover;
     image-rendering: crisp-edges;
 }
-::-webkit-scrollbar{
+  ::-webkit-scrollbar{
     width: 8px;
   }
   ::-webkit-scrollbar-track{
