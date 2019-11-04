@@ -5,18 +5,48 @@ import { Component, ViewChild } from '@angular/core';
     templateUrl: './closet-skins.component.html',
     styleUrls: ['./closet-skins.component.css'],
     template:`
-    <drag-scroll #nav style="margin-top: 8%; text-align: center">
-      <img drag-scroll-item src="../../../assets/Top/TopPolarBlack.png" style="width:30%"/>
-      <img drag-scroll-item src="../../../assets/Top/TopPolarWhite.png" style="width:30%">
-      </drag-scroll>
+    <div class="scrollmenu" id=style-8>
+      <img  src="../../../assets/Top/TopPolarBlack.png" style="width:30%"/>
+      <img  src="../../../assets/Top/TopPolarWhite.png" style="width:30%">
+      </div>
       `,
       styles: [`
-        drag-scroll {
-          
-          height: 50px
-          width: 50px
-        }
-
+      div.scrollmenu {
+        background-color: transparent;
+        overflow: auto;
+        white-space: nowrap;
+      }
+      
+      div.scrollmenu a {
+        display: inline-block;
+        color: transparent;
+        text-align: center;
+        padding: 14px;
+        text-decoration: none;
+      }
+      
+      div.scrollmenu a:hover {
+        background-color:transparent;
+      }
+          #slidescroll{
+            background-color: transparent;
+          }
+            #style-8::-webkit-scrollbar-track
+            {
+              border: 1px solid black;
+              background-color:transparent;
+            }
+            
+            #style-8::-webkit-scrollbar
+            {
+              width: 10px;
+              background-color: transparent;
+            }
+            
+            #style-8::-webkit-scrollbar-thumb
+            {
+              background-color: #000000;	
+            }
         
         `]
     })
