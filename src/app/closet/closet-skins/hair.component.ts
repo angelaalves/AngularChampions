@@ -7,6 +7,7 @@ import { Router, ActivatedRoute } from '@angular/router';
     templateUrl: './closet-skins.component.html',
     styleUrls: ['./closet-skins.component.css'],
     template:`
+    <div class= "scroll"" id="style8"  >
     <drag-scroll #nav>
       <img drag-scroll-item src="../../../assets/Hair/HairLongBlack.png" style="width:15%" (click)="skinSelected()"/>
       <img drag-scroll-item src="../../../assets/Hair/HairLongBlonde.png" style="width:15%" (click)="skinSelected()"/>
@@ -32,7 +33,8 @@ import { Router, ActivatedRoute } from '@angular/router';
       <img drag-scroll-item src="../../../assets/Hair/HairShortGrey.png" style="width:15%" (click)="skinSelected()"/>
       <img drag-scroll-item src="../../../assets/Hair/HairShortPink.png" style="width:15%" (click)="skinSelected()"/>
       <img drag-scroll-item src="../../../assets/Hair/HairShortWhite.png" style="width:15%" (click)="skinSelected()"/>
-    </drag-scroll>
+      </drag-scroll>
+    </div>
   
     `,
     styles: [`
@@ -40,7 +42,23 @@ import { Router, ActivatedRoute } from '@angular/router';
         height: 50px
         width: 50px
         background-color: transparent
-  
+      }
+        #style-8::-webkit-scrollbar-track
+        {
+          border: 1px solid black;
+          background-color:transparent;
+        }
+        
+        #style-8::-webkit-scrollbar
+        {
+          width: 10px;
+          background-color: transparent;
+        }
+        
+        #style-8::-webkit-scrollbar-thumb
+        {
+          background-color: #000000;	
+        }
       `]
   })
 
