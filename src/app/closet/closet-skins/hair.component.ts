@@ -33,9 +33,7 @@ import { Router, ActivatedRoute } from '@angular/router';
       <img src="../../../assets/Hair/HairShortGrey.png" style="width:15%" (click)="skinSelected()"/>
       <img src="../../../assets/Hair/HairShortPink.png" style="width:15%" (click)="skinSelected()"/>
       <img  src="../../../assets/Hair/HairShortWhite.png" style="width:15%" (click)="skinSelected()"/>
-    
     </div>
-  
     `,
   styles: [`
   div.scrollmenu {
@@ -55,26 +53,26 @@ import { Router, ActivatedRoute } from '@angular/router';
   div.scrollmenu a:hover {
     background-color:transparent;
   }
-      #slidescroll{
-        background-color: transparent;
-      }
-        #style-8::-webkit-scrollbar-track
-        {
-          border: 1px solid black;
-          background-color:transparent;
-        }
-        
-        #style-8::-webkit-scrollbar
-        {
-          width: 10px;
-          background-color: transparent;
-        }
-        
-        #style-8::-webkit-scrollbar-thumb
-        {
-          background-color: #000000;	
-        }
-      `]
+  #slidescroll{
+    background-color: transparent;
+  }
+  #style-8::-webkit-scrollbar-track
+  {
+    border: 1px solid black;
+    background-color:transparent;
+  }
+  
+  #style-8::-webkit-scrollbar
+  {
+    width: 10px;
+    background-color: transparent;
+  }
+  
+  #style-8::-webkit-scrollbar-thumb
+  {
+    background-color: #000000;	
+  }
+`]
 })
 
 export class HairSkins {
