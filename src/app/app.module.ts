@@ -59,6 +59,8 @@ import { OtherSkins } from './closet/closet-skins/other.component';
 import { ShoesSkins } from './closet/closet-skins/shoes.component';
 import { SkinColorSkins } from './closet/closet-skins/skincolor.component';
 import { TopSkins } from './closet/closet-skins/top.component';
+import { BottomSkins } from './closet/closet-skins/bottom.component';
+import { BuySkinComponent } from './closet/buy-skin/buy-skin.component';
 
 
 @NgModule({
@@ -114,11 +116,13 @@ import { TopSkins } from './closet/closet-skins/top.component';
     GuildListStartComponent,
     PresenterPageComponent,
     ImageMakerComponent,
+    BottomSkins,
     HairSkins,
     OtherSkins,
     ShoesSkins,
     SkinColorSkins,
-    TopSkins 
+    TopSkins,
+    BuySkinComponent 
   ],
   imports: [
     BrowserModule,

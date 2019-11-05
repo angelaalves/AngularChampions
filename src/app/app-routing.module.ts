@@ -24,6 +24,7 @@ import { GuildListComponent } from './guild-list-start/guild-list/guild-list.com
 import { ReactiveFormsModule } from '@angular/forms';
 import { PresenterPageComponent } from './warrior/presenter-page/presenter-page.component';
 import { ImageMakerComponent } from './image-maker/image-maker.component';
+import { BuySkinComponent } from './closet/buy-skin/buy-skin.component';
 
 const appRoutes: Routes=[
     {path: '', redirectTo: '/login', pathMatch:'full'},
@@ -59,6 +60,7 @@ const appRoutes: Routes=[
     {path: 'videos', component: VideosComponent},
     {path: 'add_skin', component: AddSkinComponent},
     {path: 'image', component: ImageMakerComponent},
+    {path: 'buy_skin', component: BuySkinComponent}
     
  ]
 

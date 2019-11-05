@@ -16,7 +16,7 @@ import { Router, ActivatedRoute } from '@angular/router';
       <img src="../../../assets/SkinColor/FemaleMorena.png" style="width:15%" (click)="skinSelected()"/>
       <img src="../../../assets/SkinColor/FemaleMulata.png" style="width:15%" (click)="skinSelected()"/>
       <img src="../../../assets/SkinColor/FemaleRed.png" style="width:15%" (click)="skinSelected()"/>
-      <img src="../../../assets/SkinColor/FemalWhie.png" style="width:15%" (click)="skinSelected()"/>
+      <img src="../../../assets/SkinColor/FemaleWhite.png" style="width:15%" (click)="skinSelected()"/>
       <img src="../../../assets/SkinColor/MaleBlack.png" style="width:15%" (click)="skinSelected()"/>
       <img src="../../../assets/SkinColor/MaleBlue.png" style="width:15%" (click)="skinSelected()"/>
       <img src="../../../assets/SkinColor/MaleChinese.png" style="width:15%" (click)="skinSelected()"/>
@@ -69,30 +69,5 @@ import { Router, ActivatedRoute } from '@angular/router';
     })
   
 export class SkinColorSkins{
-    @ViewChild('nav', {read: DragScrollComponent, static:false}) ds: DragScrollComponent;
-  
-    constructor(private router: Router, private route: ActivatedRoute){}
-    
-    moveLeft() {
-      this.ds.moveLeft();
-    }
-  
-    moveRight() {
-      this.ds.moveRight();
-    }
-  
-    moveTo(index) {
-      this.ds.moveTo(index);
-    }
-
-    skinSelected(){
-      this.router.navigate(['/add_skin'], {relativeTo: this.route});
-    }
-  
-    ngAfterViewInit() {
-      // Starting ngx-drag-scroll from specified index(0)
-      setTimeout(() => {
-        this.ds.moveTo(0);
-      }, 0);
-    }
+ 
 }

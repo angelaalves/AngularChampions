@@ -6,8 +6,8 @@ import { gender } from '../shared/playerGender.enum';
 @Injectable()
 export class PlayerService{
     imagePath: string[]=["../assets/Hair/HairMediumBlonde.png", 
-    "../assets/SkinColor/AngLastairbender.png",
-    "../assets/Top/TopPolarWhite.png",
+    "../assets/SkinColor/FemaleWhite.png",
+    "../assets/Top/TopPolarBlack.png",
     "../assets/Bottom/BottomTrouseWhite.png"]
     players: Player[]=[
         new Player('One', '123@123.com', '12345', this.imagePath, playerType.Warrior, gender.Male),

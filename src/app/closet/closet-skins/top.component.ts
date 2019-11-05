@@ -6,8 +6,15 @@ import { Component, ViewChild } from '@angular/core';
     styleUrls: ['./closet-skins.component.css'],
     template:`
     <div class="scrollmenu" id=style-8>
-      <img  src="../../../assets/Top/TopPolarBlack.png" style="width:30%"/>
-      <img  src="../../../assets/Top/TopPolarWhite.png" style="width:30%">
+      <img  src="../../../assets/Top/TopPolarBlack.png" style="width:20%"/>
+      <img  src="../../../assets/Top/TopPolarWhite.png" style="width:20%">
+    
+      <img  src="../../../assets/Top/TopSweat.png" style="width:20%">
+      <img  src="../../../assets/Top/TopSweatBlue.png" style="width:20%">
+      <img  src="../../../assets/Top/TopUgly.png" style="width:20%">
+      <img  src="../../../assets/Top/TopWhite.png" style="width:20%">
+       <img  src="../../../assets/Top/TopBlue.png" style="width:20%">
+      <img  src="../../../assets/Top/TopPink.png" style="width:20%">
       </div>
       `,
       styles: [`

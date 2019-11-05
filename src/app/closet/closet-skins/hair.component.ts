@@ -81,28 +81,4 @@ export class HairSkins {
   @ViewChild('nav', { read: DragScrollComponent, static: false }) ds: DragScrollComponent;
 
   constructor(private router: Router, private route: ActivatedRoute) { }
-
-  moveLeft() {
-    this.ds.moveLeft();
-  }
-
-  moveRight() {
-    this.ds.moveRight();
-  }
-
-  moveTo(index) {
-    this.ds.moveTo(index);
-  }
-
-  skinSelected() {
-    this.router.navigate(['/add_skin'], { relativeTo: this.route });
-  }
-
-  ngAfterViewInit() {
-    // Starting ngx-drag-scroll from specified index(0)
-    setTimeout(() => {
-      this.ds.moveTo(0);
-    }, 0);
-  }
-
 }

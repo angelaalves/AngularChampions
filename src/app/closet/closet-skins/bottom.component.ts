@@ -2,19 +2,19 @@ import { Component, ViewChild } from '@angular/core';
 import { DragScrollComponent } from 'ngx-drag-scroll';
 
 @Component({
-    selector: 'app-other-skins',
+    selector: 'app-bottom-skins',
     templateUrl: './closet-skins.component.html',
     styleUrls: ['./closet-skins.component.css'],
     template:`
     <div class="scrollmenu" id=style-8>
-      <img src="../../../assets/Others/FairyWings.png" style="width:15%"/>
-      <img  src="../../../assets/Others/Koala.png" style="width:15%"/>
-      <img  src="../../../assets/Others/Angel.png" style="width:15%"/>
-      <img  src="../../../assets/Others/Bailarina.png" style="width:15%"/>
-      <img  src="../../../assets/Others/ElBandoleiro.png" style="width:15%"/>
-      <img  src="../../../assets/Others/Fastasminhabrincalhao.png" style="width:15%"/>
-      <img  src="../../../assets/Others/MudMan.png" style="width:15%"/>
-      <img  src="../../../assets/Others/PaiNatal.png" style="width:15%"/>
+    <img src="../../../assets/Bottom/BottomTrouserBlack.png" style="width:15%"/>
+    <img src="../../../assets/Bottom/BottomTrouserBlue.png" style="width:15%"/>
+    <img src="../../../assets/Bottom/BottomTrouseWhite.png" style="width:15%"/>
+    <img src="../../../assets/Bottom/BottomSkirtBlack.png" style="width:15%"/>
+    <img src="../../../assets/Bottom/BottomSkirtBlue.png" style="width:15%"/>
+    <img src="../../../assets/Bottom/BottomSkirtWhite.png" style="width:15%"/>
+      <img src="../../../assets/Bottom/BottomJumpsuitBlue.png" style="width:15%"/>
+      <img src="../../../assets/Bottom/BottomJumpsuitWhite.png" style="width:15%"/>
     </div>
     `,
     styles: [`
@@ -57,6 +57,5 @@ import { DragScrollComponent } from 'ngx-drag-scroll';
       `]
   })
 
-export class OtherSkins{
-    @ViewChild('nav', {read: DragScrollComponent, static:false}) ds: DragScrollComponent;
+export class BottomSkins{
 }
