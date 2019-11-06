@@ -1,10 +1,14 @@
-<div class="row">
-    <div class="col-xs-30" style="transform: translate(-8%,0%);">
-        <app-image-maker [hairImagePath]="hairImagePath" [skinImagePath]="skinImagePath" [shirtImagePath]="shirtImagePath" [pantsImagePath]="pantsImagePath"></app-image-maker>
+<div id="main">
+    <div class="row" id="left">
+        <div class="col-xs-30" style="transform: translate(-8%,0%);">
+            <app-image-maker [hairImagePath]="hairImagePath" [skinImagePath]="skinImagePath"
+                [shirtImagePath]="shirtImagePath" [pantsImagePath]="pantsImagePath" [shoesImagePath]="shoesImagePath"
+                [othersImagePath]="othersImagePath"></app-image-maker>
+        </div>
     </div>
-</div>
-<div class="row">
-    <div class="col-xs-30" style="text-align: center;">
-        <h2>{{name}}</h2>
+    <div class="row" id="right">
+        <div class="col-xs-30" style="text-align: center;">
+            <h2>{{name}}</h2>
+        </div>
     </div>
 </div>

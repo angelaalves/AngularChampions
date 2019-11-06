@@ -8,12 +8,16 @@ export class PlayerService{
     imagePath: string[]=["../assets/Hair/HairMediumBlonde.png", 
     "../assets/SkinColor/FemaleWhite.png",
     "../assets/Top/TopPolarBlack.png",
-    "../assets/Bottom/BottomTrouseWhite.png"]
+    "../assets/Bottom/BottomTrouseWhite.png",
+    "../assets/Shoes/ShoesGrey.png",
+    "../assets/Others/FairyWings.png"
+]
     players: Player[]=[
         new Player('One', '123@123.com', '12345', this.imagePath, playerType.Warrior, gender.Male),
         new Player('ancient', '456@456.com', '234567', this.imagePath, playerType.Ancient, gender.Female ),
         new Player('Two', '123@123.com', '12345', this.imagePath, playerType.Warrior, gender.Female)
     ];
+
     constructor(){}
 
     getPlayers(){

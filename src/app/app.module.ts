@@ -54,13 +54,15 @@ import { PresenterPageComponent } from './warrior/presenter-page/presenter-page.
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ImageMakerComponent } from './image-maker/image-maker.component';
 import { DragScrollModule } from 'ngx-drag-scroll';
-import { HairSkins } from './closet/closet-skins/hair.component';
-import { OtherSkins } from './closet/closet-skins/other.component';
-import { ShoesSkins } from './closet/closet-skins/shoes.component';
-import { SkinColorSkins } from './closet/closet-skins/skincolor.component';
-import { TopSkins } from './closet/closet-skins/top.component';
-import { BottomSkins } from './closet/closet-skins/bottom.component';
+
 import { BuySkinComponent } from './closet/buy-skin/buy-skin.component';
+
+import { SkinOtherComponent } from './closet/closet-skins/skin-other/skin-other.component';
+import { SkinShoesComponent } from './closet/closet-skins/skin-shoes/skin-shoes.component';
+import { SkinSkincolorComponent } from './closet/closet-skins/skin-skincolor/skin-skincolor.component';
+import { SkinTopComponent } from './closet/closet-skins/skin-top/skin-top.component';
+import { SkinBottomComponent } from './closet/closet-skins/skin-bottom/skin-bottom.component';
+import { SkinHairComponent } from './closet/closet-skins/skin-hair/skin-hair.component';
 
 
 @NgModule({
@@ -116,13 +118,14 @@ import { BuySkinComponent } from './closet/buy-skin/buy-skin.component';
     GuildListStartComponent,
     PresenterPageComponent,
     ImageMakerComponent,
-    BottomSkins,
-    HairSkins,
-    OtherSkins,
-    ShoesSkins,
-    SkinColorSkins,
-    TopSkins,
-    BuySkinComponent 
+    BuySkinComponent,
+    SkinHairComponent,
+    SkinOtherComponent,
+    SkinShoesComponent,
+    SkinSkincolorComponent,
+    SkinTopComponent,
+    SkinBottomComponent,
+    ImageComponent
   ],
   imports: [
     BrowserModule,
