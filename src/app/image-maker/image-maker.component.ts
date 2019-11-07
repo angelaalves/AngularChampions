@@ -5,6 +5,9 @@ import { Component, OnInit, Input } from '@angular/core';
   templateUrl: './image-maker.component.html',
   styleUrls: ['./image-maker.component.css']
 })
+
+
+
 export class ImageMakerComponent implements OnInit {
  @Input() hairImagePath:string
  @Input() skinImagePath:string
@@ -12,7 +15,6 @@ export class ImageMakerComponent implements OnInit {
  @Input() pantsImagePath:string
  @Input() shoesImagePath:string
  @Input() othersImagePath:string
- @Input() size:number
  
   constructor() { }
 

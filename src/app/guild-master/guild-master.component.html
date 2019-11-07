@@ -1,7 +1,10 @@
 <div class="container">
     <div class="row">
         <div class="col-md-2 col-xs-offset-1">
-            <app-guild-master-image [name]="guildmaster.name" [hairImagePath]="guildmaster.getImagePath(0)" [skinImagePath]="guildmaster.getImagePath(1)" [shirtImagePath]="guildmaster.getImagePath(2)" [pantsImagePath]="guildmaster.getImagePath(3)"></app-guild-master-image>
+            <app-image-maker [hairImagePath]="hairImagePath" [skinImagePath]="skinImagePath"
+            [shirtImagePath]="shirtImagePath" [pantsImagePath]="pantsImagePath" [shoesImagePath]="shoesImagePath"
+            [othersImagePath]="othersImagePath"></app-image-maker>
+            <h2>{{name}}</h2>
         </div>
         <div class="col-md-9">
             <app-guild-master-details></app-guild-master-details>

@@ -6,7 +6,6 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { WarriorComponent } from './warrior/warrior.component';
 import { DropdownDirective } from './shared/dropdown.directive';
-import { ImageComponent } from './warrior/image/image.component';
 import { WarriorDetailsComponent } from './warrior/warrior-details/warrior-details.component';
 import { WarriorDetailsXPComponent } from './warrior/warrior-details/warrior-details-xp/warrior-details-xp.component';
 import { WarriorDetailsCoinsComponent } from './warrior/warrior-details/warrior-details-coins/warrior-details-coins.component';
@@ -20,7 +19,6 @@ import { ClosetImageComponent } from './closet/closet-image/closet-image.compone
 import { ClosetSkinsComponent } from './closet/closet-skins/closet-skins.component';
 import { LoginComponent } from './login/login.component';
 import { GuildMasterComponent } from './guild-master/guild-master.component';
-import { GuildMasterImageComponent } from './guild-master/guild-master-image/guild-master-image.component';
 import { GuildMasterDefinitionsComponent } from './guild-master/guild-master-definitions/guild-master-definitions.component';
 import { GuildMasterDetailsComponent } from './guild-master/guild-master-details/guild-master-details.component';
 import { GuildMasterDetailsButtonsComponent } from './guild-master/guild-master-details/guild-master-details-buttons/guild-master-details-buttons.component';
@@ -70,7 +68,6 @@ import { SkinHairComponent } from './closet/closet-skins/skin-hair/skin-hair.com
     HeaderComponent,
     WarriorComponent,
     DropdownDirective,
-    ImageComponent,
     WarriorDetailsComponent,
     WarriorDetailsXPComponent,
     WarriorDetailsCoinsComponent,
@@ -85,7 +82,6 @@ import { SkinHairComponent } from './closet/closet-skins/skin-hair/skin-hair.com
     GuildComponent,
     GuildMemberComponent,
     GuildMasterComponent,
-    GuildMasterImageComponent,
     GuildMasterDefinitionsComponent,
     GuildMasterDetailsComponent,
     GuildMasterDetailsButtonsComponent,
@@ -124,7 +120,6 @@ import { SkinHairComponent } from './closet/closet-skins/skin-hair/skin-hair.com
     SkinSkincolorComponent,
     SkinTopComponent,
     SkinBottomComponent,
-    ImageComponent
   ],
   imports: [
     BrowserModule,

@@ -12,6 +12,7 @@
     padding-left: 10vw;
     height: 30vh;
     width: 30vw;
+    transform: translate(-20%,10%);
     display:block;
     float: left;
 }
