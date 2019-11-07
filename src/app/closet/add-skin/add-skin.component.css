@@ -20,8 +20,8 @@ label, input{
 
 #save_button{
     position: absolute;
-    right:    0;
-    bottom:   0;
+    right: 0;
+    bottom: 0;
 }
 
 @font-face{
@@ -31,4 +31,6 @@ label, input{
 
 *{
     font-family: karmatic-arcade;
+    margin-left: 5%;
+    margin-right: 5%;
 }

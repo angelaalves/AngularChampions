@@ -1,0 +1,15 @@
+ #main {
+     position: absolute;
+ }
+ 
+ #main>div {
+     float: center;
+ }
+ 
+ #right {
+     text-align: center;
+ }
+ 
+ #left {
+     text-align: center;
+ }

@@ -49,6 +49,7 @@ export class AddUserComponent implements OnInit{
       'password': new FormControl(password, [Validators.required, Validators.minLength(6)])
     });
   }
+  
   addUser(addUserForm: FormGroup) {
     (<FormArray>this.addUserForm.get('event')).push(
       new FormGroup({

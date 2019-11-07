@@ -1,19 +1,11 @@
 <div class="container">
-    <div class="row">
-        <div class="col-md-2" style="transform: translate(-50%, 50%);">
-            <app-ancient-image name="ancient.name" [hairImagePath]="ancient.getImagePath(0)"
-                [skinImagePath]="ancient.getImagePath(1)" [shirtImagePath]="ancient.getImagePath(2)"
-                [pantsImagePath]="ancient.getImagePath(3)" [shoesImagePath]="ancient.getImagePath(4)"
-                [othersImagePath]="ancient.getImagePath(5)"></app-ancient-image>
-        </div>
-        <div class="col-md-9">
-            <app-ancient-details></app-ancient-details>
-        </div>
+    <div class="col-md-2" id="left">
+        <app-ancient-image [name]="ancient.name" [hairImagePath]="ancient.getImagePath(0)" [skinImagePath]="ancient.getImagePath(1)" [shirtImagePath]="ancient.getImagePath(2)" [pantsImagePath]="ancient.getImagePath(3)"></app-ancient-image>
     </div>
-
-    <div class="row">
-        <div class="col-xs-12">
-            <app-ancient-definitions></app-ancient-definitions>
-        </div>
+    <div class="col-md-9" id="right">
+        <app-ancient-details></app-ancient-details>
+    </div>
+    <div class="col-xs-12" id="right">
+        <app-ancient-definitions></app-ancient-definitions>
     </div>
 </div>

@@ -39,8 +39,7 @@ const appRoutes: Routes=[
         {path: 'add_guild', component: AddGuildListComponent},
         {path: 'add_events', component: AddEventsComponent}, 
         {path: 'add_skin', component: AddSkinComponent},
-        {path: 'add_user', component: AddUserComponent},
-        {path: 'add_guild', component: AddGuildListComponent}
+        {path: 'add_user', component: AddUserComponent}
     ]},
     {path: 'ancient_profile', component: AncientComponent},
     {path: 'guilds_list', component: GuildListStartComponent, children:[
@@ -61,7 +60,6 @@ const appRoutes: Routes=[
     {path: 'add_skin', component: AddSkinComponent},
     {path: 'image', component: ImageMakerComponent},
     {path: 'buy_skin', component: BuySkinComponent}
-    
  ]
 
 

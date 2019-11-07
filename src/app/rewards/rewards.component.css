@@ -1,31 +1,33 @@
-#main{
-  position: absolute;
-  padding: 10px;
-}
-#main>div{
-  float: left;
-}
-#right{
-  text-align: left;
-}
-#left{
-  margin:auto;
-  text-align: left;
-}
-
-  #letterSend{
-    text-align: right;
-    
-  }
-
- 
-  @font-face{
+@font-face {
     src: url(../../fonts/ka1.ttf);
     font-family: karmatic-arcade;
-  }
+}
 
-  *{
+* {
     font-family: karmatic-arcade;
     color: black;
     background-color: transparent;
-  }
+}
+
+#main {
+    position: absolute; 
+}
+
+#main>div {
+    float: left;
+}
+
+#right {
+    text-align: left;
+    display: block;
+    float: right;
+}
+
+#left {
+    float: left;
+    text-align: center;
+}
+
+#letterSend {
+    text-align: right;
+}  
