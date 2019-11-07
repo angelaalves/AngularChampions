@@ -1,5 +1,4 @@
 import { Component, ViewChild } from '@angular/core';
-import { DragScrollComponent } from 'ngx-drag-scroll';
 import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
