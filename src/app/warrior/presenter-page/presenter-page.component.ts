@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Player } from 'src/app/shared/player.model';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { PlayerService } from 'src/app/services/player.service';
@@ -12,6 +12,14 @@ import { playerType } from 'src/app/shared/playerType.enum';
 export class PresenterPageComponent implements OnInit {
   warrior: Player;
   id: number;
+  @Input() name: string;
+  @Input() hairImagePath:string
+  @Input() skinImagePath:string
+  @Input() shirtImagePath:string
+  @Input() pantsImagePath:string
+ @Input() shoesImagePath:string
+ @Input() othersImagePath:string
+ 
   constructor(private router: Router, private route: ActivatedRoute, private playerService: PlayerService) { }
 
   ngOnInit() {

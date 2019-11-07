@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Player } from '../shared/player.model';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { PlayerService } from '../services/player.service';
@@ -14,6 +14,14 @@ export class GuildMasterComponent implements OnInit {
   id: number;
   constructor(private router: Router, private route: ActivatedRoute, private playerService: PlayerService) { }
 
+    @Input() name:string
+    @Input() hairImagePath:string
+    @Input() skinImagePath:string
+    @Input() shirtImagePath:string
+    @Input() pantsImagePath:string
+    @Input() shoesImagePath:string
+    @Input() othersImagePath:string
+    
   ngOnInit() {
     this.route.params.subscribe((params: Params)=>{
       this.id= +params['id'];

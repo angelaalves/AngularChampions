@@ -22,7 +22,7 @@ export class AncientComponent implements OnInit {
     "../assets/Top/TopPolarWhite.png",
     "../assets/Bottom/BottomTrouseWhite.png",
     "../assets/Shoes/ShoesGrey.png",
-    "../assets/Others/FairyWings.png"],
+    "../assets/Others/ElBandoleiro.png"],
      playerType.Ancient, gender.Female )
 
   }
