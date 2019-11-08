@@ -5,6 +5,7 @@ import { AuthenticationService } from './authentication/authentication.service';
 import { map, catchError, tap } from 'rxjs/operators';
 import { BehaviorSubject, Observable, throwError } from 'rxjs';
 import { Player } from '../shared/player.model';
+import { PlayerService } from '../services/player.service';
 
 interface AuthResponseData {
   kind: string,
@@ -29,7 +30,7 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
 
-  constructor(private http: HttpClient, private authService: AuthenticationService) {
+  constructor(private http: HttpClient, private authService: AuthenticationService, private playerService: PlayerService) {
     this.currentUserSubject = new BehaviorSubject<Player>(JSON.parse(localStorage.getItem('currentUser')));
     this.currentUser = this.currentUserSubject.asObservable();
   }
@@ -48,7 +49,12 @@ export class LoginComponent implements OnInit {
     console.log(password);
     this.http.post<{name: string}>('http://localhost:8085/players/Login?email='+email+'&password='+password, { email: email, password: password }).subscribe(
       resData=>{
+<<<<<<< Updated upstream
         console.log(resData);
+=======
+        
+        this.playerService.addPlayer()
+>>>>>>> Stashed changes
       }
     );
     form.reset();
