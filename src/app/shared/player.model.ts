@@ -2,26 +2,33 @@ import { playerType } from './playerType.enum';
 import { gender } from './playerGender.enum';
 
 export class Player{
-    public name: string;
+    public idPlayer: string;
+    public UserName: string; 
+    public gender: gender; 
+    public playerType: playerType;
     public email: string;
     public password: string;
     public imagePath: string[];
-    public xp: number;
-    public playerType: playerType;
-    public gender: gender;
-    public coinsGive: number;
-    public coinsReceived: number;
+    public xp: string;
+    public ChampiesToGive:string;
+    public MyChampies:string;
+    public Status: string;
 
-    constructor(name:string, email:string, password:string, imagePath: string[], playerType: playerType, gender: gender){
-        this.name=name;
+
+
+
+    constructor(idPlayer:string, UserName:string, email:string, password:string, imagePath: string[], xp: string, ChampiesToGive:string, MyChampies: string, playerType: playerType, gender: gender, status: string){
+        this.idPlayer=idPlayer;
+        this.UserName=UserName;
         this.email=email;
-        this.password=password
+        this.password=password;
         this.imagePath=imagePath;
         this.playerType=playerType;
         this.gender=gender;
-        this.xp=80;
-        this.coinsGive=20;
-        this.coinsReceived=20;
+        this.xp=xp;
+        this.ChampiesToGive=ChampiesToGive;
+        this.MyChampies=MyChampies;
+        this.Status=status;
     }
 
     getImagePath(index:number){

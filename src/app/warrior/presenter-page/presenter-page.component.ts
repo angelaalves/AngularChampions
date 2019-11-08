@@ -12,13 +12,7 @@ import { playerType } from 'src/app/shared/playerType.enum';
 export class PresenterPageComponent implements OnInit {
   warrior: Player;
   id: number;
-  @Input() name: string;
-  @Input() hairImagePath:string
-  @Input() skinImagePath:string
-  @Input() shirtImagePath:string
-  @Input() pantsImagePath:string
- @Input() shoesImagePath:string
- @Input() othersImagePath:string
+
  
   constructor(private router: Router, private route: ActivatedRoute, private playerService: PlayerService) { }
 

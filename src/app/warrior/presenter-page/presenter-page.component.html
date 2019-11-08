@@ -1,10 +1,10 @@
 <div class="Profile_container" id="Profile_container">
     <div class="row">
         <div class="col-md-2" style="margin-left: auto;margin-right: auto;">
-            <app-image-maker [hairImagePath]="hairImagePath" [skinImagePath]="skinImagePath"
-            [shirtImagePath]="shirtImagePath" [pantsImagePath]="pantsImagePath" [shoesImagePath]="shoesImagePath"
-            [othersImagePath]="othersImagePath"></app-image-maker>
-            <h2>{{name}}</h2>
+         <app-warrior-image[name]="ancient.name" [hairImagePath]="warrior.getImagePath(0)"
+         [skinImagePath]="warrior.getImagePath(1)" [shirtImagePath]="warrior.getImagePath(2)"
+         [pantsImagePath]="warrior.getImagePath(3)" [shoesImagePath]="warrior.getImagePath(4)"
+         [othersImagePath]="warrior.getImagePath(5)"></app-warrior-image>
         </div>
         <div class="col-md-9">
             <app-warrior-details-xp [XP]="warrior.xp"></app-warrior-details-xp>

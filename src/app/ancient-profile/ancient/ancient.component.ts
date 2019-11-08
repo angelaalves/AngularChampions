@@ -17,13 +17,14 @@ export class AncientComponent implements OnInit {
   constructor(private router: Router, private route: ActivatedRoute, private playerService: PlayerService) { }
 
   ngOnInit() {
-    this.ancient= new Player('ancient', '456@456.com', '234567', ["../assets/Hair/HairMediumBlonde.png", 
+    /*this.ancient= new Player('ancient', '456@456.com', '234567', ["../assets/Hair/HairMediumBlonde.png", 
     "../assets/SkinColor/AngLastairbender.png",
     "../assets/Top/TopPolarWhite.png",
     "../assets/Bottom/BottomTrouseWhite.png",
     "../assets/Shoes/ShoesGrey.png",
     "../assets/Others/ElBandoleiro.png"],
      playerType.Ancient, gender.Female )
-
+*/
+      
   }
 }

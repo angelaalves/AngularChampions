@@ -56,6 +56,7 @@ export class LoginComponent implements OnInit {
           return user;
         }));
         console.log(resData);
+        
       },
       error => {
         console.log(error);
@@ -104,4 +105,8 @@ export class LoginComponent implements OnInit {
     //const player = new Player(name,email, userId, playerType.GuildMaster );
     //this.user.next(player);
   }
+
+
+
+
 }
