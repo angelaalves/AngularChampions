@@ -51,6 +51,7 @@ export class LoginComponent implements OnInit {
       resData=>{
 
         console.log(resData);
+        resData
 
       }
     );
