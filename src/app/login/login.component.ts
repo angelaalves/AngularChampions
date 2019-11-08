@@ -58,6 +58,11 @@ export class LoginComponent implements OnInit {
 >>>>>>> Stashed changes
 =======
         
+<<<<<<< Updated upstream
+        this.playerService.addPlayer()
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
         this.playerService.addPlayer()
 >>>>>>> Stashed changes
       }
