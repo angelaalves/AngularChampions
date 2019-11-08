@@ -1,5 +1,6 @@
 import { playerType } from './playerType.enum';
 import { gender } from './playerGender.enum';
+import { status } from './status.enum';
 
 export class Player{
     public idPlayer: string;
@@ -12,12 +13,12 @@ export class Player{
     public xp: string;
     public ChampiesToGive:string;
     public MyChampies:string;
-    public Status: string;
+    public Status: status;
 
 
 
 
-    constructor(idPlayer:string, UserName:string, email:string, password:string, imagePath: string[], xp: string, ChampiesToGive:string, MyChampies: string, playerType: playerType, gender: gender, status: string){
+    constructor(idPlayer:string, UserName:string, email:string, password:string, imagePath: string[], xp: string, ChampiesToGive:string, MyChampies: string, playerType: playerType, gender: gender, status: status){
         this.idPlayer=idPlayer;
         this.UserName=UserName;
         this.email=email;
