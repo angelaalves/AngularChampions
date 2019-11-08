@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { DragScrollComponent } from 'ngx-drag-scroll';
 
 @Component({
   selector: 'app-skin-hair',
@@ -8,9 +7,14 @@ import { DragScrollComponent } from 'ngx-drag-scroll';
   styleUrls: ['./skin-hair.component.css']
 })
 export class SkinHairComponent implements OnInit {
-  @ViewChild('nav', { read: DragScrollComponent, static: false }) ds: DragScrollComponent;
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
   
 
+=======
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
 
   constructor(private router: Router, private route: ActivatedRoute) { }
 

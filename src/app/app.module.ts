@@ -51,7 +51,6 @@ import { AddGuildListComponent } from './guild-list-start/guild-list/add-guild-l
 import { PresenterPageComponent } from './warrior/presenter-page/presenter-page.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ImageMakerComponent } from './image-maker/image-maker.component';
-import { DragScrollModule } from 'ngx-drag-scroll';
 
 import { BuySkinComponent } from './closet/buy-skin/buy-skin.component';
 
@@ -134,8 +133,7 @@ import { UserLoggedComponent } from './user-logged/user-logged.component';
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
-    BrowserAnimationsModule,
-    DragScrollModule
+    BrowserAnimationsModule
   ],
   providers: [PlayerService],
   bootstrap: [AppComponent]
