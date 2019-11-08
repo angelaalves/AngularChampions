@@ -8,8 +8,11 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class SkinHairComponent implements OnInit {
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   
 
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 

@@ -50,7 +50,12 @@ export class LoginComponent implements OnInit {
     this.http.post<{name: string}>('http://localhost:8085/players/Login?email='+email+'&password='+password, { email: email, password: password }).subscribe(
       resData=>{
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
         console.log(resData);
+=======
+        
+        this.playerService.addPlayer()
+>>>>>>> Stashed changes
 =======
         
         this.playerService.addPlayer()
