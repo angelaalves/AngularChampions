@@ -28,8 +28,7 @@ export class AddUserComponent implements OnInit{
     /*if(!form.valid){
       return;
     }*/
-    const idPlayer= form.value.id;
-    const UserName = form.value.name;
+    const name = form.value.name;
     const email = form.value.email;
     const password = form.value.password;
     const gender = form.value.gender;

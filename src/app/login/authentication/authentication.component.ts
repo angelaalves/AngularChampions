@@ -21,7 +21,7 @@ export class AuthenticationComponent {
     const password = form.value.password;
     this.authService.signup(email, password).subscribe(
       resData => {
-        console.log(resData);
+        console.log(resData); 
       },
       error => {
         console.log(error);

@@ -47,7 +47,7 @@ export class LoginComponent implements OnInit {
     const password = form.value.password;
     this.authService.signup(email, password).subscribe(
       resData => {
-        this.http.post<any>('http://localhost:8085/players/Login?email=${email}&password=${password}', { email, password }).pipe(map(user => {
+        this.http.post<any>('http://localhost:8085/players/Login', { email, password }).pipe(map(user => {
           // login successful if there's a jwt token in the response
           if (user && user.token) {
             // store user details and jwt token in local storage to keep user logged in between page refreshes
@@ -57,8 +57,51 @@ export class LoginComponent implements OnInit {
           return user;
         }));
         console.log(resData);
+        resData
+
       }
     );
     form.reset();
+  }
+
+
+  signup(email: string, password: string) {
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', 'http://localhost:8085/players/Login?email=${email}&password=${password}', true);
+    return this.http.post<AuthResponseData>('http://localhost:8085/players/Login',
+      {
+        email: email,
+        password: password
+      }
+    ).pipe(catchError(this.handleError),
+      tap(resData => {
+        this.handleAuthentication(resData.email, resData.localId)
+      })
+    );
+  }
+
+  private handleError(errorRes: HttpErrorResponse) {
+    let errorMessage = 'an unknown error occurred';
+    if (!errorRes.error || !errorRes.error.error) {
+      return throwError(errorMessage);
+    }
+    switch (errorRes.error.error.message) {
+      case 'EMAIL_EXISTS':
+        errorMessage = 'this email already exists';
+        break;
+      case 'EMAIL_NOT_FOUND':
+        errorMessage = 'This email does not exist';
+        break;
+      case 'INVALID_PASSWORD':
+        errorMessage = 'This password is not correct';
+        break;
+    }
+    return throwError(errorMessage);
+  }
+
+  private handleAuthentication(email: string, userId: string) {
+    const expirationDate = new Date(new Date().getTime());
+    //const player = new Player(name,email, userId, playerType.GuildMaster );
+    //this.user.next(player);
   }
 }
