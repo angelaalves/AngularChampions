@@ -8,7 +8,6 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class SkinHairComponent implements OnInit {
 
-
   constructor(private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {

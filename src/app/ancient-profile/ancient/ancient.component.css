@@ -1,23 +1,15 @@
-
-  .divLeft {
-    /*width:1000px;*/
-    padding-left: 10vw;
-    height: 30vh;
-    width: 30vw;
-    transform: translate(-15%,0%);
-    display:block;
-    float: left;
-}
-.divRight {
-  padding-right: 10vw;
-    height: 30vh;
-    width:60vw;
-    display:block;
-    float: left;
-}
-.divBottom{
-    padding: 25vh;
-    padding-right:60vw;
-    display:block;
-    float: left;
-}
+ #main {
+     position: absolute;
+ }
+ 
+ #main>div {
+     float: center;
+ }
+ 
+ #right {
+     text-align: center;
+ }
+ 
+ #left {
+     text-align: center;
+ }

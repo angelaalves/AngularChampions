@@ -2,6 +2,7 @@ import { Player } from '../shared/player.model';
 import { playerType } from '../shared/playerType.enum';
 import { Injectable } from '@angular/core';
 import { gender } from '../shared/playerGender.enum';
+import { status } from 'src/app/shared/status.enum';
 
 @Injectable()
 export class PlayerService{
@@ -13,9 +14,9 @@ export class PlayerService{
     "../assets/Others/FairyWings.png"
 ]
     players: Player[]=[
-        new Player('One', '123@123.com', '12345', this.imagePath, playerType.Warrior, gender.Male),
-        new Player('ancient', '456@456.com', '234567', this.imagePath, playerType.Ancient, gender.Female ),
-        new Player('Two', '123@123.com', '12345', this.imagePath, playerType.Warrior, gender.Female)
+        new Player('1','One', '123@123.com', '12345', this.imagePath, '100','100','100',playerType.Warrior, gender.Male, status.Active),
+        new Player('3','ancient', '456@456.com', '234567', this.imagePath, '100','100','100',playerType.Ancient, gender.Female,status.Active),
+        new Player('2','Two', '123@123.com', '12345', this.imagePath, '100','100','100',playerType.Warrior, gender.Female,status.Active)
     ];
 
     constructor(){}

@@ -4,6 +4,7 @@ import { playerType } from 'src/app/shared/playerType.enum';
 import { gender } from 'src/app/shared/playerGender.enum';
 import { Router, ActivatedRoute } from '@angular/router';
 import { PlayerService } from 'src/app/services/player.service';
+import { status } from 'src/app/shared/status.enum';
 
 @Component({
   selector: 'app-ancient-image',
@@ -27,13 +28,13 @@ export class AncientImageComponent implements OnInit {
 
   ngOnInit() {
 
-    this.ancient = new Player('ancient', '456@456.com', '234567', ["../assets/Hair/HairMediumBlonde.png",
+    this.ancient = new Player('1','ancient', '456@456.com', '234567', ["../assets/Hair/HairMediumBlonde.png",
       "../assets/SkinColor/AngLastairbender.png",
       "../assets/Top/TopPolarWhite.png",
       "../assets/Bottom/BottomTrouseWhite.png",
       "../assets/Shoes/ShoesGrey.png",
       "../assets/Others/FairyWings.png"],
-      playerType.Ancient, gender.Female)
+      '100','100','100',
+      playerType.Ancient, gender.Female, status.Active)
   }
-
 }
