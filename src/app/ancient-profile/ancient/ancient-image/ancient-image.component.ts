@@ -20,6 +20,7 @@ export class AncientImageComponent implements OnInit {
   @Input() shoesImagePath: string
   @Input() othersImagePath: string
   @Input() size: number
+  @Input() status: status
 
   ancient: Player;
   id: number;
@@ -33,8 +34,7 @@ export class AncientImageComponent implements OnInit {
       "../assets/Top/TopPolarWhite.png",
       "../assets/Bottom/BottomTrouseWhite.png",
       "../assets/Shoes/ShoesGrey.png",
-      "../assets/Others/FairyWings.png"],
-      '100','100','100',
+      "../assets/Others/FairyWings.png"], '100', '100','100',
       playerType.Ancient, gender.Female, status.Active)
   }
 }

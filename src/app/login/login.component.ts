@@ -58,27 +58,12 @@ export class LoginComponent implements OnInit {
         }));
         console.log(resData);
         resData
-
+ 
       }
     );
     form.reset();
   }
 
-
-  /*signup(email: string, password: string) {
-    var xhr = new XMLHttpRequest();
-    xhr.open('POST', 'http://localhost:8085/players/Login?email=${email}&password=${password}', true);
-    return this.http.post<AuthResponseData>('http://localhost:8085/players/Login',
-      {
-        email: email,
-        password: password
-      }
-    ).pipe(catchError(this.handleError),
-      tap(resData => {
-        this.handleAuthentication(resData.email, resData.localId)
-      })
-    );
-  }*/
 
   private handleError(errorRes: HttpErrorResponse) {
     let errorMessage = 'an unknown error occurred';

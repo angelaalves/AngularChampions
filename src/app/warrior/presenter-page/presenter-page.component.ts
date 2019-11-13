@@ -1,8 +1,10 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Player } from 'src/app/shared/player.model';
 import { Router, ActivatedRoute, Params } from '@angular/router';
-import { PlayerService } from 'src/app/services/player.service';
+
+
 import { playerType } from 'src/app/shared/playerType.enum';
+import { PlayerService } from 'src/app/services/player.service';
 
 @Component({
   selector: 'app-presenter-page',
