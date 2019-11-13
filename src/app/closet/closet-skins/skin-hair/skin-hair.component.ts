@@ -7,14 +7,7 @@ import { Router, ActivatedRoute } from '@angular/router';
   styleUrls: ['./skin-hair.component.css']
 })
 export class SkinHairComponent implements OnInit {
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-  
 
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
 
   constructor(private router: Router, private route: ActivatedRoute) { }
 

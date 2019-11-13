@@ -28,12 +28,13 @@ export class AddUserComponent implements OnInit{
     /*if(!form.valid){
       return;
     }*/
-    const name = form.value.name;
+    const idPlayer= form.value.id;
+    const UserName = form.value.name;
     const email = form.value.email;
     const password = form.value.password;
     const gender = form.value.gender;
     const playerType = form.value.playerType;
-    this.playerService.addPlayer(new Player(name, email, password, [], playerType, gender));
+    this.playerService.addPlayer(new Player(idPlayer:string, UserName:string, email:string, password:string, imagePath: string[], xp: string, ChampiesToGive:string, MyChampies: string, playerType: playerType, gender: gender, status: status));
     console.log('addUserForm' , form.value);
     this.router.navigate(['/ancient_profile'], {relativeTo: this.route});
   }

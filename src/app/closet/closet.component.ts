@@ -13,10 +13,12 @@ export class ClosetComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    this.ancient= new Player('ancient', '456@456.com', '234567', ["../assets/Hair/HairMediumBlonde.png", 
+    /*
+    this.ancient= new Player('2', 'alberto','456@456.com', '234567', ["../assets/Hair/HairMediumBlonde.png", 
     "../assets/SkinColor/FemaleBlack.png",
     "../assets/Top/TopPolarWhite.png",
-    "../assets/Bottom/BottomTrouseWhite.png","../assets/Shoes/ShoesGrey.png","../assets/Others/FairyWings.png"], playerType.Ancient, gender.Female )
-  }
-  
+    "../assets/Bottom/BottomTrouseWhite.png","../assets/Shoes/ShoesGrey.png","../assets/Others/FairyWings.png"], playerType.Ancient, gender.Female,'100','20','30',status.active);
+  */}
+
+
 }
