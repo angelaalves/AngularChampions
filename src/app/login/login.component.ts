@@ -65,7 +65,7 @@ export class LoginComponent implements OnInit {
   }
 
 
-  signup(email: string, password: string) {
+  /*signup(email: string, password: string) {
     var xhr = new XMLHttpRequest();
     xhr.open('POST', 'http://localhost:8085/players/Login?email=${email}&password=${password}', true);
     return this.http.post<AuthResponseData>('http://localhost:8085/players/Login',
@@ -78,7 +78,7 @@ export class LoginComponent implements OnInit {
         this.handleAuthentication(resData.email, resData.localId)
       })
     );
-  }
+  }*/
 
   private handleError(errorRes: HttpErrorResponse) {
     let errorMessage = 'an unknown error occurred';
