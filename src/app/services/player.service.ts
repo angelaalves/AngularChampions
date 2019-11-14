@@ -1,14 +1,11 @@
 import { Player } from '../shared/player.model';
 import { playerType } from '../shared/playerType.enum';
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { gender } from '../shared/playerGender.enum';
 import { status } from 'src/app/shared/status.enum';
-
  
 @Injectable()
 export class PlayerService{
-
     imagePath: string[]=["../assets/Hair/HairMediumBlonde.png", 
     "../assets/SkinColor/FemaleWhite.png",
     "../assets/Top/TopPolarBlack.png",
@@ -22,23 +19,19 @@ export class PlayerService{
         new Player('2','2','Two', '123@123.com', '12345', this.imagePath, '100','100','100',playerType.Warrior, gender.Female,status.Active)
     ];
  
-    constructor(private httpClient: HttpClient){}
-
+    constructor(){}
+ 
     getPlayers(){
         return this.players;
     }
     getWarriors(){
-        /*
-        this.http.post<any>('http://localhost:8085/players/Login', { email, password }).pipe(map(user => {
-            // login successful if there's a jwt token in the response
-            if (user && user.token) {
-              // store user details and jwt token in local storage to keep user logged in between page refreshes
-              localStorage.setItem('currentUser', JSON.stringify(user));
-              this.currentUserSubject.next(user);
+        var warriors: Player[]=[];
+        for(let i=0;i<this.players.length;i++){
+            if(this.players[i].playerType==playerType.Warrior){
+                warriors.push(this.players[i]);
             }
-            return user;
         }
-      */
+        return warriors;
     }
     getGuildMaster(){
         var guildmasters: Player[]=[];
