@@ -4,7 +4,8 @@ import { playerType } from '../shared/playerType.enum';
 import { gender } from '../shared/playerGender.enum';
 import { status } from 'src/app/shared/status.enum';
 import { AuthenticationService } from '../login/authentication/authentication.service';
-import { HttpClient } from 'selenium-webdriver/http';
+import { HttpClient } from '@angular/common/http';
+
 
 interface AuthResponseData {
   kind: string,

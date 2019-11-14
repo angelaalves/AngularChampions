@@ -1,15 +1,19 @@
- #main {
-     position: absolute;
- }
- 
- #main>div {
-     float: center;
- }
- 
- #right {
-     text-align: center;
- }
- 
- #left {
-     text-align: center;
- }
+
+
+#Left {
+
+    height: 70vh;
+    width: 30vw;
+    display:block;
+    float: left;
+}
+#Right {
+    height: 30vh;
+    width: 70vw;
+    display:block;
+    float: right;
+}
+
+#footer{
+
+}
