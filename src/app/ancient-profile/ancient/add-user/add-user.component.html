@@ -13,6 +13,30 @@
     <div class="form-row">
         <div class="col-7">
             <div class="form-group">
+                <label for="gender">Gender</label>
+                <input type="radio" name="gender" value="male" formControlName="gender"
+                    required>Male
+                <input type="radio" name="gender" value="female" formControlName="gender" 
+                    required>Female
+            </div>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="col-7">
+            <div class="form-group">
+                <label for="playerType">PlayerType</label>
+                <input type="radio" name="ancient" value="ancient" formControlName="playerType" class="form-control"
+                    required>Ancient
+                <input type="radio" name="warrior" value="warrior" formControlName="playerType" class="form-control"
+                    required>Warrior
+                <input type="radio" name="guildmaster" value="guildMaster" formControlName="playerType"
+                    class="form-control" required>Guild Master
+            </div>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="col-7">
+            <div class="form-group">
                 <label for="email">Email</label>
                 <input type="email" name="email" formControlName="email" class="form-control" required email>
             </div>
@@ -22,15 +46,16 @@
         <div class="col-7">
             <div class="form-group">
                 <label for="confirmPassword">Password</label>
-                <input type="password" name="password" formControlName="password" class="form-control" required minlength="6">
+                <input type="password" name="password" formControlName="password" class="form-control" required
+                    minlength="6">
             </div>
         </div>
     </div>
-
     <div class="form-row">
         <div class="col-7">
             <div class="form-group">
-                <button type='submit' class="btn btn-primary" [disabled]="!addUserForm.valid" (click)="submit();">Add</button>
+                <button type='submit' class="btn btn-primary" [disabled]="!addUserForm.valid"
+                    (click)="submit();">Add</button>
             </div>
         </div>
     </div>

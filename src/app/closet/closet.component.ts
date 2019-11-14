@@ -31,7 +31,7 @@ export class ClosetComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.ancient= new Player('1','ancient', '456@456.com', '234567', ["../assets/Hair/HairMediumBlonde.png", 
+    this.ancient= new Player('1', '1','ancient', '456@456.com', '234567', ["../assets/Hair/HairMediumBlonde.png", 
     "../assets/SkinColor/FemaleBlack.png",
     "../assets/Top/TopPolarWhite.png",
     "../assets/Bottom/BottomTrouseWhite.png","../assets/Shoes/ShoesGrey.png","../assets/Others/FairyWings.png"], 

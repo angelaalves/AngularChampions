@@ -4,6 +4,7 @@ import { status } from './status.enum';
 
 export class Player{
     public idPlayer: string;
+    public idGuild: string;
     public UserName: string; 
     public gender: gender; 
     public playerType: playerType;
@@ -15,17 +16,18 @@ export class Player{
     public MyChampies:string;
     public Status: status;
 
-    constructor(idPlayer:string, UserName:string, email:string, password:string, imagePath: string[], xp: string, ChampiesToGive:string, MyChampies: string, playerType: playerType, gender: gender, status: status){
+    constructor(idPlayer:string, idGuild: string, UserName:string, email:string, password:string, imagePath: string[], xp: string, ChampiesToGive:string, MyChampies: string, playerType: playerType, gender: gender, status: status){
         this.idPlayer=idPlayer;
+        this.idGuild=idGuild;
         this.UserName=UserName;
         this.email=email;
         this.password=password;
         this.imagePath=imagePath;
-        this.playerType=playerType;
-        this.gender=gender;
         this.xp=xp;
         this.ChampiesToGive=ChampiesToGive;
         this.MyChampies=MyChampies;
+        this.playerType=playerType;
+        this.gender=gender;
         this.Status=status;
     }
 

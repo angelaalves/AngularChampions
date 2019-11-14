@@ -14,9 +14,9 @@ export class PlayerService{
     "../assets/Others/FairyWings.png"
 ]
     players: Player[]=[
-        new Player('1','One', '123@123.com', '12345', this.imagePath, '100','100','100',playerType.Warrior, gender.Male, status.Active),
-        new Player('3','ancient', '456@456.com', '234567', this.imagePath, '100','100','100',playerType.Ancient, gender.Female,status.Active),
-        new Player('2','Two', '123@123.com', '12345', this.imagePath, '100','100','100',playerType.Warrior, gender.Female,status.Active)
+        new Player('1','1','One', '123@123.com', '12345', this.imagePath, '100','100','100',playerType.Warrior, gender.Male, status.Active),
+        new Player('3','1','ancient', '456@456.com', '234567', this.imagePath, '100','100','100',playerType.Ancient, gender.Female,status.Active),
+        new Player('2','2','Two', '123@123.com', '12345', this.imagePath, '100','100','100',playerType.Warrior, gender.Female,status.Active)
     ];
  
     constructor(){}

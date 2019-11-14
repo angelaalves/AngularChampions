@@ -18,7 +18,7 @@ export class AncientComponent implements OnInit {
   constructor(private router: Router, private route: ActivatedRoute, private playerService: PlayerService) { }
 
   ngOnInit() {
-   this.ancient=  new Player('3','ancient', '456@456.com', '234567',  ["../assets/Hair/HairMediumBlonde.png", 
+   this.ancient=  new Player('3','1','ancient', '456@456.com', '234567',  ["../assets/Hair/HairMediumBlonde.png", 
      "../assets/SkinColor/AngLastairbender.png",
      "../assets/Top/TopPolarWhite.png",
      "../assets/Bottom/BottomTrouseWhite.png",
