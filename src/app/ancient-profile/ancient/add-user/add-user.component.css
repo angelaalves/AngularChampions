@@ -1,16 +1,10 @@
-      label,
-      input {
-          box-sizing: content-box;
-      }
-      
-      @font-face {
-          src: url(../../../../fonts/ka1.ttf);
-          font-family: karmatic-arcade;
-      }
-      
-      * {
-          font-family: karmatic-arcade;
-          margin-left: 5%;
-          margin-right: 5%;
-          max-width: 100%;
-      }
+@font-face {
+    src: url(../../../../fonts/ka1.ttf);
+    font-family: karmatic-arcade;
+}
+
+* {
+    font-family: karmatic-arcade;
+    margin-left: 5%;
+    margin-right: 5%;
+}
