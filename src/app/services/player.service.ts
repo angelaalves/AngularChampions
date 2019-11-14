@@ -1,12 +1,14 @@
 import { Player } from '../shared/player.model';
 import { playerType } from '../shared/playerType.enum';
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { gender } from '../shared/playerGender.enum';
 import { status } from 'src/app/shared/status.enum';
 
  
 @Injectable()
 export class PlayerService{
+
     imagePath: string[]=["../assets/Hair/HairMediumBlonde.png", 
     "../assets/SkinColor/FemaleWhite.png",
     "../assets/Top/TopPolarBlack.png",
@@ -20,8 +22,8 @@ export class PlayerService{
         new Player('2','2','Two', '123@123.com', '12345', this.imagePath, '100','100','100',playerType.Warrior, gender.Female,status.Active)
     ];
  
-    constructor(){}
- 
+    constructor(private httpClient: HttpClient){}
+
     getPlayers(){
         return this.players;
     }

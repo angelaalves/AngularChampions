@@ -8,26 +8,22 @@
     color: black;
     background-color: transparent;
 }
-
-#main {
-    position: absolute; 
-}
-
-#main>div {
-    float: left;
-}
-
-#right {
-    text-align: left;
-    display: block;
+ 
+#divRight >button{
     float: right;
 }
-
-#left {
+#divLeft {
+    padding-left: 10vw;
+    height: 30vh;
+    width: 30vw;
+    transform: translate(-20%,10%);
+    display:block;
     float: left;
-    text-align: center;
 }
-
-#letterSend {
-    text-align: right;
-}  
+#divRight {
+  padding-right: 10vw;
+    height: 30vh;
+    width:60vw;
+    display:block;
+    float: left;
+}
