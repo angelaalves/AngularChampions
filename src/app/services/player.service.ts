@@ -3,6 +3,7 @@ import { playerType } from '../shared/playerType.enum';
 import { Injectable } from '@angular/core';
 import { gender } from '../shared/playerGender.enum';
 import { status } from 'src/app/shared/status.enum';
+
  
 @Injectable()
 export class PlayerService{
@@ -25,13 +26,17 @@ export class PlayerService{
         return this.players;
     }
     getWarriors(){
-        var warriors: Player[]=[];
-        for(let i=0;i<this.players.length;i++){
-            if(this.players[i].playerType==playerType.Warrior){
-                warriors.push(this.players[i]);
+        /*
+        this.http.post<any>('http://localhost:8085/players/Login', { email, password }).pipe(map(user => {
+            // login successful if there's a jwt token in the response
+            if (user && user.token) {
+              // store user details and jwt token in local storage to keep user logged in between page refreshes
+              localStorage.setItem('currentUser', JSON.stringify(user));
+              this.currentUserSubject.next(user);
             }
+            return user;
         }
-        return warriors;
+      */
     }
     getGuildMaster(){
         var guildmasters: Player[]=[];
