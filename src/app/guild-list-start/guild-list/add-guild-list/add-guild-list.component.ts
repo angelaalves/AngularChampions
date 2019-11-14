@@ -38,7 +38,7 @@ export class AddGuildListComponent implements OnInit {
     });
   }
 
-  addGuildMaster(){
+  /* addGuildMaster(){
     this.guildService.getPlayer();
     
     if (this.x.style.display === "none" && this.y.style.display === "block" && this.z.style.display === "block") {
@@ -59,4 +59,5 @@ export class AddGuildListComponent implements OnInit {
   submit(){
     this.router.navigate(['/ancient_profile'], {relativeTo: this.route});
   }
+  */
 }

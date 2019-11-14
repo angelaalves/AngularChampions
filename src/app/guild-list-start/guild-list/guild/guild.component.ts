@@ -22,7 +22,7 @@ export class GuildComponent implements OnInit {
   ngOnInit() {
     this.route.params.subscribe((params: Params)=>{
       this.id= +params['id'];
-      this.guild=this.guildListService.getGuild(this.id);
+      //this.guild=this.guildListService.getGuild(this.id);
       this.players= this.guild.getPlayers();
       this.guildmaster=this.guild.getGuildMaster();
     });

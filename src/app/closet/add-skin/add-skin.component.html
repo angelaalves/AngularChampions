@@ -4,22 +4,26 @@
         <div class="form-group" style="margin-left: 19%;">
             <img src="imagePath.value" alt="">
             <input type="file" formControlName="file" class="form-control; btn btn-primary" required
-                alt="Add Skin Image" id="imagePath" style="transform: translate(-40%,0%);">
+                alt="Add Skin Image" id="imagePath" style="transform: translate(-40%,0%); background: rgb(65, 126, 218); border: 2px solid whitesmoke;">
         </div>
         <div class="form-group">
             <label>Skin Name</label>
-            <input type="text" formControlName="skinName" class="form-control" required>
+            <input type="text" formControlName="skinName" class="form-control"
+            style="background: whitesmoke; border: 2px solid rgb(65, 126, 218)" required>
         </div>
         <div class="form-group">
-            <label>Mininum XP</label><input type="text" formControlName="mininumXP" class="form-control" required>
+            <label>Mininum XP</label><input type="text" formControlName="mininumXP" class="form-control" 
+            style="background: whitesmoke; border: 2px solid rgb(65, 126, 218)" required>
         </div>
         <div class="form-group">
             <label>Number of Champies</label> <input type="text" formControlName="numberOfChampies" class="form-control"
+            style="background: whitesmoke; border: 2px solid rgb(65, 126, 218)"
                 required>
         </div>
         <div class="form-group">
             <label style="margin-right: 5px;">Skin Type</label>
-            <select id="inputSubject" formControlName="skinType" class="form-control" required>
+            <select id="inputSubject" formControlName="skinType" class="form-control" 
+            style="background: whitesmoke; border: 2px solid rgb(65, 126, 218)" required>
                 <option selected>Select a skin type</option>
                 <option>Skin</option>
                 <option>Hair</option>
@@ -28,8 +32,9 @@
                 <option>Shoes</option>
                 <option>Others</option>
             </select>
-            <button id="save>_button" type="submit" class="btn btn-primary" style="margin-top: 5%; margin-right: 5%;"
-                [disabled]="!addSkinForm.valid" (click)="submit();">Save</button>
+            <button id="save>_button" type="submit" class="btn btn-primary"
+                style="margin-top: 5%; margin-right: 5%; background: rgb(65, 126, 218); border: 2px solid whitesmoke;"
+                [disabled]="!addSkinForm.valid" (click)="submit();">Add</button>
         </div>
     </div>
 </form>

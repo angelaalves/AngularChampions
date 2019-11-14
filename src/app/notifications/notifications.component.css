@@ -45,9 +45,32 @@
       text-align: left;
   }*/
 
+  .notificationscroll{
+    overflow-y: scroll;
+    height: 500px;
+}
+
+#style-8::-webkit-scrollbar-track
+{
+	border: 1px solid black;
+	background-color:transparent;
+}
+
+#style-8::-webkit-scrollbar
+{
+	width: 10px;
+	background-color: transparent;
+}
+
+#style-8::-webkit-scrollbar-thumb
+{
+	background-color: #000000;	
+}
+
+
+
   #divLeft {
     /*width:1000px;*/
-    text-align: left;
     padding-left: 10vw;
     height: 30vh;
     width: 30vw;
@@ -55,9 +78,8 @@
     float: left;
 }
 #divRight {
-    text-align: right;
     height: 50vh;
-    width:60vw;
+    width:40vw;
     display:block;
     float: left;
 }

@@ -27,10 +27,21 @@
                     <label style="margin-right: 10px;">Name</label>
                     <input class="form-group" name="name" formControlName="name" required>
                 </div>
-                <div class="form-group" style="display:inline; margin-right: 5%;">
-                    <label style="margin-right: 10px;">Type</label>
+                <div class="form-group" style="display:inline-block; margin-right: 20%; margin-left: 5%;">
+                        <div class="input-group clockpicker" style="margin-top: 5%;">
+                            <label style="margin-right: 10px;">Start hour</label>
+                            <input type="time" class="form-group" formControlName="startHour" required>
+                        </div>
+                        <div class="input-group clockpicker" style="margin-top: 5%;">
+                            <label style="margin-right: 10px;">Finish hour</label>
+                            <input type="time" class="form-group"formControlName="finishHour" required>
+                        </div>
+                    </div>
+                    
+                <div class="form-group" style="display:inline-block; margin-right: 20%; margin-left: 5%;">
+                    <label style="margin-right: 10px;">Type of Event</label>
                     <div style="display: inline-block;">
-                        <select id="inputSubject" data="type" class="form-control" formControlName="type" required>
+                        <select id="inputSubject" data="type" class="form-control" formControlName="type" style="display:inline; margin-right: 20%; margin-left: 5%;" required>
                             <option selected>Select a type of event</option>
                             <option>Kick-off</option>
                             <option>Checkpoint</option>
@@ -44,18 +55,9 @@
                         </select>
                     </div>
                 </div> 
-                <div class="form-group" style="display:inline-block; margin-right: 20%; margin-left: 5%;">
-                    <div class="input-group clockpicker" style="margin-top: 5%;">
-                        <label style="margin-right: 10px;">Start hour</label>
-                        <input type="time" class="form-group" formControlName="startHour" required>
-                    </div>
-                    <div class="input-group clockpicker" style="margin-top: 5%;">
-                        <label style="margin-right: 10px;">Finish hour</label>
-                        <input type="time" class="form-group"formControlName="finishHour" required>
-                    </div>
-                </div>
+                
                 <button type="submit" class="btn btn-primary" [disabled]="!addEventForm.valid" (click)="submit();"
-                style="display:inline-block; margin-right: 20%; margin-left: 5%;">Submit</button>
+                style="display:inline-block; margin-right: 20%; margin-left: 5%; background: rgb(65, 126, 218); border: 2px solid whitesmoke;">Submit</button>
             </div>
         </form>
     </section>

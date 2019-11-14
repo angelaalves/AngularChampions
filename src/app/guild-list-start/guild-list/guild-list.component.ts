@@ -19,10 +19,11 @@ export class GuildListComponent implements OnInit {
   constructor(private guildListService: GuildListService, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.guilds=this.guildListService.getGuilds();
+    // this.guilds=this.guildListService.getGuilds();
     this.modal = document.getElementById("popup");
     this.btn = document.getElementById("delete");
     this.span = document.getElementsByClassName("close")[0];
+   
   }
 
   onResponse(){
