@@ -5,6 +5,8 @@ import { gender } from '../shared/playerGender.enum';
 import { status } from 'src/app/shared/status.enum';
 import { AuthenticationService } from '../login/authentication/authentication.service';
 import { HttpClient } from '@angular/common/http';
+import { LoginComponent } from 'src/app/login/login.component';
+import { UserLoggedComponent } from 'src/app/user-logged/user-logged.component';
 
 
 interface AuthResponseData {
@@ -24,17 +26,13 @@ interface AuthResponseData {
 
 @Injectable({ providedIn: 'root' })
 export class ClosetComponent implements OnInit {
-  ancient: Player;
+  player: Player;
 
-  constructor(private http: HttpClient, private authService: AuthenticationService) {
+  constructor(private userloged: UserLoggedComponent,private http: HttpClient, private authService: AuthenticationService) {
     
   }
 
   ngOnInit() {
-    this.ancient= new Player('1', '1','ancient', '456@456.com', '234567', ["../assets/Hair/HairMediumBlonde.png", 
-    "../assets/SkinColor/FemaleBlack.png",
-    "../assets/Top/TopPolarWhite.png",
-    "../assets/Bottom/BottomTrouseWhite.png","../assets/Shoes/ShoesGrey.png","../assets/Others/FairyWings.png"], 
-    '100','100','100',playerType.Ancient, gender.Female, status.Active)
+  this.player=this.userloged.getPlayer(*-);
   }
 }

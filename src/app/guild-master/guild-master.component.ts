@@ -14,23 +14,21 @@ export class GuildMasterComponent implements OnInit {
   id: number;
   constructor(private router: Router, private route: ActivatedRoute, private playerService: PlayerService) { }
 
-    @Input() name:string
-    @Input() hairImagePath:string
-    @Input() skinImagePath:string
-    @Input() shirtImagePath:string
-    @Input() pantsImagePath:string
-    @Input() shoesImagePath:string
-    @Input() othersImagePath:string
-    
+  @Input() name: string
+  @Input() hairImagePath: string
+  @Input() skinImagePath: string
+  @Input() shirtImagePath: string
+  @Input() pantsImagePath: string
+  @Input() shoesImagePath: string
+  @Input() othersImagePath: string
+
   ngOnInit() {
-    this.route.params.subscribe((params: Params)=>{
-      this.id= +params['id'];
-      for(let i=0;i<this.playerService.getPlayers().length;i++){
-        if(this.playerService.getPlayerType(i)===playerType.GuildMaster){
-          this.guildmaster=this.playerService.getPlayer(this.id);
-        }
-      }
-    });
+    this.route.params.subscribe((params: Params) => {
+      this.id = +params['id'];
+
+    })
+  
+    
   }
 
 }

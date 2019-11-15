@@ -35,7 +35,7 @@ export class AddUserComponent implements OnInit{
     const gender = form.value.gender;
     const playerType = form.value.playerType;
 
-    this.playerService.addPlayer(new Player("1","1",name, email, password, [],"100","100","100", playerType, gender, status.Active));
+   // this.playerService.addPlayer(new Player("1","1",name, email, password, [],"100","100","100", playerType, gender, status.Active));
     console.log('addUserForm' , form.value);
     this.router.navigate(['/ancient_profile'], {relativeTo: this.route});
   }

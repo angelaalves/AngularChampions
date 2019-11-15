@@ -16,7 +16,7 @@ export class Player{
     public MyChampies:string;
     public Status: status;
 
-    constructor(idPlayer:string, idGuild: string, UserName:string, email:string, password:string, imagePath: string[], xp: string, ChampiesToGive:string, MyChampies: string, playerType: playerType, gender: gender, status: status){
+    constructor(idPlayer:string, idGuild: string, UserName:string, email:string, password:string,  gender: gender, playerType: playerType, xp: string, ChampiesToGive:string, MyChampies: string, status: status,imagePath: string[]){
         this.idPlayer=idPlayer;
         this.idGuild=idGuild;
         this.UserName=UserName;

@@ -5,6 +5,10 @@ import { AuthenticationService } from './authentication/authentication.service';
 import { map, catchError, tap } from 'rxjs/operators';
 import { BehaviorSubject, Observable, throwError } from 'rxjs';
 import { Player } from '../shared/player.model';
+import { playerType } from '../shared/playerType.enum';
+import { Router, ActivatedRoute } from '@angular/router';
+import { PlayerService } from 'src/app/services/player.service';
+import { UserLoggedComponent } from 'src/app/user-logged/user-logged.component';
 
 interface AuthResponseData {
   kind: string,
@@ -14,6 +18,7 @@ interface AuthResponseData {
   expiresIn: string,
   localId: string;
 }
+
 
 @Component({
   selector: 'app-login',
@@ -27,10 +32,11 @@ export class LoginComponent implements OnInit {
   public currentUser: Observable<Player>;
   public player: Player;
 
+
   ngOnInit() {
   }
 
-  constructor(private http: HttpClient, private authService: AuthenticationService) {
+  constructor(private userlogged:UserLoggedComponent , private http: HttpClient, private authService: AuthenticationService,private router: Router, private route: ActivatedRoute, private playerService:PlayerService) {
     this.currentUserSubject = new BehaviorSubject<Player>(JSON.parse(localStorage.getItem('currentUser')));
     this.currentUser = this.currentUserSubject.asObservable();
   }
@@ -63,7 +69,24 @@ export class LoginComponent implements OnInit {
     );
     form.reset();
 
+    console.log(this.playerService.getPlayers);
+
+      if(this.currentUserValue.playerType==playerType.Ancient){
+        this.router.navigate(['/ancient_profile'], {relativeTo: this.route});
+
+      }
+      if(this.currentUserValue.playerType==playerType.GuildMaster){
+        this.router.navigate(['/guildmaster_profile'], {relativeTo: this.route});
+
+      }
+      if(this.currentUserValue.playerType==playerType.Warrior){
+        this.router.navigate(['/warrior_profile'], {relativeTo: this.route});
+
+      }
+
   }
+
+
 
 
   private handleError(errorRes: HttpErrorResponse) {
@@ -90,5 +113,7 @@ export class LoginComponent implements OnInit {
     //const player = new Player(name,email, userId, playerType.GuildMaster );
     //this.user.next(player);
   }
+
+
 
 }

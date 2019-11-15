@@ -32,6 +32,12 @@ export class AuthenticationService {
         this.handleAuthentication(resData.email, resData.localId)
       })
     );
+
+
+
+
+
+
   }
 
   private handleError(errorRes: HttpErrorResponse) {

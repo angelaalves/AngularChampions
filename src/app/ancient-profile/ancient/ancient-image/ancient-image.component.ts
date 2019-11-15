@@ -30,14 +30,5 @@ export class AncientImageComponent implements OnInit {
   ngOnInit() {
   }
 
-  getAncient(){
-    this.ancient = new Player('1','1','ancient', '456@456.com', '234567', ["../assets/Hair/HairMediumBlonde.png",
-      "../assets/SkinColor/AngLastairbender.png",
-      "../assets/Top/TopPolarWhite.png",
-      "../assets/Bottom/BottomTrouseWhite.png",
-      "../assets/Shoes/ShoesGrey.png",
-      "../assets/Others/FairyWings.png"],
-      '100','100','100',
-      playerType.Ancient, gender.Female, status.Active)
-  }
+ 
 }

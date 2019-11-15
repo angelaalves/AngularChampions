@@ -3,28 +3,20 @@ import { playerType } from '../shared/playerType.enum';
 import { Injectable } from '@angular/core';
 import { gender } from '../shared/playerGender.enum';
 import { status } from 'src/app/shared/status.enum';
+import { HttpClient } from '@angular/common/http';
  
 @Injectable()
 export class PlayerService{
-    imagePath: string[]=["../assets/Hair/HairMediumBlonde.png", 
-    "../assets/SkinColor/FemaleWhite.png",
-    "../assets/Top/TopPolarBlack.png",
-    "../assets/Bottom/BottomTrouseWhite.png",
-    "../assets/Shoes/ShoesGrey.png",
-    "../assets/Others/FairyWings.png"
-]
-
-    players: Player[]=[
-        new Player('1','1','One', '123@123.com', '12345', this.imagePath, '100','100','100',playerType.Warrior, gender.Male, status.Active),
-        new Player('3','1','ancient', '456@456.com', '234567', this.imagePath, '100','100','100',playerType.Ancient, gender.Female,status.Active),
-        new Player('2','2','Two', '123@123.com', '12345', this.imagePath, '100','100','100',playerType.Warrior, gender.Female,status.Active)
-    ];
-
-    constructor(){}
+  
+    players: Player[];
+ 
+    constructor(private http:HttpClient){}
  
     getPlayers(){
-        return this.players;
-
+        return this.http.get<Player[]>('http://localhost:8085/players/getAll', {}).subscribe(data => {
+            console.log(data);
+            this.players=data;
+        })
     }
     getWarriors(){
         var warriors: Player[]=[];
