@@ -5,19 +5,11 @@ import { AuthenticationService } from './authentication/authentication.service';
 import { map, catchError, tap } from 'rxjs/operators';
 import { BehaviorSubject, Observable, throwError } from 'rxjs';
 import { Player } from '../shared/player.model';
-import { playerType } from '../shared/playerType.enum';
+import { userType } from '../shared/userType.enum';
 import { Router, ActivatedRoute } from '@angular/router';
 import { PlayerService } from 'src/app/services/player.service';
-import { UserLoggedComponent } from 'src/app/user-logged/user-logged.component';
+import { UserLoggedComponent } from '../user-logged/user-logged.component';
 
-interface AuthResponseData {
-  kind: string,
-  idToken: string,
-  email: string,
-  refreshToken: string,
-  expiresIn: string,
-  localId: string;
-}
 
 
 @Component({
@@ -31,6 +23,8 @@ export class LoginComponent implements OnInit {
   private currentUserSubject: BehaviorSubject<Player>;
   public currentUser: Observable<Player>;
   public player: Player;
+  public data: AuthenticationService;
+  
 
 
   ngOnInit() {
@@ -53,36 +47,32 @@ export class LoginComponent implements OnInit {
     const password = form.value.password;
     this.authService.signup(email, password).subscribe(
       resData => {
-        this.http.post<any>('http://localhost:8085/players/Login', { email, password }).pipe(map(user => {
-          // login successful if there's a jwt token in the response
-          if (user && user.token) {
-            // store user details and jwt token in local storage to keep user logged in between page refreshes
-            localStorage.setItem('currentUser', JSON.stringify(user));
-            this.currentUserSubject.next(user);
-          }
-          return user;
-        }));
+        this.http.post<Player>('http://localhost:8085/players/Login', { email, password })
         console.log(resData);
-        resData
- 
+        this.player= resData;
+ console.log(this.player.userType);
+ console.log(userType.Ancient +"   " +userType.GuildMaster   +"   " +userType.Warrior);
+this.userlogged.player= resData;
+console.log(this.userlogged.player);
+
       }
     );
     form.reset();
-
-    console.log(this.playerService.getPlayers);
-
-      if(this.currentUserValue.playerType==playerType.Ancient){
+    if(this.player.userType==userType.Ancient){
         this.router.navigate(['/ancient_profile'], {relativeTo: this.route});
 
       }
-      if(this.currentUserValue.playerType==playerType.GuildMaster){
+      if(this.player.userType==userType.GuildMaster){
         this.router.navigate(['/guildmaster_profile'], {relativeTo: this.route});
 
       }
-      if(this.currentUserValue.playerType==playerType.Warrior){
+      if(this.player.userType==userType.Warrior){
         this.router.navigate(['/warrior_profile'], {relativeTo: this.route});
 
       }
+
+
+      
 
   }
 

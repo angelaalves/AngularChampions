@@ -1,5 +1,5 @@
 import { Player } from '../shared/player.model';
-import { playerType } from '../shared/playerType.enum';
+import { userType } from '../shared/userType.enum';
 import { Injectable } from '@angular/core';
 import { gender } from '../shared/playerGender.enum';
 import { status } from 'src/app/shared/status.enum';
@@ -21,7 +21,7 @@ export class PlayerService{
     getWarriors(){
         var warriors: Player[]=[];
         for(let i=0;i<this.players.length;i++){
-            if(this.players[i].playerType==playerType.Warrior){
+            if(this.players[i].userType==userType.Warrior){
                 warriors.push(this.players[i]);
             }
         }
@@ -30,7 +30,7 @@ export class PlayerService{
     getGuildMaster(){
         var guildmasters: Player[]=[];
         for(let i=0;i<this.players.length;i++){
-            if(this.players[i].playerType==playerType.GuildMaster){
+            if(this.players[i].userType==userType.GuildMaster){
                 guildmasters.push(this.players[i]);
             }
         }
@@ -39,7 +39,7 @@ export class PlayerService{
     getAncient(){
         var guildmasters: Player[]=[];
         for(let i=0;i<this.players.length;i++){
-            if(this.players[i].playerType==playerType.GuildMaster){
+            if(this.players[i].userType==userType.GuildMaster){
                 guildmasters.push(this.players[i]);
             }
         }
@@ -55,6 +55,6 @@ export class PlayerService{
     }
  
     getPlayerType(index: number){
-        return this.players[index].playerType;
+        return this.players[index].userType;
     }
 }

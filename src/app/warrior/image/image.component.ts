@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Injectable } from '@angular/core';
 
 @Component({
   selector: 'app-image',
@@ -6,6 +6,8 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./image.component.css']
 })
 
+
+@Injectable({ providedIn: 'root' })
 export class ImageComponent implements OnInit {
   @Input() name: string;
   @Input() hairImagePath:string

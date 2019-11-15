@@ -1,4 +1,4 @@
-import { playerType } from './playerType.enum';
+import { userType } from './userType.enum';
 import { gender } from './playerGender.enum';
 import { status } from './status.enum';
 
@@ -7,7 +7,7 @@ export class Player{
     public idGuild: string;
     public UserName: string; 
     public gender: gender; 
-    public playerType: playerType;
+    public userType: userType;
     public email: string;
     public password: string;
     public imagePath: string[];
@@ -16,7 +16,7 @@ export class Player{
     public MyChampies:string;
     public Status: status;
 
-    constructor(idPlayer:string, idGuild: string, UserName:string, email:string, password:string,  gender: gender, playerType: playerType, xp: string, ChampiesToGive:string, MyChampies: string, status: status,imagePath: string[]){
+    constructor(idPlayer:string, idGuild: string, UserName:string, email:string, password:string,  gender: gender, userType: userType, xp: string, ChampiesToGive:string, MyChampies: string, status: status,imagePath: string[]){
         this.idPlayer=idPlayer;
         this.idGuild=idGuild;
         this.UserName=UserName;
@@ -26,7 +26,7 @@ export class Player{
         this.xp=xp;
         this.ChampiesToGive=ChampiesToGive;
         this.MyChampies=MyChampies;
-        this.playerType=playerType;
+        this.userType=userType;
         this.gender=gender;
         this.Status=status;
     }

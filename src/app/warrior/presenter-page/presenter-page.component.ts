@@ -1,9 +1,9 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Injectable } from '@angular/core';
 import { Player } from 'src/app/shared/player.model';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 
 
-import { playerType } from 'src/app/shared/playerType.enum';
+import { userType } from 'src/app/shared/userType.enum';
 import { PlayerService } from 'src/app/services/player.service';
 
 @Component({
@@ -11,6 +11,8 @@ import { PlayerService } from 'src/app/services/player.service';
   templateUrl: './presenter-page.component.html',
   styleUrls: ['./presenter-page.component.css']
 })
+
+@Injectable({ providedIn: 'root' })
 export class PresenterPageComponent implements OnInit {
   @Input() warrior: Player;
   id: number;

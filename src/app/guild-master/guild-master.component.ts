@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Player } from '../shared/player.model';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { PlayerService } from '../services/player.service';
-import { playerType } from '../shared/playerType.enum';
+import { userType } from '../shared/userType.enum';
 
 @Component({
   selector: 'app-guild-master',

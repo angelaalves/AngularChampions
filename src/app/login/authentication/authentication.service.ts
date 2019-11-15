@@ -4,14 +4,6 @@ import { catchError, tap } from 'rxjs/operators';
 import { Subject, throwError } from 'rxjs';
 import { Player } from 'src/app/shared/player.model';
 
-interface AuthResponseData {
-  kind: string,
-  idToken: string,
-  email: string,
-  refreshToken: string,
-  expiresIn: string,
-  localId: string;
-}
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
@@ -22,15 +14,16 @@ export class AuthenticationService {
   signup(email: string, password: string) {
     var xhr = new XMLHttpRequest();
     xhr.open('POST', 'http://localhost:8085/players/Login?email='+email+'&password='+password, true); 
-    return this.http.post<AuthResponseData>('http://localhost:8085/players/Login?email='+email+'&password='+password,
+    return this.http.post<Player>('http://localhost:8085/players/Login?email='+email+'&password='+password,
       {
         email: email,
         password: password
       }
     ).pipe(catchError(this.handleError),
       tap(resData => {
-        this.handleAuthentication(resData.email, resData.localId)
-      })
+        this.handleAuthentication(resData.idPlayer, resData.idGuild, resData.UserName, resData.email, resData.password,  resData.gender, resData.userType, resData.xp, resData.ChampiesToGive, resData.MyChampies, resData.Status )
+   
+      })   
     );
 
 
@@ -59,7 +52,7 @@ export class AuthenticationService {
     return throwError(errorMessage);
   }
 
-  private handleAuthentication(email: string, userId: string) {
+  private handleAuthentication(idPlayer:string, idGuild: string, UserName:string, email:string, password:string,  gender:string, userType: string, xp: string, ChampiesToGive:string, MyChampies: string, Status: string) {
     const expirationDate = new Date(new Date().getTime());
     //const player = new Player(name,email, userId, playerType.GuildMaster );
     //this.user.next(player);

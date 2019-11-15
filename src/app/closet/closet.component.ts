@@ -1,6 +1,6 @@
 import { Component, OnInit, Injectable } from '@angular/core';
 import { Player } from '../shared/player.model';
-import { playerType } from '../shared/playerType.enum';
+import { userType } from '../shared/userType.enum';
 import { gender } from '../shared/playerGender.enum';
 import { status } from 'src/app/shared/status.enum';
 import { AuthenticationService } from '../login/authentication/authentication.service';
@@ -33,6 +33,6 @@ export class ClosetComponent implements OnInit {
   }
 
   ngOnInit() {
-  this.player=this.userloged.getPlayer(*-);
+  this.player=this.userloged.getPlayer();
   }
 }

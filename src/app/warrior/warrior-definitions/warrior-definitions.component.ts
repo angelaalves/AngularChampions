@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Injectable } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -6,6 +6,8 @@ import { Router, ActivatedRoute } from '@angular/router';
   templateUrl: './warrior-definitions.component.html',
   styleUrls: ['./warrior-definitions.component.css']
 })
+
+@Injectable({ providedIn: 'root' })
 export class WarriorDefinitionsComponent implements OnInit {
   @Input() name: string;
   @Input() hairImagePath:string
