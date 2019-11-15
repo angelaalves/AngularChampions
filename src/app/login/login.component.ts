@@ -30,7 +30,7 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
 
-  constructor(private http: HttpClient, private authService: AuthenticationService) {
+  constructor(private http: HttpClient, private authService: AuthenticationService, private userlogged: UserLoggedComponent) {
     this.currentUserSubject = new BehaviorSubject<Player>(JSON.parse(localStorage.getItem('currentUser')));
     this.currentUser = this.currentUserSubject.asObservable();
   }
