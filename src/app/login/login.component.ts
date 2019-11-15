@@ -58,19 +58,22 @@ export class LoginComponent implements OnInit {
       }
     );
     form.reset();
-    if (this.player.userType == userType.Ancient) {
-      this.router.navigate(['/ancient_profile'], { relativeTo: this.route });
+    if(this.player.userType==userType.Ancient){
+        this.router.navigate(['/ancient_profile'], {relativeTo: this.route});
 
-    }
-    if (this.player.userType == userType.GuildMaster) {
-      this.router.navigate(['/guildmaster_profile'], { relativeTo: this.route });
+      }
+      if(this.player.userType==userType.GuildMaster){
+        this.router.navigate(['/guildmaster_profile'], {relativeTo: this.route});
 
-    }
-    if (this.player.userType == userType.Warrior) {
-      this.router.navigate(['/warrior_profile'], { relativeTo: this.route });
+      }
+      if(this.player.userType==userType.Warrior){
+        this.router.navigate(['/warrior_profile'], {relativeTo: this.route});
 
-    }
-    console.log(this.playerService.getPlayers);
+      }
+
+
+      
+
   }
 
 
