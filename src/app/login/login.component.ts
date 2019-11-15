@@ -5,11 +5,10 @@ import { AuthenticationService } from './authentication/authentication.service';
 import { map, catchError, tap } from 'rxjs/operators';
 import { BehaviorSubject, Observable, throwError } from 'rxjs';
 import { Player } from '../shared/player.model';
-import { userType } from '../shared/userType.enum';
+import { userType } from '../shared/playerType.enum';
 import { Router, ActivatedRoute } from '@angular/router';
 import { PlayerService } from 'src/app/services/player.service';
 import { UserLoggedComponent } from '../user-logged/user-logged.component';
-
 
 
 @Component({
@@ -24,15 +23,16 @@ export class LoginComponent implements OnInit {
   public currentUser: Observable<Player>;
   public player: Player;
   public data: AuthenticationService;
-  
+
 
 
   ngOnInit() {
   }
 
-  constructor(private userlogged:UserLoggedComponent , private http: HttpClient, private authService: AuthenticationService,private router: Router, private route: ActivatedRoute, private playerService:PlayerService) {
+  constructor(private userlogged: UserLoggedComponent, private http: HttpClient, private authService: AuthenticationService, private router: Router, private route: ActivatedRoute, private playerService: PlayerService) {
     this.currentUserSubject = new BehaviorSubject<Player>(JSON.parse(localStorage.getItem('currentUser')));
     this.currentUser = this.currentUserSubject.asObservable();
+
   }
 
   public get currentUserValue(): Player {
@@ -45,35 +45,32 @@ export class LoginComponent implements OnInit {
     }
     const email = form.value.email;
     const password = form.value.password;
+    console.log(password);
     this.authService.signup(email, password).subscribe(
       resData => {
         this.http.post<Player>('http://localhost:8085/players/Login', { email, password })
         console.log(resData);
-        this.player= resData;
- console.log(this.player.userType);
- console.log(userType.Ancient +"   " +userType.GuildMaster   +"   " +userType.Warrior);
-this.userlogged.player= resData;
-console.log(this.userlogged.player);
-
+        this.player = resData;
+        console.log(this.player.userType);
+        console.log(userType.Ancient + "   " + userType.GuildMaster + "   " + userType.Warrior);
+        this.userlogged.player = resData;
+        console.log(this.userlogged.player);
       }
     );
     form.reset();
-    if(this.player.userType==userType.Ancient){
-        this.router.navigate(['/ancient_profile'], {relativeTo: this.route});
+    if (this.player.userType == userType.Ancient) {
+      this.router.navigate(['/ancient_profile'], { relativeTo: this.route });
 
-      }
-      if(this.player.userType==userType.GuildMaster){
-        this.router.navigate(['/guildmaster_profile'], {relativeTo: this.route});
+    }
+    if (this.player.userType == userType.GuildMaster) {
+      this.router.navigate(['/guildmaster_profile'], { relativeTo: this.route });
 
-      }
-      if(this.player.userType==userType.Warrior){
-        this.router.navigate(['/warrior_profile'], {relativeTo: this.route});
+    }
+    if (this.player.userType == userType.Warrior) {
+      this.router.navigate(['/warrior_profile'], { relativeTo: this.route });
 
-      }
-
-
-      
-
+    }
+    console.log(this.playerService.getPlayers);
   }
 
 

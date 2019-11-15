@@ -1,4 +1,4 @@
 export enum status{
-  Active="active",
-  Inactive="inactive"
+  Active="Active",
+  Inactive="Inactive"
 }

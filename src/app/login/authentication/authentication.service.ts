@@ -4,7 +4,6 @@ import { catchError, tap } from 'rxjs/operators';
 import { Subject, throwError } from 'rxjs';
 import { Player } from 'src/app/shared/player.model';
 
-
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
   user = new Subject<Player>();
@@ -25,12 +24,6 @@ export class AuthenticationService {
    
       })   
     );
-
-
-
-
-
-
   }
 
   private handleError(errorRes: HttpErrorResponse) {

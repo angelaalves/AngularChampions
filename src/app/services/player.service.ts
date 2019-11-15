@@ -1,5 +1,5 @@
 import { Player } from '../shared/player.model';
-import { userType } from '../shared/userType.enum';
+import { userType } from '../shared/playerType.enum';
 import { Injectable } from '@angular/core';
 import { gender } from '../shared/playerGender.enum';
 import { status } from 'src/app/shared/status.enum';
@@ -18,6 +18,7 @@ export class PlayerService{
             this.players=data;
         })
     }
+
     getWarriors(){
         var warriors: Player[]=[];
         for(let i=0;i<this.players.length;i++){

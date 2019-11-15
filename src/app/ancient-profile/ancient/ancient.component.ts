@@ -1,10 +1,7 @@
 import { Component, OnInit, Injectable } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Player } from 'src/app/shared/player.model';
-import { PlayerService } from 'src/app/services/player.service';
-import { userType } from 'src/app/shared/userType.enum';
-import { gender } from 'src/app/shared/playerGender.enum';
-import { status } from 'src/app/shared/status.enum';
+import { PlayerService } from 'src/app/services/player.service';;
 import { UserLoggedComponent } from 'src/app/user-logged/user-logged.component';
 
 @Component({

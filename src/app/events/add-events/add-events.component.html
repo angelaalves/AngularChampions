@@ -4,28 +4,30 @@
             <div class="centered">
                 <div class="col-xs-4" style="text-align: center;">
                     <button class="btn btn-link" type="button"><img
-                        src="https://image.flaticon.com/icons/svg/2097/2097137.svg" alt="text"
-                        class="img-responsive" style="max-height: 50px;">
+                            src="https://image.flaticon.com/icons/svg/2097/2097137.svg" alt="text"
+                            class="img-responsive" style="max-height: 50px;">
                     </button>
                     <h4>Add Events</h4>
                 </div>
             </div>
         </nav>
-        <form [formGroup]="addEventForm" (ngSubmit)="onSubmit(addEventForm.value); addEvent.reset()" class="container-fluid">
-            <div class="col-12" >
-                <div class="form-group" style="display:inline-block; margin-right: 20%; margin-left: 5%; margin-top: 5%;">
+        <form #addEventForm="ngForm" (ngSubmit)="onSubmit(addEventForm); addEvent.reset()" class="container-fluid">
+            <div class="col-12">
+                <div class="form-group"
+                    style="display:inline-block; margin-right: 20%; margin-left: 5%; margin-top: 5%;">
                     <label style="margin-right: 10px;">Event Date</label>
-                    <input class="form-group" name="date" type="date" formControlName="date" required>
+                    <input class="form-group" name="date" value="date" ngModel required>
                 </div>
                 <div class="form-check" style="display:inline-block;">
-                    <input type="checkbox" class="form-check-input" name="repetition" formControlName="isEventRecurrent">
+                    <input type="checkbox" class="form-check-input" name="repetition"
+                      value="isEventRecurrent" ngModel>
                     <label class="form-check-label" style="margin-right: 10px;">Event is recurrent?</label>
                 </div>
             </div>
             <div class="col-12">
                 <div class="form-group" style="display:inline; margin-right: 20%; margin-left: 5%;">
                     <label style="margin-right: 10px;">Name</label>
-                    <input class="form-group" name="name" formControlName="name" required>
+                    <input class="form-group" name="name" value="name" ngModel required>
                 </div>
                 <div class="form-group" style="display:inline-block; margin-right: 20%; margin-left: 5%;">
                         <div class="input-group clockpicker" style="margin-top: 5%;">
@@ -41,8 +43,13 @@
                 <div class="form-group" style="display:inline-block; margin-right: 20%; margin-left: 5%;">
                     <label style="margin-right: 10px;">Type of Event</label>
                     <div style="display: inline-block;">
+<<<<<<< Updated upstream
                         <select id="inputSubject" data="type" class="form-control" formControlName="type" style="display:inline; margin-right: 20%; margin-left: 5%;" required>
                             <option selected>Select a type of event</option>
+=======
+                        <select id="inputSubject" data="type" name="eventType" value="eventType" ngModel required>
+                            <option selected >Select a type of event</option>
+>>>>>>> Stashed changes
                             <option>Kick-off</option>
                             <option>Checkpoint</option>
                             <option>Christmas Dinner</option>
@@ -54,10 +61,26 @@
                             <option>Other</option>
                         </select>
                     </div>
+<<<<<<< Updated upstream
                 </div> 
                 
                 <button type="submit" class="btn btn-primary" [disabled]="!addEventForm.valid" (click)="submit();"
                 style="display:inline-block; margin-right: 20%; margin-left: 5%; background: rgb(65, 126, 218); border: 2px solid whitesmoke;">Submit</button>
+=======
+                </div>
+                <div class="form-group" style="display:inline-block; margin-right: 20%; margin-left: 5%;">
+                    <div class="input-group clockpicker" style="margin-top: 5%;">
+                        <label style="margin-right: 10px;">Start hour</label>
+                        <input type="time" class="form-group" name="starthour" value="startHour" ngModel required>
+                    </div>
+                    <div class="input-group clockpicker" style="margin-top: 5%;">
+                        <label style="margin-right: 10px;">Finish hour</label>
+                        <input type="time" class="form-group" name="finishHour" ngModel required>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary" [disabled]="!addEventForm.valid"
+                    style="display:inline-block; margin-right: 20%; margin-left: 5%;">Submit</button>
+>>>>>>> Stashed changes
             </div>
         </form>
     </section>

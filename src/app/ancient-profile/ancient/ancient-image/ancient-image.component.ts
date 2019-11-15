@@ -1,6 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Player } from 'src/app/shared/player.model';
-import { userType } from 'src/app/shared/userType.enum';
 import { gender } from 'src/app/shared/playerGender.enum';
 import { Router, ActivatedRoute } from '@angular/router';
 import { PlayerService } from 'src/app/services/player.service';

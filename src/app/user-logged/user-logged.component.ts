@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Injectable } from '@angular/core';
 import { gender } from '../shared/playerGender.enum';
-import { userType } from '../shared/userType.enum';
+import { userType } from '../shared/playerType.enum';
 import { LoginComponent } from 'src/app/login/login.component';
 import { Player } from 'src/app/shared/player.model';
 

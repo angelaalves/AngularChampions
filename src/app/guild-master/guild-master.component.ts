@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Player } from '../shared/player.model';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { PlayerService } from '../services/player.service';
-import { userType } from '../shared/userType.enum';
+import { userType } from '../shared/playerType.enum';
 
 @Component({
   selector: 'app-guild-master',
@@ -23,12 +23,13 @@ export class GuildMasterComponent implements OnInit {
   @Input() othersImagePath: string
 
   ngOnInit() {
-    this.route.params.subscribe((params: Params) => {
-      this.id = +params['id'];
-
-    })
-  
-    
+    this.route.params.subscribe((params: Params)=>{
+      this.id= +params['id'];
+      /*for(let i=0;i<this.playerService.getPlayers().length;i++){
+        if(this.playerService.getPlayerType(i)===playerType.GuildMaster){
+          this.guildmaster=this.playerService.getPlayer(this.id);
+        }
+      }*/
+    });
   }
-
 }

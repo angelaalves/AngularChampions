@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Injectable } from '@angular/core';
 import { FormGroup, NgForm, FormControl, FormBuilder, Validators, FormArray } from '@angular/forms';
 import { Router, ActivatedRoute, Params } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-add-events',
@@ -8,10 +9,11 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
   styleUrls: ['./add-events.component.css']
 })
 
+@Injectable({ providedIn: 'root' })
 export class AddEventsComponent implements OnInit {
   addEventForm: FormGroup;
 
-  constructor(private router: Router, private route: ActivatedRoute, private formBuilder: FormBuilder) { }
+  constructor(private router: Router, private route: ActivatedRoute, private formBuilder: FormBuilder,private http: HttpClient) { }
 
   ngOnInit() {
     this.route.params
@@ -20,6 +22,34 @@ export class AddEventsComponent implements OnInit {
           this.initForm();
         }
       )
+  }
+
+  onSubmit(form: NgForm){
+    if (!form.valid) {
+      return;
+    }
+    const idEvent = "1";
+    const name = form.value.name;
+    const date = form.value.date;
+    const eventType = form.value.eventType;
+
+    console.log('addEventForm', form.value);
+
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', 'http://localhost:8085/events/Create?idEvent=' + idEvent + '&eventName=' + name + '&eventDate=' + date +
+      '&eventType=' + eventType , true);
+    this.http.post<any>('http://localhost:8085/events/Create?idEvent=' + idEvent + '&eventName=' + name + '&eventDate=' + date +
+    '&eventType=' + eventType,
+      {
+        idEvent,
+        name, 
+        date,
+        eventType
+      }
+    ).subscribe();
+
+
+    this.router.navigate(['/ancient_profile'], {relativeTo: this.route});
   }
 
   private initForm() {
@@ -52,10 +82,5 @@ export class AddEventsComponent implements OnInit {
         'finishHour': new FormControl(null, Validators.required)
       })
     );
-  }
-
-  submit(){
-    console.log(this.addEventForm);
-    this.router.navigate(['/ancient_profile'], {relativeTo: this.route});
-  }
+  } 
 }
