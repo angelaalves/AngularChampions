@@ -30,7 +30,7 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
 
-  constructor(private userlogged:UserLoggedComponent , private http: HttpClient, private authService: AuthenticationService,private router: Router, private route: ActivatedRoute, private playerService:PlayerService) {
+  constructor(private http: HttpClient, private authService: AuthenticationService) {
     this.currentUserSubject = new BehaviorSubject<Player>(JSON.parse(localStorage.getItem('currentUser')));
     this.currentUser = this.currentUserSubject.asObservable();
   }
@@ -58,22 +58,6 @@ console.log(this.userlogged.player);
       }
     );
     form.reset();
-    if(this.player.userType==userType.Ancient){
-        this.router.navigate(['/ancient_profile'], {relativeTo: this.route});
-
-      }
-      if(this.player.userType==userType.GuildMaster){
-        this.router.navigate(['/guildmaster_profile'], {relativeTo: this.route});
-
-      }
-      if(this.player.userType==userType.Warrior){
-        this.router.navigate(['/warrior_profile'], {relativeTo: this.route});
-
-      }
-
-
-      
-
   }
 
 
