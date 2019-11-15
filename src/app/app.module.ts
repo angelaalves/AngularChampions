@@ -64,6 +64,7 @@ import { WarriorImageComponent } from './warrior/warrior-image/warrior-image.com
 import { ProfilePageComponent } from './profile-page/profile-page.component';
 import { UserLoggedComponent } from './user-logged/user-logged.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -125,6 +126,7 @@ import { UserLoggedComponent } from './user-logged/user-logged.component';
     WarriorImageComponent,
     ProfilePageComponent,
     UserLoggedComponent
+
   ],
   imports: [
     BrowserModule,

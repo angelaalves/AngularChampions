@@ -23,6 +23,7 @@ export class PlayerService{
  
     getPlayers(){
         return this.players;
+
     }
     getWarriors(){
         var warriors: Player[]=[];

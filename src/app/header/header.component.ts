@@ -9,7 +9,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class HeaderComponent implements OnInit {
 
   constructor(private router: Router, private route: ActivatedRoute) { }
-
+  isAuthenticated=false;
   ngOnInit() {
   }
 

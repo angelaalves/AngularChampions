@@ -25,10 +25,10 @@ interface AuthResponseData {
 export class LoginComponent implements OnInit {
   private currentUserSubject: BehaviorSubject<Player>;
   public currentUser: Observable<Player>;
+  public player: Player;
 
   ngOnInit() {
   }
-
   constructor(private http: HttpClient, private authService: AuthenticationService) {
     this.currentUserSubject = new BehaviorSubject<Player>(JSON.parse(localStorage.getItem('currentUser')));
     this.currentUser = this.currentUserSubject.asObservable();
@@ -43,7 +43,6 @@ export class LoginComponent implements OnInit {
       return;
     }
     const email = form.value.email;
-    console.log(email);
     const password = form.value.password;
     this.authService.signup(email, password).subscribe(
       resData => {
@@ -62,6 +61,7 @@ export class LoginComponent implements OnInit {
       }
     );
     form.reset();
+
   }
 
 
@@ -89,4 +89,5 @@ export class LoginComponent implements OnInit {
     //const player = new Player(name,email, userId, playerType.GuildMaster );
     //this.user.next(player);
   }
+
 }
