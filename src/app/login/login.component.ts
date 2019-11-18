@@ -29,9 +29,7 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
 
-  constructor(private http: HttpClient, private authService: AuthenticationService) {
-    this.currentUserSubject = new BehaviorSubject<Player>(JSON.parse(localStorage.getItem('currentUser')));
-    this.currentUser = this.currentUserSubject.asObservable();
+  constructor(private http: HttpClient, private authService: AuthenticationService, private playerService: PlayerService) {
   }
 
   public get currentUserValue(): Player {
@@ -47,21 +45,15 @@ export class LoginComponent implements OnInit {
     console.log(password);
     this.authService.signup(email, password).subscribe(
       resData => {
-        this.http.post<any>('http://localhost:8085/players/Login', { email, password }).pipe(map(user => {
-          // login successful if there's a jwt token in the response
-          if (user && user.token) {
-            // store user details and jwt token in local storage to keep user logged in between page refreshes
-            localStorage.setItem('currentUser', JSON.stringify(user));
-            this.currentUserSubject.next(user);
-          }
-          return user;
-        }));
+        this.http.post<any>('http://localhost:8085/players/Login', { email, password })
         console.log(resData);
         resData
- 
+
       }
     );
     form.reset();
+
+    console.log(this.playerService.getPlayers);
   }
 
   private handleError(errorRes: HttpErrorResponse) {

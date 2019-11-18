@@ -6,7 +6,7 @@
         <div class="col-7">
             <div class="form-group">
                 <label for="name">Name of the new player</label>
-<<<<<<< Updated upstream
+                <input type="text" name="name" value="name" ngModel required>
             </div>
         </div>
     </div>
@@ -38,7 +38,7 @@
         <div class="col-7">
             <div class="form-group">
                 <label for="email">Email</label>
-                <input type="email" name="email" formControlName="email" class="form-control" required email>
+                <input type="email" name="email" ngModel required email>
             </div>
         </div>
     </div>
@@ -46,16 +46,14 @@
         <div class="col-7">
             <div class="form-group">
                 <label for="confirmPassword">Password</label>
-                <input type="password" name="password" formControlName="password" class="form-control" required
-                    minlength="6">
+                <input type="password" name="password" ngModel required minlength="6">
             </div>
         </div>
     </div>
     <div class="form-row">
         <div class="col-7">
             <div class="form-group">
-                <button type='submit' class="btn btn-primary" [disabled]="!addUserForm.valid"
-                    (click)="submit();">Add</button>
+                <button type="submit" class="btn btn-primary" [disabled]="!addUserForm.valid">Add</button>
             </div>
         </div>
     </div>

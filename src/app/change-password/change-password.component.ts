@@ -34,11 +34,7 @@ export class ChangePasswordComponent implements OnInit {
 
     var xhr = new XMLHttpRequest();
     xhr.open('POST', 'http://localhost:8085/players/Update?idPlayer=' + player.idPlayer + '&idGuildFK=' + player.idGuild + '&userName='  + player.UserName + 
-<<<<<<< Updated upstream
-    '&email=' + player.email + '&password=' + newPassword + '&gender='  + player.gender + '&userType=' + player.userType + '&xp=' + player.xp + 
-=======
     '&email=' + player.email + '&password=' + newPassword + '&gender='  + player.gender + '&userType=' + player.playerType + '&xp=' + player.xp + 
->>>>>>> Stashed changes
     '&champiesToGive='  + player.ChampiesToGive + '&myChampies=' + player.MyChampies + '&=status' + player.Status, true);
     this.http.post<any>('http://localhost:8085/players/Update?idPlayer=',
       {
