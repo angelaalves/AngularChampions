@@ -2,46 +2,28 @@
     <div class="form-row">
         <div class="form-group" style="margin-left: 19%;">
             <img src="imagePath.value" alt="">
-<<<<<<< Updated upstream
-            <input type="file" formControlName="file" class="form-control; btn btn-primary" required
-                alt="Add Skin Image" id="imagePath" style="transform: translate(-40%,0%); background: rgb(65, 126, 218); border: 2px solid whitesmoke;">
+            <input class="btn btn-primary" type="file" name="filePath" value="filePath" alt="Add Skin Image"
+            style="transform: translate(-40%,0%); background: rgb(65, 126, 218); border: 2px solid whitesmoke;" ngModel required>
         </div>
         <div class="form-group">
             <label>Skin Name</label>
-            <input type="text" formControlName="skinName" class="form-control"
-            style="background: whitesmoke; border: 2px solid rgb(65, 126, 218)" required>
+            <input type="text" value="skinName" style="background: whitesmoke; border: 2px solid rgb(65, 126, 218)"
+                ngModel required>
         </div>
         <div class="form-group">
-            <label>Mininum XP</label><input type="text" formControlName="mininumXP" class="form-control" 
-            style="background: whitesmoke; border: 2px solid rgb(65, 126, 218)" required>
+            <label>Mininum XP</label>
+            <input type="text" value="mininumXP" style="background: whitesmoke; border: 2px solid rgb(65, 126, 218)"
+                ngModel required>
         </div>
         <div class="form-group">
-            <label>Number of Champies</label> <input type="text" formControlName="numberOfChampies" class="form-control"
-            style="background: whitesmoke; border: 2px solid rgb(65, 126, 218)"
-                required>
-        </div>
-        <div class="form-group">
-            <label style="margin-right: 5px;">Skin Type</label>
-            <select id="inputSubject" formControlName="skinType" class="form-control" 
-            style="background: whitesmoke; border: 2px solid rgb(65, 126, 218)" required>
-=======
-            <input type="file" name="filePath" value="filePath" class="btn btn-primary" ngModel required alt="Add Skin Image"
-                style="transform: translate(-40%,0%);">
-        </div>
-        <div class="form-group">
-            <label>Skin Name</label>
-            <input type="text" name="skinName" value="skinName" ngModel required>
-        </div>
-        <div class="form-group">
-            <label>Mininum XP</label><input type="text" name="mininumXP" value="mininumXP" ngModel required>
-        </div>
-        <div class="form-group">
-            <label>Number of Champies</label> <input type="text" name="numberOfChampies" value="numberOfChampies" ngModel required>
+            <label>Number of Champies</label>
+            <input type="text" value="numberOfChampies"
+                style="background: whitesmoke; border: 2px solid rgb(65, 126, 218)" ngModel required>
         </div>
         <div class="form-group">
             <label style="margin-right: 5px;">Skin Type</label>
-            <select id="inputSubject" name="skinType" value="skinType" ngModel required>
->>>>>>> Stashed changes
+            <select id="inputSubject" name="skinType" value="skinType" style="background: whitesmoke; border: 2px solid rgb(65, 126, 218)" 
+            ngModel required>
                 <option selected>Select a skin type</option>
                 <option>Skin</option>
                 <option>Hair</option>
@@ -50,14 +32,9 @@
                 <option>Shoes</option>
                 <option>Others</option>
             </select>
-<<<<<<< Updated upstream
-            <button id="save>_button" type="submit" class="btn btn-primary"
+            <button id="save_button" type="submit" class="btn btn-primary"
                 style="margin-top: 5%; margin-right: 5%; background: rgb(65, 126, 218); border: 2px solid whitesmoke;"
-                [disabled]="!addSkinForm.valid" (click)="submit();">Add</button>
-=======
-            <button id="save>_button" type="submit" class="btn btn-primary" style="margin-top: 5%; margin-right: 5%;"
-                [disabled]="!addSkinForm.valid">Save</button>
->>>>>>> Stashed changes
+                [disabled]="!addSkinForm.valid">Add</button>
         </div>
     </div>
 </form>

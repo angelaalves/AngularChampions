@@ -3,7 +3,7 @@ import { Player } from 'src/app/shared/player.model';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 
 
-import { userType } from 'src/app/shared/playerType.enum';
+import { userType } from 'src/app/shared/userType.enum';
 import { PlayerService } from 'src/app/services/player.service';
 
 @Component({

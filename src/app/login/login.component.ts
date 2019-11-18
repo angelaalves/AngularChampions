@@ -5,7 +5,7 @@ import { AuthenticationService } from './authentication/authentication.service';
 import { map, catchError, tap } from 'rxjs/operators';
 import { BehaviorSubject, Observable, throwError } from 'rxjs';
 import { Player } from '../shared/player.model';
-import { userType } from '../shared/playerType.enum';
+import { userType } from '../shared/userType.enum';
 import { Router, ActivatedRoute } from '@angular/router';
 import { PlayerService } from 'src/app/services/player.service';
 import { UserLoggedComponent } from '../user-logged/user-logged.component';
@@ -32,7 +32,6 @@ export class LoginComponent implements OnInit {
   constructor(private userlogged: UserLoggedComponent, private http: HttpClient, private authService: AuthenticationService, private router: Router, private route: ActivatedRoute, private playerService: PlayerService) {
     this.currentUserSubject = new BehaviorSubject<Player>(JSON.parse(localStorage.getItem('currentUser')));
     this.currentUser = this.currentUserSubject.asObservable();
-
   }
 
   public get currentUserValue(): Player {
@@ -70,10 +69,6 @@ export class LoginComponent implements OnInit {
         this.router.navigate(['/warrior_profile'], {relativeTo: this.route});
 
       }
-
-
-      
-
   }
 
 
@@ -103,7 +98,4 @@ export class LoginComponent implements OnInit {
     //const player = new Player(name,email, userId, playerType.GuildMaster );
     //this.user.next(player);
   }
-
-
-
 }

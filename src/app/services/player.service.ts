@@ -1,5 +1,5 @@
 import { Player } from '../shared/player.model';
-import { userType } from '../shared/playerType.enum';
+import { userType } from '../shared/userType.enum';
 import { Injectable } from '@angular/core';
 import { gender } from '../shared/playerGender.enum';
 import { status } from 'src/app/shared/status.enum';

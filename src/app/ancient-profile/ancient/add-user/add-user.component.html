@@ -6,7 +6,7 @@
         <div class="col-7">
             <div class="form-group">
                 <label for="name">Name of the new player</label>
-                <input type="text" name="name" value="name" ngModel required  style="background: whitesmoke; border: 2px solid rgb(65, 126, 218)">
+                <input type="text" name="name" value="name" ngModel required style="background: whitesmoke; border: 2px solid rgb(65, 126, 218)">
             </div>
         </div>
     </div>
@@ -38,11 +38,7 @@
         <div class="col-7">
             <div class="form-group">
                 <label for="email">Email</label>
-<<<<<<< Updated upstream
-                <input type="email" name="email" formControlName="email" class="form-control" style="background: whitesmoke; border: 2px solid rgb(65, 126, 218)" required email>
-=======
-                <input type="email" name="email" ngModel required email>
->>>>>>> Stashed changes
+                <input type="email" name="email" formControlName="email" class="form-control" style="background: whitesmoke; border: 2px solid rgb(65, 126, 218)" ngModel required email>
             </div>
         </div>
     </div>
@@ -50,24 +46,17 @@
         <div class="col-7">
             <div class="form-group">
                 <label for="confirmPassword">Password</label>
-<<<<<<< Updated upstream
-                <input type="password" name="password" formControlName="password" class="form-control" style="background: whitesmoke; border: 2px solid rgb(65, 126, 218)" required
+                <input type="password" name="password" formControlName="password" class="form-control" style="background: whitesmoke; border: 2px solid rgb(65, 126, 218)" ngModel required
                     minlength="6">
-=======
-                <input type="password" name="password" ngModel required minlength="6">
->>>>>>> Stashed changes
             </div>
         </div>
     </div>
     <div class="form-row">
         <div class="col-7">
             <div class="form-group">
-<<<<<<< Updated upstream
                 <button type='submit' class="btn btn-primary" style="background: rgb(65, 126, 218); border: 2px solid whitesmoke;" [disabled]="!addUserForm.valid"
                     (click)="submit();">Add</button>
-=======
                 <button type="submit" class="btn btn-primary" [disabled]="!addUserForm.valid">Add</button>
->>>>>>> Stashed changes
             </div>
         </div>
     </div>

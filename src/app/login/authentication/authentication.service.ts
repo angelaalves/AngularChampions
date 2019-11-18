@@ -21,7 +21,6 @@ export class AuthenticationService {
     ).pipe(catchError(this.handleError),
       tap(resData => {
         this.handleAuthentication(resData.idPlayer, resData.idGuild, resData.UserName, resData.email, resData.password,  resData.gender, resData.userType, resData.xp, resData.ChampiesToGive, resData.MyChampies, resData.Status )
-   
       })   
     );
   }
