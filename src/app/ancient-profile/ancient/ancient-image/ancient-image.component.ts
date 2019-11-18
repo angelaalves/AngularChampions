@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Injectable } from '@angular/core';
 import { Player } from 'src/app/shared/player.model';
 import { userType } from 'src/app/shared/userType.enum';
 import { gender } from 'src/app/shared/playerGender.enum';
@@ -11,6 +11,7 @@ import { status } from 'src/app/shared/status.enum';
   templateUrl: './ancient-image.component.html',
   styleUrls: ['./ancient-image.component.css']
 })
+@Injectable({providedIn:"root"})
 export class AncientImageComponent implements OnInit {
   @Input() name: string
   @Input() hairImagePath: string
@@ -28,6 +29,7 @@ export class AncientImageComponent implements OnInit {
   constructor(private router: Router, private route: ActivatedRoute, private playerService: PlayerService) { }
 
   ngOnInit() {
+
   }
 
  

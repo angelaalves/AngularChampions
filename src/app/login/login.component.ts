@@ -8,7 +8,10 @@ import { Player } from '../shared/player.model';
 import { userType } from '../shared/userType.enum';
 import { Router, ActivatedRoute } from '@angular/router';
 import { PlayerService } from 'src/app/services/player.service';
-import { UserLoggedComponent } from '../user-logged/user-logged.component';
+import { AncientProfileComponent } from '../ancient-profile/ancient-profile.component';
+import { WarriorComponent } from '../warrior/warrior.component';
+import { GuildMasterComponent } from '../guild-master/guild-master.component';
+import { SessionService } from '../services/session.service';
 
 
 
@@ -24,19 +27,53 @@ export class LoginComponent implements OnInit {
   public currentUser: Observable<Player>;
   public player: Player;
   public data: AuthenticationService;
-  
+
 
 
   ngOnInit() {
   }
 
-  constructor(private http: HttpClient, private authService: AuthenticationService, private userlogged: UserLoggedComponent) {
+  constructor(private session: SessionService, private http: HttpClient, private authService: AuthenticationService, private router: Router, private route: ActivatedRoute) {
     this.currentUserSubject = new BehaviorSubject<Player>(JSON.parse(localStorage.getItem('currentUser')));
     this.currentUser = this.currentUserSubject.asObservable();
   }
 
   public get currentUserValue(): Player {
     return this.currentUserSubject.value;
+  }
+
+  private chooseprofile(player: Player) {
+    if (player.userType == userType.Ancient) {
+      this.router.navigate(['/ancient_profile'], { relativeTo: this.route });
+    }
+    if (player.userType == userType.GuildMaster) {
+      this.router.navigate(['guildmaster_profile'], { relativeTo: this.route });
+    }
+    if (player.userType == userType.Warrior) {
+      this.router.navigate(['warrior_profile'], { relativeTo: this.route });
+    }
+  }
+
+  private getImagePath(playerid: String) {
+
+    return ["../assets/Hair/HairMediumBlonde.png",
+      "../assets/SkinColor/FemaleBlack.png",
+      "../assets/Top/TopPolarWhite.png",
+      "../assets/Bottom/BottomTrouseWhite.png", "../assets/Shoes/ShoesGrey.png", "../assets/Others/FairyWings.png"];
+
+  }
+
+  private createuser(obj:Player) {
+
+    const player=new Player (obj.idPlayer,obj.idGuild,obj.UserName, obj.email, obj.password, obj.gender, obj.userType, obj.xp, obj.ChampiesToGive, obj.MyChampies, obj.Status,this.getImagePath(obj.idPlayer));
+ 
+    /*
+  const user=new Player(player.idPlayer,player.idGuild,player.UserName,player.email,player.password,player.gender,player.userType,player.xp,player.ChampiesToGive,player.MyChampies,player.Status,player.imagePath);
+  console.log("Player ImagePath"+user.imagePath );
+  return user;
+  */
+
+  return player;
   }
 
   onSubmit(form: NgForm) {
@@ -49,17 +86,17 @@ export class LoginComponent implements OnInit {
       resData => {
         this.http.post<Player>('http://localhost:8085/players/Login', { email, password })
         console.log(resData);
-        this.player= resData;
- console.log(this.player.userType);
- console.log(userType.Ancient +"   " +userType.GuildMaster   +"   " +userType.Warrior);
-this.userlogged.player= resData;
-console.log(this.userlogged.player);
-
+        this.createuser(resData);
+        this.player = this.createuser(resData);
+        console.log("Quero ver aqui: "+this.player);
+       // this.session.playerSession = resData;
+        this.session.openSession(this.createuser(resData));
+        console.log("Login: "+this.session.getPlayerInSession());
+        this.chooseprofile(this.session.getPlayerInSession());
       }
     );
     form.reset();
   }
-
 
 
 
