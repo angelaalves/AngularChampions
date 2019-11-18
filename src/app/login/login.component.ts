@@ -30,8 +30,8 @@ export class LoginComponent implements OnInit {
   }
 
   constructor(private userlogged: UserLoggedComponent, private http: HttpClient, private authService: AuthenticationService, private router: Router, private route: ActivatedRoute, private playerService: PlayerService) {
-    this.currentUserSubject = new BehaviorSubject<Player>(JSON.parse(localStorage.getItem('currentUser')));
-    this.currentUser = this.currentUserSubject.asObservable();
+    //this.currentUserSubject = new BehaviorSubject<Player>(JSON.parse(localStorage.getItem('currentUser')));
+    //this.currentUser = this.currentUserSubject.asObservable();
   }
 
   public get currentUserValue(): Player {
@@ -44,19 +44,17 @@ export class LoginComponent implements OnInit {
     }
     const email = form.value.email;
     const password = form.value.password;
-    console.log(password);
     this.authService.signup(email, password).subscribe(
       resData => {
         this.http.post<Player>('http://localhost:8085/players/Login', { email, password })
-        console.log(resData);
         this.player = resData;
         console.log(this.player.userType);
         console.log(userType.Ancient + "   " + userType.GuildMaster + "   " + userType.Warrior);
         this.userlogged.player = resData;
-        console.log(this.userlogged.player);
       }
     );
     form.reset();
+    console.log(this.player)
     if(this.player.userType==userType.Ancient){
         this.router.navigate(['/ancient_profile'], {relativeTo: this.route});
 
@@ -70,9 +68,6 @@ export class LoginComponent implements OnInit {
 
       }
   }
-
-
-
 
   private handleError(errorRes: HttpErrorResponse) {
     let errorMessage = 'an unknown error occurred';
