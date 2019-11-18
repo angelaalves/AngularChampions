@@ -5,26 +5,30 @@
     <h3 style="text-align: center;">Reward</h3>
 </div>
 <div id="divRight">
-    <div>
-        <label>From</label>
-    </div>
-    <div style="margin-top: 3%;">
-        <label>To</label>
-        <input type="text " style="margin-left: 3em; background-color: whitesmoke; border: 2px solid rgb(65, 126, 218)">
-    </div>
-    <div style="margin-top: 3%;">
-        <img src="../../assets/AppImages/clock.png" width="40" height="70">
-        <input type="text" style="margin-left: 1.7em; background-color: whitesmoke; border: 2px solid rgb(65, 126, 218)">
-        <input type="text" style="margin-left: 1em; background-color: whitesmoke; border: 2px solid rgb(65, 126, 218)">
-        <img src="../../assets/AppImages/ChampiesToGive1.png" style="margin-left: 1em;" width="60" height="60">
-    </div>
-    <div style="margin-top: 3%;">
-        <label id="labelWhy">Justify</label>
-    </div>
-    <div >
-        <textarea rows="7" cols="60" style=" background-color: whitesmoke; border: 2px solid rgb(65, 126, 218)"></textarea>
-    </div>
-    <button type="submit" class="btn btn-link" style="margin-right: 5%;">
-        <span style="font-size: 350%; ">&#9993;</span>
-    </button>
+    <form #giveReward="ngForm" (ngSubmit)="onSubmit(giveReward)" action="" class="container-fluid">
+        <div>
+            <label>From</label>
+        </div>
+        <div style="margin-top: 3%;">
+            <label>To</label>
+            <input type="text" name="to" style="margin-left: 3em; background-color: whitesmoke; border: 2px solid rgb(65, 126, 218)" 
+                ngModel required>
+        </div>
+        <div style="margin-top: 3%;">
+            <img src="../../assets/AppImages/clock.png" width="40" height="70">
+            <input type="text" name="time"
+                style="margin-left: 1.7em; background-color: whitesmoke; border: 2px solid rgb(65, 126, 218)" ngModel required>
+            <img src="../../assets/AppImages/ChampiesToGive1.png" style="margin-left: 1em;" width="60" height="60">
+        </div>
+        <div style="margin-top: 3%;">
+            <label id="labelWhy">Justify</label>
+        </div>
+        <div>
+            <textarea rows="7" cols="60" style=" background-color: whitesmoke; border: 2px solid rgb(65, 126, 218)"
+                name="reason" ngModel required></textarea>
+        </div>
+        <button type="submit" class="btn btn-link" style="margin-right: 5%;">
+            <span style="font-size: 350%;" (click)="submit()">&#9993;</span>
+        </button>
+    </form>
 </div>

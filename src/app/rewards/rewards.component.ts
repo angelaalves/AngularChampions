@@ -12,4 +12,7 @@ export class RewardsComponent implements OnInit {
   ngOnInit() {
   }
 
+  submit(){
+    
+  }
 }

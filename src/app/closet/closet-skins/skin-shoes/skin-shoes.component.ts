@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { Skin } from 'src/app/shared/skin.model';
 
 @Component({
   selector: 'app-skin-shoes',
@@ -7,6 +8,8 @@ import { Router, ActivatedRoute } from '@angular/router';
   styleUrls: ['./skin-shoes.component.css']
 })
 export class SkinShoesComponent implements OnInit {
+  @Input() shoes: Skin[];
+
   constructor(private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
@@ -15,5 +18,4 @@ export class SkinShoesComponent implements OnInit {
   skinSelected(){
     this.router.navigate(['../buy_skin'], {relativeTo: this.route});
   }
-
 }

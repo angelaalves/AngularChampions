@@ -51,18 +51,14 @@ import { AddGuildListComponent } from './guild-list-start/guild-list/add-guild-l
 import { PresenterPageComponent } from './warrior/presenter-page/presenter-page.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ImageMakerComponent } from './image-maker/image-maker.component';
-
 import { BuySkinComponent } from './closet/buy-skin/buy-skin.component';
-
 import { SkinOtherComponent } from './closet/closet-skins/skin-other/skin-other.component';
 import { SkinShoesComponent } from './closet/closet-skins/skin-shoes/skin-shoes.component';
 import { SkinSkincolorComponent } from './closet/closet-skins/skin-skincolor/skin-skincolor.component';
 import { SkinTopComponent } from './closet/closet-skins/skin-top/skin-top.component';
 import { SkinBottomComponent } from './closet/closet-skins/skin-bottom/skin-bottom.component';
 import { SkinHairComponent } from './closet/closet-skins/skin-hair/skin-hair.component';
-import { WarriorImageComponent } from './warrior/warrior-image/warrior-image.component';
 import { ProfilePageComponent } from './profile-page/profile-page.component';
-
 
 @NgModule({
   declarations: [
@@ -122,7 +118,6 @@ import { ProfilePageComponent } from './profile-page/profile-page.component';
     SkinSkincolorComponent,
     SkinTopComponent,
     SkinBottomComponent,
-    WarriorImageComponent,
     ProfilePageComponent,
   ],
   imports: [

@@ -7,7 +7,6 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 
 export class ImageMakerComponent implements OnInit {
- @Input() name:string;
  @Input() hairImagePath:string
  @Input() skinImagePath:string
  @Input() shirtImagePath:string
