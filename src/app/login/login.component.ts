@@ -32,6 +32,7 @@ export class LoginComponent implements OnInit {
   constructor(private userlogged: UserLoggedComponent, private http: HttpClient, private authService: AuthenticationService, private router: Router, private route: ActivatedRoute, private playerService: PlayerService) {
     //this.currentUserSubject = new BehaviorSubject<Player>(JSON.parse(localStorage.getItem('currentUser')));
     //this.currentUser = this.currentUserSubject.asObservable();
+
   }
 
   public get currentUserValue(): Player {
@@ -44,6 +45,7 @@ export class LoginComponent implements OnInit {
     }
     const email = form.value.email;
     const password = form.value.password;
+    console.log(password);
     this.authService.signup(email, password).subscribe(
       resData => {
         this.http.post<Player>('http://localhost:8085/players/Login', { email, password })
@@ -61,7 +63,6 @@ export class LoginComponent implements OnInit {
       }
       if(this.player.userType==userType.GuildMaster){
         this.router.navigate(['/guildmaster_profile'], {relativeTo: this.route});
-
       }
       if(this.player.userType==userType.Warrior){
         this.router.navigate(['/warrior_profile'], {relativeTo: this.route});
