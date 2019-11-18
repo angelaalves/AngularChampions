@@ -29,10 +29,9 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
 
-  constructor(private userlogged: UserLoggedComponent, private http: HttpClient, private authService: AuthenticationService, private router: Router, private route: ActivatedRoute, private playerService: PlayerService) {
-    //this.currentUserSubject = new BehaviorSubject<Player>(JSON.parse(localStorage.getItem('currentUser')));
-    //this.currentUser = this.currentUserSubject.asObservable();
-
+  constructor(private http: HttpClient, private authService: AuthenticationService) {
+    this.currentUserSubject = new BehaviorSubject<Player>(JSON.parse(localStorage.getItem('currentUser')));
+    this.currentUser = this.currentUserSubject.asObservable();
   }
 
   public get currentUserValue(): Player {
@@ -48,26 +47,21 @@ export class LoginComponent implements OnInit {
     console.log(password);
     this.authService.signup(email, password).subscribe(
       resData => {
-        this.http.post<Player>('http://localhost:8085/players/Login', { email, password })
-        this.player = resData;
-        console.log(this.player.userType);
-        console.log(userType.Ancient + "   " + userType.GuildMaster + "   " + userType.Warrior);
-        this.userlogged.player = resData;
+        this.http.post<any>('http://localhost:8085/players/Login', { email, password }).pipe(map(user => {
+          // login successful if there's a jwt token in the response
+          if (user && user.token) {
+            // store user details and jwt token in local storage to keep user logged in between page refreshes
+            localStorage.setItem('currentUser', JSON.stringify(user));
+            this.currentUserSubject.next(user);
+          }
+          return user;
+        }));
+        console.log(resData);
+        resData
+ 
       }
     );
     form.reset();
-    console.log(this.player)
-    if(this.player.userType==userType.Ancient){
-        this.router.navigate(['/ancient_profile'], {relativeTo: this.route});
-
-      }
-      if(this.player.userType==userType.GuildMaster){
-        this.router.navigate(['/guildmaster_profile'], {relativeTo: this.route});
-      }
-      if(this.player.userType==userType.Warrior){
-        this.router.navigate(['/warrior_profile'], {relativeTo: this.route});
-
-      }
   }
 
   private handleError(errorRes: HttpErrorResponse) {
