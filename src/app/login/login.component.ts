@@ -1,19 +1,12 @@
-
 import { Component, OnInit, Injectable } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { AuthenticationService } from './authentication/authentication.service';
-import { map, catchError, tap } from 'rxjs/operators';
 import { BehaviorSubject, Observable, throwError } from 'rxjs';
 import { Player } from '../shared/player.model';
+import { SessionService } from '../services/session.service';
 import { userType } from '../shared/userType.enum';
 import { Router, ActivatedRoute } from '@angular/router';
-import { PlayerService } from 'src/app/services/player.service';
-import { AncientProfileComponent } from '../ancient-profile/ancient-profile.component';
-import { WarriorComponent } from '../warrior/warrior.component';
-import { GuildMasterComponent } from '../guild-master/guild-master.component';
-import { SessionService } from '../services/session.service';
-
 
 
 @Component({
@@ -28,8 +21,6 @@ export class LoginComponent implements OnInit {
   public currentUser: Observable<Player>;
   public player: Player;
   public data: AuthenticationService;
-
-
 
   ngOnInit() {
   }
@@ -85,6 +76,8 @@ export class LoginComponent implements OnInit {
     }
     const email = form.value.email;
     const password = form.value.password;
+
+
     this.authService.signup(email, password).subscribe(
       resData => {
         this.http.post<Player>('http://localhost:8085/players/Login', { email, password })
@@ -126,7 +119,4 @@ export class LoginComponent implements OnInit {
     //const player = new Player(name,email, userId, playerType.GuildMaster );
     //this.user.next(player);
   }
-
-
-
 }

@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { Player } from 'src/app/shared/player.model';
+import { Skin } from 'src/app/shared/skin.model';
 
 @Component({
   selector: 'app-closet-skins',
@@ -8,6 +10,14 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 
 export class ClosetSkinsComponent {
+  @Input() skincolors: Skin[];
+  @Input() bottoms: Skin[];
+  @Input() hair: Skin[];
+  @Input() tops: Skin[];
+  @Input() shoes: Skin[];
+  @Input() others: Skin[];
+  player: Player;
+
   constructor(private router: Router, private route: ActivatedRoute) { }
 
   addSkin(){
