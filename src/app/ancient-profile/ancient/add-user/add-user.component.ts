@@ -85,6 +85,8 @@ export class AddUserComponent implements OnInit {
       'gender': new FormControl(gender, Validators.required),
       'playertype': new FormControl(playertype, Validators.required),
       'email': new FormControl(email, [Validators.required, Validators.minLength(10)]),
+      'playerType': new FormControl(playerType),
+      'gender': new FormControl(gender, [Validators.required, Validators.minLength(10)]),
       'password': new FormControl(password, [Validators.required, Validators.minLength(6)])
     });
   }

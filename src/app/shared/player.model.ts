@@ -26,8 +26,6 @@ export class Player{
         this.xp=xp;
         this.ChampiesToGive=ChampiesToGive;
         this.MyChampies=MyChampies;
-        this.userType=userType;
-        this.gender=gender;
         this.Status=status;
     }
 
