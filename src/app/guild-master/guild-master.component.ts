@@ -23,12 +23,13 @@ export class GuildMasterComponent implements OnInit {
   @Input() othersImagePath: string
 
   ngOnInit() {
-    this.route.params.subscribe((params: Params) => {
-      this.id = +params['id'];
-
-    })
-  
-    
+    this.route.params.subscribe((params: Params)=>{
+      this.id= +params['id'];
+      /*for(let i=0;i<this.playerService.getPlayers().length;i++){
+        if(this.playerService.getPlayerType(i)===playerType.GuildMaster){
+          this.guildmaster=this.playerService.getPlayer(this.id);
+        }
+      }*/
+    });
   }
-
 }

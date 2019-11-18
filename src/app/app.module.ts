@@ -62,8 +62,6 @@ import { SkinBottomComponent } from './closet/closet-skins/skin-bottom/skin-bott
 import { SkinHairComponent } from './closet/closet-skins/skin-hair/skin-hair.component';
 import { WarriorImageComponent } from './warrior/warrior-image/warrior-image.component';
 import { ProfilePageComponent } from './profile-page/profile-page.component';
-import { UserLoggedComponent } from './user-logged/user-logged.component';
-
 
 
 @NgModule({
@@ -126,7 +124,6 @@ import { UserLoggedComponent } from './user-logged/user-logged.component';
     SkinBottomComponent,
     WarriorImageComponent,
     ProfilePageComponent,
-    UserLoggedComponent
   ],
   imports: [
     BrowserModule,

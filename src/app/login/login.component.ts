@@ -1,3 +1,4 @@
+
 import { Component, OnInit, Injectable } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
@@ -8,7 +9,6 @@ import { Player } from '../shared/player.model';
 import { userType } from '../shared/userType.enum';
 import { Router, ActivatedRoute } from '@angular/router';
 import { PlayerService } from 'src/app/services/player.service';
-import { UserLoggedComponent } from '../user-logged/user-logged.component';
 import { AncientProfileComponent } from '../ancient-profile/ancient-profile.component';
 import { WarriorComponent } from '../warrior/warrior.component';
 import { GuildMasterComponent } from '../guild-master/guild-master.component';
@@ -57,6 +57,8 @@ export class LoginComponent implements OnInit {
 
   private getImagePath(playerid: String) {
 
+
+  //  get();
     return ["../assets/Hair/HairMediumBlonde.png",
       "../assets/SkinColor/FemaleBlack.png",
       "../assets/Top/TopPolarWhite.png",
@@ -65,9 +67,9 @@ export class LoginComponent implements OnInit {
   }
 
   private createuser(obj:Player) {
+    const player=new Player (obj.idPlayer,obj.idGuild,obj.UserName, obj.email, obj.password,this.getImagePath(obj.idPlayer),obj.xp,  obj.ChampiesToGive, obj.MyChampies, obj.userType,obj.gender,  obj.Status);
 
-    const player=new Player (obj.idPlayer,obj.idGuild,obj.UserName, obj.email, obj.password, obj.gender, obj.userType, obj.xp, obj.ChampiesToGive, obj.MyChampies, obj.Status,this.getImagePath(obj.idPlayer));
- 
+
     /*
   const user=new Player(player.idPlayer,player.idGuild,player.UserName,player.email,player.password,player.gender,player.userType,player.xp,player.ChampiesToGive,player.MyChampies,player.Status,player.imagePath);
   console.log("Player ImagePath"+user.imagePath );
@@ -86,8 +88,7 @@ export class LoginComponent implements OnInit {
     this.authService.signup(email, password).subscribe(
       resData => {
         this.http.post<Player>('http://localhost:8085/players/Login', { email, password })
-        console.log(resData);
-        this.createuser(resData);
+        console.log("Resdata:  "+resData.UserName);
         this.player = this.createuser(resData);
         console.log("Quero ver aqui: "+this.player);
        // this.session.playerSession = resData;

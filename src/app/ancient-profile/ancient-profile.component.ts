@@ -1,5 +1,4 @@
 import { Component, OnInit, Injectable } from '@angular/core';
-import { UserLoggedComponent } from '../user-logged/user-logged.component';
 import { AncientComponent } from './ancient/ancient.component';
 import { AncientImageComponent } from './ancient/ancient-image/ancient-image.component';
 import { Player } from '../shared/player.model';

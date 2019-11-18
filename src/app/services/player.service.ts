@@ -18,6 +18,7 @@ export class PlayerService{
             this.players=data;
         })
     }
+
     getWarriors(){
         var warriors: Player[]=[];
         for(let i=0;i<this.players.length;i++){

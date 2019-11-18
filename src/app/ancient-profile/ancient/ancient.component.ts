@@ -5,7 +5,6 @@ import { PlayerService } from 'src/app/services/player.service';
 import { userType } from 'src/app/shared/userType.enum';
 import { gender } from 'src/app/shared/playerGender.enum';
 import { status } from 'src/app/shared/status.enum';
-import { UserLoggedComponent } from 'src/app/user-logged/user-logged.component';
 import { LoginComponent } from 'src/app/login/login.component';
 import { SessionService } from 'src/app/services/session.service';
 
