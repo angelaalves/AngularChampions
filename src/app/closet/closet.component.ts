@@ -1,19 +1,10 @@
 import { Component, OnInit, Injectable } from '@angular/core';
 import { Player } from '../shared/player.model';
-import { AuthenticationService } from '../login/authentication/authentication.service';
 import { HttpClient } from '@angular/common/http';
-import { LoginComponent } from 'src/app/login/login.component';
+import { Skin } from '../shared/skin.model';
+import { skinType } from '../shared/skinType.enum';
+import { AuthenticationService } from '../login/authentication/authentication.service';
 import { SessionService } from '../services/session.service';
-
-
-interface AuthResponseData {
-  kind: string,
-  idToken: string,
-  email: string,
-  refreshToken: string,
-  expiresIn: string,
-  localId: string;
-}
 
 @Component({
   selector: 'app-closet',
@@ -24,9 +15,32 @@ interface AuthResponseData {
 @Injectable({ providedIn: 'root' })
 export class ClosetComponent implements OnInit {
   player: Player;
+  skincolors: Skin[];
+  bottoms: Skin[];
+  hair: Skin[];
+  tops: Skin[];
+  shoes: Skin[];
+  others: Skin[];
 
-  constructor(private session: SessionService,private http: HttpClient, private authService: AuthenticationService) {
+  constructor(private session: SessionService,private http: HttpClient, private authService: AuthenticationService) {}
     
+  getSkins() {
+    return this.http.get<Skin>('http://localhost:8085/skins/getAll', {}).subscribe(data => {
+      console.log(data);
+      if(data.skinType==skinType.Bottom){
+        this.bottoms.push(data);
+      }else if(data.skinType==skinType.SkinColor){
+        this.skincolors.push(data);
+      }else if(data.skinType==skinType.Hair){
+        this.hair.push(data);
+      }else if(data.skinType==skinType.Top){
+        this.tops.push(data);
+      }else if(data.skinType==skinType.Shoes){
+        this.shoes.push(data);
+      }else if(data.skinType==skinType.Others){
+        this.others.push(data);
+      }
+    })
   }
 
   ngOnInit() {

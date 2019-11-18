@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { Skin } from 'src/app/shared/skin.model';
 
 @Component({
   selector: 'app-skin-other',
@@ -7,7 +8,8 @@ import { Router, ActivatedRoute } from '@angular/router';
   styleUrls: ['./skin-other.component.css']
 })
 export class SkinOtherComponent implements OnInit {
-
+  @Input() others: Skin[];
+  
   constructor(private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
