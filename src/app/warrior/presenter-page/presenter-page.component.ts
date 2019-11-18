@@ -20,5 +20,13 @@ export class PresenterPageComponent implements OnInit {
   constructor(private router: Router, private route: ActivatedRoute, private playerService: PlayerService) { }
 
   ngOnInit() {
+    this.route.params.subscribe((params: Params)=>{
+      this.id= +params['id'];
+      /*for(let i=0;i<this.playerService.getPlayers().length;i++){
+        if(this.playerService.getPlayerType(i)==playerType.Ancient){
+          this.warrior=this.playerService.getPlayer(this.id);
+        }
+      }*/
+    });
   }
 }

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, FormArray, Validators } from '@angular/forms';
+import { FormGroup, FormControl, FormArray, Validators, NgForm } from '@angular/forms';
 import { Router, ActivatedRoute, Params } from '@angular/router';
+import { PlayerService } from '../services/player.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-change-password',
@@ -10,7 +12,7 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 export class ChangePasswordComponent implements OnInit {
   changePasswordForm: FormGroup;
 
-  constructor(private router: Router, private route: ActivatedRoute) { }
+  constructor(private router: Router, private route: ActivatedRoute, private playerService: PlayerService, private http: HttpClient) { }
 
   ngOnInit() {
     this.route.params
@@ -19,6 +21,26 @@ export class ChangePasswordComponent implements OnInit {
           this.initForm();
       }
     )
+  }
+
+  onSubmit(form: NgForm){
+    if (!form.valid) {
+      return;
+    }
+    const player = this.playerService.getPlayer(1);
+
+    const newPassword=form.value.newPassword;
+    console.log(form.value);
+
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', 'http://localhost:8085/players/Update?idPlayer=' + player.idPlayer + '&idGuildFK=' + player.idGuild + '&userName='  + player.UserName + 
+    '&email=' + player.email + '&password=' + newPassword + '&gender='  + player.gender + '&userType=' + player.playerType + '&xp=' + player.xp + 
+    '&champiesToGive='  + player.ChampiesToGive + '&myChampies=' + player.MyChampies + '&=status' + player.Status, true);
+    this.http.post<any>('http://localhost:8085/players/Update?idPlayer=',
+      {
+       newPassword
+      }
+    ).subscribe();
   }
 
   private initForm() {

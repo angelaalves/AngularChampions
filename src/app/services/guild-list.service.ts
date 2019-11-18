@@ -3,7 +3,6 @@ import { HttpClient } from '@angular/common/http';
 import { Player } from '../shared/player.model';
 import { PlayerService } from './player.service';
 import { Guild } from '../guild-list-start/guild-list/guild.model';
-import { userType } from '../shared/userType.enum';
 import { gender } from '../shared/playerGender.enum';
 import { status } from '../shared/status.enum';
 

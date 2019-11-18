@@ -1,7 +1,6 @@
 import { Component, OnInit, Input, Injectable } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { PlayerService } from 'src/app/services/player.service';
-import { userType } from 'src/app/shared/userType.enum';
 import { Player } from 'src/app/shared/player.model';
 import { SessionService } from 'src/app/services/session.service';
 

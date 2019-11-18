@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormArray, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormArray, FormControl, Validators, NgForm } from '@angular/forms';
 import { Router, ActivatedRoute, Params } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-add-skin',
@@ -10,7 +11,7 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 export class AddSkinComponent implements OnInit {
   addSkinForm: FormGroup;
 
-  constructor(private router: Router, private route: ActivatedRoute) { }
+  constructor(private router: Router, private route: ActivatedRoute, private http: HttpClient) { }
 
   ngOnInit() {
     this.route.params
@@ -21,17 +22,42 @@ export class AddSkinComponent implements OnInit {
       )
   }
 
-submit(addUserForm: FormGroup){
+  onSubmit(form: NgForm) {
+    if (!form.valid) {
+      return;
+    }
+    const skinName = form.value.skinName;
+    const imagePath = form.value.filePath;
+    const minXP = form.value.mininumXP;
+    const champiesCost = form.value.numberOfChampies;
+    const skinType = form.value.skinType;
+    console.log('addUserForm', form.value);
+
+    /*var xhr = new XMLHttpRequest();
+    xhr.open('POST', 'http://localhost:8085/skins/Create?skinName=' + skinName + '&imagePath=' + imagePath + '&minXP=' + minXP +
+      '&champiesCost=' + champiesCost + '&skinType=' + skinType, true);
+    this.http.post<any>('http://localhost:8085/skins/Create?skinName=' + skinName + '&imagePath=' + imagePath + '&minXP=' + minXP +
+      '&champiesCost=' + champiesCost + '&skinType=' + skinType,
+      {
+        skinName,
+        imagePath,
+        minXP,
+        champiesCost,
+        skinType
+      }
+    ).subscribe();*/
+
+
     console.log(this.addSkinForm);
-    this.router.navigate(['/ancient_profile'], {relativeTo: this.route});
+    //this.router.navigate(['/ancient_profile'], { relativeTo: this.route });
   }
 
   private initForm() {
-    let file='';
-    let skinName='';
-    let mininumXP='';
-    let numberOfChampies='';
-    let skinType='';
+    let file = '';
+    let skinName = '';
+    let mininumXP = '';
+    let numberOfChampies = '';
+    let skinType = '';
 
     this.addSkinForm = new FormGroup({
       'file': new FormControl(file, Validators.required),

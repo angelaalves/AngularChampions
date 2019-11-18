@@ -14,7 +14,6 @@ import { GuildMasterComponent } from '../guild-master/guild-master.component';
 import { SessionService } from '../services/session.service';
 
 
-
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -82,9 +81,10 @@ export class LoginComponent implements OnInit {
     }
     const email = form.value.email;
     const password = form.value.password;
+    console.log(password);
     this.authService.signup(email, password).subscribe(
       resData => {
-        this.http.post<Player>('http://localhost:8085/players/Login', { email, password })
+        this.http.post<any>('http://localhost:8085/players/Login', { email, password })
         console.log(resData);
         this.createuser(resData);
         this.player = this.createuser(resData);
@@ -96,6 +96,8 @@ export class LoginComponent implements OnInit {
       }
     );
     form.reset();
+
+    console.log(this.playerService.getPlayers);
   }
 
 
@@ -124,7 +126,4 @@ export class LoginComponent implements OnInit {
     //const player = new Player(name,email, userId, playerType.GuildMaster );
     //this.user.next(player);
   }
-
-
-
 }
