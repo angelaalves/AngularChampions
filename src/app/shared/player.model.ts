@@ -30,8 +30,7 @@ export class Player{
         this.gender=gender;
         this.Status=status;
     }
-
     getImagePath(index:number){
-        return this.imagePath[index]
+        return this.imagePath[index];
     }
 }

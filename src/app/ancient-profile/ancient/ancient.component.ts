@@ -6,6 +6,8 @@ import { userType } from 'src/app/shared/userType.enum';
 import { gender } from 'src/app/shared/playerGender.enum';
 import { status } from 'src/app/shared/status.enum';
 import { UserLoggedComponent } from 'src/app/user-logged/user-logged.component';
+import { LoginComponent } from 'src/app/login/login.component';
+import { SessionService } from 'src/app/services/session.service';
 
 @Component({
   selector: 'app-ancient',
@@ -18,10 +20,12 @@ export class AncientComponent implements OnInit {
   ancient: Player;
   id: number;
 
-  constructor(private router: Router, private route: ActivatedRoute, private playerService: PlayerService, private userlogged: UserLoggedComponent) { }
+  constructor(private router: Router, private route: ActivatedRoute, private playerService: PlayerService, private session: SessionService) { }
 
   ngOnInit() {
-   this.ancient= this.userlogged.getPlayer();
+  console.log("No ancient userlogged= "+this.session.playerSession);
+   this.ancient= this.session.playerSession;
+ console.log("this.ancient= "+this.session.playerSession);
       
   }
 

@@ -20,11 +20,9 @@ export class UserLoggedComponent implements OnInit {
   constructor( ) {
     
  }
-  getPlayer(){
-    return this.player;
-  }
+  
     ngOnInit() {
-      
+      console.log("Player userlogged= "+this.player.UserName);
   }
 
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Injectable } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 
 @Component({
@@ -6,6 +6,7 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
   templateUrl: './ancient-details.component.html',
   styleUrls: ['./ancient-details.component.css']
 })
+@Injectable({providedIn:"root"})
 export class AncientDetailsComponent implements OnInit {
 
   constructor(private router: Router, private route: ActivatedRoute) { }
