@@ -3,27 +3,42 @@
         <div class="form-group" style="margin-left: 19%;">
             <img src="imagePath.value" alt="">
             <input class="btn btn-primary" type="file" name="filePath" value="filePath" alt="Add Skin Image"
-            style="transform: translate(-40%,0%); background: rgb(65, 126, 218); border: 2px solid whitesmoke;" ngModel required>
-        </div>
-        <div class="form-group">
-            <label>Skin Name</label>
-            <input type="text" value="skinName" style="background: whitesmoke; border: 2px solid rgb(65, 126, 218)"
+                style="transform: translate(-40%,0%); background: transparent; border: 2px solid rgb(65, 126, 218);"
                 ngModel required>
         </div>
+
+
+        <div class="form-group" style="margin-top: 4%">
+            <label>Skin Name</label> </div>
         <div class="form-group">
-            <label>Mininum XP</label>
-            <input type="text" value="mininumXP" style="background: whitesmoke; border: 2px solid rgb(65, 126, 218)"
-                ngModel required>
+            <input type="text" value="skinName"
+                style="background: whitesmoke; border: 2px solid rgb(65, 126, 218); margin-left: 7%;" ngModel required>
         </div>
+
+
+
+        <div class="form-group" style="margin-top: 2%">
+            <label>Mininum XP</label></div>
         <div class="form-group">
-            <label>Number of Champies</label>
+            <input type="text" value="mininumXP"
+                style="background: whitesmoke; border: 2px solid rgb(65, 126, 218); margin-left: 6.6%;" ngModel
+                required>
+        </div>
+
+
+        <div class="form-group">
+            <label>Number of Champies</label></div>
+        <div class="form-group">
             <input type="text" value="numberOfChampies"
-                style="background: whitesmoke; border: 2px solid rgb(65, 126, 218)" ngModel required>
+                style="background: whitesmoke; border: 2px solid rgb(65, 126, 218); margin-left: 1%;" ngModel required>
         </div>
+
+
         <div class="form-group">
-            <label style="margin-right: 5px;">Skin Type</label>
-            <select id="inputSubject" name="skinType" value="skinType" style="background: whitesmoke; border: 2px solid rgb(65, 126, 218)" 
-            ngModel required>
+            <label style="margin-right: 10px;">Skin Type</label></div>
+        <div class="form-group">
+            <select id="inputSubject" name="skinType" value="skinType"
+                style="background: whitesmoke; border: 2px solid rgb(65, 126, 218)" ngModel required>
                 <option selected>Select a skin type</option>
                 <option>Skin</option>
                 <option>Hair</option>

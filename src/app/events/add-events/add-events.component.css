@@ -84,3 +84,16 @@ footer {
 * {
     font-family: karmatic-arcade;
 }
+
+@font-face{
+    src: url(../../../fonts/pixelmix.ttf);
+    font-family: pixelmix;
+  }
+
+  input{
+      font-family: pixelmix;
+  }
+
+  select{
+    font-family: pixelmix;
+  }

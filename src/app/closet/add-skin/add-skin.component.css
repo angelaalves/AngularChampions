@@ -34,3 +34,16 @@ label, input{
     margin-left: 5%;
     margin-right: 5%;
 }
+
+@font-face{
+    src: url(../../../fonts/pixelmix.ttf);
+    font-family: pixelmix;
+  }
+
+  input[type="text"]{
+      font-family: pixelmix;
+  }
+  
+  select{
+    font-family: pixelmix;
+  }

@@ -1,4 +1,4 @@
-  @font-face{
+@font-face{
     src: url(../../fonts/ka1.ttf);
     font-family: karmatic-arcade;
   }
@@ -9,11 +9,28 @@
     height: auto;
   }
 
+  @font-face{
+    src: url(../../fonts/pixelmix.ttf);
+    font-family: pixelmix;
+  }
+
+
   label, input{
     box-sizing: content-box;
+
   }
 
   h2, .col-7{
     margin-left: 15%;
     margin-right: 15%;
+  }
+
+  input[type="email"]{
+    font-family: pixelmix;
+    font-size: 15px;
+  }
+
+  input[type="password"]{
+    font-family: pixelmix;
+    font-size: 15px;
   }
