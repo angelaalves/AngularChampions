@@ -11,13 +11,23 @@
         </div>
         <div style="margin-top: 3%;">
             <label>To</label>
-            <input type="text" name="to" style="margin-left: 3em; background-color: whitesmoke; border: 2px solid rgb(65, 126, 218)" 
-                ngModel required>
+            <input type="text" name="to" value="to"
+                style="margin-left: 3em; background-color: whitesmoke; border: 2px solid rgb(65, 126, 218)" ngModel
+                required>
         </div>
         <div style="margin-top: 3%;">
             <img src="../../assets/AppImages/clock.png" width="40" height="70">
-            <input type="text" name="time"
-                style="margin-left: 1.7em; background-color: whitesmoke; border: 2px solid rgb(65, 126, 218)" ngModel required>
+            <select style="margin-left: 3%;" value="time" name="time" ngModel>
+                <option value="Short" name="Short"
+                    style="margin-left: 1.7em; background-color: whitesmoke; border: 2px solid rgb(65, 126, 218)">under
+                    5 minutes</option>
+                <option value="Medium" name="Medium"
+                    style="margin-left: 1.7em; background-color: whitesmoke; border: 2px solid rgb(65, 126, 218)">
+                    between 5 and 15 minutes</option>
+                <option value="Long" name="Long"
+                    style="margin-left: 1.7em; background-color: whitesmoke; border: 2px solid rgb(65, 126, 218)">over
+                    15 minute</option>
+            </select>
             <img src="../../assets/AppImages/ChampiesToGive1.png" style="margin-left: 1em;" width="60" height="60">
         </div>
         <div style="margin-top: 3%;">
@@ -28,7 +38,7 @@
                 name="reason" ngModel required></textarea>
         </div>
         <button type="submit" class="btn btn-link" style="margin-right: 5%;">
-            <span style="font-size: 350%;" (click)="submit()">&#9993;</span>
+            <span style="font-size: 350%;">&#9993;</span>
         </button>
     </form>
 </div>

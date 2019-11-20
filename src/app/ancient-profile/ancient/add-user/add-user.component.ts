@@ -32,6 +32,7 @@ export class AddUserComponent implements OnInit {
     if (!form.valid) {
       return;
     }
+    
     const id = "1";
     const idGuild = "1";
     const name = form.value.name;

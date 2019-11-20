@@ -1,7 +1,7 @@
 import { userType } from './userType.enum';
 import { gender } from './playerGender.enum';
 import { status } from './status.enum';
-
+ 
 export class Player{
     public idplayer: string;
     public idguildFK: string;
