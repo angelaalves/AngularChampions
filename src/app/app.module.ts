@@ -41,7 +41,6 @@ import { PlayerService } from './services/player.service';
 import { GuildComponent } from './guild-list-start/guild-list/guild/guild.component';
 import { GuildMemberComponent } from './guild-list-start/guild-list/guild/guild-member/guild-member.component';
 import { AncientComponent } from './ancient-profile/ancient/ancient.component';
-import { AncientImageComponent } from './ancient-profile/ancient/ancient-image/ancient-image.component';
 import { AncientDetailsComponent } from './ancient-profile/ancient/ancient-details/ancient-details.component';
 import { AncientDefinitionsComponent } from './ancient-profile/ancient/ancient-definitions/ancient-definitions.component';
 import { AddUserComponent } from './ancient-profile/ancient/add-user/add-user.component';
@@ -87,7 +86,6 @@ import { SessionService } from './services/session.service';
     GuildMasterDetailsCoinsComponent,
     GuildMasterDetailsXpComponent,
     AncientComponent,
-    AncientImageComponent,
     AncientDetailsComponent,
     AncientDefinitionsComponent,
     AddUserComponent,

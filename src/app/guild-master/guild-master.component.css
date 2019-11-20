@@ -7,3 +7,20 @@
     font-family: karmatic-arcade;
     margin: auto;
   }
+  #Left {
+  
+      height: 70vh;
+      width: 30vw;
+      display:block;
+      float: left;
+  }
+  #Right {
+      height: 30vh;
+      width: 70vw;
+      display:block;
+      float: right;
+  }
+  #footer{
+ 
+    transform: translate(7.5%,-2%);
+  }
