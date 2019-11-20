@@ -59,6 +59,7 @@ import { SkinTopComponent } from './closet/closet-skins/skin-top/skin-top.compon
 import { SkinBottomComponent } from './closet/closet-skins/skin-bottom/skin-bottom.component';
 import { SkinHairComponent } from './closet/closet-skins/skin-hair/skin-hair.component';
 import { ProfilePageComponent } from './profile-page/profile-page.component';
+import { SessionService } from './services/session.service';
 
 @NgModule({
   declarations: [
@@ -128,7 +129,7 @@ import { ProfilePageComponent } from './profile-page/profile-page.component';
     ReactiveFormsModule,
     BrowserAnimationsModule
   ],
-  providers: [PlayerService],
+  providers: [PlayerService,SessionService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

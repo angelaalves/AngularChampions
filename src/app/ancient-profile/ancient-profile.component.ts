@@ -1,9 +1,7 @@
 import { Component, OnInit, Injectable } from '@angular/core';
-import { AncientComponent } from './ancient/ancient.component';
-import { AncientImageComponent } from './ancient/ancient-image/ancient-image.component';
 import { Player } from '../shared/player.model';
-import { LoginComponent } from '../login/login.component';
 import { SessionService } from '../services/session.service';
+import { ClosetComponent } from '../closet/closet.component';
 
 @Component({
   selector: 'app-ancient-profile',
@@ -18,12 +16,20 @@ export class AncientProfileComponent implements OnInit {
 public ancient: Player;
 
 
-  constructor(private session: SessionService , private ancientcom: AncientComponent) { }
+  constructor(private session: SessionService, private closet:ClosetComponent) {
+    }
 
   ngOnInit() {
   
-    this.ancient=this.session.getPlayerInSession();
-  console.log("Ancient profile a atribuir ao ancient o userlogged, ancient="+this.ancient+", userlogged= "+ this.session.getPlayerInSession);
+    this.ancient= this.session.getPlayerInSession();
+console.log("Ancient profile a atribuir ao ancient o userlogged, ancient=");
+
+console.log(this.ancient);
+
+console.log(", userlogged= ");
+
+console.log(this.session.getPlayerInSession()); 
+
   }
 
 }

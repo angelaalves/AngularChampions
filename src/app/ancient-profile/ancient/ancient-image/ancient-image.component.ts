@@ -5,6 +5,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { PlayerService } from 'src/app/services/player.service';
 import { status } from 'src/app/shared/status.enum';
 import { userType } from 'src/app/shared/userType.enum';
+import { SessionService } from 'src/app/services/session.service';
 
 @Component({
   selector: 'app-ancient-image',
@@ -26,16 +27,11 @@ export class AncientImageComponent implements OnInit {
   ancient: Player;
   id: number;
 
-  constructor(private router: Router, private route: ActivatedRoute, private playerService: PlayerService) { }
+  constructor(private router: Router, private route: ActivatedRoute, private playerService: PlayerService, private session:SessionService) { }
 
   ngOnInit() {
-    this.ancient = new Player('1','1','ancient', '456@456.com', '234567', ["../assets/Hair/HairMediumBlonde.png",
-      "../assets/SkinColor/AngLastairbender.png",
-      "../assets/Top/TopPolarWhite.png",
-      "../assets/Bottom/BottomTrouseWhite.png",
-      "../assets/Shoes/ShoesGrey.png",
-      "../assets/Others/FairyWings.png"],
-      '100','100','100',
-      userType.Ancient, gender.Female, status.Active)
+    console.log("No ancient userlogged= ");
+    console.log(this.session.getPlayerInSession());
+    this.ancient= this.session.getPlayerInSession();
   }
 }

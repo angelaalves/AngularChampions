@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Component, Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { catchError, tap } from 'rxjs/operators';
 import { Subject, throwError } from 'rxjs';
@@ -8,9 +8,9 @@ import { Player } from 'src/app/shared/player.model';
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
   user = new Subject<Player>();
- 
+
   constructor(private http: HttpClient) { }
- 
+
   signup(email: string, password: string) {
     var xhr = new XMLHttpRequest();
     xhr.open('POST', 'http://localhost:8085/players/Login?email='+email+'&password='+password, true); 
@@ -21,11 +21,12 @@ export class AuthenticationService {
       }
     ).pipe(catchError(this.handleError),
       tap(resData => {
-        this.handleAuthentication(resData.idPlayer, resData.idGuild, resData.UserName, resData.email, resData.password,  resData.gender, resData.userType, resData.xp, resData.ChampiesToGive, resData.MyChampies, resData.Status )
+        this.handleAuthentication(resData.idplayer, resData.idguildFK, resData.userName, resData.email, resData.password, 
+           resData.gender, resData.userType, resData.xp, resData.champiesToGive, resData.myChampies, resData.status )
       })   
     );
   }
- 
+
   private handleError(errorRes: HttpErrorResponse) {
     let errorMessage = 'an unknown error occurred';
     if (!errorRes.error || !errorRes.error.error) {
