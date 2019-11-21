@@ -1,49 +1,46 @@
-#card{
-    width: 300px;
-    height: 500px;
-    position: absolute;
-    left: 100%;
-    top: 290%;
-    transform: translate(0%, 0%);
-}
-label, input{
-    box-sizing: content-box;
-  }
-#card_button{
-    width: 300px;
-    height: 500px;
-    position: absolute;
-    left: 0%;
-    top: 0%;
-    transform: translate(0%, 0%);
+@font-face {
+  src: url(../../../fonts/ka1.ttf);
+  font-family: karmatic-arcade;
 }
 
-#save_button{
-    position: absolute;
-    right: 0;
-    bottom: 0;
+* {
+  font-family: karmatic-arcade;
+  background-color: transparent;
 }
 
 @font-face{
-    src: url(../../../fonts/ka1.ttf);
-    font-family: karmatic-arcade;
-  }
-
-*{
-    font-family: karmatic-arcade;
-    margin-left: 5%;
-    margin-right: 5%;
+  src: url(../../../fonts/pixelmix.ttf);
+  font-family: pixelmix;
 }
 
-@font-face{
-    src: url(../../../fonts/pixelmix.ttf);
+input{
     font-family: pixelmix;
-  }
+}
 
-  input[type="text"]{
-      font-family: pixelmix;
-  }
-  
-  select{
-    font-family: pixelmix;
-  }
+input[type="date"]{
+  margin-left: 1em;
+}
+
+select{
+  font-family: pixelmix;
+  margin-left: 1em;
+}
+
+#divRight >button{
+  float: right;
+}
+#divLeft {
+  padding-left: 10vw;
+  height: 30vh;
+  width: 30vw;
+  transform: translate(-20%,10%);
+  display:block;
+  float: left;
+}
+#divRight {
+padding-right: 10vw;
+  height: 30vh;
+  width:60vw;
+  display:block;
+  float: left;
+}

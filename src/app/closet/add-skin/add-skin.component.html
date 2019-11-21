@@ -1,55 +1,51 @@
 <form #addSkinForm="ngForm" (ngSubmit)="onSubmit(addSkinForm); addSkinForm.reset()" action="" class="container-fluid">
-    <div class="form-row">
-        <div class="form-group" style="margin-left: 19%;">
-            <img src="imagePath.value" alt="">
-            <input class="btn btn-primary" type="file" name="filePath" value="filePath" alt="Add Skin Image"
-                style="transform: translate(-40%,0%); background: transparent; border: 2px solid rgb(65, 126, 218);"
-                ngModel required>
+        <div id="divLeft">
+            <app-preview-skin></app-preview-skin>
         </div>
 
+        <div id="divRight">
+            <div class="form-group" style="display:inline; margin-left: 5%;">
+                <label style="margin-right: 10px; margin-top: 8%">Skin Name</label><br>
+                <input class="input-sm" type="text" value="skinName" name="skinName"
+                    style="max-width: 24.5%; background: whitesmoke; border: 2px solid rgb(65, 126, 218); max-width: 24.5%; margin-left: 4em;"
+                    ngModel required>
+            </div>
+            <br>
 
-        <div class="form-group" style="margin-top: 4%">
-            <label>Skin Name</label> </div>
-        <div class="form-group">
-            <input type="text" value="skinName"
-                style="background: whitesmoke; border: 2px solid rgb(65, 126, 218); margin-left: 7%;" ngModel required>
+
+            <div class="form-group" style="display:inline; margin-left: 5%;">
+                <label style="margin-top: 2%;">Mininum XP</label><br>
+                <input type="text" value="mininumXP" class="input-sm" name="mininumXp"
+                    style="max-width: 24.5%; background: whitesmoke; border: 2px solid rgb(65, 126, 218); max-width: 24.5%; margin-left: 4em;"
+                    ngModel required>
+            </div>
+            <br>
+
+            <div class="form-group" style="display:inline; margin-left: 5%;">
+                <label style="margin-top: 2%;">Number of Champies</label><br>
+                <input type="text" value="numberOfChampies" class="input-sm" name="numberOfChampies"
+                    style="max-width: 24.5%; background: whitesmoke; border: 2px solid rgb(65, 126, 218); max-width: 24.5%; margin-left: 4em;"
+                    ngModel required>
+            </div>
+            <br>
+
+            <div class="form-group" style="display:inline; margin-left: 5%;">
+                <label style="margin-right: 10px; margin-top: 2%;">Skin Type</label><br>
+                <select id="inputSubject" name="skinType" value="skinType" class="input-sm" name="skinType"
+                    style="max-width: 24.5%; background: whitesmoke; border: 2px solid rgb(65, 126, 218); max-width: 24.5%; margin-left: 4em;"
+                    ngModel required>
+                    <option selected>Select a skin type</option>
+                    <option>Skin</option>
+                    <option>Hair</option>
+                    <option>Top</option>
+                    <option>Bottom</option>
+                    <option>Shoes</option>
+                    <option>Others</option>
+                </select>
+            </div>
+            <br>
+            <button type="submit" class="btn btn-primary"
+                style=" width:25%; margin-right: 69%; margin-top: 10%; background: rgb(65, 126, 218); border: 2px solid whitesmoke"
+                [disabled]="!addSkinForm.valid">Add Skin</button>
         </div>
-
-
-
-        <div class="form-group" style="margin-top: 2%">
-            <label>Mininum XP</label></div>
-        <div class="form-group">
-            <input type="text" value="mininumXP"
-                style="background: whitesmoke; border: 2px solid rgb(65, 126, 218); margin-left: 6.6%;" ngModel
-                required>
-        </div>
-
-
-        <div class="form-group">
-            <label>Number of Champies</label></div>
-        <div class="form-group">
-            <input type="text" value="numberOfChampies"
-                style="background: whitesmoke; border: 2px solid rgb(65, 126, 218); margin-left: 1%;" ngModel required>
-        </div>
-
-
-        <div class="form-group">
-            <label style="margin-right: 10px;">Skin Type</label></div>
-        <div class="form-group">
-            <select id="inputSubject" name="skinType" value="skinType"
-                style="background: whitesmoke; border: 2px solid rgb(65, 126, 218)" ngModel required>
-                <option selected>Select a skin type</option>
-                <option>Skin</option>
-                <option>Hair</option>
-                <option>Top</option>
-                <option>Bottom</option>
-                <option>Shoes</option>
-                <option>Others</option>
-            </select>
-            <button id="save_button" type="submit" class="btn btn-primary"
-                style="margin-top: 5%; margin-right: 5%; background: rgb(65, 126, 218); border: 2px solid whitesmoke;"
-                [disabled]="!addSkinForm.valid">Add</button>
-        </div>
-    </div>
 </form>

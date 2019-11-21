@@ -1,0 +1,16 @@
+<h3>Add new skin</h3>
+<div class="form-group">
+    <input class="btn btn-primary" type="file" name="image" (change)="fileProgress($event)"
+        style="font-family: pixelmix; background: transparent; border: 2px solid rgb(65, 126, 218); width: 100%; margin-top: 10%;"
+        ngModel required />
+</div>
+<div *ngIf="fileUploadProgress">
+    Upload progress: {{ fileUploadProgress }}
+</div>
+<div class="image-preview mb-3" *ngIf="previewUrl">
+    <img [src]="previewUrl" height="300" />
+</div>
+
+<div class="mb-3" *ngIf="uploadedFilePath">
+    {{uploadedFilePath}}
+</div>

@@ -1,80 +1,8 @@
-/* Style the header */
-
-header {
-    background-color: transparent;
-    padding: 30px;
-    text-align: center;
-    font-size: 35px;
-}
-
-
-/* Create two columns/boxes that floats next to each other */
-
-nav {
-    float: left;
-    width: 30%;
-    height: 400px;
-    /* only for demonstration, should be removed */
-    background: transparent;
-    padding: 50px;
-}
-
-
-/* Style the list inside the menu */
-
-nav ul {
-    list-style-type: none;
-    padding: 0;
-}
-
-article {
-    float: left;
-    padding: 20px;
-    width: 70%;
-    background-color: transparent;
-    font-size: 16px;
-}
-
-
-/* Clear floats after the columns */
-
-section:after {
-    content: "";
-    display: table;
-    clear: both;
-}
-
-
-/* Style the footer */
-
-footer {
-    background-color: transparent;
-    padding: 10px;
-    text-align: center;
-}
-
-
-/* Responsive layout - makes the two columns/boxes stack on top of each other instead of next to each other, on small screens */
-
-@media (max-width: 600px) {
-    nav,
-    article {
-        width: 100%;
-        height: auto;
-    }
-}
-
-#labelWhy {
-    padding-bottom: 2px;
-}
-
-.split-right {
-    display: inline-block;
-}
 
 * {
     background-color: transparent;
 }
+
 
 @font-face {
     src: url(../../../fonts/ka1.ttf);
@@ -94,6 +22,30 @@ footer {
       font-family: pixelmix;
   }
 
+  input[type="date"]{
+    margin-left: 1em;
+  }
+
   select{
     font-family: pixelmix;
+    margin-left: 1em;
   }
+
+  #divRight >button{
+    float: right;
+}
+#divLeft {
+    padding-left: 10vw;
+    height: 30vh;
+    width: 30vw;
+    transform: translate(-20%,10%);
+    display:block;
+    float: left;
+}
+#divRight {
+  padding-right: 10vw;
+    height: 30vh;
+    width:60vw;
+    display:block;
+    float: left;
+}
