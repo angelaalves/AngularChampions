@@ -23,3 +23,12 @@
     display:block;
     float: left;
 }
+
+@font-face{
+    src: url(../../../../fonts/pixelmix.ttf);
+    font-family: pixelmix;
+  }
+  
+  input{
+      font-family: pixelmix;
+  }
