@@ -1,12 +1,12 @@
 <div class="row">
     <div class="col-xs-12">
-        <app-guild-master-details-xp></app-guild-master-details-xp>
+        <app-guild-master-details-xp [XP]="guildmaster.xp"></app-guild-master-details-xp>
     </div>
 </div>
 <hr>
 <div class="row">
     <div class="col-xs-12">
-        <app-guild-master-details-coins></app-guild-master-details-coins>
+        <app-guild-master-details-coins [coinsGive]="guildmaster.champiesToGive" [coinsReceive]="guildmaster.myChampies"></app-guild-master-details-coins>
     </div>      
 </div>
 <hr>

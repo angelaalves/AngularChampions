@@ -1,0 +1,17 @@
+
+<span class="divLeft">
+
+    <app-image-maker [hairImagePath]="guildmaster.getImagePath(0)" [skinImagePath]="guildmaster.getImagePath(1)"
+    [shirtImagePath]="guildmaster.getImagePath(2)" [pantsImagePath]="guildmaster.getImagePath(3)" [shoesImagePath]="guildmaster.getImagePath(4)"
+    [othersImagePath]="guildmaster.getImagePath(5)"></app-image-maker>
+    <h2>{{name}}</h2>
+</span>
+<span class="divRight">
+   
+    <app-guild-master-details-xp [XP]="this.guildmaster.xp"></app-guild-master-details-xp>
+    <hr>
+
+    <app-guild-master-details-coins [coinsGive]="this.guildmaster.champiesToGive" [coinsReceive]="this.guildmaster.myChampies"></app-guild-master-details-coins>
+    <hr>
+ <app-guild-master-details-buttons></app-guild-master-details-buttons>
+</span>   

@@ -71,10 +71,10 @@ export class LoginComponent implements OnInit {
         }
         if (this.session.getPlayerInSession().userType == "Warrior") {
           this.router.navigate(['/warrior_profile'], { relativeTo: this.route });
-        } console.log("2");
+        }  
       }
     );
-    console.log("1");
+  
     form.reset();
   }
 

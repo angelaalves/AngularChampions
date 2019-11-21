@@ -8,3 +8,18 @@
     margin-left: 5%;
     margin-right: 5%;
 }
+#Left {
+   
+    height: 20vh;
+    width: 0vw;
+    transform: translate(0%,20%);
+    display:block;
+    float: left;
+}
+#Right { 
+    transform: translate(10%,-40%);
+    height: 30vh;
+    width:80vw;
+    display:block;
+    float: left;
+}

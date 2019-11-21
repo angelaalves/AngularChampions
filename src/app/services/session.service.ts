@@ -9,10 +9,8 @@ export class SessionService {
     constructor() {
     }
 
-    openSession(player: Player) {
-        this.playerSession = player;
-        console.log("Session open: ");
-        console.log(this.playerSession);
+    openSession(player:Player){
+        this.playerSession=player; 
     }
 
     closeSession() {
@@ -21,7 +19,6 @@ export class SessionService {
 
     getPlayerInSession(): Player {
         return this.playerSession;
-        console.log("Session atribute player: " + this.playerSession);
     }
 
 }

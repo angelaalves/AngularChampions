@@ -22,13 +22,6 @@ public ancient: Player;
   ngOnInit() {
   
     this.ancient= this.session.getPlayerInSession();
-console.log("Ancient profile a atribuir ao ancient o userlogged, ancient=");
-
-console.log(this.ancient);
-
-console.log(", userlogged= ");
-
-console.log(this.session.getPlayerInSession()); 
 
   }
 

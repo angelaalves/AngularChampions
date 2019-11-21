@@ -61,6 +61,7 @@ import { SkinHairComponent } from './closet/closet-skins/skin-hair/skin-hair.com
 import { ProfilePageComponent } from './profile-page/profile-page.component';
 import { PreviewSkinComponent } from './closet/add-skin/preview-skin/preview-skin.component';
 import { SessionService } from './services/session.service';
+import { GuildmasterPresenterPageComponent } from './guild-master/guildmaster-presenter-page/guildmaster-presenter-page.component';
 
 @NgModule({
   declarations: [
@@ -110,7 +111,6 @@ import { SessionService } from './services/session.service';
     AddEventsComponent,
     AncientProfileComponent,
     GuildListStartComponent,
-    PresenterPageComponent,
     ImageMakerComponent,
     BuySkinComponent,
     SkinHairComponent,
@@ -120,6 +120,9 @@ import { SessionService } from './services/session.service';
     SkinTopComponent,
     SkinBottomComponent,
     ProfilePageComponent,
+    GuildmasterPresenterPageComponent,
+    PresenterPageComponent,
+
     PreviewSkinComponent
   ],
   imports: [

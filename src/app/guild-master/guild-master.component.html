@@ -1,14 +1,5 @@
-<span id="Left">
-            <app-image-maker [hairImagePath]="guildmaster.getImagePath(0)" [skinImagePath]="guildmaster.getImagePath(1)"
-            [shirtImagePath]="guildmaster.getImagePath(2)" [pantsImagePath]="guildmaster.getImagePath(3)" [shoesImagePath]="guildmaster.getImagePath(4)"
-            [othersImagePath]="guildmaster.getImagePath(5)"></app-image-maker>
-            <h2>{{name}}</h2>
-</span>
-<span id="Right">
-            <app-guild-master-details></app-guild-master-details>
-</span>
+
+<app-guildmaster-presenter-page [guildmaster]="this.guildmaster"></app-guildmaster-presenter-page>
 <div id="footer">
-
-
-            <app-guild-master-definitions></app-guild-master-definitions>
+    <app-guild-master-definitions></app-guild-master-definitions>
 </div>

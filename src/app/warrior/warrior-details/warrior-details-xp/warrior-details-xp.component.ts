@@ -11,13 +11,11 @@ import { SessionService } from 'src/app/services/session.service';
 })
 
 
-@Injectable({ providedIn: 'root' })
 export class WarriorDetailsXPComponent implements OnInit {
   @Input() XP:number;
-  constructor(private session: SessionService,private router: Router, private route: ActivatedRoute, private playerService: PlayerService) { }
+  constructor(private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
-   // this.warrior= this.userlogged.player;
   }
 
 }

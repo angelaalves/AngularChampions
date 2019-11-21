@@ -1,9 +1,6 @@
 import { Component, OnInit, Input, Injectable } from '@angular/core';
 import { Player } from 'src/app/shared/player.model';
 import { Router, ActivatedRoute, Params } from '@angular/router';
-
-
-import { userType } from 'src/app/shared/userType.enum';
 import { PlayerService } from 'src/app/services/player.service';
 import { SessionService } from 'src/app/services/session.service';
 
@@ -23,7 +20,6 @@ export class PresenterPageComponent implements OnInit {
    }
 
   ngOnInit() {
-    this.warrior=this.session.getPlayerInSession();
     this.route.params.subscribe((params: Params)=>{
       this.id= +params['id'];
     });
