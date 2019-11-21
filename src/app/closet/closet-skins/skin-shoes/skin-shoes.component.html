@@ -1,3 +1,5 @@
-<div class="scrollmenu" id="style-8" *ngFor="let shoe of shoes; let i = index">
-    <img src={{shoe.imagePath}} style="width:20%">
+<div class="scrollmenu" id="style-8" style="margin-bottom: 3%;">
+    <div *ngFor="let shoe of shoes;" style="display: inline-block;">
+        <img src={{shoe.imagePath}} style="width:100px;height:100px;" (click)="skinSelected()">
+    </div>
 </div>

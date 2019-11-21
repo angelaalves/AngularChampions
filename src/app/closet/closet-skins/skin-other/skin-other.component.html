@@ -1,3 +1,5 @@
-<div class="scrollmenu" id="style-8" *ngFor="let other of others; let i = index">
-  <img src={{other.imagePath}} style="width:15%">
+<div class="scrollmenu" id="style-8"  style="margin-bottom: 3%;">
+  <div *ngFor="let other of others" style="display: inline-block;">
+    <img src={{other.imagePath}} style="width:100px;height:100px;" (click)="skinSelected()">
+  </div>
 </div>

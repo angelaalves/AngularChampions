@@ -11,6 +11,7 @@ import { PlayerService } from 'src/app/services/player.service';
 import { UserLoggedComponent } from '../user-logged/user-logged.component';
 import { stringify } from 'querystring';
 import { SessionService } from '../services/session.service';
+import { Skin } from '../shared/skin.model';
 
 @Component({
   selector: 'app-login',
@@ -52,15 +53,16 @@ export class LoginComponent implements OnInit {
     //Login with email and password
     const email = form.value.email;
     const password = form.value.password;
+
     this.authService.signup(email, password).subscribe(
       resData => {
         this.http.post<Player>('http://localhost:8085/players/Login', { email, password })
         //Create player so we can givew him an imagepath
         this.player = new Player(resData.idplayer, resData.idguildFK, resData.userName, resData.email, resData.password, this.getImagePath(resData.idplayer), resData.xp,
           resData.champiesToGive, resData.myChampies, resData.userType, resData.gender, resData.status);
-       //Give a player to the player session so we can use it on other components
-          this.session.openSession(this.player);
-          //Select the profile using the usertype
+        //Give a player to the player session so we can use it on other components
+        this.session.openSession(this.player);
+        //Select the profile using the usertype
         if (this.session.getPlayerInSession().userType == "Ancient") {
           this.router.navigate(['/ancient_profile'], { relativeTo: this.route });
         }
@@ -69,12 +71,11 @@ export class LoginComponent implements OnInit {
         }
         if (this.session.getPlayerInSession().userType == "Warrior") {
           this.router.navigate(['/warrior_profile'], { relativeTo: this.route });
-        }  console.log("2")  ;
+        } console.log("2");
       }
     );
-    console.log("1")  ;
+    console.log("1");
     form.reset();
-
   }
 
 
@@ -95,9 +96,5 @@ export class LoginComponent implements OnInit {
         break;
     }
     return throwError(errorMessage);
-  }
-
-  private handleAuthentication(email: string, userId: string) {
-    const expirationDate = new Date(new Date().getTime());
   }
 }
