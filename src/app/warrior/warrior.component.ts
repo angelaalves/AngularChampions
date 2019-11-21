@@ -2,7 +2,6 @@ import { Component, OnInit, Input, Injectable } from '@angular/core';
 import { Player } from '../shared/player.model';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { SessionService } from '../services/session.service';
-import { UserLoggedComponent } from '../user-logged/user-logged.component';
 
 @Component({
   selector: 'app-warrior',
@@ -12,13 +11,16 @@ import { UserLoggedComponent } from '../user-logged/user-logged.component';
 
 @Injectable({ providedIn: 'root' })
 export class WarriorComponent implements OnInit {
-  @Input() email:string;
+  @Input() email: string;
   warrior: Player;
   id: number;
-  constructor(private userlogged: UserLoggedComponent,private router: Router, private route: ActivatedRoute, private sessionPlayer: SessionService) { }
+  
+  constructor(private session: SessionService,private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
    
-    this.warrior= this.userlogged.player;
+ this.warrior= this.session.getPlayerInSession();
+ console.log("WarriorPlayer");
+ console.log(this.warrior);
   }
 }

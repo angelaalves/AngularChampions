@@ -5,6 +5,7 @@ import { Player } from 'src/app/shared/player.model';
 import { PlayerService } from 'src/app/services/player.service';
 import { status } from 'src/app/shared/status.enum';
 import { HttpClient } from '@angular/common/http';
+import { userType } from 'src/app/shared/userType.enum';
 
 @Component({
   selector: 'app-add-user',
@@ -31,6 +32,7 @@ export class AddUserComponent implements OnInit {
     if (!form.valid) {
       return;
     }
+    
     const id = "1";
     const idGuild = "1";
     const name = form.value.name;
@@ -83,7 +85,7 @@ export class AddUserComponent implements OnInit {
     this.addUserForm = new FormGroup({
       'name': new FormControl(name, Validators.required),
       'gender': new FormControl(gender, Validators.required),
-      'playertype': new FormControl(playertype, Validators.required),
+      'playertype': new FormControl(userType, Validators.required),
       'email': new FormControl(email, [Validators.required, Validators.minLength(10)]),
       'password': new FormControl(password, [Validators.required, Validators.minLength(6)])
     });

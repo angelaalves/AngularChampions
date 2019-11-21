@@ -9,7 +9,8 @@ import { userType } from '../shared/userType.enum';
 import { Router, ActivatedRoute } from '@angular/router';
 import { PlayerService } from 'src/app/services/player.service';
 import { UserLoggedComponent } from '../user-logged/user-logged.component';
-
+import { stringify } from 'querystring';
+import { SessionService } from '../services/session.service';
 
 @Component({
   selector: 'app-login',
@@ -25,36 +26,57 @@ export class LoginComponent implements OnInit {
   public data: AuthenticationService;
 
 
-
   ngOnInit() {
   }
 
-  constructor(private http: HttpClient, private authService: AuthenticationService, private playerService: PlayerService) {
+  constructor(private router: Router, private route: ActivatedRoute, private session: SessionService, private http: HttpClient, private authService: AuthenticationService, private playerService: PlayerService) {
   }
 
   public get currentUserValue(): Player {
     return this.currentUserSubject.value;
   }
+  private getImagePath(playerid: String) {
 
+
+    //  get();
+    return ["../assets/Hair/HairMediumBlonde.png",
+      "../assets/SkinColor/FemaleBlack.png",
+      "../assets/Top/TopPolarWhite.png",
+      "../assets/Bottom/BottomTrouseWhite.png", "../assets/Shoes/ShoesGrey.png", "../assets/Others/FairyWings.png"];
+
+  }
   onSubmit(form: NgForm) {
     if (!form.valid) {
       return;
     }
+    //Login with email and password
     const email = form.value.email;
     const password = form.value.password;
-    console.log(password);
     this.authService.signup(email, password).subscribe(
       resData => {
-        this.http.post<any>('http://localhost:8085/players/Login', { email, password })
-        console.log(resData);
-        resData
-
+        this.http.post<Player>('http://localhost:8085/players/Login', { email, password })
+        //Create player so we can givew him an imagepath
+        this.player = new Player(resData.idplayer, resData.idguildFK, resData.userName, resData.email, resData.password, this.getImagePath(resData.idplayer), resData.xp,
+          resData.champiesToGive, resData.myChampies, resData.userType, resData.gender, resData.status);
+       //Give a player to the player session so we can use it on other components
+          this.session.openSession(this.player);
+          //Select the profile using the usertype
+        if (this.session.getPlayerInSession().userType == "Ancient") {
+          this.router.navigate(['/ancient_profile'], { relativeTo: this.route });
+        }
+        if (this.session.getPlayerInSession().userType == "GuildMaster") {
+          this.router.navigate(['/guildmaster_profile'], { relativeTo: this.route });
+        }
+        if (this.session.getPlayerInSession().userType == "Warrior") {
+          this.router.navigate(['/warrior_profile'], { relativeTo: this.route });
+        }  console.log("2")  ;
       }
     );
+    console.log("1")  ;
     form.reset();
 
-    console.log(this.playerService.getPlayers);
   }
+
 
   private handleError(errorRes: HttpErrorResponse) {
     let errorMessage = 'an unknown error occurred';
@@ -77,7 +99,5 @@ export class LoginComponent implements OnInit {
 
   private handleAuthentication(email: string, userId: string) {
     const expirationDate = new Date(new Date().getTime());
-    //const player = new Player(name,email, userId, playerType.GuildMaster );
-    //this.user.next(player);
   }
 }

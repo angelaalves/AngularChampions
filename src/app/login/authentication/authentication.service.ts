@@ -3,7 +3,8 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { catchError, tap } from 'rxjs/operators';
 import { Subject, throwError } from 'rxjs';
 import { Player } from 'src/app/shared/player.model';
- 
+
+
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
   user = new Subject<Player>();
@@ -20,8 +21,8 @@ export class AuthenticationService {
       }
     ).pipe(catchError(this.handleError),
       tap(resData => {
-        this.handleAuthentication(resData.idPlayer, resData.idGuild, resData.UserName, resData.email, resData.password,  resData.gender, resData.userType, resData.xp, resData.ChampiesToGive, resData.MyChampies, resData.Status )
-   
+        this.handleAuthentication(resData.idplayer, resData.idguildFK, resData.userName, resData.email, resData.password, 
+           resData.gender, resData.userType, resData.xp, resData.champiesToGive, resData.myChampies, resData.status )
       })   
     );
 
@@ -50,7 +51,7 @@ export class AuthenticationService {
     }
     return throwError(errorMessage);
   }
- 
+
   private handleAuthentication(idPlayer:string, idGuild: string, UserName:string, email:string, password:string,  gender:string, userType: string, xp: string, ChampiesToGive:string, MyChampies: string, Status: string) {
     const expirationDate = new Date(new Date().getTime());
     //const player = new Player(name,email, userId, playerType.GuildMaster );

@@ -1,7 +1,6 @@
-.Profile_container{
-  position: absolute;
-  width: 100%;
-  height: 100%;
+#footer{
+ 
+  transform: translate(-2.5%,90%);
 }
 
 @font-face{

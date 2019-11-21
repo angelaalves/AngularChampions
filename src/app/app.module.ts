@@ -1,3 +1,4 @@
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -41,7 +42,6 @@ import { PlayerService } from './services/player.service';
 import { GuildComponent } from './guild-list-start/guild-list/guild/guild.component';
 import { GuildMemberComponent } from './guild-list-start/guild-list/guild/guild-member/guild-member.component';
 import { AncientComponent } from './ancient-profile/ancient/ancient.component';
-import { AncientImageComponent } from './ancient-profile/ancient/ancient-image/ancient-image.component';
 import { AncientDetailsComponent } from './ancient-profile/ancient/ancient-details/ancient-details.component';
 import { AncientDefinitionsComponent } from './ancient-profile/ancient/ancient-definitions/ancient-definitions.component';
 import { AddUserComponent } from './ancient-profile/ancient/add-user/add-user.component';
@@ -51,20 +51,15 @@ import { AddGuildListComponent } from './guild-list-start/guild-list/add-guild-l
 import { PresenterPageComponent } from './warrior/presenter-page/presenter-page.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ImageMakerComponent } from './image-maker/image-maker.component';
-
 import { BuySkinComponent } from './closet/buy-skin/buy-skin.component';
-
 import { SkinOtherComponent } from './closet/closet-skins/skin-other/skin-other.component';
 import { SkinShoesComponent } from './closet/closet-skins/skin-shoes/skin-shoes.component';
 import { SkinSkincolorComponent } from './closet/closet-skins/skin-skincolor/skin-skincolor.component';
 import { SkinTopComponent } from './closet/closet-skins/skin-top/skin-top.component';
 import { SkinBottomComponent } from './closet/closet-skins/skin-bottom/skin-bottom.component';
 import { SkinHairComponent } from './closet/closet-skins/skin-hair/skin-hair.component';
-import { WarriorImageComponent } from './warrior/warrior-image/warrior-image.component';
 import { ProfilePageComponent } from './profile-page/profile-page.component';
-import { UserLoggedComponent } from './user-logged/user-logged.component';
-
-
+import { SessionService } from './services/session.service';
 
 @NgModule({
   declarations: [
@@ -92,7 +87,6 @@ import { UserLoggedComponent } from './user-logged/user-logged.component';
     GuildMasterDetailsCoinsComponent,
     GuildMasterDetailsXpComponent,
     AncientComponent,
-    AncientImageComponent,
     AncientDetailsComponent,
     AncientDefinitionsComponent,
     AddUserComponent,
@@ -124,11 +118,10 @@ import { UserLoggedComponent } from './user-logged/user-logged.component';
     SkinSkincolorComponent,
     SkinTopComponent,
     SkinBottomComponent,
-    WarriorImageComponent,
     ProfilePageComponent,
-    UserLoggedComponent
   ],
   imports: [
+    NgbModule,
     BrowserModule,
     AppRoutingModule,
     FormsModule,
@@ -136,7 +129,7 @@ import { UserLoggedComponent } from './user-logged/user-logged.component';
     ReactiveFormsModule,
     BrowserAnimationsModule
   ],
-  providers: [PlayerService],
+  providers: [PlayerService,SessionService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
