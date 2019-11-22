@@ -1,20 +1,19 @@
 import { Component, Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { catchError, tap } from 'rxjs/operators';
-import { Subject, throwError } from 'rxjs';
+import { throwError, BehaviorSubject } from 'rxjs';
 import { Player } from 'src/app/shared/player.model';
 
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
-  user = new Subject<Player>();
- 
+  user = new BehaviorSubject<Player>(null);
   constructor(private http: HttpClient) { }
  
   signup(email: string, password: string) {
     var xhr = new XMLHttpRequest();
-    xhr.open('POST', 'http://localhost:8085/players/Login?email='+email+'&password='+password, true); 
-    return this.http.post<Player>('http://localhost:8085/players/Login?email='+email+'&password='+password,
+    xhr.open('POST', 'http://localhost:8085/login', true); 
+    return this.http.post<Player>('http://localhost:8085/login',
       {
         email: email,
         password: password

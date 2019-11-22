@@ -1,18 +1,26 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Injectable, ViewContainerRef } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { UserLoggedComponent } from '../user-logged/user-logged.component';
+import { SessionService } from '../services/session.service';
+import { Subscription, Observable } from 'rxjs';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent implements OnInit {
 
-  constructor(private router: Router, private route: ActivatedRoute) { }
+@Injectable({providedIn: 'root'})
+export class HeaderComponent implements OnInit {
+  constructor(private router: Router, private route: ActivatedRoute, private session: SessionService) { }
   isAuthenticated=false;
   ngOnInit() {
+    
   }
 
+  switchAuthentication(){
+    this.isAuthenticated=!this.isAuthenticated;
+  }
   onProfile(){
     this.router.navigate(['warrior_profile'], {relativeTo: this.route});
   }
@@ -36,5 +44,10 @@ export class HeaderComponent implements OnInit {
   }
   onSignout(){
     this.router.navigate(['login'], {relativeTo: this.route});
+  }
+
+  handleAuthentication(){
+    console.log("fui chamado")
+    this.isAuthenticated=!this.isAuthenticated;
   }
 }
