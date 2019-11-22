@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef, Input } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, Input, Injectable } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Skin } from 'src/app/shared/skin.model';
 
@@ -7,6 +7,8 @@ import { Skin } from 'src/app/shared/skin.model';
   templateUrl: './skin-hair.component.html',
   styleUrls: ['./skin-hair.component.css']
 })
+
+@Injectable({providedIn: 'root'})
 export class SkinHairComponent implements OnInit {
   @Input() hair: Skin[];
 

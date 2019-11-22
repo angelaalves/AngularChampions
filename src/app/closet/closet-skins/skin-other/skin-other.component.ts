@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Injectable } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Skin } from 'src/app/shared/skin.model';
 
@@ -7,6 +7,8 @@ import { Skin } from 'src/app/shared/skin.model';
   templateUrl: './skin-other.component.html',
   styleUrls: ['./skin-other.component.css']
 })
+
+@Injectable({providedIn: 'root'})
 export class SkinOtherComponent implements OnInit {
   @Input() others: Skin[];
   

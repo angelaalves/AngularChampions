@@ -48,6 +48,7 @@ export class ClosetComponent implements OnInit {
 
   ngOnInit() {
     this.player = this.session.getPlayerInSession();
+    console.log(this.player);
     this.getSkins();
   }
 }

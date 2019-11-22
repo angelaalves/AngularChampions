@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Injectable } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Skin } from 'src/app/shared/skin.model';
 
@@ -7,6 +7,7 @@ import { Skin } from 'src/app/shared/skin.model';
   templateUrl: './skin-top.component.html',
   styleUrls: ['./skin-top.component.css']
 })
+@Injectable({providedIn: 'root'})
 export class SkinTopComponent implements OnInit {
   @Input() tops: Skin[];
 

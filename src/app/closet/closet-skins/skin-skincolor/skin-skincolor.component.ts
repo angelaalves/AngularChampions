@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Injectable } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Skin } from 'src/app/shared/skin.model';
 
@@ -7,6 +7,7 @@ import { Skin } from 'src/app/shared/skin.model';
   templateUrl: './skin-skincolor.component.html',
   styleUrls: ['./skin-skincolor.component.css']
 })
+@Injectable({providedIn: 'root'})
 export class SkinSkincolorComponent implements OnInit {
   @Input() skincolors: Skin[];
 
