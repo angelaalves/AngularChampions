@@ -12,7 +12,7 @@ import { SessionService } from '../services/session.service';
 @Injectable({ providedIn: 'root' })
 export class WarriorComponent implements OnInit {
   @Input() email: string;
-  @Output()warrior: Player;
+  @Output() warrior: Player;
   id: number;
 
   constructor(private session: SessionService, private router: Router, private route: ActivatedRoute) { }

@@ -8,6 +8,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { PlayerService } from 'src/app/services/player.service';
 import { SessionService } from '../services/session.service';
 
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -45,6 +46,7 @@ export class LoginComponent implements OnInit {
     this.http.get<string[]>('http://localhost:8085/closet/activeSkins?idPlayerFK=' + playerid).subscribe(data => {
 
       this.outfit = data;
+      return this.outfit;
 
     });
 

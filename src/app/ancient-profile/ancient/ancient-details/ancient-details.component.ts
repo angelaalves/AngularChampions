@@ -26,15 +26,15 @@ export class AncientDetailsComponent implements OnInit {
   }
 
   redirectWarriors(){
-    this.router.navigate(['../list_users'], {relativeTo: this.route});
+    this.router.navigate(['../list_users/warriors'], {relativeTo: this.route});
   }
 
   redirectAncients(){
-    this.router.navigate(['../list_users'], {relativeTo: this.route});
+    this.router.navigate(['../list_users/ancients'], {relativeTo: this.route});
   }
 
   redirectGuildMasters(){
-    this.router.navigate(['../list_users'], {relativeTo: this.route});
+    this.router.navigate(['../list_users/guildmasters'], {relativeTo: this.route});
   }
 
   addEvent(){

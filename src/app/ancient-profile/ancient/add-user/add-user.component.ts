@@ -73,7 +73,7 @@ export class AddUserComponent implements OnInit {
 
   private initForm() {
     let name = '';
-    let playertype = '';
+    let usertype = '';
     let gender = '';
     let email = '';
     let password = '';
