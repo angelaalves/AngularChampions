@@ -1,4 +1,4 @@
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+//import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -126,7 +126,7 @@ import { GuildmasterPresenterPageComponent } from './guild-master/guildmaster-pr
     PreviewSkinComponent
   ],
   imports: [
-    NgbModule,
+    //NgbModule,
     BrowserModule,
     AppRoutingModule,
     FormsModule,
