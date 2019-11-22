@@ -62,6 +62,8 @@ import { ProfilePageComponent } from './profile-page/profile-page.component';
 import { PreviewSkinComponent } from './closet/add-skin/preview-skin/preview-skin.component';
 import { SessionService } from './services/session.service';
 import { GuildmasterPresenterPageComponent } from './guild-master/guildmaster-presenter-page/guildmaster-presenter-page.component';
+import { TableFilterPipe } from './list-users/user-list.pipe';
+
 
 @NgModule({
   declarations: [
@@ -122,8 +124,10 @@ import { GuildmasterPresenterPageComponent } from './guild-master/guildmaster-pr
     ProfilePageComponent,
     GuildmasterPresenterPageComponent,
     PresenterPageComponent,
+    PreviewSkinComponent,
+    TableFilterPipe
 
-    PreviewSkinComponent
+ 
   ],
   imports: [
     //NgbModule,

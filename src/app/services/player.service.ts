@@ -36,13 +36,13 @@ export class PlayerService{
         return guildmasters;
     }
     getAncient(){
-        var guildmasters: Player[]=[];
+        var ancients: Player[]=[];
         for(let i=0;i<this.players.length;i++){
-            if(this.players[i].userType==userType.GuildMaster){
-                guildmasters.push(this.players[i]);
+            if(this.players[i].userType==userType.Ancient){
+                ancients.push(this.players[i]);
             }
         }
-        return guildmasters;
+        return ancients;
     }
  
     getPlayer(index: number){

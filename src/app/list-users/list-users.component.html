@@ -1,18 +1,17 @@
 <div>
     <div id="div_filter" style="display: inline-block; list-style-type: none;">
-        <label>Filter by:</label>
-        <select class="form-control">
-            <option selected style="font-family: karmatic-arcade;">Warriors</option>
-            <option selected style="font-family: karmatic-arcade;">Guild Master</option>
-            <option selected style="font-family: karmatic-arcade;">Ancients</option>
+        <label>Filter players by:</label>
+        <select class="form-control" [(ngModel)]="userType">
+            <option selected value="Warrior">Warriors</option>
+            <option selected value="GuildMaster">Guild Master</option>
+            <option selected value="Ancient">Ancients</option>
         </select>
     </div>
 
     <h2 style="margin-top: 3%;">Warrior's Table</h2>
-    <table class="table" style="margin-left: 5%; margin-right: 5%;">
+    <table class="table table-bordered" style="margin-left: 5%; margin-right: 5%;">
         <thead>
             <tr>
-                <th scope="col">#</th>
                 <th scope="col">Username</th>
                 <th scope="col">Email</th>
                 <th scope="col">Gender</th>
@@ -20,42 +19,23 @@
                 <th scope="col">XP</th>
                 <th scope="col">Champies To Give</th>
                 <th scope="col">My Champies</th>
+                <th scope="col">Status</th>
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let playerEl of players">
-                <td>{{playerEl.value}}</td>
-            </tr>
-            <tr>
-                <th scope="row">1</th>
-                <td>Username</td>
-                <td>Email</td>
-                <td>Gender</td>
-                <td>User Type</td>
-                <td>XP</td>
-                <td>Champies To Give</td>
-                <td>My Champies</td>
-            </tr>
-            <tr>
-                <th scope="row">2</th>
-                <td>Username</td>
-                <td>Email</td>
-                <td>Gender</td>
-                <td>User Type</td>
-                <td>XP</td>
-                <td>Champies To Give</td>
-                <td>My Champies</td>
-            </tr>
-            <tr>
-                <th scope="row">3</th>
-                <td>Username</td>
-                <td>Email</td>
-                <td>Gender</td>
-                <td>User Type</td>
-                <td>XP</td>
-                <td>Champies To Give</td>
-                <td>My Champies</td>
+            <tr *ngFor="let playerEl of players | tableFilter: userType">
+                <td>{{ playerEl.userName }}</td>
+                <td>{{ playerEl.email }}</td>
+                <td>{{ playerEl.gender }}</td>
+                <td>{{ playerEl.userType }}</td>
+                <td>{{ playerEl.xp }}</td>
+                <td>{{ playerEl.champiesToGive }}</td>
+                <td>{{ playerEl.myChampies }}</td>
+                <td>{{ playerEl.status }}</td>
             </tr>
         </tbody>
+
+
+
     </table>
 </div>

@@ -9,3 +9,13 @@
     margin-right: 5%;
     overflow: auto;
   }
+
+  @font-face{
+    src: url(../../fonts/pixelmix.ttf);
+    font-family: pixelmix;
+  }
+
+  td{
+    font-family: pixelmix;
+
+  }
