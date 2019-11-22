@@ -38,9 +38,6 @@ export class AddSkinComponent implements OnInit {
 
     console.log('addUserForm', form.value);
   
-    var xhr = new XMLHttpRequest();
-    xhr.open('POST', 'http://localhost:8085/skins/Create?idSkin=' + idSkin + '&skinName=' + skinName + '&imagePath=' + imagePath + '&minXP=' + minXP +
-      '&champiesCost=' + champiesCost + '&skinType=' + skinType, true);
     this.http.post<any>('http://localhost:8085/skins/Create?idSkin=' + idSkin + '&skinName=' + skinName + '&imagePath=' + imagePath + '&minXP=' + minXP +
       '&champiesCost=' + champiesCost + '&skinType=' + skinType,
       {

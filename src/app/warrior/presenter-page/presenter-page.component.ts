@@ -14,14 +14,14 @@ import { SessionService } from 'src/app/services/session.service';
 export class PresenterPageComponent implements OnInit {
   @Input() warrior: Player;
   id: number;
-  
+
   constructor(private router: Router, private route: ActivatedRoute, private playerService: PlayerService, private session: SessionService) {
-    
-   }
+
+  }
 
   ngOnInit() {
-    this.route.params.subscribe((params: Params)=>{
-      this.id= +params['id'];
+    this.route.params.subscribe((params: Params) => {
+      this.id = +params['id'];
     });
   }
 }

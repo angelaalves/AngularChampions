@@ -9,8 +9,8 @@ export class SessionService {
     constructor() {
     }
 
-    openSession(player:Player){
-        this.playerSession=player; 
+    openSession(player: Player) {
+        this.playerSession = player;
     }
 
     closeSession() {
@@ -20,5 +20,4 @@ export class SessionService {
     getPlayerInSession(): Player {
         return this.playerSession;
     }
-
 }

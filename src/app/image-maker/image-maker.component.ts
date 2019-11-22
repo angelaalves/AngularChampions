@@ -17,6 +17,7 @@ export class ImageMakerComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    
   }
 
 }

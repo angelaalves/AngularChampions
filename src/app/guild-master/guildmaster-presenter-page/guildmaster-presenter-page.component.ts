@@ -7,17 +7,18 @@ import { Player } from 'src/app/shared/player.model';
   templateUrl: './guildmaster-presenter-page.component.html',
   styleUrls: ['./guildmaster-presenter-page.component.css']
 })
+
 @Injectable({ providedIn: 'root' })
 export class GuildmasterPresenterPageComponent implements OnInit {
   @Input() guildmaster: Player;
   id: number;
   constructor(private router: Router, private route: ActivatedRoute) {
-    
+
   }
 
- ngOnInit() {
-   this.route.params.subscribe((params: Params)=>{
-     this.id= +params['id'];
-   });
- }
+  ngOnInit() {
+    this.route.params.subscribe((params: Params) => {
+      this.id = +params['id'];
+    });
+  }
 }
