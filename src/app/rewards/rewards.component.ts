@@ -6,6 +6,7 @@ import { Reward } from '../shared/reward.model';
 import { formatDate } from '@angular/common';
 import { Player } from '../shared/player.model';
 import { RewardService } from '../services/reward.service';
+import { SessionService } from '../services/session.service';
 
 @Component({
   selector: 'app-rewards',
@@ -18,8 +19,11 @@ export class RewardsComponent implements OnInit {
   idReward: number = 1;
   playerGiver: Player;
   playerReceiver: Player;
+  
 
-  constructor(private router: Router, private route: ActivatedRoute, private http: HttpClient, private rewardsToApprove: RewardService) {}
+  constructor(private router: Router, private route: ActivatedRoute, private sessions: SessionService,private http: HttpClient, private rewardsToApprove: RewardService) {
+    playerGiver:sessions.getPlayerInSession();
+  }
 
   ngOnInit() {
   }

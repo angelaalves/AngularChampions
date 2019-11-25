@@ -8,3 +8,15 @@
     margin-right: 5%;
     display: inline;
   }
+
+
+  .divLeft {
+    
+    display:block;
+    float: left;
+}
+.divRight {
+
+    display:block;
+    float: left;
+}
