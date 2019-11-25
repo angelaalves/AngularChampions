@@ -65,7 +65,7 @@ export class LoginComponent implements OnInit {
         let token = resData.body;
         localStorage.setItem('token', token);
         this.http.post<Player>('http://localhost:8085/players/Get?email=' + email, { email: email }).subscribe(resData => {
-          this.http.get<string[]>('http://localhost:8085/closet/activeSkins?idPlayerFK=' + resData[0].playerid).subscribe(data => {
+          this.http.get<string[]>('http://localhost:8085/closet/activeSkins?idPlayerFK=' + resData[0].idplayer).subscribe(data => {
             this.outfit = data;
             //Create player so we can givew him an imagepath
             this.player = new Player(resData[0].idplayer, resData[0].idguildFK, resData[0].userName, resData[0].email, resData[0].password, this.outfit, resData[0].xp,
