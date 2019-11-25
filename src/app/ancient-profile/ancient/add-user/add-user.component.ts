@@ -49,10 +49,6 @@ export class AddUserComponent implements OnInit {
     this.playerService.addPlayer(new Player(id, idGuild, name, email, password, skins, xp, champiesToGive, myChampies, playerType, gender, statusPlayer));
     console.log('addUserForm', form.value);
 
-    var xhr = new XMLHttpRequest();
-    xhr.open('POST', 'http://localhost:8085/players/Create?idPlayer=' + id + '&idGuildFK=' + idGuild + '&userName=' + name +
-      '&email=' + email + '&password=' + password + "&gender=" + gender + "&userType=" + playerType + '&xp=' + xp + '&champiesToGive=' + champiesToGive
-      + '&myChampies=' + myChampies + '&status=' + statusPlayer, true);
     this.http.post<Player>('http://localhost:8085/players/Create?idPlayer=' + id + '&idGuildFK=' + idGuild + '&userName=' + name +
       '&email=' + email + '&password=' + password + "&gender=" + gender + "&userType=" + playerType + '&xp=' + xp + '&champiesToGive=' + champiesToGive
       + '&myChampies=' + myChampies + '&status=' + statusPlayer,
