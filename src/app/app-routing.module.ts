@@ -50,11 +50,11 @@ const appRoutes: Routes=[
         ]},
         {path:'add_guild', component: AddGuildListComponent}
     ]},
-    {path: 'list_users', component: ListUsersComponent, children:[
-        {path: 'ancients', component: ListUsersComponent},
-        {path: 'warriors', component: ListUsersComponent},
-        {path: 'guildmasters', component: ListUsersComponent}
-    ]},
+    {path: 'list_users', component: ListUsersComponent
+    //, children:[
+      //  {path: '', redirectTo: '/warriors', pathMatch: 'full', component: ListUsersComponent}
+  //  ]
+},
     {path: 'rewards', component: RewardsComponent},
     {path: 'rewards_to_approve', component: RewardsToApproveComponent},
     {path: 'events', component: EventsComponent},

@@ -21,10 +21,15 @@
   
   * {
       background-color: transparent;
-      color: white;
+      color: black;
       font-family: karmatic-arcade;
   }
-  
+  @font-face{
+    src: url(../../fonts/pixelmix.ttf);
+    font-family: pixelmix;
+  }
+
+
   /*#main {
       height: auto;
       width:900px;

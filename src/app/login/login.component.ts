@@ -1,4 +1,4 @@
-import { Component, OnInit, Injectable, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Injectable } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { AuthenticationService } from './authentication/authentication.service';
@@ -7,7 +7,6 @@ import { Player } from '../shared/player.model';
 import { Router, ActivatedRoute } from '@angular/router';
 import { PlayerService } from 'src/app/services/player.service';
 import { SessionService } from '../services/session.service';
-
 
 @Component({
   selector: 'app-login',
@@ -46,7 +45,6 @@ export class LoginComponent implements OnInit {
     this.http.get<string[]>('http://localhost:8085/closet/activeSkins?idPlayerFK=' + playerid).subscribe(data => {
 
       this.outfit = data;
-      return this.outfit;
 
     });
 

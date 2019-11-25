@@ -24,6 +24,8 @@ export class ListUsersComponent implements OnInit {
 
 
   ngOnInit() {
+
+
     this.http.get<Player[]>('http://localhost:8085/players/getAll', {}).subscribe(data => {
       console.log(data);
       this.players = data;
