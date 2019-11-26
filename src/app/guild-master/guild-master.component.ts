@@ -24,3 +24,4 @@ export class GuildMasterComponent implements OnInit {
     this.guildmaster = this.session.getPlayerInSession();
 
   }
+}
