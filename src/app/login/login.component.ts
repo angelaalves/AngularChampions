@@ -1,6 +1,7 @@
 import { Component, OnInit, Injectable } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { HttpClient,  HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { AuthenticationService } from './authentication/authentication.service';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Player } from '../shared/player.model';
@@ -26,7 +27,6 @@ export class LoginComponent implements OnInit {
   }
 
   constructor(private router: Router, private route: ActivatedRoute, private session: SessionService, private http: HttpClient, private authService: AuthenticationService, private playerService: PlayerService) {
-
   }
 
   private httpOptions = {
@@ -51,6 +51,7 @@ export class LoginComponent implements OnInit {
     const password = form.value.password;
 
     this.http.post<any>('http://localhost:8085/login', { email: email, password: password }, { observe: 'response' }).subscribe(
+    this.http.post<any>('http://localhost:8085/login', { email, password }).subscribe(
       resData => {
         let token = resData.body;
         localStorage.setItem('token', token);
@@ -81,5 +82,60 @@ export class LoginComponent implements OnInit {
         form.reset();
       }
     )
+        this.http.get<Player>('http://localhost:8085/players/Get?email='+email).subscribe(playerlog => {
+          console.log(playerlog[0].idplayer);
+          //Create player so we can givew him an imagepath
+          this.http.get<string[]>('http://localhost:8085/closet/activeSkins?idPlayerFK=' + playerlog[0].idplayer).subscribe(data => {
+            
+          console.log("ImagePath");
+          console.log(data);
+
+            this.outfit = data;
+            this.player = new Player(playerlog[0].idplayer, playerlog[0].idguildFK, playerlog[0].userName, playerlog[0].email, playerlog[0].password, this.outfit, playerlog[0].xp,
+              playerlog[0].champiesToGive, playerlog[0].myChampies, playerlog[0].userType,playerlog[0].gender,playerlog[0].status);
+            //Give a player to the player session so we can use it on other components
+            this.session.openSession(this.player);
+
+            //Select the profile using the usertype
+            if (this.session.getPlayerInSession().userType == "Ancient") {
+              this.router.navigate(['/ancient_profile'], { relativeTo: this.route }); console.log(this.player);
+            }
+            if (this.session.getPlayerInSession().userType == "GuildMaster") {
+              this.router.navigate(['/guildmaster_profile'], { relativeTo: this.route });
+            }
+            if (this.session.getPlayerInSession().userType == "Warrior") {
+              this.router.navigate(['/warrior_profile'], { relativeTo: this.route });
+            }
+          });
+        }
+        );
+
+      });
+
+
+
+
+    form.reset();
+  }
+
+
+
+  private handleError(errorRes: HttpErrorResponse) {
+    let errorMessage = 'an unknown error occurred';
+    if (!errorRes.error || !errorRes.error.error) {
+      return throwError(errorMessage);
+    }
+    switch (errorRes.error.error.message) {
+      case 'EMAIL_EXISTS':
+        errorMessage = 'this email already exists';
+        break;
+      case 'EMAIL_NOT_FOUND':
+        errorMessage = 'This email does not exist';
+        break;
+      case 'INVALID_PASSWORD':
+        errorMessage = 'This password is not correct';
+        break;
+    }
+    return throwError(errorMessage);
   }
 }
