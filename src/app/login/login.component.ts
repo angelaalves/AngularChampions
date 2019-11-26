@@ -1,8 +1,8 @@
 import { Component, OnInit, Injectable } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+import { HttpClient,  HttpHeaders } from '@angular/common/http';
 import { AuthenticationService } from './authentication/authentication.service';
-import { BehaviorSubject, Observable, throwError } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { Player } from '../shared/player.model';
 import { Router, ActivatedRoute } from '@angular/router';
 import { PlayerService } from 'src/app/services/player.service';
@@ -40,15 +40,7 @@ export class LoginComponent implements OnInit {
     return this.currentUserSubject.value;
   }
 
-  private getImagePathlog(playerid: String) {
 
-    this.http.get<string[]>('http://localhost:8085/closet/activeSkins?idPlayerFK=' + playerid).subscribe(data => {
-
-      this.outfit = data;
-
-    });
-
-  }
 
   onSubmit(form: NgForm) {
     if (!form.valid) {
@@ -89,24 +81,5 @@ export class LoginComponent implements OnInit {
         form.reset();
       }
     )
-  }
-
-  private handleError(errorRes: HttpErrorResponse) {
-    let errorMessage = 'an unknown error occurred';
-    if (!errorRes.error || !errorRes.error.error) {
-      return throwError(errorMessage);
-    }
-    switch (errorRes.error.error.message) {
-      case 'EMAIL_EXISTS':
-        errorMessage = 'this email already exists';
-        break;
-      case 'EMAIL_NOT_FOUND':
-        errorMessage = 'This email does not exist';
-        break;
-      case 'INVALID_PASSWORD':
-        errorMessage = 'This password is not correct';
-        break;
-    }
-    return throwError(errorMessage);
   }
 }

@@ -1,57 +1,57 @@
-<div id="main">
-    <div id="left">
-        <button class="btn btn-link" type="button"><img src="../../assets/AppImages/Videos.png" alt="text"
-                class="img-responsive" style="height:40%;width: 40%; display: inline-block;"></button>
-        <h3 style="text-align: center;">Videos</h3>
+<div id="divLeft">
+    <button class="btn btn-link" type="button"><img src="../../assets/AppImages/Videos.png" alt="text"
+            class="img-responsive"></button>
+    <h3 style="text-align: center;">Videos</h3>
+</div>
+
+<div id="divRight">
+    <div class="navbar">
+        <ul class="list-group">
+            <th>
+                <div class="btn-group dropright" appDropdown>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"style="width: 300px; margin-left: 3%; background-color: whitesmoke; border: 2px solid rgb(32, 32, 32)" >
+                        Java {{totaljava}}
+                        </li>
+                    <ul class="dropdown-menu"style="width: 300px; margin-left: 3%; background-color: whitesmoke; ">
+                        <tr *ngFor="let video of javavideos | tableFilter: topic">
+
+                            <input type="checkbox" name="Videos" value="Watched"> {{ video.videoName }}
+                            {{ video.duration }}<br>
+
+                        </tr>
+                    </ul>
+                </div>
+            </th>
+            <th>
+                <div class="btn-group dropright" appDropdown>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"style="width: 300px; margin-left: 3%; background-color: whitesmoke; border: 2px solid rgb(32, 32, 32) ">
+                        Spring       {{totalspring}}
+                    </li>
+                    <ul class="dropdown-menu"style="width: 300px; margin-left: 3%; background-color: whitesmoke; ">
+                        <tr *ngFor="let video of springvideos | tableFilter: topic">
+                            
+                            <input type="checkbox" name="Videos" value="Watched">{{ video.videoName }} {{ video.duration }}<br>
+
+                        </tr>
+                    </ul>
+                </div>
+            </th>
+            <th>
+                <div class="btn-group dropright"  appDropdown>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"style="width: 300px; margin-left: 3%; background-color: whitesmoke; border: 2px solid rgb(32, 32, 32)">
+                        Angular {{totalangular}} </li>
+                    <ul class="dropdown-menu"style="width: 300px; margin-left: 3%; background-color: whitesmoke; ">
+                        <tr *ngFor="let video of angularvideos | tableFilter: topic">
+                            <input type="checkbox" name="Videos" value="Watched">{{ video.videoName }} {{ video.duration }}<br>
+
+                        </tr>
+                    </ul>
+                </div>
+            </th>
+        </ul>
     </div>
 
-    <div id="right">
-        <div class="navbar">
-            <ul class="list-group">
-                <th>
-                    <div class="btn-group dropright" appDropdown>
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            Java
-                            <span class="badge badge-primary badge-pill" style="width: 150px;">14</span>
-                        </li>
-                        <ul class="dropdown-menu">
-                            <input type="checkbox" name="Videos" value="Watched"> Introduction<br>
-                            <input type="checkbox" name="Videos" value="Watched"> Part1<br>
-                            <input type="checkbox" name="Videos" value="Watched"> Part2<br>
-                            <input type="checkbox" name="Videos" value="Watched"> End<br>
-                        </ul>
-                    </div>
-                </th>
-                <th>
-                    <div class="btn-group dropright" appDropdown>
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            Spring
-                            <span class="badge badge-primary badge-pill" style="width: 150px;">2</span>
-                        </li>
-                        <ul class="dropdown-menu">
-                            <input type="checkbox" name="Videos" value="Watched"> Introduction<br>
-                            <input type="checkbox" name="Videos" value="Watched"> Part1<br>
-                            <input type="checkbox" name="Videos" value="Watched"> Part2<br>
-                            <input type="checkbox" name="Videos" value="Watched"> End<br>
-                        </ul>
-                    </div>
-                </th>
-                <th>
-                    <div class="btn-group dropright" appDropdown>
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            Angular
-                            <span class="badge badge-primary badge-pill" style="width: 150px;">1</span>
-                        </li>
-                        <ul class="dropdown-menu">
-                            <input type="checkbox" name="Videos" value="Watched"> Introduction<br>
-                            <input type="checkbox" name="Videos" value="Watched"> Part1<br>
-                            <input type="checkbox" name="Videos" value="Watched"> Part2<br>
-                            <input type="checkbox" name="Videos" value="Watched"> End<br>
-                        </ul>
-                    </div>
-                </th>
-            </ul>
-        </div>
-        <button type='submit' class="btn btn-primary">Save</button>
-    </div>
+</div>
+<div id="footer">
+    <button type='submit' class="btn btn-primary" style="background: rgb(65, 126, 218); border: 2px solid whitesmoke;">Save</button>
 </div>
