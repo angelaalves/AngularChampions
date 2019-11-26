@@ -14,8 +14,6 @@ export class SessionService {
 
     openSession(player:Player){
         this.playerSession=player; 
-         console.log("Session open: ");
-        console.log(this.playerSession);
     }
     
     closeSession(){
