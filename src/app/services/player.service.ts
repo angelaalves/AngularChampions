@@ -56,4 +56,5 @@ export class PlayerService{
     getPlayerType(index: number){
         return this.players[index].userType;
     }
+    
 }
