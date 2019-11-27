@@ -125,7 +125,7 @@ import { TableFilterPipe } from './list-users/user-list.pipe';
     GuildmasterPresenterPageComponent,
     PresenterPageComponent,
     PreviewSkinComponent,
-    TableFilterPipe
+    TableFilterPipe,
 
  
   ],
@@ -138,7 +138,7 @@ import { TableFilterPipe } from './list-users/user-list.pipe';
     ReactiveFormsModule,
     BrowserAnimationsModule
   ],
-  providers: [PlayerService,SessionService],
+  providers: [PlayerService,SessionService, ListUsersComponent, TableFilterPipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

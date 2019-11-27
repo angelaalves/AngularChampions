@@ -1,15 +1,16 @@
 <div>
-    <div id="div_filter" style="display: inline-block; list-style-type: none;">
-        <label for="singleSelect">Filter players by:</label>
-        <select select name="singleSelect" id="singleSelect" [(ngModel)]="userType">
-            <option value="Warrior" (click)="showWarriors()">Warriors</option>
-            <option value="GuildMaster">Guild Master</option>
+   <div id="div_filter" style="display: inline-table">
+        <label for="singleSelect">Display players by:</label><br>
+        <select select class="input-sm" name="singleSelect" id="singleSelect" style=" background: whitesmoke; border: 2px solid rgb(65, 126, 218);" [(ngModel)]="userType">
+            <option value="">All</option>
             <option value="Ancient">Ancients</option>
+            <option value="GuildMaster">Guild Master</option>
+            <option value="Warrior">Warriors</option>   
         </select>
     </div>
 
-    <h2 style="margin-top: 3%;">Warrior Players</h2>
-    
+    <h2 style="margin-top: 3%;" >Players</h2>
+
     <table class="table table-bordered" style="margin-left: 5%; margin-right: 5%; ">
         <thead style="background-color: rgb(65, 126, 218); border: 2px solid whitesmoke">
             <tr>
@@ -35,8 +36,5 @@
                 <td>{{ playerEl.status }}</td>
             </tr>
         </tbody>
-
-
-
     </table>
 </div>

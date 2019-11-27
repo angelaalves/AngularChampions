@@ -1,3 +1,19 @@
+@font-face{
+  src: url(../../../fonts/ka1.ttf);
+  font-family: karmatic-arcade;
+}
+
+*{
+  font-family: karmatic-arcade;
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
+@font-face{
+  src: url(../../../fonts/pixelmix.ttf);
+  font-family: pixelmix;
+}
+  
   .modal {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
