@@ -21,9 +21,7 @@ export class RewardsComponent implements OnInit {
   playerReceiver: Player;
   
 
-  constructor(private router: Router, private route: ActivatedRoute, private sessions: SessionService,private http: HttpClient, private rewardsToApprove: RewardService) {
-    playerGiver:sessions.getPlayerInSession();
-  }
+  constructor(private router: Router, private route: ActivatedRoute, private http: HttpClient, private rewardsToApprove: RewardService, private sessionService: SessionService) {}
 
   ngOnInit() {
   }
@@ -32,7 +30,16 @@ export class RewardsComponent implements OnInit {
     if (!form.valid) {
       return;
     }
-
+    const playerGiver=this.sessionService.getPlayerInSession();
+    const playerReceiver=form.value.to;
+    const timeSpent=form.value.time;
+    const reason=form.value.reason;
+    this.http.post('http://localhost:8085/rewards/Reward',{playerGiver, playerReceiver, timeSpent, reason}).subscribe(resData=>{
+      console.log("success")
+    }, error=>{
+      console.log("something went wrong")
+    })
+/*
     const idRewardToGive = String(this.idReward);
     const idPlayerGiverFK = "2"; //getIdFromGivingPlayer
     const idPlayerReceiverFK = "3";
@@ -44,7 +51,6 @@ export class RewardsComponent implements OnInit {
     const timeSpent = form.value.time;
 
     this.rewardsToApprove.addToArray(new Reward(idRewardToGive, idPlayerGiverFK, idPlayerReceiverFK, champiesGiven, date, approved.toString(), timeSpent));
-    console.log(this.rewardsToApprove);
     this.http.post<Reward>('http://localhost:8085/rewards/Create?idReward=' + idRewardToGive + '&idPlayerGiverFK=' + idPlayerGiverFK + "&idPlayerReceiverFK="
       + idPlayerReceiverFK + '&champiesGiven=' + champiesGiven + '&dateOfReward=' + date + '&approved=' + approved + "&timeSpent=" + timeSpent,
       {
@@ -61,23 +67,9 @@ export class RewardsComponent implements OnInit {
     this.idReward++;
 
     this.http.get<Player>('http://localhost:8085/players/Get?idPlayer=' + idPlayerGiverFK + '&idGuildFK= &userName= &email= &password= &gender= &userType= &xp= &champiesToGive= &myChampies= &status= ', {}).subscribe(data => {
-      console.log(data[0]);
       this.playerGiver = data[0];
-      console.log(this.playerGiver = data[0]);
-      console.log("champies to give " + this.playerGiver.champiesToGive + " email " + this.playerGiver.email + " gender " + this.playerGiver.gender +
-        " id guild " + this.playerGiver.idguildFK + " id player " + this.playerGiver.idplayer + " image path " + [] + " my champies " + this.playerGiver.myChampies
-        + " password " + this.playerGiver.password + " status " + this.playerGiver.status + " username " + this.playerGiver.userName
-        + " user type " + this.playerGiver.userType + " xp " + this.playerGiver.xp);
-
       this.http.get<Player>('http://localhost:8085/players/Get?idPlayer=' + idPlayerReceiverFK + '&idGuildFK= &userName= &email= &password= &gender= &userType= &xp= &champiesToGive= &myChampies= &status= ', {}).subscribe(data => {
-        console.log(data[0]);
         this.playerReceiver = data[0];
-        console.log(this.playerReceiver = data[0]);
-        console.log("champies to give " + this.playerReceiver.champiesToGive + " email " + this.playerReceiver.email + " gender " + this.playerReceiver.gender +
-          " id guild " + this.playerReceiver.idguildFK + " id player " + this.playerReceiver.idplayer + " image path " + [] + " my champies " 
-          + this.playerReceiver.myChampies + " password " + this.playerReceiver.password + " status " + this.playerReceiver.status + " username " 
-          + this.playerReceiver.userName + " user type " + this.playerReceiver.userType + " xp " + this.playerReceiver.xp);
-
         const idplayerGiver = this.playerGiver.idplayer;
         const idguildGiver = this.playerGiver.idguildFK;
         const usernameGiver = this.playerGiver.userName;
@@ -165,4 +157,6 @@ export class RewardsComponent implements OnInit {
       });
     }
   )};
+  */
+  }
 }
