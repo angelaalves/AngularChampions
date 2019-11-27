@@ -40,6 +40,8 @@ export class LoginComponent implements OnInit {
   }
 
 
+  private getImagePathlog(playerid: String) {
+
     this.http.get<string[]>('http://localhost:8085/closet/activeSkins?idPlayerFK=' + playerid).subscribe(data => {
 
       this.outfit = data;
@@ -48,6 +50,7 @@ export class LoginComponent implements OnInit {
 
   }
 
+
   onSubmit(form: NgForm) {
     if (!form.valid) {
       return;
@@ -55,7 +58,6 @@ export class LoginComponent implements OnInit {
     //Login with email and password
     const email = form.value.email;
     const password = form.value.password;
-
     this.http.post<any>('http://localhost:8085/login', { email: email, password: password }, { observe: 'response' }).subscribe(
       resData => {
         let token = resData.body;
@@ -86,9 +88,9 @@ export class LoginComponent implements OnInit {
         );
         form.reset();
       }
-    )}
-
-
+    )
+  }
+ 
   private handleError(errorRes: HttpErrorResponse) {
       let errorMessage = 'an unknown error occurred';
       if(!errorRes.error || !errorRes.error.error) {
