@@ -11,11 +11,11 @@ export class PlayerService {
     ancients: Player[] = [];
     warriors: Player[] = [];
     guildmasters: Player[] = [];
- 
+     watchedvideos: watchedVideos[];
     constructor(private http:HttpClient){}
  
     getPlayers(){
-    watchedvideos: watchedVideos[];
+
 
         return this.http.get<Player[]>('http://localhost:8085/players/getAll', {}).subscribe(data => {
             console.log(data);
