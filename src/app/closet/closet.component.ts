@@ -1,4 +1,4 @@
-import { Component, OnInit, Injectable } from '@angular/core';
+import { Component, OnInit, Injectable, Input } from '@angular/core';
 import { Player } from '../shared/player.model';
 import { HttpClient } from '@angular/common/http';
 import { Skin } from '../shared/skin.model';
