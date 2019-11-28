@@ -126,7 +126,7 @@ import { CheckboxComponent } from './checkbox/checkbox.component';
     GuildmasterPresenterPageComponent,
     PresenterPageComponent,
     PreviewSkinComponent,
-    TableFilterPipe
+    TableFilterPipe,
 
  
   ],
@@ -139,7 +139,7 @@ import { CheckboxComponent } from './checkbox/checkbox.component';
     ReactiveFormsModule,
     BrowserAnimationsModule
   ],
-  providers: [PlayerService,SessionService],
+  providers: [PlayerService,SessionService, ListUsersComponent, TableFilterPipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

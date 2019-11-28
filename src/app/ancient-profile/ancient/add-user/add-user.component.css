@@ -8,6 +8,15 @@
     margin-left: 5%;
     margin-right: 5%;
 }
+
+@font-face{
+    src: url(../../../../fonts/pixelmix.ttf);
+    font-family: pixelmix;
+  }
+
+  input{
+    font-family: pixelmix;
+  }
 #Left {
    
     height: 20vh;

@@ -1,4 +1,23 @@
 /* Create two columns/boxes that floats next to each other */
+@font-face{
+  src: url(../../../fonts/ka1.ttf);
+  font-family: karmatic-arcade;
+}
+
+*{
+  font-family: karmatic-arcade;
+  margin-left: 5%;
+  margin-right: 5%;
+  background-color: transparent;
+}
+
+@font-face{
+  src: url(../../../fonts/pixelmix.ttf);
+  font-family: pixelmix;
+}
+
+
+
 nav {
   float: left;
   width: 30%;
@@ -20,11 +39,6 @@ article {
   font-size: 18px;
 }
 
-*{
-  background-color: transparent;
-}
-
-  
   #main {
       padding: 10px;
   }

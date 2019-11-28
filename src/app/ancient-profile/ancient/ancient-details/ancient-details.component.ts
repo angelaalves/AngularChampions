@@ -1,16 +1,26 @@
 import { Component, OnInit, Injectable } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
+import { ListUsersComponent } from 'src/app/list-users/list-users.component';
+import { userType } from 'src/app/shared/userType.enum';
+import { TableFilterPipe } from 'src/app/list-users/user-list.pipe';
+import { Player } from 'src/app/shared/player.model';
 
 @Component({
   selector: 'app-ancient-details',
   templateUrl: './ancient-details.component.html',
   styleUrls: ['./ancient-details.component.css']
 })
+
+
 @Injectable({providedIn:"root"})
 export class AncientDetailsComponent implements OnInit {
 
-  constructor(private router: Router, private route: ActivatedRoute) { }
+  players: Player[] = [];
+  constructor(private pipe: TableFilterPipe, private router: Router, private route: ActivatedRoute, private list: ListUsersComponent) { 
+    this.players=list.players;
 
+
+}
   ngOnInit() {
   }
 
@@ -25,16 +35,11 @@ export class AncientDetailsComponent implements OnInit {
     this.router.navigate(['../events'], {relativeTo: this.route});
   }
 
-  redirectWarriors(){
-    this.router.navigate(['../list_users/warriors'], {relativeTo: this.route});
-  }
-
-  redirectAncients(){
-    this.router.navigate(['../list_users/ancients'], {relativeTo: this.route});
-  }
-
-  redirectGuildMasters(){
-    this.router.navigate(['../list_users/guildmasters'], {relativeTo: this.route});
+  redirectListPlayers(){
+   // this.pipe.transform(this.players, userType.Warrior);
+    //this.list.setType(userType.Warrior);
+    //console.log( this.list.type);
+    this.router.navigate(['../list_users'], {relativeTo: this.route});
   }
 
   addEvent(){
