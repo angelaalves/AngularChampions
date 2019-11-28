@@ -63,6 +63,7 @@ import { PreviewSkinComponent } from './closet/add-skin/preview-skin/preview-ski
 import { SessionService } from './services/session.service';
 import { GuildmasterPresenterPageComponent } from './guild-master/guildmaster-presenter-page/guildmaster-presenter-page.component';
 import { TableFilterPipe } from './list-users/user-list.pipe';
+import { CheckboxComponent } from './checkbox/checkbox.component';
 
 
 @NgModule({

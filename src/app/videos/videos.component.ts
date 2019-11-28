@@ -4,6 +4,7 @@ import { AuthenticationService } from '../login/authentication/authentication.se
 import { HttpClient } from '@angular/common/http';
 import { Video } from '../shared/video.model';
 import { topic } from '../shared/topic.enum';
+import { CheckboxComponent } from '../checkbox/checkbox.component';
 
 @Component({
   selector: 'app-videos',
@@ -19,6 +20,8 @@ export class VideosComponent implements OnInit {
   public javavideos: Video[];
   public angularvideos: Video[];
   public springvideos: Video[];
+
+  
 
  
   @Input() totaljava: number;

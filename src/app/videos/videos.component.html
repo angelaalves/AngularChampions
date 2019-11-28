@@ -42,7 +42,8 @@
                         Angular {{totalangular}} </li>
                     <ul class="dropdown-menu"style="width: 300px; margin-left: 3%; background-color: whitesmoke; ">
                         <tr *ngFor="let video of angularvideos | tableFilter: topic">
-                            <input type="checkbox" name="Videos" value="Watched">{{ video.videoName }} {{ video.duration }}<br>
+
+                            <input *ngIf="" type="checkbox" name="Videos" value="Watched">{{ video.videoName }} {{ video.duration }}<br>
 
                         </tr>
                     </ul>
