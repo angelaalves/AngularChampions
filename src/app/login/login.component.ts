@@ -27,6 +27,7 @@ export class LoginComponent implements OnInit {
   }
 
   constructor(private router: Router, private route: ActivatedRoute, private session: SessionService, private http: HttpClient, private authService: AuthenticationService, private playerService: PlayerService) {
+this.playerService.getPlayers();
   }
 
   private httpOptions = {

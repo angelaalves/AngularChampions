@@ -16,7 +16,11 @@
 
   td{
     font-family: pixelmix;
+  }
 
+  th{
+    background: url("../../assets/AppImages/button width-700height-90.png") no-repeat;
+    background-size: auto;
   }
 
   option{
