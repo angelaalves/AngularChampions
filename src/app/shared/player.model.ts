@@ -1,6 +1,8 @@
 import { userType } from './userType.enum';
 import { gender } from './playerGender.enum';
 import { status } from './status.enum';
+import { Skin } from './skin.model';
+import { skinType } from './skinType.enum';
 
 export class Player {
     public idplayer: string;
@@ -32,5 +34,23 @@ export class Player {
     }
     getImagePath(index: number) {
         return this.imagePath[index];
+    }
+
+    changeImage(imgPath: string, type: skinType ){
+        let index;
+        if(skinType.Hair==type){
+            index = 0;
+        }else if(skinType.SkinColor==type){
+            index = 1;
+        }else if (skinType.Top==type){
+            index = 2;
+        }else if(skinType.Bottom==type){
+            index = 3;
+        }else if(skinType.Shoes==type){
+            index = 4;
+        }else if(skinType.Others==type){
+            index = 5;
+        }
+        this.imagePath.splice(Number(index), 1, imgPath);
     }
 }
