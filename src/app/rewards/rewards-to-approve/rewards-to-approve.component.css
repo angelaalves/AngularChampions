@@ -41,20 +41,17 @@ article {
   font-size: 18px;
 }
 
-  #main {
-      padding: 10px;
-  }
-  
-  #main>div {
-      float: left;
-  }
-  
-  #right {
-      align-content: center;
-      text-align: left;
-  }
-  
-  #left {
-      margin: auto;
-      text-align: left;
-  }
+#divLeft {
+  /*width:1000px;*/
+  padding-left: 10vw;
+  height: 30vh;
+  width: 30vw;
+  display:block;
+  float: left;
+}
+#divRight {
+  height: 50vh;
+  width:40vw;
+  display:block;
+  float: left;
+}

@@ -125,9 +125,7 @@ import { TableFilterPipe } from './list-users/user-list.pipe';
     GuildmasterPresenterPageComponent,
     PresenterPageComponent,
     PreviewSkinComponent,
-    TableFilterPipe,
-
- 
+    TableFilterPipe
   ],
   imports: [
     //NgbModule,

@@ -5,7 +5,7 @@
         </h5>
     </div>
     <div class="card-body" style="margin-top: 4%">
-        <form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)" action="" class="container-fluid">
+        <form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm); loginForm.reset()" action="" class="container-fluid">
             <div class="form-row">
                 <div class="col-7">
                     <div class="form-group">
