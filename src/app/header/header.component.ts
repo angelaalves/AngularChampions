@@ -13,7 +13,7 @@ import { Subscription, Observable } from 'rxjs';
 @Injectable({providedIn: 'root'})
 export class HeaderComponent implements OnInit {
   constructor(private router: Router, private route: ActivatedRoute, private session: SessionService) { }
-  isAuthenticated=false;
+  isAuthenticated=true;
   ngOnInit() {
     
   }

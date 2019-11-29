@@ -4,7 +4,9 @@ import { AuthenticationService } from '../login/authentication/authentication.se
 import { HttpClient } from '@angular/common/http';
 import { Video } from '../shared/video.model';
 import { topic } from '../shared/topic.enum';
-import { CheckboxComponent } from '../checkbox/checkbox.component';
+import { FormGroup, NgForm, FormArray, FormControl, Validators } from '@angular/forms';
+import { Router, Params, ActivatedRoute } from '@angular/router';
+import { watchedVideos } from '../shared/watchedVideos.model';
 
 @Component({
   selector: 'app-videos',
@@ -14,24 +16,35 @@ import { CheckboxComponent } from '../checkbox/checkbox.component';
 
 @Injectable({ providedIn: 'root' })
 export class VideosComponent implements OnInit {
+  videoForm: FormGroup;
 
 
   public videos: Video[];
+  
   public javavideos: Video[];
   public angularvideos: Video[];
   public springvideos: Video[];
 
+  public watchedvideos: watchedVideos[];
   
+  
+  public videoswatched: Video[];
 
- 
+
+
+
   @Input() totaljava: number;
   @Input() totalangular: number;
   @Input() totalspring: number;
 
-  constructor(private session: SessionService, private http: HttpClient, private authService: AuthenticationService) { }
+  constructor(private router: Router, private route: ActivatedRoute, private session: SessionService, private http: HttpClient, private authService: AuthenticationService) {
+console.log(session.playerSession.idplayer);
+  }
 
   ngOnInit() {
     this.allVideos();
+   
+ this.getWatchedVideos() 
 
   }
 
@@ -57,34 +70,86 @@ export class VideosComponent implements OnInit {
     for (let video of this.videos) {
 
       if (video.topic == topic.Angular) {
-        console.log(video.topic);
-
-
         this.angularvideos.push(video);
         this.totalangular = this.totalangular + (Number)(video.duration);
-        console.log(this.angularvideos);
-        console.log(this.totalangular);
+
       }
       if (video.topic == topic.Java) {
-        console.log(video.topic);
-
-
         this.javavideos.push(video);
         this.totaljava = this.totaljava + (Number)(video.duration);
-        console.log(this.javavideos);
-        console.log(this.totaljava);
+
       }
       if (video.topic == topic.Spring) {
-        console.log(video.topic);
-
-
         this.springvideos.push(video);
         this.totalspring = this.totalspring + (Number)(video.duration);
-        console.log(this.springvideos);
-        console.log(this.totalspring);
       }
     }
 
+  }
+
+  getWatchedVideos() {
+    this.http.get<watchedVideos[]>('http://localhost:8085/watchedVideos/Get?idPlayerFK=' + this.session.playerSession.idplayer).subscribe(data => {
+      this.watchedvideos = data;
+      
+      console.log("getwatchedvideos");
+      console.log(this.watchedvideos);
+
+      for (let wv of this.watchedvideos) {
+        this.http.get<Video[]>('http://localhost:8085/videos/Get?idVideo=' + wv.idVideoFK).subscribe(data => {
+          this.videoswatched.push(data[0]);
+          console.log("videoswatcched");
+          console.log(this.videoswatched);
+        });
+      }
+
+    });
+
+  }
+  onSubmit(form: NgForm) {
+    if (!form.valid) {
+      return;
+    }
+  }
+
+  private initForm() {
+
+    this.videoForm = new FormGroup({
+
+    });
+  }
+
+
+  addUser(addUserForm: FormGroup) {
+    (<FormArray>this.videoForm.get('event')).push(
+      new FormGroup({
+        'name': new FormControl(null, [Validators.required]),
+        'gender': new FormControl(null, [Validators.required]),
+        'playertype': new FormControl(null, [Validators.required]),
+        'email': new FormControl(null, [Validators.required, Validators.minLength(10)]),
+        'password': new FormControl(null, [Validators.required, Validators.minLength(6)])
+      })
+    );
+  }
+
+
+
+
+  Save() {
+    this.myFunction();
+  }
+
+  myFunction() {
+    var checkBox = <HTMLInputElement>document.getElementById("index");
+    if (checkBox.checked == true) {
+
+      //Adiciona na lista de watched
+      console.log("Watched");
+
+    } else {
+
+      //Retira da lista de watched
+      console.log("not Watched");
+    }
   }
 
 }
