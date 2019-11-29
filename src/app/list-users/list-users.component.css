@@ -29,3 +29,6 @@
   select{
     font-family: pixelmix;
   }
+  .inactive{
+    background-color: rgb(233, 125, 106);
+  }

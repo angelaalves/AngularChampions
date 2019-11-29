@@ -25,15 +25,26 @@
             </tr>
         </thead>
         <tbody style="background-color: whitesmoke; border: 2px solid rgb(65, 126, 218)">
+            <tr *ngFor="let playerEl of players | tableFilter: userType" >
+                <td *ngIf="playerEl.status == 'Active'" style="background-color: white">{{ playerEl.userName }}</td>
+                <td *ngIf="playerEl.status == 'Active'">{{ playerEl.email }}</td>
+                <td *ngIf="playerEl.status == 'Active'">{{ playerEl.gender }}</td>
+                <td *ngIf="playerEl.status == 'Active'">{{ playerEl.userType }}</td>
+                <td *ngIf="playerEl.status == 'Active'">{{ playerEl.xp }}</td>
+                <td *ngIf="playerEl.status == 'Active'">{{ playerEl.champiesToGive }}</td>
+                <td *ngIf="playerEl.status == 'Active'">{{ playerEl.myChampies }}</td>
+                <td *ngIf="playerEl.status == 'Active'">{{ playerEl.status }}</td>
+            </tr>
+
             <tr *ngFor="let playerEl of players | tableFilter: userType">
-                <td>{{ playerEl.userName }}</td>
-                <td>{{ playerEl.email }}</td>
-                <td>{{ playerEl.gender }}</td>
-                <td>{{ playerEl.userType }}</td>
-                <td>{{ playerEl.xp }}</td>
-                <td>{{ playerEl.champiesToGive }}</td>
-                <td>{{ playerEl.myChampies }}</td>
-                <td>{{ playerEl.status }}</td>
+                <td *ngIf="playerEl.status == 'Inactive'" style="background-color: rgb(233, 125, 106);">{{ playerEl.userName }}</td>
+                <td *ngIf="playerEl.status == 'Inactive'" style="background-color: rgb(233, 125, 106);">{{ playerEl.email }}</td>
+                <td *ngIf="playerEl.status == 'Inactive'" style="background-color: rgb(233, 125, 106);">{{ playerEl.gender }}</td>
+                <td *ngIf="playerEl.status == 'Inactive'" style="background-color: rgb(233, 125, 106);">{{ playerEl.userType }}</td>
+                <td *ngIf="playerEl.status == 'Inactive'" style="background-color: rgb(233, 125, 106);">{{ playerEl.xp }}</td>
+                <td *ngIf="playerEl.status == 'Inactive'" style="background-color: rgb(233, 125, 106);">{{ playerEl.champiesToGive }}</td>
+                <td *ngIf="playerEl.status == 'Inactive'" style="background-color: rgb(233, 125, 106);">{{ playerEl.myChampies }}</td>
+                <td *ngIf="playerEl.status == 'Inactive'" style="background-color: rgb(233, 125, 106);">{{ playerEl.status }}</td>
             </tr>
         </tbody>
     </table>

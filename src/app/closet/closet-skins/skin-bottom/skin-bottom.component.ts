@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Skin } from 'src/app/shared/skin.model';
 import { SkinSelectedService } from '../skinSelected.service';
 import { SessionService } from 'src/app/services/session.service';
+import { previewSiknSelected } from '../previewSkinSelected.component';
 
 @Component({
   selector: 'app-skin-bottom',
@@ -12,12 +13,17 @@ import { SessionService } from 'src/app/services/session.service';
 export class SkinBottomComponent {
   @Input() bottoms: Skin[];
 
-  constructor(private router: Router, private route: ActivatedRoute, private skinSelectedService: SkinSelectedService, private sessionService: SessionService) { }
+  constructor(private router: Router, private route: ActivatedRoute, private skinSelectedService: SkinSelectedService, private sessionService: SessionService, private previewSkin: previewSiknSelected) { }
+ 
+  ngOnInit() {
+    //this.bottoms=this.previewSkin.skinSelected();
+  }
 
-  skinSelected(skinSelected: Skin){
+
+  /*skinSelected(skinSelected: Skin){
     this.skinSelectedService.addSkin(skinSelected);
     console.log(skinSelected.imagePath);
     this.sessionService.getPlayerInSession().changeImage(skinSelected.imagePath, skinSelected.skinType);
     //this.router.navigate(['../buy_skin'], {relativeTo: this.route});
-  }
+  }*/
 }

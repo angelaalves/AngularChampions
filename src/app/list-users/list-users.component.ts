@@ -6,6 +6,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { SessionService } from '../services/session.service';
 import { Location } from "@angular/common";
 import { userType } from '../shared/userType.enum';
+import { status } from '../shared/status.enum';
 
 
 @Component({
@@ -24,7 +25,6 @@ export class ListUsersComponent implements OnInit {
    public  warriors: Player[] = [];
    public guildmasters: Player[] = [];
    public type: userType;
-
 
 
   constructor(private playerService: PlayerService, private http: HttpClient, private router: Router, private session: SessionService) { }
