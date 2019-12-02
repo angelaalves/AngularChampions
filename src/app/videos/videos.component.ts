@@ -88,6 +88,7 @@ console.log(session.playerSession.idplayer);
   }
 
   getWatchedVideos() {
+    console.log(this.session.playerSession.idplayer);
     this.http.get<watchedVideos[]>('http://localhost:8085/watchedVideos/Get?idPlayerFK=' + this.session.playerSession.idplayer).subscribe(data => {
       this.watchedvideos = data;
       
@@ -118,18 +119,6 @@ console.log(session.playerSession.idplayer);
     });
   }
 
-
-  addUser(addUserForm: FormGroup) {
-    (<FormArray>this.videoForm.get('event')).push(
-      new FormGroup({
-        'name': new FormControl(null, [Validators.required]),
-        'gender': new FormControl(null, [Validators.required]),
-        'playertype': new FormControl(null, [Validators.required]),
-        'email': new FormControl(null, [Validators.required, Validators.minLength(10)]),
-        'password': new FormControl(null, [Validators.required, Validators.minLength(6)])
-      })
-    );
-  }
 
 
 
