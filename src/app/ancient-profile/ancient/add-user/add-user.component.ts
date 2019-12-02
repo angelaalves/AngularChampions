@@ -46,7 +46,6 @@ export class AddUserComponent implements OnInit {
     const playerType = form.value.playertype;
     const statusPlayer = status.Active;
     console.log(form.value.name)
-    this.playerService.addPlayer(new Player(id, idGuild, name, email, password, skins, xp, champiesToGive, myChampies, playerType, gender, statusPlayer));
     console.log('addUserForm', form.value);
 
     this.http.post<Player>('http://localhost:8085/players/Create?idPlayer=' + id + '&idGuildFK=' + idGuild + '&userName=' + name +
