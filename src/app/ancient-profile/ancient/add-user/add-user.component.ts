@@ -34,7 +34,6 @@ export class AddUserComponent implements OnInit {
     }
     
     const id = "1";
-    const idGuild = "1";
     const name = form.value.name;
     const email = form.value.email;
     const password = form.value.password;
@@ -46,15 +45,14 @@ export class AddUserComponent implements OnInit {
     const playerType = form.value.playertype;
     const statusPlayer = status.Active;
     console.log(form.value.name)
-    this.playerService.addPlayer(new Player(id, idGuild, name, email, password, skins, xp, champiesToGive, myChampies, playerType, gender, statusPlayer));
+    this.playerService.addPlayer(new Player(id, name, email, password, skins, xp, champiesToGive, myChampies, playerType, gender, statusPlayer));
     console.log('addUserForm', form.value);
 
-    this.http.post<Player>('http://localhost:8085/players/Create?idPlayer=' + id + '&idGuildFK=' + idGuild + '&userName=' + name +
+    this.http.post<Player>('http://localhost:8085/players/Create?idPlayer=' + id + '&userName=' + name +
       '&email=' + email + '&password=' + password + "&gender=" + gender + "&userType=" + playerType + '&xp=' + xp + '&champiesToGive=' + champiesToGive
       + '&myChampies=' + myChampies + '&status=' + statusPlayer,
       {
         id,
-        idGuild,
         name,
         email,
         password,

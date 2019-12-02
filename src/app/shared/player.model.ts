@@ -6,7 +6,6 @@ import { skinType } from './skinType.enum';
 
 export class Player {
     public idplayer: string;
-    public idguildFK: string;
     public userName: string;
     public gender: gender;
     public userType: userType;
@@ -18,9 +17,8 @@ export class Player {
     public myChampies: string;
     public status: status;
 
-    constructor(idPlayer: string, idGuild: string, UserName: string, email: string, password: string, imagePath: string[], xp: string, ChampiesToGive: string, MyChampies: string, userType: userType, gender: gender, status: status) {
+    constructor(idPlayer: string, UserName: string, email: string, password: string, imagePath: string[], xp: string, ChampiesToGive: string, MyChampies: string, userType: userType, gender: gender, status: status) {
         this.idplayer = idPlayer;
-        this.idguildFK = idGuild;
         this.userName = UserName;
         this.email = email;
         this.password = password;

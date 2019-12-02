@@ -34,7 +34,7 @@ export class ChangePasswordComponent implements OnInit {
 
     var xhr = new XMLHttpRequest();
 
-    xhr.open('POST', 'http://localhost:8085/players/Update?idPlayer=' + player.idplayer + '&idGuildFK=' + player.idguildFK + '&userName='  + player.userName + 
+    xhr.open('POST', 'http://localhost:8085/players/Update?idPlayer=' + player.idplayer + '&userName='  + player.userName + 
     '&email=' + player.email + '&password=' + newPassword + '&gender='  + player.gender + '&userType=' + player.userType + '&xp=' + player.xp + 
     '&champiesToGive='  + player.champiesToGive + '&myChampies=' + player.myChampies + '&=status' + player.status, true);
 
