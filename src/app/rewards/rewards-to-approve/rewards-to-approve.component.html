@@ -8,34 +8,31 @@
 
 <div id="divRight">
     <div class="centered" style="margin-top: 1%;">
-        <label>From: Person´s name</label>
-        <label style="margin-left: 2em;">To: Person´s name</label>
-        <img src="https://image.flaticon.com/icons/png/512/2108/2108090.png" style="margin-left: 1em;" width="20"
-            height="20">
-        <label style="margin-right: 2em;">Person's champies</label>
-        <a data-toggle="tooltip" data-placement="Why" title="Reason why the champies were given">Top</a>
-        <input type="checkbox" class="custom-control-input" id="approve" checked style="margin-left: 2em;">
-        <label class="custom-control-label" for="approve">Approve</label>
-    </div>
-    <div class="centered" style="margin-top: 5%;">
-        <label>From: Person´s name</label>
-        <label style="margin-left: 2em;">To: Person´s name</label>
-        <img src="https://image.flaticon.com/icons/png/512/2108/2108090.png" style="margin-left: 1em;" width="20"
-            height="20">
-        <label style="margin-right: 2em;">Person's champies</label>
-        <a data-toggle="tooltip" data-placement="Why" title="Reason why the champies were given">Top</a>
-        <input type="checkbox" class="custom-control-input" id="approve" checked style="margin-left: 2em;">
-        <label class="custom-control-label" for="approve">Approve</label>
-    </div>
-    <div class="centered" style="margin-top: 5%; margin-bottom: 10%;">
-        <label>From: Person´s name</label>
-        <label style="margin-left: 2em;">To: Person´s name</label>
-        <img src="https://image.flaticon.com/icons/png/512/2108/2108090.png" style="margin-left: 1em;" width="20"
-            height="20">
-        <label style="margin-right: 2em;">Person's champies</label>
-        <a data-toggle="tooltip" data-placement="Why" title="Reason why the champies were given">Top</a>
-        <input type="checkbox" class="custom-control-input" id="approve" checked style="margin-left: 2em;">
-        <label class="custom-control-label" for="approve">Approve</label>
-        <button type="submit" class="btn btn-primary" id="save" style="margin-right: 1%;">Save</button>
-    </div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <td scope="col">From</td>
+                    <td scope="col">To</td>
+                    <td scope="col">Date</td>
+                    <td scope="col">Justification</td>
+                    <td scope="col">Time spent</td>
+                    <td scope="col">Approve</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let r of rewardsToApprove">
+                    <td>{{r.idplayerGiverFK}}</td>
+                    <td>{{r.idplayerReceiverFK}}</td>
+                    <td>{{r.dateOfReward}} </td>
+                    <td>{{r.justification}}</td>
+                    <td>{{r.timeSpent}}</td>
+                    <td>
+                        <label class="custom-control-label" for="approve">Approve</label>
+                        <input type="checkbox" class="custom-control-input" (click)="check(r)">
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <button type="submit" class="btn btn-primary" id="save" style="margin-right: 1%;" (click)="save()">Save</button>
+    </div>-->
 </div>

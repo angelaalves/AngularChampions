@@ -1,4 +1,4 @@
-import { Component, Injectable } from '@angular/core';
+import { Component, Injectable, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router, ActivatedRoute } from '@angular/router';
 import { status } from '../../shared/status.enum';
@@ -6,6 +6,7 @@ import { SessionService } from 'src/app/services/session.service';
 import { Skin } from 'src/app/shared/skin.model';
 import { Player } from 'src/app/shared/player.model';
 import { SkinSelectedService } from '../closet-skins/skinSelected.service';
+import { SkinService } from 'src/app/services/skin.service';
 
 @Component({
   selector: 'app-buy-skin',
@@ -14,12 +15,22 @@ import { SkinSelectedService } from '../closet-skins/skinSelected.service';
 })
 
 @Injectable({ providedIn: 'root' })
-export class BuySkinComponent {
+export class BuySkinComponent implements OnInit{
   player: Player;
   activeSkins: Skin[] = [];
+  currentSkinToBeBought : Skin;
 
-  constructor(private router: Router, private route: ActivatedRoute, private http: HttpClient, private session: SessionService, private skinSelectedService: SkinSelectedService) {
+  constructor(private router: Router, private route: ActivatedRoute, private http: HttpClient, private session: SessionService,
+     private skinSelectedService: SkinSelectedService, private skinService : SkinService) {
     this.player = this.session.getPlayerInSession();
+  }
+
+  ngOnInit(){
+    this.skinService.currentSkinSelected.subscribe(skin => this.currentSkinToBeBought = skin)
+  }
+
+  redirectBackToCloset(){
+    this.router.navigate(['../closet'], {relativeTo: this.route});
   }
 
   buySkin() {
@@ -52,5 +63,6 @@ export class BuySkinComponent {
         }
       }
     }
+    this.router.navigate(['../closet'], {relativeTo: this.route});
   }
 }

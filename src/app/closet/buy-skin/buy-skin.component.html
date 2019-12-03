@@ -3,10 +3,10 @@
     <h2>Do you want to buy this skin?</h2>
   </div>
   <div class="row">
-    <img src="../../../assets/SkinColor/AngLastairbender.png" alt="" style="width:15%">
-    <h3>50<img src="../../../assets/AppImages/Champies.png" alt="" style="max-height: 50px;"></h3>
-    <h3>100 XP</h3>
+    <img src={{currentSkinToBeBought.imagePath}} alt="" style="width:15%">
+    <h3>{{currentSkinToBeBought.champiesCost}}<img src="../../../assets/AppImages/Champies.png" alt="" style="max-height: 50px;"></h3>
+    <h3>{{currentSkinToBeBought.minXP}}</h3>
     <button type="button" class="btn" id="butao" (click)="buySkin()">Buy</button>
-    <button type="button" class="btn" id="butao">Cancel</button>
+    <button type="button" class="btn" id="butao" (click)="redirectBackToCloset()">Cancel</button>
   </div>
 </div>

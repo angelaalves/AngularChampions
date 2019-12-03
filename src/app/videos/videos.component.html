@@ -18,15 +18,15 @@
 
                     <div class="form-group">
                         <ul class="dropdown-menu" style="width: 300px; margin-left: 3%; background-color: whitesmoke; ">
-                            <tr *ngFor="let video of javavideos; let i=index">
+                            <tr *ngFor="let c of javavideos; let i=index">
 
                                 <input *ngIf="videoswatched.indexOf(video)!== -1" type="checkbox" id="{{index}}"
-                                (onclick)="myFunction()" checked>{{ video.videoName }}
-                            {{ video.duration }}<br>
+                                    (click)="myFunction()" ng-click="check(c)" checked>{{ video.videoName }}
+                                {{ video.duration }}<br>
 
-                            <input *ngIf="videoswatched.indexOf(video)> -1" type="checkbox" id="{{index}}"
-                                (onclick)="myFunction()">{{ video.videoName }}
-                            {{ video.duration }}<br>
+                                <input *ngIf="videoswatched.indexOf(video)> -1" type="checkbox" id="{{index}}"
+                                    (click)="myFunction()">{{ video.videoName }}
+                                {{ video.duration }}<br>
 
                             </tr>
                         </ul>
@@ -49,11 +49,11 @@
 
 
                                 <input *ngIf="videoswatched.indexOf(video)!== -1" type="checkbox" id="{{index}}"
-                                    (onclick)="myFunction()" checked>{{ video.videoName }}
+                                    (click)="myFunction()" checked>{{ video.videoName }}
                                 {{ video.duration }}<br>
 
                                 <input *ngIf="videoswatched.indexOf(video)> -1" type="checkbox" id="{{index}}"
-                                    (onclick)="myFunction()">{{ video.videoName }}
+                                    (click)="myFunction()">{{ video.videoName }}
                                 {{ video.duration }}<br>
 
                             </tr>
@@ -74,12 +74,12 @@
                         <ul class="dropdown-menu" style="width: 300px; margin-left: 3%; background-color: whitesmoke; ">
                             <tr *ngFor="let video of angularvideos ; let i=index">
 
-                                <input *ngIf="videoswatched.indexOf(video)!== -1" type="checkbox" id="{{index}}"
-                                    (onclick)="myFunction()" checked>{{ video.videoName }}
-                                {{ video.duration }}<br>
+                                <!--<input *ngIf="videoswatched.indexOf(i)!= -1" type="checkbox" id="{{index}}"
+                                    (click)="myFunction()" checked>{{ video.videoName }}
+                                {{ video.duration }}<br>-->
 
-                                <input *ngIf="videoswatched.indexOf(video)> -1" type="checkbox" id="{{index}}"
-                                    (onclick)="myFunction()">{{ video.videoName }}
+                                <input *ngIf="videoswatched.indexOf(i)> -1" type="checkbox" id="{{index}}"
+                                    (click)="myFunction()">{{ video.videoName }}
                                 {{ video.duration }}<br>
                             </tr>
                         </ul>
@@ -96,6 +96,6 @@
     <div class="form-group">
         <button type='submit' class="btn btn-primary"
             style="background: rgb(65, 126, 218); border: 2px solid whitesmoke;" (onclick)="Save()"
-            [disabled]="!addUserForm.valid" type="submit">Save</button>
+            [disabled]="!videoForm.valid" type="submit">Save</button>
     </div>
 </div>
