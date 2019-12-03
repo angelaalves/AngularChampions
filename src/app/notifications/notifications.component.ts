@@ -40,9 +40,9 @@ public viewed:Notification[];
 
       for (let notification of this.notificationreceiver) {
         console.log(notification.ID_Notification_FK);
-        this.http.get<Notification[]>('http://localhost:8085/notifications/Get?ID_Notification=' + "2").subscribe(data => {
+        this.http.get<Notification[]>('http://localhost:8085/notifications/Get?ID_Notification=' + notification.ID_Notification_FK).subscribe(data => {
           
-        
+        //falta a filtragem d o not viwed
         this.notviewed.push(data[0]);
           console.log("notifications not viewed");
           console.log(this.notviewed);
