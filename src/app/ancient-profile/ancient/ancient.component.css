@@ -3,9 +3,10 @@
 #Left {
 
     height: 70vh;
-    width: 30vw;
+    width: 20vw;
     display:block;
     float: left;
+    padding-left: 3vw;
 }
 #Right {
     height: 30vh;
