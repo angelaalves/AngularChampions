@@ -2,20 +2,19 @@ import { typeWithParameters } from '@angular/compiler/src/render3/util';
 import { VirtualTimeScheduler } from 'rxjs';
 
 export class Notification{
-    private idNotification:string;
-    private idPlayerSenderFK:string;
-    private idGuildFK:string;
-    private idRewardFK:string;
-    private idEventFK:string;
-    private description:string;
+   ID_Notification:String;
+    ID_PlayerSender_FK:String;
+    idGuildFK:String;
+   idRewardFK:String;
+     idEventFK:String;
+    description:String;
 
-
-    constructor(idNotification:string,idPlayerSenderFK:string,idGuildFK:string,idRewardFK:string,idEventFK:string,description:string){
-        this.idNotification=idNotification;
-       this.idPlayerSenderFK=idPlayerSenderFK;
-       this.idGuildFK=idGuildFK;
+    constructor( idEventFK:String , idGuildFK:String , ID_Notification:String , ID_PlayerSender_FK:String , idRewardFK:String , description:String ){
+        this.idEventFK=idEventFK;
+       this.idGuildFK= idGuildFK;
+       this.ID_Notification= ID_Notification;
+       this.ID_PlayerSender_FK=ID_PlayerSender_FK;
        this.idRewardFK=idRewardFK;
-       this.idEventFK=idEventFK;
        this.description=description;
     }
 }

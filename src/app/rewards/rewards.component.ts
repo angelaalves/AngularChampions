@@ -19,11 +19,13 @@ export class RewardsComponent implements OnInit {
   idReward: number = 1;
   playerGiver: Player;
   playerReceiver: Player;
+  giver: String;
   
 
   constructor(private router: Router, private route: ActivatedRoute, private http: HttpClient, private rewardsToApprove: RewardService, private sessionService: SessionService) {}
 
   ngOnInit() {
+    this.giver= this.sessionService.getPlayerInSession().userName;
   }
 
   onSubmit(form: NgForm) {

@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import { Player } from '../shared/player.model';
 import { LoginComponent } from '../login/login.component';
 
@@ -13,9 +13,9 @@ export class SessionService {
     openSession(player:Player){
         this.playerSession=player; 
     }
-    
-    closeSession(){
-        this.playerSession=null;
+
+    closeSession() {
+        this.playerSession = null;
     }
 
     getPlayerInSession(): Player {

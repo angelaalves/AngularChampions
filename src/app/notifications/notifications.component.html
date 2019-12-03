@@ -1,6 +1,6 @@
 <div style="background: transparent;">
     <div id="divLeft" style="background: transparent;">
-        <button class="btn btn-link" type="button"><img src="../../../../assets/AppImages/msg.png" alt="text"
+        <button class="btn btn-link" type="button"><img src="../../assets/AppImages/notification.png" alt="text"
                 class="img-responsive" style="max-height: 300px;"></button>
         <h3 style="text-align: center;">Notifications</h3>
 
@@ -9,31 +9,23 @@
 
         <div style="padding-right: 10px;">
             <div class="notificationscroll" id="style-8">
-                    
-                
-                
-                <tr *ngFor="let video of javavideos; let i=index">
+                <tr *ngFor="let notification of notviewed;">
 
-                            <input *ngIf="videoswatched.indexOf(video)!== -1" type="checkbox" id="{{index}}"
-                            (onclick)="myFunction()" checked>{{ video.videoName }}
-                        {{ video.duration }}<br>
-</tr>
+                    <div class="spaceBetweenLines" style="margin-top: 3%; margin-left: 2em">
+                        <span class="label label-default" style="font-size: 15pt">Notification</span>
+                    </div>
+                    <div class="spaceBetweenLines2" style="margin-top: 1%; margin-left: 4em;">
+                        <p style="font-family: pixelmix;">{{notification.description}}</p>
+                    </div>
+                </tr>
 
 
-
-                <div class="spaceBetweenLines" style="margin-top: 3%; margin-left: 2em">
-                    <span class="label label-default" style="font-size: 15pt">Notification 6</span>
-                </div>
-                <div class="spaceBetweenLines2" style="margin-top: 1%; margin-left: 4em;">
-                    <p style="font-family: pixelmix;">description of the notification</p>
-                </div>
-            
-            
-            
             </div>
         </div>
     </div>
-    <button class="btn btn-primary" style="margin-top: 2%; margin-left: 85%; background: rgb(65, 126, 218); border: 2px solid whitesmoke;" (click)="redirectToProfile()">Close</button>
+    <button class="btn btn-primary"
+        style="margin-top: 2%; margin-left: 85%; background: rgb(65, 126, 218); border: 2px solid whitesmoke;"
+        (click)="redirectToProfile()">Close</button>
 </div>
 <!--
 <span id="divLeft">

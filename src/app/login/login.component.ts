@@ -7,6 +7,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { PlayerService } from 'src/app/services/player.service';
 import { SessionService } from '../services/session.service';
 import { HttpHeaders, HttpErrorResponse, HttpClient } from '@angular/common/http';
+import { IfStmt } from '@angular/compiler';
+import { HeaderComponent } from '../header/header.component';
 
 @Component({
   selector: 'app-login',
@@ -26,9 +28,11 @@ export class LoginComponent implements OnInit {
 
   }
 
-  constructor(private router: Router, private route: ActivatedRoute, private session: SessionService, private http: HttpClient, private authService: AuthenticationService, private playerService: PlayerService) {
-this.playerService.getPlayers();
+
+  constructor(private router: Router, private route: ActivatedRoute, private session: SessionService, private http: HttpClient, private authService: AuthenticationService, private playerService: PlayerService, private header: HeaderComponent) {
+    this.playerService.getPlayers();
   }
+
 
   private httpOptions = {
     headers: new HttpHeaders({
@@ -54,6 +58,7 @@ this.playerService.getPlayers();
 
 
   onSubmit(form: NgForm) {
+    this.header.handleAuthentication();
     if (!form.valid) {
       return;
     }
@@ -65,24 +70,28 @@ this.playerService.getPlayers();
         let token = resData.body;
         localStorage.setItem('token', token);
         this.http.post<Player>('http://localhost:8085/players/Get?email=' + email, { email: email }).subscribe(resData => {
-          this.http.get<string[]>('http://localhost:8085/closet/activeSkins?idPlayerFK=' + resData[0].idplayer).subscribe(data => {
-            this.outfit = data;
-            //Create player so we can givew him an imagepath
-            this.player = new Player(resData[0].idplayer,  resData[0].userName, resData[0].email, resData[0].password, this.outfit, resData[0].xp,
-              resData[0].champiesToGive, resData[0].myChampies, resData[0].userType, resData[0].gender, resData[0].status);
-            //Give a player to the player session so we can use it on other components
-            this.session.openSession(this.player);
-            //Select the profile using the usertype
-            if (this.session.getPlayerInSession().userType == "Ancient") {
-              this.router.navigate(['/ancient_profile'], { relativeTo: this.route });
-            }
-            if (this.session.getPlayerInSession().userType == "GuildMaster") {
-              this.router.navigate(['/guildmaster_profile'], { relativeTo: this.route });
-            }
-            if (this.session.getPlayerInSession().userType == "Warrior") {
-              this.router.navigate(['/warrior_profile'], { relativeTo: this.route });
-            }
-          })
+          if (resData[0].status == 'Active') {
+            this.http.get<string[]>('http://localhost:8085/closet/activeSkins?idPlayerFK=' + resData[0].idplayer).subscribe(data => {
+              this.outfit = data;
+              //Create player so we can givew him an imagepath
+              this.player = new Player(resData[0].idplayer,  resData[0].userName, resData[0].email, resData[0].password, this.outfit, resData[0].xp,
+                resData[0].champiesToGive, resData[0].myChampies, resData[0].userType, resData[0].gender, resData[0].status);
+              //Give a player to the player session so we can use it on other components
+              this.session.openSession(this.player);
+              //Select the profile using the usertype
+              if (this.session.getPlayerInSession().userType == "Ancient") {
+                this.router.navigate(['/ancient_profile'], { relativeTo: this.route });
+              }
+              if (this.session.getPlayerInSession().userType == "GuildMaster") {
+                this.router.navigate(['/guildmaster_profile'], { relativeTo: this.route });
+              }
+              if (this.session.getPlayerInSession().userType == "Warrior") {
+                this.router.navigate(['/warrior_profile'], { relativeTo: this.route });
+              }
+            })
+          } else{
+            console.log("Player no longer active")
+          }
         },
           error => {
             console.log("Failed Authentication")
@@ -92,10 +101,10 @@ this.playerService.getPlayers();
       }
     )
   }
- 
+
   private handleError(errorRes: HttpErrorResponse) {
-      let errorMessage = 'an unknown error occurred';
-      if(!errorRes.error || !errorRes.error.error) {
+    let errorMessage = 'an unknown error occurred';
+    if (!errorRes.error || !errorRes.error.error) {
       return throwError(errorMessage);
     }
     switch (errorRes.error.error.message) {
