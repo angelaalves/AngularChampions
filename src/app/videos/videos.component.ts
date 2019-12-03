@@ -5,8 +5,9 @@ import { HttpClient } from '@angular/common/http';
 import { Video } from '../shared/video.model';
 import { topic } from '../shared/topic.enum';
 import { FormGroup, NgForm, FormArray, FormControl, Validators } from '@angular/forms';
-import { Router, Params, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { watchedVideos } from '../shared/watchedVideos.model';
+import { identifierModuleUrl } from '@angular/compiler';
 
 @Component({
   selector: 'app-videos',
@@ -20,17 +21,15 @@ export class VideosComponent implements OnInit {
 
 
   public videos: Video[];
-  
+
   public javavideos: Video[];
   public angularvideos: Video[];
   public springvideos: Video[];
 
   public watchedvideos: watchedVideos[];
-  
-  
+
+
   public videoswatched: Video[];
-
-
 
 
   @Input() totaljava: number;
@@ -38,15 +37,26 @@ export class VideosComponent implements OnInit {
   @Input() totalspring: number;
 
   constructor(private router: Router, private route: ActivatedRoute, private session: SessionService, private http: HttpClient, private authService: AuthenticationService) {
-console.log(session.playerSession.idplayer);
+    console.log(session.playerSession.idplayer);
   }
 
   ngOnInit() {
     this.allVideos();
-   
- this.getWatchedVideos() 
+
+    this.getWatchedVideos()
 
   }
+
+  /*check(watchedVideo: watchedVideos,evt: Event){
+    var target = evt.target;
+    if(target.checked){
+      this.watchedvideos.push(watchedVideo);
+    console.log(this.watchedvideos);
+    }else if(!target.checked){
+      this.watchedvideos.slice
+    }
+    
+  }*/
 
   allVideos(): Video[] {
 
@@ -91,14 +101,14 @@ console.log(session.playerSession.idplayer);
     console.log(this.session.playerSession.idplayer);
     this.http.get<watchedVideos[]>('http://localhost:8085/watchedVideos/Get?idPlayerFK=' + this.session.playerSession.idplayer).subscribe(data => {
       this.watchedvideos = data;
-      
+
       console.log("getwatchedvideos");
       console.log(this.watchedvideos);
 
       for (let wv of this.watchedvideos) {
-        this.http.get<Video[]>('http://localhost:8085/videos/Get?idVideo=' + wv.idVideoFK).subscribe(data => {
-          this.videoswatched.push(data[0]);
-          console.log("videoswatcched");
+        this.http.get<Video[]>('http://localhost:8085/videos/Get?idVideo=' + wv.idVideoFK).subscribe(res => {
+          this.videoswatched.push(res[0]);
+          console.log("videoswatched");
           console.log(this.videoswatched);
         });
       }

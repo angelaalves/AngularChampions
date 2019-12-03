@@ -12,6 +12,7 @@ export class PlayerService {
     warriors: Player[] = [];
     guildmasters: Player[] = [];
     watchedvideos: watchedVideos[];
+    
     constructor(private http: HttpClient) { }
 
     getPlayers() {
@@ -46,8 +47,6 @@ export class PlayerService {
     getPlayerType(index: number) {
         return this.players[index].userType;
     }
-
-
 
     getWatchedVideos(player: Player) {
         this.http.get<watchedVideos[]>('http://localhost:8085/watchedVideos/get?idPlayerFK=' + player.idplayer, {}).subscribe(data => {

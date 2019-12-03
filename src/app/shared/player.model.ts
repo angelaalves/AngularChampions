@@ -1,7 +1,6 @@
 import { userType } from './userType.enum';
 import { gender } from './playerGender.enum';
 import { status } from './status.enum';
-import { Skin } from './skin.model';
 import { skinType } from './skinType.enum';
 
 export class Player {

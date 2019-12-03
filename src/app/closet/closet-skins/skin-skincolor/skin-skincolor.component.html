@@ -1,5 +1,5 @@
 <div class="scrollmenu" id="style-8" style="margin-bottom: 3%;">
     <div *ngFor="let skin of skincolors" style="display: inline-block;">
-        <img src={{skin.imagePath}} style="width:100px;height:100px;" (click)="skinSelected()">
+        <img src={{skin.imagePath}} style="width:100px;height:100px;" (click)="skinSelected(skin)">
     </div>
 </div>
