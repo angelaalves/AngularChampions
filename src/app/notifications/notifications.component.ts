@@ -4,6 +4,7 @@ import { SessionService } from '../services/session.service';
 import { AuthenticationService } from '../login/authentication/authentication.service';
 import { HttpClient } from '@angular/common/http';
 import { NotificationsReceivers } from '../shared/notificationsReceivers.model';
+import { ListenerService } from '../services/listener.service';
 
 @Component({
   selector: 'app-notifications',
@@ -18,11 +19,13 @@ export class NotificationsComponent implements OnInit {
 public notificationreceiver: NotificationsReceivers[];
 public notviewed:Notification[];
 public viewed:Notification[];
-  constructor(private router: Router, private route: ActivatedRoute,private session: SessionService, private http: HttpClient, private authService: AuthenticationService) { 
+public notificationEl: NotificationsReceivers;
+  constructor(private router: Router, private route: ActivatedRoute,private session: SessionService, private http: HttpClient, private authService: AuthenticationService, private listener: ListenerService) { 
   this.getNotifications();
   }
 
   ngOnInit() {
+    
   }
 
   redirectToProfile(){
@@ -37,10 +40,14 @@ public viewed:Notification[];
       
       console.log("notifications");
       console.log(this.notificationreceiver);
+      console.log(this.notificationreceiver[0].idnotificationFK)
 
       for (let notification of this.notificationreceiver) {
-        console.log(notification.ID_Notification_FK);
-        this.http.get<Notification[]>('http://localhost:8085/notifications/Get?ID_Notification=' + notification.ID_Notification_FK).subscribe(data => {
+        this.notificationEl=notification;
+        console.log(notification)
+        console.log(this.notificationEl)
+        console.log(this.notificationEl.idnotificationFK);
+        this.http.get<Notification[]>('http://localhost:8085/notifications/Get?ID_Notification=' + notification.idnotificationFK).subscribe(data => {
           
         //falta a filtragem d o not viwed
         this.notviewed.push(data[0]);

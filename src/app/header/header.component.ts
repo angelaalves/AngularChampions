@@ -13,7 +13,7 @@ import { Subscription, Observable } from 'rxjs';
 @Injectable({providedIn: 'root'})
 export class HeaderComponent implements OnInit {
   constructor(private router: Router, private route: ActivatedRoute, private session: SessionService) { }
-  isAuthenticated=true;
+  isAuthenticated=false;
   ngOnInit() {
     
   }
@@ -51,11 +51,15 @@ export class HeaderComponent implements OnInit {
     this.router.navigate(['notifications'], {relativeTo: this.route});
   }
   onSignout(){
+    localStorage.removeItem('playerlogged')
+    localStorage.removeItem('token')
     this.router.navigate(['login'], {relativeTo: this.route});
   }
 
   handleAuthentication(){
     console.log("fui chamado")
+    console.log(this.isAuthenticated)
     this.isAuthenticated=!this.isAuthenticated;
+    console.log(this.isAuthenticated)
   }
 }
