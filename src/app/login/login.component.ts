@@ -30,7 +30,7 @@ export class LoginComponent implements OnInit {
 
 
   constructor(private router: Router, private route: ActivatedRoute, private session: SessionService, private http: HttpClient, private authService: AuthenticationService, private playerService: PlayerService, private header: HeaderComponent) {
-    this.playerService.getPlayers();
+    
   }
 
 
@@ -77,6 +77,7 @@ export class LoginComponent implements OnInit {
               this.player = new Player(resData[0].idplayer,  resData[0].userName, resData[0].email, resData[0].password, this.outfit, resData[0].xp,
                 resData[0].champiesToGive, resData[0].myChampies, resData[0].userType, resData[0].gender, resData[0].status);
               //Give a player to the player session so we can use it on other components
+              localStorage.setItem('playerlogged', JSON.stringify(this.player))
               this.session.openSession(this.player);
               //Select the profile using the usertype
               if (this.session.getPlayerInSession().userType == "Ancient") {

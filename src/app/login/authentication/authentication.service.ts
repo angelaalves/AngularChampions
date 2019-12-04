@@ -20,7 +20,7 @@ export class AuthenticationService {
       }
     ).pipe(catchError(this.handleError),
       tap(resData => {
-        this.handleAuthentication(resData.idplayer,  resData.userName, resData.email, resData.password, 
+        this.handleAuthentication(resData.idplayer, resData.userName, resData.email, resData.password, 
            resData.gender, resData.userType, resData.xp, resData.champiesToGive, resData.myChampies, resData.status )
       })   
     );
@@ -51,7 +51,7 @@ export class AuthenticationService {
     return throwError(errorMessage);
   }
 
-  private handleAuthentication(idPlayer:string,  UserName:string, email:string, password:string,  gender:string, userType: string, xp: string, ChampiesToGive:string, MyChampies: string, Status: string) {
+  private handleAuthentication(idPlayer:string, UserName:string, email:string, password:string,  gender:string, userType: string, xp: string, ChampiesToGive:string, MyChampies: string, Status: string) {
     const expirationDate = new Date(new Date().getTime());
     //const player = new Player(name,email, userId, playerType.GuildMaster );
     //this.user.next(player);
