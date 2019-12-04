@@ -5,10 +5,10 @@ import { skinType } from '../shared/skinType.enum';
 
 @Injectable({ providedIn: 'root' })
 export class SkinService {
-    private skin = new BehaviorSubject<Skin>(new Skin("","","","","",skinType.Bottom));
+    private skin = new BehaviorSubject<Skin>(new Skin("", "", "", "", "", skinType.Bottom));
     currentSkinSelected = this.skin.asObservable();
 
-    updateSkin(skin: Skin){
+    updateSkin(skin: Skin) {
         this.skin.next(skin);
-    } 
+    }
 }

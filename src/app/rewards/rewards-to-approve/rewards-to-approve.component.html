@@ -21,7 +21,7 @@
             </thead>
             <tbody>
                 <tr *ngFor="let r of rewardsToApprove">
-                    <td (onload)="searchName(r)">{{r.idplayerReceiverFK}}</td>
+                    <td>{{r.idplayerGiverFK}}</td>
                     <td>{{r.idplayerReceiverFK}}</td>
                     <td>{{r.dateOfReward}} </td>
                     <td>{{r.justification}}</td>

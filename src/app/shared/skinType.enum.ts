@@ -4,10 +4,5 @@ export enum skinType {
   Top = "Top",
   Bottom = "Bottom",
   Shoes = "Shoes",
-  Others = "Others",
-  HairNull = "HairNull",
-  TopNull = "TopNull",
-  BottomNull = "BottomNull",
-  ShoesNull = "ShoesNull",
-  OthersNull = "OthersNull"
+  Others = "Others"
 }

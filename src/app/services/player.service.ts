@@ -5,7 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { watchedVideos } from '../shared/watchedVideos.model';
 
 @Injectable({ providedIn: 'root' })
-export class PlayerService implements OnInit {
+export class PlayerService {
 
     players: Player[] = [];
     ancients: Player[] = [];
@@ -13,10 +13,8 @@ export class PlayerService implements OnInit {
     guildmasters: Player[] = [];
     watchedvideos: watchedVideos[] = [];
 
-    constructor(private http: HttpClient) { }
-
-    ngOnInit() {
-        this.getPlayers();
+    constructor(private http: HttpClient) { 
+         this.getPlayers();
     }
 
     getPlayers() {

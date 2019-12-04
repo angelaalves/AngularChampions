@@ -22,31 +22,30 @@ export class RewardsToApproveComponent implements OnInit {
   constructor(private http: HttpClient, private playerService: PlayerService) { }
 
   ngOnInit() {
-    this.players = this.playerService.players;
+    this.players = this.playerService.getListOfPlayers();
     console.log(this.players);
     this.getRewards();
   }
 
   getRewards() {
     this.http.get<Reward[]>('http://localhost:8085/rewards/getAllRewardsToApprove', {}).subscribe(data => {
-    
-
       for (let d of data) {
         const split = d.dateOfReward.split("T");
         console.log(split[0]);
         d.dateOfReward = split[0];
         this.rewardsToApprove = data;
-      
       }
       let counter = 0;
- 
-      for (let p of this.players) {
-        for (let i=0; i<this.rewardsToApprove.length; i++) { 
-          if (p.idplayer == this.rewardsToApprove[i].idplayerGiverFK) {
+
+      for (let i = 0; i < this.rewardsToApprove.length; i++) {
+        console.log("linha 41");
+        for (let p of this.players) {
+          console.log("linha 43");
+          if (this.rewardsToApprove[i].idplayerGiverFK == p.idplayer) {
             console.log(p.userName);
             this.rewardsToApprove[i].idplayerGiverFK = p.userName;
             console.log(p.userName);
-          } if (p.idplayer == this.rewardsToApprove[i].idplayerReceiverFK) {
+          } if (this.rewardsToApprove[i].idplayerReceiverFK == p.idplayer) {
             this.rewardsToApprove[i].idplayerReceiverFK = p.userName;
             console.log(p.userName);
           }
@@ -54,24 +53,24 @@ export class RewardsToApproveComponent implements OnInit {
       }
       //console.log(this.idAndNameOfPlayers);
     });
-    for (let r of this.rewardsToApprove) {
+    /*for (let r of this.rewardsToApprove) {
       this.searchName(r);
       console.log(this.searchName(r));
-    }
+    }*/
   }
 
-  searchName(reward: Reward) {
+  /*searchName(reward: Reward) {
     for (let x of this.idAndNameOfPlayers) {
       if (reward.idplayerGiverFK == x.idPlayer) {
         console.log(x.username);
         return x.username;
       }
     }
-  }
+  }*/
 
   check(reward: Reward) {
     this.rewardsApproved.push(reward);
-    console.log(reward);
+    console.log("Reward approved " + reward);
   }
 
   save() {

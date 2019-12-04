@@ -17,39 +17,48 @@ import { SkinService } from '../services/skin.service';
 @Injectable({ providedIn: 'root' })
 export class ClosetComponent implements OnInit {
   player: Player;
+  playerInitialSkins: String[] = [];
+  playerViewingSkins: String[] = [];
   skincolors: Skin[] = [];
   bottoms: Skin[] = [];
   hair: Skin[] = [];
   tops: Skin[] = [];
   shoes: Skin[] = [];
   others: Skin[] = [];
-  currentSkinToBeBought : Skin;
+  currentSkinToBeBought: Skin;
 
   constructor(private session: SessionService, private http: HttpClient, private authService: AuthenticationService,
-    private router: Router, private route: ActivatedRoute, private skinService : SkinService) { }
+    private router: Router, private route: ActivatedRoute, private skinService: SkinService) { }
 
   ngOnInit() {
     this.player = this.session.getPlayerInSession();
     console.log(this.player);
     this.getSkins();
     this.skinService.currentSkinSelected.subscribe(skin => this.currentSkinToBeBought = skin)
+    //this.playerInitialSkins = this.player.imagePath;
+    this.viewSkin(this.currentSkinToBeBought);
+  }
+
+  viewSkin(skin: Skin){
+    //this.playerViewingSkins = this.playerInitialSkins;
+    this.session.getPlayerInSession().changeImage(skin.imagePath, skin.skinType);
   }
 
   getSkins() {
     return new Promise(resolve => {
       this.http.get<Skin[]>('http://localhost:8085/skins/getAll', {}).subscribe(data => {
         for (var d of data) {
-          if (d.skinType == skinType.Bottom || d.skinType == skinType.BottomNull) {
+          if (d.skinType == skinType.Bottom) {
             this.bottoms.push(d);
           } else if (d.skinType == skinType.SkinColor) {
             this.skincolors.push(d);
-          } else if (d.skinType == skinType.Hair || d.skinType == skinType.HairNull) {
+          } else if (d.skinType == skinType.Hair) {
             this.hair.push(d);
-          } else if (d.skinType == skinType.Top || d.skinType == skinType.TopNull) {
+          } else if (d.skinType == skinType.Top) {
             this.tops.push(d);
-          } else if (d.skinType == skinType.Shoes || d.skinType == skinType.ShoesNull) {
+          } else if (d.skinType == skinType.Shoes) {
             this.shoes.push(d);
-          } else if (d.skinType == skinType.Others || d.skinType == skinType.OthersNull) {
+          } else if (d.skinType == skinType.Others) {
             this.others.push(d);
           }
         }
@@ -57,7 +66,7 @@ export class ClosetComponent implements OnInit {
     });
   }
 
-  redirectToBuySkin(){
-    this.router.navigate(['../buy_skin'], {relativeTo: this.route});
+  redirectToBuySkin() {
+    this.router.navigate(['../buy_skin'], { relativeTo: this.route });
   }
 }

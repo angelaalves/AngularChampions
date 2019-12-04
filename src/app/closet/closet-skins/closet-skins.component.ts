@@ -24,7 +24,5 @@ export class ClosetSkinsComponent {
 
   addSkin(){
     this.router.navigate(['/add_skin'], {relativeTo: this.route});
-  }
-
-  
+  }  
 }
