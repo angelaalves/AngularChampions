@@ -16,6 +16,10 @@ export class GuildMasterDetailsButtonsComponent implements OnInit {
   redirectToRewards(){
     this.router.navigate(['/rewards'], {relativeTo: this.route});
   }
+
+  redirectToRewardsToApprove(){
+    this.router.navigate(['/rewards_to_approve'], {relativeTo: this.route});
+  }
  
   redirectToCloset(){
     this.router.navigate(['/closet'], {relativeTo: this.route});

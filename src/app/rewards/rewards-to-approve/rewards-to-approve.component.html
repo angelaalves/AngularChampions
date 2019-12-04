@@ -21,7 +21,7 @@
             </thead>
             <tbody>
                 <tr *ngFor="let r of rewardsToApprove">
-                    <td>{{r.idplayerGiverFK}}</td>
+                    <td (onload)="searchName(r)">{{r.idplayerReceiverFK}}</td>
                     <td>{{r.idplayerReceiverFK}}</td>
                     <td>{{r.dateOfReward}} </td>
                     <td>{{r.justification}}</td>
@@ -34,5 +34,5 @@
             </tbody>
         </table>
         <button type="submit" class="btn btn-primary" id="save" style="margin-right: 1%;" (click)="save()">Save</button>
-    </div>-->
+    </div>
 </div>

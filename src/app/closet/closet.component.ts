@@ -39,17 +39,17 @@ export class ClosetComponent implements OnInit {
     return new Promise(resolve => {
       this.http.get<Skin[]>('http://localhost:8085/skins/getAll', {}).subscribe(data => {
         for (var d of data) {
-          if (d.skinType == skinType.Bottom) {
+          if (d.skinType == skinType.Bottom || d.skinType == skinType.BottomNull) {
             this.bottoms.push(d);
           } else if (d.skinType == skinType.SkinColor) {
             this.skincolors.push(d);
-          } else if (d.skinType == skinType.Hair) {
+          } else if (d.skinType == skinType.Hair || d.skinType == skinType.HairNull) {
             this.hair.push(d);
-          } else if (d.skinType == skinType.Top) {
+          } else if (d.skinType == skinType.Top || d.skinType == skinType.TopNull) {
             this.tops.push(d);
-          } else if (d.skinType == skinType.Shoes) {
+          } else if (d.skinType == skinType.Shoes || d.skinType == skinType.ShoesNull) {
             this.shoes.push(d);
-          } else if (d.skinType == skinType.Others) {
+          } else if (d.skinType == skinType.Others || d.skinType == skinType.OthersNull) {
             this.others.push(d);
           }
         }

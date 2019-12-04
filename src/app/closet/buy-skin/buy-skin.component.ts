@@ -27,6 +27,7 @@ export class BuySkinComponent implements OnInit{
 
   ngOnInit(){
     this.skinService.currentSkinSelected.subscribe(skin => this.currentSkinToBeBought = skin)
+    console.log(this.currentSkinToBeBought);
   }
 
   redirectBackToCloset(){
@@ -34,15 +35,20 @@ export class BuySkinComponent implements OnInit{
   }
 
   buySkin() {
-    const idSkin = this.skinSelectedService.getSkin().idSkin;
-    const idplayer = this.session.getPlayerInSession().idplayer;
 
-    if (this.player.myChampies >= this.skinSelectedService.getSkin().champiesCost && this.player.xp >= this.skinSelectedService.getSkin().minXP) {
-      this.http.post<any>('http://localhost:8085/closet/Create?idSkinFK=' + idSkin + '&idPlayerFk=' + idplayer + '&status=' + status.Active,
+
+    
+    //idSkin -> o valor passado é undefined
+    const idSkin = this.currentSkinToBeBought.idSkin;
+    const idplayer = this.session.getPlayerInSession().idplayer;
+    const statusSkin = status.Active;
+
+    if (this.player.myChampies >= this.currentSkinToBeBought.champiesCost && this.player.xp >= this.currentSkinToBeBought.minXP) {
+      this.http.post<any>('http://localhost:8085/closet/Create?idSkinFK=' + idSkin + '&idPlayerFk=' + idplayer + '&status=' + statusSkin,
         {
           idSkin,
           idplayer,
-          status
+          statusSkin
         }
       ).subscribe();
 

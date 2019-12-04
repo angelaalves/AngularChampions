@@ -6,8 +6,6 @@
 
 *{
   font-family: karmatic-arcade;
-  margin-left: 5%;
-  margin-right: 5%;
   background-color: transparent;
 }
 
@@ -20,19 +18,6 @@ option{
   font-family: pixelmix;
 }
 
-nav {
-  float: left;
-  width: 30%;
-  padding: 20px;
-}
-
-article {
-  float: left;
-  padding: 20px;
-  width: 70%;
-  font-size: 16px;
-}
-
 #save {
   display: inline;
   position: absolute;
@@ -42,16 +27,18 @@ article {
 }
 
 #divLeft {
-  /*width:1000px;*/
-  padding-left: 10vw;
-  height: 30vh;
-  width: 30vw;
-  display:block;
-  float: left;
+  /*width:1000px;
+  padding-left: 10vw; width: 30vw;width:30%;float: center;*/
+  max-height: 30vh;
+  max-width:30vw;
+  display:inline;
+  
 }
+
 #divRight {
-  height: 50vh;
-  width:40vw;
-  display:block;
-  float: left;
-}
+  /*height: 50vh;
+  width:40vw;float: left;width: 70%;
+*/
+  display: inline-block;
+  width:60vw;
+}  

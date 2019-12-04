@@ -1,19 +1,23 @@
 import { Player } from '../shared/player.model';
 import { userType } from '../shared/userType.enum';
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { watchedVideos } from '../shared/watchedVideos.model';
 
-@Injectable()
-export class PlayerService {
+@Injectable({ providedIn: 'root' })
+export class PlayerService implements OnInit {
 
     players: Player[] = [];
     ancients: Player[] = [];
     warriors: Player[] = [];
     guildmasters: Player[] = [];
-    watchedvideos: watchedVideos[];
-    
+    watchedvideos: watchedVideos[] = [];
+
     constructor(private http: HttpClient) { }
+
+    ngOnInit() {
+        this.getPlayers();
+    }
 
     getPlayers() {
         return this.http.get<Player[]>('http://localhost:8085/players/getAll', {}).subscribe(data => {
@@ -33,8 +37,6 @@ export class PlayerService {
         })
     }
 
-
-
     getPlayer(index: number) {
         return this.players[index];
     }
@@ -53,5 +55,9 @@ export class PlayerService {
             console.log(data);
             this.watchedvideos = data;
         });
+    }
+
+    getListOfPlayers() {
+        return this.players;
     }
 }

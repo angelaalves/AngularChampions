@@ -1,17 +1,17 @@
 export class Reward{
-    public idReward: string;
-    public idPlayerGiverFK: string;
-    public idPlayerReceiverFK: string;
+    public idreward: string;
+    public idplayerGiverFK: string;
+    public idplayerReceiverFK: string;
     public champiesGiven: string; 
     public dateOfReward: string; 
     public approved: string; 
     public timeSpent: string; 
     public justification: string;
 
-    constructor(idReward: string, idPlayerGiverFK: string, idPlayerReceiverFK: string,champiesGiven: string, dateOfReward: string, approved: string, timeSpent: string, justification: string){
-        this.idReward=idReward;
-        this.idPlayerGiverFK=idPlayerGiverFK;
-        this.idPlayerReceiverFK=idPlayerReceiverFK;
+    constructor(idreward: string, idplayerGiverFK: string, idplayerReceiverFK: string,champiesGiven: string, dateOfReward: string, approved: string, timeSpent: string, justification: string){
+        this.idreward=idreward;
+        this.idplayerGiverFK=idplayerGiverFK;
+        this.idplayerReceiverFK=idplayerReceiverFK;
         this.champiesGiven=champiesGiven;
         this.dateOfReward=dateOfReward;
         this.approved=approved;
