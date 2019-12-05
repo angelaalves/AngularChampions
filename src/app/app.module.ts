@@ -64,6 +64,7 @@ import { SessionService } from './services/session.service';
 import { GuildmasterPresenterPageComponent } from './guild-master/guildmaster-presenter-page/guildmaster-presenter-page.component';
 import { TableFilterPipe } from './list-users/user-list.pipe';
 import { SkinService } from './services/skin.service';
+import { ConfirmEqualValidatorDirective } from './shared/equal.validator.directive';
 
 
 @NgModule({
@@ -126,7 +127,8 @@ import { SkinService } from './services/skin.service';
     GuildmasterPresenterPageComponent,
     PresenterPageComponent,
     PreviewSkinComponent,
-    TableFilterPipe
+    TableFilterPipe,
+    ConfirmEqualValidatorDirective
   ],
   imports: [
     //NgbModule,
@@ -137,7 +139,7 @@ import { SkinService } from './services/skin.service';
     ReactiveFormsModule,
     BrowserAnimationsModule
   ],
-  providers: [PlayerService,SessionService, ListUsersComponent, TableFilterPipe, SkinService],
+  providers: [PlayerService, SessionService, ListUsersComponent, TableFilterPipe, SkinService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

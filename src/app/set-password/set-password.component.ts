@@ -31,10 +31,17 @@ export class SetPasswordComponent implements OnInit {
     });
   }
 
-  omSubmit(addUserForm: FormGroup){
+  onSubmit(addUserForm: FormGroup){
     console.log(this.setPasswordForm);
-    this.router.navigate(['/ancient_profile'], {relativeTo: this.route});
+   // this.router.navigate(['/ancient_profile'], {relativeTo: this.route});
   }
+
+  //checkPasswords(check: FormGroup){
+   // let pass = check.get('newPassword').value;
+   // let confirmPass = check.get('confirmPassword').value;
+ // return pass === confirmPass ? null : { notSame: true }     
+//}
+
 
   changePassword(setPasswordForm: FormGroup) {
     (<FormArray>this.setPasswordForm.get('newPassword')).push(

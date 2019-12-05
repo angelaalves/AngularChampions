@@ -23,12 +23,16 @@ export class ChangePasswordComponent implements OnInit {
     )
   }
 
+ 
+
   onSubmit(form: NgForm){
     if (!form.valid) {
       return;
     }
     const player = this.playerService.getPlayer(1);
 
+    const password = form.value.password;
+    
     const newPassword=form.value.newPassword;
     console.log(form.value);
 
@@ -59,7 +63,7 @@ export class ChangePasswordComponent implements OnInit {
 
   submit(addUserForm: FormGroup){
     console.log(this.changePasswordForm);
-    this.router.navigate(['/ancient_profile'], {relativeTo: this.route});
+   // this.router.navigate(['/ancient_profile'], {relativeTo: this.route});
   }
 
   changePassword(changePasswordForm: FormGroup) {

@@ -14,6 +14,6 @@ export class GuildMasterDefinitionsComponent implements OnInit {
   }
 
   redirectChangePassword(){
-    this.router.navigate(['/change_password'], {relativeTo: this.route});
+    this.router.navigate(['/set_password'], {relativeTo: this.route});
   }
 }
