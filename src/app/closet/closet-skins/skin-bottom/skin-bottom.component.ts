@@ -31,14 +31,14 @@ export class SkinBottomComponent implements OnInit {
   }
 
   skinSelected(skinSelected: Skin) {
-    console.log(this.playerViewingSkins);
+    console.log("before: "+this.playerViewingSkins);
     this.playerViewingSkins = this.playerInitialSkins;
-    console.log(this.playerViewingSkins);
+    console.log("after: "+this.playerViewingSkins);
     console.log("image path: " + skinSelected.imagePath + " skin type: "+ skinSelected.skinType);
     this.changeImage(skinSelected.imagePath, skinSelected.skinType);
     console.log("player viewing after update: " + this.playerViewingSkins);
     this.skinService.updateSkin(skinSelected);
-    this.skinService.setArraySkin(this.playerViewingSkins);
+    //this.skinService.setArraySkin(this.playerViewingSkins);
     //this.router.navigate(['../buy_skin'], {relativeTo: this.route});
   }
 

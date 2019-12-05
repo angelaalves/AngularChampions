@@ -8,20 +8,20 @@ export class SkinService {
     private skin = new BehaviorSubject<Skin>(new Skin("", "", "", "", "", skinType.Bottom));
     currentSkinSelected = this.skin.asObservable();
 
-    private s : String[] = ['','']
+    /*private s : String[] = ['','','']
     private skinPaths = new BehaviorSubject<String[]>(this.s);
-    chosenSkins = this.skinPaths.asObservable();
+    chosenSkins = this.skinPaths.asObservable();*/
 
     updateSkin(skin: Skin) {
         this.skin.next(skin);
         return skin;
     }
 
-    getArraySkin(){
+    /*getArraySkin(){
         return this.skinPaths;
     }
 
     setArraySkin(paths: String[]){
         this.skinPaths.next(paths);
-    }
+    }*/
 }
