@@ -10,13 +10,13 @@ export class Player {
     public userType: userType;
     public email: string;
     public password: string;
-    public imagePath: String[];
+    public imagePath: string[];
     public xp: string;
     public champiesToGive: string;
     public myChampies: string;
     public status: status;
 
-    constructor(idPlayer: string, UserName: string, email: string, password: string, imagePath: String[], xp: string, ChampiesToGive: string, MyChampies: string, userType: userType, gender: gender, status: status) {
+    constructor(idPlayer: string, UserName: string, email: string, password: string, imagePath: string[], xp: string, ChampiesToGive: string, MyChampies: string, userType: userType, gender: gender, status: status) {
         this.idplayer = idPlayer;
         this.userName = UserName;
         this.email = email;

@@ -17,6 +17,8 @@ import { SkinService } from '../services/skin.service';
 @Injectable({ providedIn: 'root' })
 export class ClosetComponent implements OnInit {
   player: Player;
+  playerInitialSkins: String[] = [];
+  playerViewingSkins: String[] = [];
   skincolors: Skin[] = [];
   bottoms: Skin[] = [];
   hair: Skin[] = [];
@@ -40,7 +42,6 @@ export class ClosetComponent implements OnInit {
   viewSkin(skin: Skin){
     //this.playerViewingSkins = this.playerInitialSkins;
     this.session.getPlayerInSession().changeImage(skin.imagePath, skin.skinType);
-    this.player.imagePath=this.skinService.getArraySkin().getValue();
   }
 
   getSkins() {
