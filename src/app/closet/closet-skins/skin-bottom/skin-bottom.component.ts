@@ -15,9 +15,8 @@ import { skinType } from 'src/app/shared/skinType.enum';
 @Injectable({ providedIn: 'root' })
 export class SkinBottomComponent implements OnInit {
   @Input() bottoms: Skin[];
-  currentSkinToBeBought: Skin;
-  playerInitialSkins: string[] = [];
-  playerViewingSkins: string[] = [];
+  playerInitialSkins: String[] = [];
+  playerViewingSkins: String[] = [];
 
   constructor(private router: Router, private route: ActivatedRoute, private skinSelectedService: SkinSelectedService,
     private sessionService: SessionService, private skinService: SkinService) { }
@@ -25,25 +24,26 @@ export class SkinBottomComponent implements OnInit {
   ngOnInit() {
     this.playerInitialSkins = this.sessionService.playerSession.imagePath;
     this.playerViewingSkins = this.playerInitialSkins;
-    this.skinSelected(this.currentSkinToBeBought);
+    
+    
+    
+    //this.skinSelected(this.currentSkinToBeBought);
   }
 
   skinSelected(skinSelected: Skin) {
+    console.log(this.playerViewingSkins);
     this.playerViewingSkins = this.playerInitialSkins;
-    this.skinSelectedService.addSkin(skinSelected);
-    console.log(skinSelected.imagePath);
-
-    //duplicado da linha 32
-    //this.skinService.currentSkinSelected.subscribe(skin => this.currentSkinToBeBought = skin)
-    //this.sessionService.getPlayerInSession().changeImage(skinSelected.imagePath, skinSelected.skinType);
+    console.log(this.playerViewingSkins);
+    console.log("image path: " + skinSelected.imagePath + " skin type: "+ skinSelected.skinType);
     this.changeImage(skinSelected.imagePath, skinSelected.skinType);
-    this.skinService.updateSkin(this.currentSkinToBeBought);
-    this.sessionService.playerSession.imagePath = this.playerViewingSkins;
-
+    console.log("player viewing after update: " + this.playerViewingSkins);
+    this.skinService.updateSkin(skinSelected);
+    this.skinService.setArraySkin(this.playerViewingSkins);
     //this.router.navigate(['../buy_skin'], {relativeTo: this.route});
   }
 
   changeImage(imgPath: string, type: skinType) {
+    console.log("Image path: "+ imgPath);
     let index;
     if (skinType.Hair == type) {
       index = 0;
