@@ -17,13 +17,12 @@ import { skinType } from 'src/app/shared/skinType.enum';
 @Injectable({ providedIn: 'root' })
 export class SkinTopComponent implements OnInit {
   @Input() tops: Skin[];
-  @Input() player: Player;
   currentUserSkins: Skin[];
   currentSkinToBeBought : Skin;
   playerInitialSkins: string[] = [];
   playerViewingSkins: string[] = [];
 
-  constructor(private session: SessionService, private router: Router, private route: ActivatedRoute, private http: HttpClient, private skinSelectedService: SkinSelectedService, 
+  constructor(private router: Router, private route: ActivatedRoute, private skinSelectedService: SkinSelectedService, 
     private sessionService: SessionService, private skinService : SkinService) { }
 
   ngOnInit() {

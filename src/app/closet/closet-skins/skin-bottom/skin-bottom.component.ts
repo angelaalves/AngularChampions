@@ -23,10 +23,9 @@ export class SkinBottomComponent implements OnInit {
     private sessionService: SessionService, private skinService: SkinService) { }
 
   ngOnInit() {
-    //this.bottoms=this.previewSkin.skinSelected();
     this.playerInitialSkins = this.sessionService.playerSession.imagePath;
     this.playerViewingSkins = this.playerInitialSkins;
-    //this.skinSelected(this.currentSkinToBeBought);
+    this.skinSelected(this.currentSkinToBeBought);
   }
 
   skinSelected(skinSelected: Skin) {

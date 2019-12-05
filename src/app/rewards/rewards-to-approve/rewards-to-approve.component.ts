@@ -35,7 +35,6 @@ export class RewardsToApproveComponent implements OnInit {
         d.dateOfReward = split[0];
         this.rewardsToApprove = data;
       }
-      let counter = 0;
 
       for (let i = 0; i < this.rewardsToApprove.length; i++) {
         console.log("linha 41");
@@ -51,40 +50,19 @@ export class RewardsToApproveComponent implements OnInit {
           }
         }
       }
-      //console.log(this.idAndNameOfPlayers);
     });
-    /*for (let r of this.rewardsToApprove) {
-      this.searchName(r);
-      console.log(this.searchName(r));
-    }*/
   }
 
-  /*searchName(reward: Reward) {
-    for (let x of this.idAndNameOfPlayers) {
-      if (reward.idplayerGiverFK == x.idPlayer) {
-        console.log(x.username);
-        return x.username;
-      }
-    }
-  }*/
-
   check(reward: Reward) {
+    const obj = JSON.stringify(reward);
+    console.log(this.rewardsApproved.push(reward));
     this.rewardsApproved.push(reward);
-    console.log("Reward approved " + reward);
+    console.log("Reward approved " + obj);
   }
 
   save() {
-    //let counter = -1;
     for (let reward of this.rewardsApproved) {
-      /*counter++;
-      //removes the now approved reward from the rewards to approve array
-      if (reward.idReward == reward.idReward) {
-        this.rewardsToApprove.slice(counter, 1);
-      }*/
       const idReward = reward.idreward;
-
-
-      //valor passado no pedido http fica undefined
       this.http.post<any>('http://localhost:8085/rewards/Approve?idReward=' + idReward,
         { idReward }).subscribe(data => {
           console.log(data);

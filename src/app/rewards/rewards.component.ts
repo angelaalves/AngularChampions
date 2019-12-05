@@ -2,8 +2,6 @@ import { Component, OnInit, Injectable } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
-import { Reward } from '../shared/reward.model';
-import { formatDate } from '@angular/common';
 import { Player } from '../shared/player.model';
 import { RewardService } from '../services/reward.service';
 import { SessionService } from '../services/session.service';

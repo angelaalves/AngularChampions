@@ -15,29 +15,29 @@ import { SkinService } from 'src/app/services/skin.service';
 })
 
 @Injectable({ providedIn: 'root' })
-export class BuySkinComponent implements OnInit{
+export class BuySkinComponent implements OnInit {
   player: Player;
   activeSkins: Skin[] = [];
-  currentSkinToBeBought : Skin;
+  currentSkinToBeBought: Skin;
 
   constructor(private router: Router, private route: ActivatedRoute, private http: HttpClient, private session: SessionService,
-     private skinSelectedService: SkinSelectedService, private skinService : SkinService) {
+    private skinSelectedService: SkinSelectedService, private skinService: SkinService) {
     this.player = this.session.getPlayerInSession();
   }
 
-  ngOnInit(){
+  ngOnInit() {
     this.skinService.currentSkinSelected.subscribe(skin => this.currentSkinToBeBought = skin)
     console.log(this.currentSkinToBeBought);
   }
 
-  redirectBackToCloset(){
-    this.router.navigate(['../closet'], {relativeTo: this.route});
+  redirectBackToCloset() {
+    this.router.navigate(['../closet'], { relativeTo: this.route });
   }
 
   buySkin() {
 
 
-    
+
     //idSkin -> o valor passado é undefined
     const idSkin = this.currentSkinToBeBought.idSkin;
     const idplayer = this.session.getPlayerInSession().idplayer;
@@ -59,7 +59,7 @@ export class BuySkinComponent implements OnInit{
       this.http.get<Skin[]>('http://localhost:8085/closet/activeSkins?idPlayerFK=' + idplayer, {}).subscribe(
         resData => {
           this.activeSkins = resData;
-        
+
         }
       );
 
@@ -69,6 +69,6 @@ export class BuySkinComponent implements OnInit{
         }
       }
     }
-    this.router.navigate(['../closet'], {relativeTo: this.route});
+    this.router.navigate(['../closet'], { relativeTo: this.route });
   }
 }
