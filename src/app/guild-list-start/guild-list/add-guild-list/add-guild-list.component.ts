@@ -37,8 +37,8 @@ export class AddGuildListComponent implements OnInit {
       'password': new FormControl(password, Validators.required)
     });
   }
-
-  /* addGuildMaster(){
+/*
+  addGuildMaster(){
     this.guildService.getPlayer();
     
     if (this.x.style.display === "none" && this.y.style.display === "block" && this.z.style.display === "block") {

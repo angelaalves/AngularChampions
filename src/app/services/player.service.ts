@@ -19,7 +19,6 @@ export class PlayerService {
 
     getPlayers() {
         return this.http.get<Player[]>('http://localhost:8085/players/getAll', {}).subscribe(data => {
-            console.log(data);
             this.players = data;
             for (let i = 0; i < this.players.length; i++) {
                 if (this.players[i].userType == userType.Warrior) {
