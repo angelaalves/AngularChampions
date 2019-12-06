@@ -6,6 +6,7 @@ import { LoginComponent } from '../login/login.component';
 export class SessionService implements OnInit{
     playerSession: Player;
     login: LoginComponent;
+
     ngOnInit() {
         /*
         const playerData: Player=JSON.parse(localStorage.getItem('playerslogged'));
@@ -16,11 +17,6 @@ export class SessionService implements OnInit{
         this.playerSession=new Player(playerData.idplayer, playerData.userName, playerData.email, playerData.password, playerData.imagePath, playerData.xp, playerData.champiesToGive, playerData.myChampies, playerData.userType, playerData.gender, playerData.status)
     */
     }
-    
-    
-    constructor() {
-    }
-
     openSession(player:Player){
         this.playerSession=player; 
     }
