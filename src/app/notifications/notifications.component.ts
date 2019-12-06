@@ -34,35 +34,18 @@ export class NotificationsComponent implements OnInit {
       console.log("idsofnoti ");
       console.log(idsofnoti);
       this.http.get<NotificationsReceivers[]>('http://localhost:8085/notificationreceivers/Get?idNotificationReceiver=' + idsofnoti).subscribe(dataaux => {
-
         const notificationnowseen = dataaux[0];
-          const idNotificationReceiver = notificationnowseen.idnotificationReceiver;
-          console.log("notificationnowseen.idnotificationReceiver");
-          console.log(notificationnowseen.idnotificationReceiver);
-          const idPlayerReceiverFK = notificationnowseen.idplayerReceiverFK;
-          console.log("notificationnowseen.idplayerReceiverFK");
-          console.log(notificationnowseen.idplayerReceiverFK);
-          const ID_Notification_FK = notificationnowseen.idnotificationFK;
-          console.log("notificationnowseen.idnotificationFK");
-          console.log(notificationnowseen.idnotificationFK);
-          const ID_Guild_FK = notificationnowseen.idguildFK;
-          console.log("notificationnowseen.idguildFK");
-          console.log(notificationnowseen.idguildFK);
-          const notificationSeen = "1";
-          console.log("notificationSeen");
-          console.log(notificationSeen);
-
-
-          this.http.post<NotificationsReceivers>('http://localhost:8085/notificationreceivers/Update?idNotificationReceiver='
-            + idNotificationReceiver + '&idPlayerReceiverFK=' + idPlayerReceiverFK +
-            '&ID_Notification_FK=' + ID_Notification_FK + '&ID_Guild_FK=' + ID_Guild_FK + '&notificationSeen=' + notificationSeen,
-            { idNotificationReceiver, idPlayerReceiverFK, ID_Notification_FK, ID_Guild_FK, notificationSeen }).subscribe(resData => {
-              console.log("Resdata");
-              console.log(resData);
-            });
-      
+        const idNotificationReceiver = notificationnowseen.idnotificationReceiver;
+        const idPlayerReceiverFK = notificationnowseen.idplayerReceiverFK;
+        const ID_Notification_FK = notificationnowseen.idnotificationFK;
+        const ID_Guild_FK = notificationnowseen.idguildFK;
+        const notificationSeen = "1";
+        this.http.post<NotificationsReceivers>('http://localhost:8085/notificationreceivers/Update?idNotificationReceiver='
+          + idNotificationReceiver + '&idPlayerReceiverFK=' + idPlayerReceiverFK +
+          '&ID_Notification_FK=' + ID_Notification_FK + '&ID_Guild_FK=' + ID_Guild_FK + '&notificationSeen=' + notificationSeen,
+          { idNotificationReceiver, idPlayerReceiverFK, ID_Notification_FK, ID_Guild_FK, notificationSeen }).subscribe(resData => {
+          });
       });
-
     }
     this.router.navigate(['../ancient_profile'], { relativeTo: this.route });
   }
@@ -70,7 +53,7 @@ export class NotificationsComponent implements OnInit {
 
   getNotifications() {
     this.notviewed = [];
-    this.putview=[];
+    this.putview = [];
     this.http.get<NotificationsReceivers[]>('http://localhost:8085/notificationreceivers/Get?idPlayerReceiverFK=' + this.session.playerSession.idplayer).subscribe(data => {
       this.notificationreceiver = data;
       this.notificationids = [];
@@ -78,22 +61,11 @@ export class NotificationsComponent implements OnInit {
         if (noti.notificationSeen == "false") {
           this.notificationids.push(noti.idnotificationFK);
           this.putview.push(noti.idnotificationReceiver);
-          console.log("IOd da notificação");
-          console.log(noti.idnotificationFK);
         }
       }
-      console.log("notifications");
-      console.log(this.notificationreceiver);
-      console.log(this.notificationreceiver[0].idnotificationFK)
-
       for (let id of this.notificationids) {
-        console.log(id);
         this.http.get<Notification[]>('http://localhost:8085/notifications/Get?ID_Notification=' + id).subscribe(data => {
-
-          //falta a filtragem d o not viwed
           this.notviewed.push(data[0]);
-          console.log("notifications not viewed");
-          console.log(this.notviewed);
         });
       }
 
