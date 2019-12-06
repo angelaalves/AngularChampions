@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { GuildListService } from 'src/app/services/guild-list.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router, ActivatedRoute, Params } from '@angular/router';
+import { Player } from 'src/app/shared/player.model';
+import { PlayerService } from 'src/app/services/player.service';
 
 @Component({
   selector: 'app-add-guild-list',
@@ -10,9 +12,13 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 })
 export class AddGuildListComponent implements OnInit {
   addGuildMasterForm: FormGroup;
+  guildMasters: Player[];
+  warriors: Player[];
   x; y; z;
 
-  constructor(private guildService: GuildListService, private router: Router, private route: ActivatedRoute) { }
+  constructor(private guildService: GuildListService, private router: Router, private route: ActivatedRoute, private playerService: PlayerService) { 
+    
+  }
 
   ngOnInit() {
     this.route.params
@@ -21,6 +27,8 @@ export class AddGuildListComponent implements OnInit {
         this.initForm();
       }
     ); 
+    this.guildMasters=this.playerService.getGuildMasters();
+    this.warriors=this.playerService.getWarriors();
     this.x = document.getElementById("buttonAddPlayer");
     this.y = document.getElementById("addButton");
     this.z = document.getElementById("createGuildMasterForm");
@@ -37,7 +45,7 @@ export class AddGuildListComponent implements OnInit {
       'password': new FormControl(password, Validators.required)
     });
   }
-/*
+
   addGuildMaster(){
     this.guildService.getPlayer();
     
@@ -59,5 +67,5 @@ export class AddGuildListComponent implements OnInit {
   submit(){
     this.router.navigate(['/ancient_profile'], {relativeTo: this.route});
   }
-  */
+  
 }
