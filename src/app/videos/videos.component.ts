@@ -27,10 +27,13 @@ export class VideosComponent implements OnInit {
   public springvideos: Video[];
 
   public watchedvideos: watchedVideos[];
-
+  public idwatchedvideos: String[];
 
   public videoswatched: Video[];
 
+
+  public videostocheck: Video[];
+  public videostouncheck: Video[];
 
   @Input() totaljava: number;
   @Input() totalangular: number;
@@ -57,14 +60,19 @@ export class VideosComponent implements OnInit {
     }
     
   }*/
-
+  hasvideo(video: Video) {
+    for (let v of this.videoswatched) {
+      if (v === video) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+  }
   allVideos(): Video[] {
 
     this.http.get<Video[]>('http://localhost:8085/videos/getAll').subscribe(data => {
-
-
       this.videos = data;
-      console.log(this.videos);
       this.videosbytopic();
     });
     return this.videos;
@@ -96,59 +104,61 @@ export class VideosComponent implements OnInit {
     }
 
   }
-
+  /// Watched videos e não na vidfeos
   getWatchedVideos() {
-    console.log(this.session.playerSession.idplayer);
+    this.watchedvideos = [];
+    this.videoswatched = [];
+    this.idwatchedvideos = [];
     this.http.get<watchedVideos[]>('http://localhost:8085/watchedVideos/Get?idPlayerFK=' + this.session.playerSession.idplayer).subscribe(data => {
       this.watchedvideos = data;
-
-      console.log("getwatchedvideos");
-      console.log(this.watchedvideos);
-
+      
+      for (let aux of this.watchedvideos) {
+        console.log("Watched videos   "+aux.idvideoFK);
+        this.idwatchedvideos.push(aux.idvideoFK);
+      }
       for (let wv of this.watchedvideos) {
-        this.http.get<Video[]>('http://localhost:8085/videos/Get?idVideo=' + wv.idVideoFK).subscribe(res => {
+        this.http.get<Video[]>('http://localhost:8085/videos/Get?idVideo=' + wv.idvideoFK).subscribe(res => {
           this.videoswatched.push(res[0]);
-          console.log("videoswatched");
-          console.log(this.videoswatched);
         });
       }
 
     });
 
   }
-  onSubmit(form: NgForm) {
-    if (!form.valid) {
-      return;
-    }
-  }
-
-  private initForm() {
-
-    this.videoForm = new FormGroup({
-
-    });
-  }
-
-
-
-
 
   Save() {
-    this.myFunction();
+    for (let video of this.videostocheck) {
+      const id = video.idvideo;
+      const idplayer = this.session.playerSession.idplayer;
+      this.http.post<any>('http://localhost:8085/watchedVideos/Create?idVideoFK=' + id + '&userName=' + idplayer,
+        {
+          id,
+          idplayer
+        }).subscribe(data => {
+        });
+    }
+
+    for (let videoU of this.videostouncheck) {
+      const id = videoU.idvideo;
+      const idplayer = this.session.playerSession.idplayer;
+      this.http.post<any>('http://localhost:8085/watchedVideos/Delete?idVideoFK=' + id + '&userName=' + idplayer,
+        {
+          id,
+          idplayer
+        }).subscribe(data => {
+        });
+    }
+
   }
 
-  myFunction() {
-    var checkBox = <HTMLInputElement>document.getElementById("index");
-    if (checkBox.checked == true) {
-
-      //Adiciona na lista de watched
-      console.log("Watched");
-
-    } else {
-
-      //Retira da lista de watched
-      console.log("not Watched");
-    }
+  check(video: Video) {
+    const obj = JSON.stringify(video);
+    console.log("inicio do check " + video + " + obj " + obj);
+    this.videostocheck.push(video);
+    console.log("fim do check "+this.videostocheck.push(video));
+  }
+  uncheck(video: Video) {
+    this.videostouncheck.push(video);
   }
 
 }

@@ -57,4 +57,14 @@ export class PlayerService {
     getListOfPlayers() {
         return this.players;
     }
+
+    getWarriors(){
+        return this.warriors;
+    }
+    getGuildMasters(){
+        return this.guildmasters;
+    }
+    getAncients(){
+        return this.ancients;
+    }
 }
