@@ -19,7 +19,7 @@ export class RewardsToApproveComponent implements OnInit {
   public players: Player[] = [];
   public idAndNameOfPlayers: IDToUsername[] = [];
 
-  constructor(private http: HttpClient, private playerService: PlayerService) { }
+  constructor(private http: HttpClient, private playerService: PlayerService) {}
 
   ngOnInit() {
     this.players = this.playerService.getListOfPlayers();
@@ -70,5 +70,6 @@ export class RewardsToApproveComponent implements OnInit {
           console.log(data);
         });
     }
+    this.getRewards();
   }
 }

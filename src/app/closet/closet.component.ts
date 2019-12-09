@@ -51,16 +51,21 @@ export class ClosetComponent implements OnInit {
     this.player = this.session.getPlayerInSession();
     this.initialSkins = this.session.getPlayerInSession().imagePath;
     this.getSkins();
+    this.newViewingSkins = this.player.imagePath;
+    console.log("array de skins novas " + this.player.imagePath);
+
+    /**/
+    this.skinService.currentSkinSelected.subscribe(skin => this.currentSkinToBeBought = skin);
+    this.skinService.newViewingSkins.subscribe(skinPaths => this.newViewingSkins = skinPaths);
     this.newViewingSkins = this.skinService.getArraySkin().getValue();
-    console.log("array de skins novas " + this.skinService.getArraySkin().getValue());
   }
 
   viewSkin(skin: Skin) {
     //this.playerViewingSkins = this.playerInitialSkins;
     this.session.getPlayerInSession().changeImage(skin.imagePath, skin.skinType);
     console.log(skin.imagePath, skin.skinType);
-    const obj2 = JSON.parse('{"idSkin": this.closetSkinSelected.idSkin, "skinName": this.closetSkinSelected.skinName, "imagePath": this.closetSkinSelected.imagePath,"minXP": this.closetSkinSelected.minXP, "champiesCost": this.closetSkinSelected.champiesCost, "skinType": this.closetSkinSelected.skinType}');
-    console.log("json parse " + obj2);
+    //const obj2 = JSON.parse('{"idSkin": this.closetSkinSelected.idSkin, "skinName": this.closetSkinSelected.skinName, "imagePath": this.closetSkinSelected.imagePath,"minXP": this.closetSkinSelected.minXP, "champiesCost": this.closetSkinSelected.champiesCost, "skinType": this.closetSkinSelected.skinType}');
+    //console.log("json parse " + obj2);
     //this.player.imagePath=this.skinService.getArraySkin().getValue();
   }
 
@@ -95,6 +100,6 @@ export class ClosetComponent implements OnInit {
   }
 
   resetToInitialSkins() {
-    this.newViewingSkins=this.initialSkins;
+    this.session.playerSession.resetImage();
   }
 }

@@ -50,4 +50,12 @@ export class Player {
         }
         this.imagePath.splice(Number(index), 1, imgPath);
     }
+    resetImage(){
+        var playerData: Player=JSON.parse(localStorage.getItem('playerlogged'));
+        if(!playerData){
+            return;
+        } else {
+            this.imagePath=playerData.imagePath;
+        }
+    }
 }
