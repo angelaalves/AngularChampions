@@ -21,19 +21,14 @@ export class VideosComponent implements OnInit {
 
 
   public videos: Video[];
-
   public javavideos: Video[];
   public angularvideos: Video[];
   public springvideos: Video[];
-
-  public watchedvideos: watchedVideos[];
-  public idwatchedvideos: String[];
-
-  public videoswatched: Video[];
-
-
-  public videostocheck: Video[];
-  public videostouncheck: Video[];
+  public watchedVideosByPlayer: watchedVideos[];
+  public idOfVideosWatchedByPlayer: String[];
+  public videosWatchedByPlayer: Video[];
+  public idOfVideosToCheck: String[];
+  public idOfVideosToUncheck: String[];
 
   @Input() totaljava: number;
   @Input() totalangular: number;
@@ -50,21 +45,18 @@ export class VideosComponent implements OnInit {
 
   }
 
-  /*check(watchedVideo: watchedVideos,evt: Event){
-    var target = evt.target;
-    if(target.checked){
-      this.watchedvideos.push(watchedVideo);
-    console.log(this.watchedvideos);
-    }else if(!target.checked){
-      this.watchedvideos.slice
-    }
-    
-  }*/
+
   hasvideo(video: Video) {
-    for (let v of this.videoswatched) {
-      if (v === video) {
+    const obj = JSON.stringify(video);
+   
+    for (let v of this.videosWatchedByPlayer) { 
+  
+      console.log("videosWatchedByPlayer: "+ v);
+      if (v == video) {
+        console.log("Has video = true: "+v);
         return true;
       } else {
+        console.log("Has video = false: "+v);
         return false;
       }
     }
@@ -104,21 +96,18 @@ export class VideosComponent implements OnInit {
     }
 
   }
-  /// Watched videos e não na vidfeos
   getWatchedVideos() {
-    this.watchedvideos = [];
-    this.videoswatched = [];
-    this.idwatchedvideos = [];
+    this.videosWatchedByPlayer = [];
+    this.watchedVideosByPlayer = [];
+    this.idOfVideosWatchedByPlayer = [];
     this.http.get<watchedVideos[]>('http://localhost:8085/watchedVideos/Get?idPlayerFK=' + this.session.playerSession.idplayer).subscribe(data => {
-      this.watchedvideos = data;
-      
-      for (let aux of this.watchedvideos) {
-        console.log("Watched videos   "+aux.idvideoFK);
-        this.idwatchedvideos.push(aux.idvideoFK);
-      }
-      for (let wv of this.watchedvideos) {
-        this.http.get<Video[]>('http://localhost:8085/videos/Get?idVideo=' + wv.idvideoFK).subscribe(res => {
-          this.videoswatched.push(res[0]);
+      const obj = JSON.stringify(data);  
+    this.watchedVideosByPlayer = data;
+      console.log(this.watchedVideosByPlayer);
+      for (let aux of this.watchedVideosByPlayer) {
+        this.http.get<Video[]>('http://localhost:8085/videos/Get?idVideo=' + aux.idvideoFK).subscribe(res => {
+          const obj2 = JSON.stringify(res);
+          this.videosWatchedByPlayer.push(res[0]);
         });
       }
 
@@ -127,9 +116,11 @@ export class VideosComponent implements OnInit {
   }
 
   Save() {
-    for (let video of this.videostocheck) {
-      const id = video.idvideo;
+    for (let idVideo of this.idOfVideosToCheck) {
+      const id = idVideo;
+      console.log("No save CHECK eu quero o id do video: "+id);
       const idplayer = this.session.playerSession.idplayer;
+      console.log("No save CHEK eu quero o idplayer: "+idplayer);
       this.http.post<any>('http://localhost:8085/watchedVideos/Create?idVideoFK=' + id + '&userName=' + idplayer,
         {
           id,
@@ -138,9 +129,11 @@ export class VideosComponent implements OnInit {
         });
     }
 
-    for (let videoU of this.videostouncheck) {
-      const id = videoU.idvideo;
+    for (let idVideoU of this.idOfVideosToUncheck) {
+      const id = idVideoU;
+      console.log("No save CHECK eu quero o id do video: "+idVideoU);
       const idplayer = this.session.playerSession.idplayer;
+      console.log("No save CHEK eu quero o idplayer: "+idplayer);
       this.http.post<any>('http://localhost:8085/watchedVideos/Delete?idVideoFK=' + id + '&userName=' + idplayer,
         {
           id,
@@ -151,14 +144,19 @@ export class VideosComponent implements OnInit {
 
   }
 
-  check(video: Video) {
+  check(video: String) {
+    this.idOfVideosToCheck=[];
     const obj = JSON.stringify(video);
-    console.log("inicio do check " + video + " + obj " + obj);
-    this.videostocheck.push(video);
-    console.log("fim do check "+this.videostocheck.push(video));
+     console.log("Check "+obj);
+    this.idOfVideosToCheck.push(video);
+   
   }
-  uncheck(video: Video) {
-    this.videostouncheck.push(video);
+  uncheck(video: String) {
+    this.idOfVideosToUncheck=[];
+    const obj = JSON.stringify(video);
+     console.log(" Uncheck "+obj);
+    this.idOfVideosToUncheck.push(video);
+   
   }
 
 }
