@@ -17,11 +17,11 @@
                     <ul class="dropdown-menu" style="width: 300px; margin-left: 3%; background-color: whitesmoke; ">
                         <tr *ngFor="let v of javavideos">
                             <div *ngIf="hasvideo(v)==true">
-                                <input type="checkbox" (click)="uncheck(v)" checked="true">{{ v.videoName }}
+                                <input type="checkbox" (click)="uncheck(v.idvideo)" checked="true">{{ v.videoName }}
                                 {{ v.duration }}<br>
                             </div>
                             <div *ngIf="hasvideo(v)==false">
-                                <input type="checkbox" (click)="check(v)">{{ v.videoName }}
+                                <input type="checkbox" (click)="check(v.idvideo)">{{ v.videoName }}
                                 {{ v.duration }}<br>
                             </div>
                         </tr>
@@ -37,11 +37,11 @@
                     <ul class="dropdown-menu" style="width: 300px; margin-left: 3%; background-color: whitesmoke; ">
                         <tr *ngFor="let v of springvideos ">
                             <div *ngIf="hasvideo(v)==true">
-                                <input type="checkbox" (click)="uncheck(v)" checked="true">{{ v.videoName }}
+                                <input type="checkbox" (click)="uncheck(v.idvideo)" checked="true">{{ v.videoName }}
                                 {{ v.duration }}<br>
                             </div>
                             <div *ngIf="hasvideo(v)==false">
-                                <input type="checkbox" (click)="check(v)">{{ v.videoName }}
+                                <input type="checkbox" (click)="check(v.idvideo)">{{ v.videoName }}
                                 {{ v.duration }}<br>
                             </div>
                         </tr>
@@ -56,11 +56,11 @@
                     <ul class="dropdown-menu" style="width: 300px; margin-left: 3%; background-color: whitesmoke; ">
                         <tr *ngFor="let v of angularvideos ">
                             <div *ngIf="hasvideo(v)==true">
-                                <input type="checkbox" (click)="uncheck(v)" checked="true">{{ v.videoName }}
+                                <input type="checkbox" (click)="uncheck(v.idvideo)" checked="true">{{ v.videoName }}
                                 {{ v.duration }}<br>
                             </div>
                             <div *ngIf="hasvideo(v)==false">
-                                <input type="checkbox" (click)="check(v)">{{ v.videoName }}
+                                <input type="checkbox" (click)="check(v.idvideo)">{{ v.videoName }}
                                 {{ v.duration }}<br>
                             </div>
                         </tr>

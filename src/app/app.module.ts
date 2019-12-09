@@ -32,7 +32,6 @@ import { VideosComponent } from './videos/videos.component';
 import { RewardsToApproveComponent } from './rewards/rewards-to-approve/rewards-to-approve.component';
 import { AddSkinComponent } from './closet/add-skin/add-skin.component';
 import { ListUsersComponent } from './list-users/list-users.component';
-import { EventsElemComponent } from './events/events-elem/events-elem.component';
 import { AuthenticationComponent } from './login/authentication/authentication.component';
 import { HttpClientModule } from '@angular/common/http';
 import { AddEventsComponent } from './events/add-events/add-events.component';
@@ -108,7 +107,6 @@ import { ConfirmEqualValidatorDirective } from './shared/equal.validator.directi
     VideosComponent, 
     AddSkinComponent, 
     ListUsersComponent, 
-    EventsElemComponent,
     VideosComponent, 
     AddSkinComponent,
     AuthenticationComponent,
