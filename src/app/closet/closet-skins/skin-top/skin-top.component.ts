@@ -33,25 +33,25 @@ export class SkinTopComponent implements OnInit {
 
   ngOnInit() {
     this.player = this.session.getPlayerInSession();
+
     console.log(this.player);
+
     this.skinService.currentSkinSelected.subscribe(skin => this.currentSkinToBeBought = skin)
+
     this.playerInitialSkins = this.session.playerSession.imagePath;
+
     console.log("initial skins on init()" + this.playerInitialSkins);
+
     this.playerViewingSkins = this.session.playerSession.imagePath;
-    console.log("viewing skins on init()" + this.playerViewingSkins);
+
+    console.log("viewing skins on init()" + this.playerViewingSkins); 
+
+    console.log(this.player);
   }
 
   skinSelected(skinSelected: Skin) {
-    console.log("before: " + this.playerViewingSkins);
-    this.playerViewingSkins = this.playerInitialSkins;
-    console.log("after: " + this.playerViewingSkins);
-    console.log("image path: " + skinSelected.imagePath + " skin type: " + skinSelected.skinType);
     this.session.playerSession.changeImage(skinSelected.imagePath, skinSelected.skinType);
-    console.log("player viewing after update: " + this.playerViewingSkins);
     this.skinService.updateSkin(skinSelected);
-    this.skinService.setArraySkin(this.playerViewingSkins);
-    this.session.playerSession.imagePath = this.playerViewingSkins;this.closetSkinSelected = skinSelected;
-    this.closet.closetSkinSelected.subscribe(closetSkinSelected => skinSelected = closetSkinSelected);
-    //this.router.navigate(['../buy_skin'], {relativeTo: this.route});
+    this.session.playerSession.imagePath = this.playerViewingSkins;
   }
 }

@@ -4,6 +4,7 @@ import { Skin } from 'src/app/shared/skin.model';
 import { SessionService } from 'src/app/services/session.service';
 import { SkinService } from 'src/app/services/skin.service';
 import { SkinSelectedService } from '../skinSelected.service';
+import { Player } from 'src/app/shared/player.model';
 
 @Component({
   selector: 'app-skin-shoes',
@@ -13,20 +14,35 @@ import { SkinSelectedService } from '../skinSelected.service';
 @Injectable({providedIn: 'root'})
 export class SkinShoesComponent implements OnInit {
   @Input() shoes: Skin[];
+  @Input() player: Player;
   currentSkinToBeBought : Skin;
+  playerViewingSkins: String[] = [];
+  playerInitialSkins: String[] = [];
 
   constructor(private router: Router, private route: ActivatedRoute, private skinSelectedService: SkinSelectedService, 
-    private sessionService: SessionService, private skinService : SkinService) { }
+    private session: SessionService, private skinService : SkinService) { }
 
   ngOnInit() {
+    this.player = this.session.getPlayerInSession();
+
+    console.log(this.player);
+
     this.skinService.currentSkinSelected.subscribe(skin => this.currentSkinToBeBought = skin)
+
+    this.playerInitialSkins = this.session.playerSession.imagePath;
+
+    console.log("initial skins on init()" + this.playerInitialSkins);
+
+    this.playerViewingSkins = this.session.playerSession.imagePath;
+
+    console.log("viewing skins on init()" + this.playerViewingSkins); 
+
+    console.log(this.player);
   }
 
   skinSelected(skinSelected: Skin){
-    this.skinSelectedService.addSkin(skinSelected);
-    console.log(skinSelected.imagePath);
-    this.sessionService.getPlayerInSession().changeImage(skinSelected.imagePath, skinSelected.skinType);
+    this.session.playerSession.changeImage(skinSelected.imagePath, skinSelected.skinType);
     this.skinService.updateSkin(skinSelected);
-    //this.router.navigate(['../buy_skin'], {relativeTo: this.route});
+    this.session.playerSession.imagePath = this.playerViewingSkins;
   }
 }
