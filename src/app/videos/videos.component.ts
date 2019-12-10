@@ -48,18 +48,14 @@ export class VideosComponent implements OnInit {
 
   hasvideo(video: Video) {
     const obj = JSON.stringify(video);
-   
-    for (let v of this.videosWatchedByPlayer) { 
-  
-      console.log("videosWatchedByPlayer: "+ v);
-      if (v == video) {
-        console.log("Has video = true: "+v);
+
+    for (let v of this.videosWatchedByPlayer) {
+
+      if (v.idvideo == video.idvideo) {
+
         return true;
-      } else {
-        console.log("Has video = false: "+v);
-        return false;
       }
-    }
+    } return false;
   }
   allVideos(): Video[] {
 
@@ -100,9 +96,11 @@ export class VideosComponent implements OnInit {
     this.videosWatchedByPlayer = [];
     this.watchedVideosByPlayer = [];
     this.idOfVideosWatchedByPlayer = [];
+    this.idOfVideosToCheck = [];
+    this.idOfVideosToUncheck = [];
     this.http.get<watchedVideos[]>('http://localhost:8085/watchedVideos/Get?idPlayerFK=' + this.session.playerSession.idplayer).subscribe(data => {
-      const obj = JSON.stringify(data);  
-    this.watchedVideosByPlayer = data;
+      const obj = JSON.stringify(data);
+      this.watchedVideosByPlayer = data;
       console.log(this.watchedVideosByPlayer);
       for (let aux of this.watchedVideosByPlayer) {
         this.http.get<Video[]>('http://localhost:8085/videos/Get?idVideo=' + aux.idvideoFK).subscribe(res => {
@@ -116,47 +114,62 @@ export class VideosComponent implements OnInit {
   }
 
   Save() {
-    for (let idVideo of this.idOfVideosToCheck) {
-      const id = idVideo;
-      console.log("No save CHECK eu quero o id do video: "+id);
-      const idplayer = this.session.playerSession.idplayer;
-      console.log("No save CHEK eu quero o idplayer: "+idplayer);
-      this.http.post<any>('http://localhost:8085/watchedVideos/Create?idVideoFK=' + id + '&userName=' + idplayer,
-        {
-          id,
-          idplayer
-        }).subscribe(data => {
-        });
+    if (this.idOfVideosToCheck != undefined) {
+      console.log("Entrei no if 1");
+      for (let idVideo of this.idOfVideosToCheck) {
+        console.log(this.idOfVideosToCheck);
+        const id = idVideo;
+        console.log("No save CHECK eu quero o id do video: " + id);
+        const idplayer = this.session.playerSession.idplayer;
+        console.log("No save CHEK eu quero o idplayer: " + idplayer);
+        this.http.post<any>('http://localhost:8085/watchedVideos/Create?idVideoFK=' + id + '&idPlayerFK=' + idplayer,
+          {
+            id,
+            idplayer
+          }).subscribe(data => {
+            console.log(data);
+          });
+      }
     }
-
-    for (let idVideoU of this.idOfVideosToUncheck) {
-      const id = idVideoU;
-      console.log("No save CHECK eu quero o id do video: "+idVideoU);
-      const idplayer = this.session.playerSession.idplayer;
-      console.log("No save CHEK eu quero o idplayer: "+idplayer);
-      this.http.post<any>('http://localhost:8085/watchedVideos/Delete?idVideoFK=' + id + '&userName=' + idplayer,
-        {
-          id,
-          idplayer
-        }).subscribe(data => {
-        });
+    if (this.idOfVideosToUncheck != undefined) {
+      console.log("Entrei no if 2");
+      for (let idVideoU of this.idOfVideosToUncheck) {
+        console.log(this.idOfVideosToUncheck);
+        const id = idVideoU;
+        console.log("No save CHECK eu quero o id do video: " + idVideoU);
+        const idplayer = this.session.playerSession.idplayer;
+        console.log("No save CHEK eu quero o idplayer: " + idplayer);
+        this.http.post<any>('http://localhost:8085/watchedVideos/Delete?idVideoFK=' + id + '&idPlayerFK=' + idplayer,
+          {
+            id,
+            idplayer
+          }).subscribe(data => {
+            console.log(data);
+          });
+      }
     }
-
+    if (this.session.getPlayerInSession().userType == "Ancient") {
+      this.router.navigate(['/ancient_profile'], { relativeTo: this.route });
+    }
+    if (this.session.getPlayerInSession().userType == "GuildMaster") {
+      this.router.navigate(['/guildmaster_profile'], { relativeTo: this.route });
+    }
+    if (this.session.getPlayerInSession().userType == "Warrior") {
+      this.router.navigate(['/warrior_profile'], { relativeTo: this.route });
+    }
   }
 
   check(video: String) {
-    this.idOfVideosToCheck=[];
     const obj = JSON.stringify(video);
-     console.log("Check "+obj);
+    console.log("Check " + obj);
     this.idOfVideosToCheck.push(video);
-   
+
   }
   uncheck(video: String) {
-    this.idOfVideosToUncheck=[];
     const obj = JSON.stringify(video);
-     console.log(" Uncheck "+obj);
+    console.log(" Uncheck " + obj);
     this.idOfVideosToUncheck.push(video);
-   
+
   }
 
 }
