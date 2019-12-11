@@ -1,5 +1,10 @@
 <div class="scrollmenu" id="style-8" style="margin-bottom: 3%;">
   <div *ngFor="let h of hair" style="display: inline-block;">
-    <img src={{h.imagePath}} (click)="skinSelected(h)" style="width:100px;height:100px;">
+    <div *ngIf="h.imagePath!='../../../../assets/AppImages/None.png'" style="width:100px;height:100px;">
+      <img src={{h.imagePath}} style="width:100px;height:100px;" (click)="skinSelected(h)">
+    </div>
+    <div *ngIf="h.imagePath==='../../../../assets/AppImages/None.png'">
+      <img src={{h.imagePath}} style="width:100px;height:100px;" (click)="skinSelectedNull()">
+    </div>
   </div>
 </div>

@@ -33,29 +33,30 @@ export class Player {
         return this.imagePath[index];
     }
 
-    changeImage(imgPath: string, type: skinType ){
+    changeImage(imgPath: string, type: skinType) {
         let index;
-        if(skinType.Hair==type){
+        if (skinType.Hair == type) {
             index = 0;
-        }else if(skinType.SkinColor==type){
+        } else if (skinType.SkinColor == type) {
             index = 1;
-        }else if (skinType.Top==type){
+        } else if (skinType.Top == type) {
             index = 2;
-        }else if(skinType.Bottom==type){
+        } else if (skinType.Bottom == type) {
             index = 3;
-        }else if(skinType.Shoes==type){
+        } else if (skinType.Shoes == type) {
             index = 4;
-        }else if(skinType.Others==type){
+        } else if (skinType.Others == type) {
             index = 5;
         }
         this.imagePath.splice(Number(index), 1, imgPath);
     }
-    resetImage(){
-        var playerData: Player=JSON.parse(localStorage.getItem('playerlogged'));
-        if(!playerData){
+
+    resetImage() {
+        var playerData: Player = JSON.parse(localStorage.getItem('playerlogged'));
+        if (!playerData) {
             return;
         } else {
-            this.imagePath=playerData.imagePath;
+            this.imagePath = playerData.imagePath;
         }
     }
 }

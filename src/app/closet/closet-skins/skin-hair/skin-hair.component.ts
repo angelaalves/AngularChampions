@@ -5,6 +5,7 @@ import { SkinSelectedService } from '../skinSelected.service';
 import { SkinService } from 'src/app/services/skin.service';
 import { SessionService } from 'src/app/services/session.service';
 import { Player } from 'src/app/shared/player.model';
+import { skinType } from 'src/app/shared/skinType.enum';
 
 @Component({
   selector: 'app-skin-hair',
@@ -42,10 +43,24 @@ export class SkinHairComponent implements OnInit {
   }
 
   skinSelected(skinSelected: Skin) {
+    this.playerViewingSkins=this.playerInitialSkins;
+
     this.session.playerSession.changeImage(skinSelected.imagePath, skinSelected.skinType);
 
     this.skinService.updateSkin(skinSelected);
 
     this.session.playerSession.imagePath = this.playerViewingSkins;
+    this.skinService.setAnySkinSelected(true);
+  }
+
+  
+  skinSelectedNull(){
+    this.playerViewingSkins = this.playerInitialSkins;
+    this.session.playerSession.changeImage("./../../../assets/Hair/HairNull.png", skinType.Hair);
+
+    this.skinService.updateSkin(new Skin("10000","hairNull","./../../../assets/Hair/HairNull.png","0","0",skinType.Hair));
+
+    this.session.playerSession.imagePath = this.playerViewingSkins;
+    this.skinService.setAnySkinSelected(true);
   }
 }

@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { Skin } from '../shared/skin.model';
-import { skinType } from '../shared/skinType.enum';
 
 @Injectable({ providedIn: 'root' })
 export class SkinService {
@@ -12,9 +11,19 @@ export class SkinService {
     private skinPaths = new BehaviorSubject<String[]>(this.s);
     newViewingSkins = this.skinPaths.asObservable();
 
+    private anySkinSelected: boolean;
+
     updateSkin(skin: Skin) {
         this.skin.next(skin);
         return skin;
+    }
+
+    getAnySkinSelected(){
+        return this.anySkinSelected;
+    }
+
+    getSkin(){
+        return this.skin;
     }
 
     getArraySkin() {
@@ -23,5 +32,9 @@ export class SkinService {
 
     setArraySkin(paths: String[]) {
         this.skinPaths.next(paths);
+    }
+
+    setAnySkinSelected(b:boolean){
+        this.anySkinSelected=b;
     }
 }

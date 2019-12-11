@@ -1,4 +1,10 @@
 <div class="scrollmenu" id="style-8" style="margin-bottom: 3%;">
   <div *ngFor="let bottom of bottoms" style="display: inline-block;">
-    <img src={{bottom.imagePath}} style="width:100px;height:100px;" (click)="skinSelected(bottom)"></div>
+    <div *ngIf="bottom.imagePath!='../../../../assets/AppImages/None.png'" style="width:100px;height:100px;">
+      <img src={{bottom.imagePath}} style="width:100px;height:100px;" (click)="skinSelected(bottom)">
+    </div>
+    <div *ngIf="bottom.imagePath==='../../../../assets/AppImages/None.png'">
+      <img src={{bottom.imagePath}} style="width:100px;height:100px;" (click)="skinSelectedNull()">
+    </div>
+  </div>
 </div>

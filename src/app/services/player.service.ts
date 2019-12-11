@@ -13,8 +13,8 @@ export class PlayerService {
     guildmasters: Player[] = [];
     watchedvideos: watchedVideos[] = [];
 
-    constructor(private http: HttpClient) { 
-         this.getPlayers();
+    constructor(private http: HttpClient) {
+        this.getPlayers();
     }
 
     getPlayers() {
@@ -58,13 +58,13 @@ export class PlayerService {
         return this.players;
     }
 
-    getWarriors(){
+    getWarriors() {
         return this.warriors;
     }
-    getGuildMasters(){
+    getGuildMasters() {
         return this.guildmasters;
     }
-    getAncients(){
+    getAncients() {
         return this.ancients;
     }
 }

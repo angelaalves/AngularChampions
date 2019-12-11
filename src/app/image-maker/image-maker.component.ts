@@ -13,6 +13,7 @@ export class ImageMakerComponent implements OnInit {
  @Input() pantsImagePath:string
  @Input() shoesImagePath:string
  @Input() othersImagePath:string
+ @Input() size: number;
  
   constructor() { }
 

@@ -26,7 +26,7 @@ export class BuySkinComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.skinService.currentSkinSelected.subscribe(skin => this.currentSkinToBeBought = skin)
+    this.skinService.currentSkinSelected.subscribe(skin =>{ this.currentSkinToBeBought = skin})
     console.log(this.currentSkinToBeBought);
   }
 
@@ -35,37 +35,41 @@ export class BuySkinComponent implements OnInit {
   }
 
   buySkin() {
-
-
-
-    //idSkin -> o valor passado é undefined
-    const idSkin = this.currentSkinToBeBought.idSkin;
+    console.log(this.currentSkinToBeBought);
+    var idSkin = this.currentSkinToBeBought.idskin;
+    console.log("idSkin "+ idSkin);
     const idplayer = this.session.getPlayerInSession().idplayer;
-    const statusSkin = status.Active;
 
     if (this.player.myChampies >= this.currentSkinToBeBought.champiesCost && this.player.xp >= this.currentSkinToBeBought.minXP) {
-      this.http.post<any>('http://localhost:8085/closet/Create?idSkinFK=' + idSkin + '&idPlayerFk=' + idplayer + '&status=' + statusSkin,
+      this.http.post<any>('http://localhost:8085/closet/Create?idSkinFK=' + idSkin + '&idPlayerFk=' + idplayer + '&status=',
         {
           idSkin,
           idplayer,
-          statusSkin
         }
       ).subscribe();
 
-      const myChampiesAfterBuyingSkin = Number(this.player.myChampies) - Number(this.skinSelectedService.getSkin().champiesCost);
+      this.activeSkins.push(this.currentSkinToBeBought);
 
-      this.http.post<any>('http://localhost:8085/players/Update?idPlayer=' + this.player.idplayer + '&idGuildFK= &userName= &email= &password= &gender= &userType= &xp= &champiesToGive= &myChampies=' + myChampiesAfterBuyingSkin + '&status= ', {}).subscribe();
+      const myChampiesAfterBuyingSkin = Number(this.player.myChampies) - Number(this.currentSkinToBeBought.champiesCost);
 
-      this.http.get<Skin[]>('http://localhost:8085/closet/activeSkins?idPlayerFK=' + idplayer, {}).subscribe(
-        resData => {
-          this.activeSkins = resData;
-
+      this.http.post<any>('http://localhost:8085/players/Update?idPlayer=' + idplayer + '&idGuildFK= &userName= &email= &password= &gender= &userType= &xp= &champiesToGive= &myChampies=' + myChampiesAfterBuyingSkin + '&status= ',
+        {
+          idplayer,
+          myChampiesAfterBuyingSkin
         }
-      );
+      ).subscribe();
 
       for (let activeSkin of this.activeSkins) {
+        const skinID = activeSkin.idskin;
+        const skinStatus = status.Inactive;
         if (activeSkin.skinType === this.skinSelectedService.getSkin().skinType) {
-          this.http.post<any>('http://localhost:8085/closet/Update?idSkinFK=' + activeSkin.idSkin + '&idPlayerFk=' + idplayer + '&status=' + status.Inactive, {});
+          this.http.post<any>('http://localhost:8085/closet/Update?idSkinFK=' + skinID + '&idPlayerFk=' + idplayer + '&status=' + skinStatus,
+            {
+              skinID,
+              idplayer,
+              skinStatus
+            }
+          );
         }
       }
     }

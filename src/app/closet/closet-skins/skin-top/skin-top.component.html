@@ -1,5 +1,11 @@
-<div class="scrollmenu" id="style-8"  style="margin-bottom: 3%;">
+<div class="scrollmenu" id="style-8" style="margin-bottom: 3%;">
     <div *ngFor="let top of tops" style="display: inline-block;">
-        <img src={{top.imagePath}} style="width:100px;height:100px;" (click)="skinSelected(top)">
+        <div *ngIf="(top.imagePath!='../../../../assets/AppImages/None.png') && (playerHasBoughtSkin(top)==false)" style="width:100px;height:100px;">
+            <img src={{top.imagePath}} style="width:100px;height:100px;" (click)="skinSelected(top)">
+            <img src="../../../../assets/AppImages/Forbiden.png" style="max-width:100px; margin-right: auto; margin-left: auto;" (click)="skinSelected(top)">
+        </div>
+        <div *ngIf="top.imagePath==='../../../../assets/AppImages/None.png'" style="max-width:100px;max-height:100px;">
+            <img src={{top.imagePath}} style="max-width:30px;max-height:30px;" (click)="skinSelectedNull()">
+        </div>
     </div>
 </div>

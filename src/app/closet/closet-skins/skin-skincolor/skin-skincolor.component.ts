@@ -41,6 +41,7 @@ export class SkinSkincolorComponent implements OnInit {
   }
 
   skinSelected(skinSelected: Skin){
+    this.playerViewingSkins=this.playerInitialSkins;
     this.session.playerSession.changeImage(skinSelected.imagePath, skinSelected.skinType);
     this.skinService.updateSkin(skinSelected);
     this.session.playerSession.imagePath = this.playerViewingSkins;

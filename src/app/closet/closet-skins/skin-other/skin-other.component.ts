@@ -5,6 +5,7 @@ import { SkinService } from 'src/app/services/skin.service';
 import { SkinSelectedService } from '../skinSelected.service';
 import { SessionService } from 'src/app/services/session.service';
 import { Player } from 'src/app/shared/player.model';
+import { skinType } from 'src/app/shared/skinType.enum';
 
 @Component({
   selector: 'app-skin-other',
@@ -42,8 +43,21 @@ export class SkinOtherComponent implements OnInit {
   }
 
   skinSelected(skinSelected: Skin){
+    this.playerViewingSkins=this.playerInitialSkins;
     this.session.playerSession.changeImage(skinSelected.imagePath, skinSelected.skinType);
     this.skinService.updateSkin(skinSelected);
     this.session.playerSession.imagePath = this.playerViewingSkins;
+    this.skinService.setAnySkinSelected(true);
+  }
+
+  
+  skinSelectedNull(){
+    this.playerViewingSkins = this.playerInitialSkins;
+    this.session.playerSession.changeImage("./../../../assets/Others/OthersNull.png", skinType.Others);
+
+    this.skinService.updateSkin(new Skin("10000","othersNull","./../../../assets/Others/OthersNull.png","0","0",skinType.Others));
+
+    this.session.playerSession.imagePath = this.playerViewingSkins;
+    this.skinService.setAnySkinSelected(true);
   }
 }
