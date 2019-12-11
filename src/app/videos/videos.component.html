@@ -2,75 +2,59 @@
     <button class="btn btn-link" type="button"><img src="../../assets/AppImages/Videos.png" alt="text"
             class="img-responsive"></button>
     <h3 style="text-align: center;">Videos</h3>
+
 </div>
+
 
 <div id="divRight">
-    <div class="navbar">
-        <ul class="list-group">
 
-            <th>
-                <div class="btn-group dropright" appDropdown>
-                    <li class="list-group-item d-flex justify-content-between align-items-center"
-                        style="width: 300px; margin-left: 3%; background-color: whitesmoke; border: 2px solid rgb(32, 32, 32)">
-                        Java {{totaljava}}
-                    </li>
-                    <ul class="dropdown-menu" style="width: 300px; margin-left: 3%; background-color: whitesmoke; ">
-                        <tr *ngFor="let v of javavideos">
-                            <div *ngIf="hasvideo(v)==true">
-                                <input type="checkbox" (click)="uncheck(v.idvideo)" checked="true">{{ v.videoName }}
-                                {{ v.duration }}<br>
-                            </div>
-                            <div *ngIf="hasvideo(v)==false">
-                                <input type="checkbox" (click)="check(v.idvideo)">{{ v.videoName }}
-                                {{ v.duration }}<br>
-                            </div>
-                        </tr>
-                    </ul>
-                </div>
-            </th>
-            <th>
-                <div class="btn-group dropright" appDropdown>
-                    <li class="list-group-item d-flex justify-content-between align-items-center"
-                        style="width: 300px; margin-left: 3%; background-color: whitesmoke; border: 2px solid rgb(32, 32, 32) ">
-                        Spring {{totalspring}}
-                    </li>
-                    <ul class="dropdown-menu" style="width: 300px; margin-left: 3%; background-color: whitesmoke; ">
-                        <tr *ngFor="let v of springvideos ">
-                            <div *ngIf="hasvideo(v)==true">
-                                <input type="checkbox" (click)="uncheck(v.idvideo)" checked="true">{{ v.videoName }}
-                                {{ v.duration }}<br>
-                            </div>
-                            <div *ngIf="hasvideo(v)==false">
-                                <input type="checkbox" (click)="check(v.idvideo)">{{ v.videoName }}
-                                {{ v.duration }}<br>
-                            </div>
-                        </tr>
-                    </ul>
-                </div>
-            </th>
-            <th>
-                <div class="btn-group dropright" appDropdown>
-                    <li class="list-group-item d-flex justify-content-between align-items-center"
-                        style="width: 300px; margin-left: 3%; background-color: whitesmoke; border: 2px solid rgb(32, 32, 32)">
-                        Angular {{totalangular}} </li>
-                    <ul class="dropdown-menu" style="width: 300px; margin-left: 3%; background-color: whitesmoke; ">
-                        <tr *ngFor="let v of angularvideos ">
-                            <div *ngIf="hasvideo(v)==true">
-                                <input type="checkbox" (click)="uncheck(v.idvideo)" checked="true">{{ v.videoName }}
-                                {{ v.duration }}<br>
-                            </div>
-                            <div *ngIf="hasvideo(v)==false">
-                                <input type="checkbox" (click)="check(v.idvideo)">{{ v.videoName }}
-                                {{ v.duration }}<br>
-                            </div>
-                        </tr>
-                    </ul>
-                </div>
-            </th>
-        </ul>
+    <div id="div_filter" style="display: inline-table">
+        <label for="singleSelect">Topic:</label>
+        <select select class="input-sm" name="singleSelect" id="singleSelect"
+            style=" background: whitesmoke; border: 2px solid rgb(65, 126, 218);" [(ngModel)]="topic">
+            <option value="">All</option>
+            <option value="Java">Java</option>
+            <option value="Angular">Angular</option>
+            <option value="Spring">Spring</option>
+        </select>
+    </div>
+    <br>
+    <br>
+    <br>
+    <div class="videoscroll" id="style-8">
+        <table class="table table-bordered">
+
+            <thead style="border: 2px solid rgb(65, 126, 218)">
+                <tr>
+                    <th scope="col">Seen</th>
+                    <th scope="col">Video Name</th>
+                    <th scope="col">Time</th>
+
+                </tr>
+            </thead>
+
+            <tbody style="background-color: whitesmoke; border: 2px solid rgb(65, 126, 218)">
+                <tr *ngFor="let video of videos | tableFilter: topic">
+                    <td *ngIf="hasvideo(video) == true" style="background-color: lightgreen"><input type="checkbox"
+                            (click)="uncheck(v.idvideo)" checked="true"><br></td>
+                    <td *ngIf="hasvideo(video) == true" style="background-color: lightgreen">{{ video.videoName }}</td>
+                    <td *ngIf="hasvideo(video) == true" style="background-color: lightgreen">{{ video.duration }}</td>
+
+
+                </tr>
+
+                <tr *ngFor="let video of videos | tableFilter: topic">
+                    <td *ngIf="hasvideo(video) == false"><input type="checkbox" (click)="check(v.idvideo)"><br></td>
+                    <td *ngIf="hasvideo(video) == false" style="background-color: white">{{ video.videoName }}</td>
+                    <td *ngIf="hasvideo(video) == false">{{ video.duration }}</td>
+                </tr>
+            </tbody>
+
+        </table>
+
 
     </div>
-</div>
-<div id="footer">
-    <button type="submit" class="btn btn-primary" id="save" style="margin-right: 1%;" (click)="Save()">Save</button>
+    <div id="footer">
+        <button type="submit" class="btn btn-primary" id="save" style="margin-right: 1%;" (click)="Save()">Save</button>
+    </div>
 </div>

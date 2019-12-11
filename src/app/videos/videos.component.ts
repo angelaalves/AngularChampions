@@ -20,19 +20,21 @@ export class VideosComponent implements OnInit {
   videoForm: FormGroup;
 
 
-  public videos: Video[];
-  public javavideos: Video[];
-  public angularvideos: Video[];
-  public springvideos: Video[];
+  
+  public Java: Video[];
+  public Angular: Video[];
+  public Spring: Video[];
   public watchedVideosByPlayer: watchedVideos[];
   public idOfVideosWatchedByPlayer: String[];
   public videosWatchedByPlayer: Video[];
   public idOfVideosToCheck: String[];
   public idOfVideosToUncheck: String[];
 
-  @Input() totaljava: number;
-  @Input() totalangular: number;
-  @Input() totalspring: number;
+  public topic: topic;
+  public videos: Video[];
+  public totaljava: number;
+  public totalangular: number;
+  public totalspring: number;
 
   constructor(private router: Router, private route: ActivatedRoute, private session: SessionService, private http: HttpClient, private authService: AuthenticationService) {
     console.log(session.playerSession.idplayer);
@@ -40,7 +42,6 @@ export class VideosComponent implements OnInit {
 
   ngOnInit() {
     this.allVideos();
-
     this.getWatchedVideos()
 
   }
@@ -67,28 +68,29 @@ export class VideosComponent implements OnInit {
   }
 
   videosbytopic() {
-    this.angularvideos = [];
-    this.javavideos = [];
-    this.springvideos = [];
+    this.Angular = [];
+    this.Java = [];
+    this.Spring = [];
     this.totaljava = 0;
     this.totalangular = 0;
     this.totalspring = 0;
     for (let video of this.videos) {
 
-      if (video.topic == topic.Angular) {
-        this.angularvideos.push(video);
+      if (video.topic == "Angular") {
+        this.Angular.push(video);
         this.totalangular = this.totalangular + (Number)(video.duration);
 
       }
-      if (video.topic == topic.Java) {
-        this.javavideos.push(video);
+      if (video.topic == "Java") {
+        this.Java.push(video);
         this.totaljava = this.totaljava + (Number)(video.duration);
 
       }
-      if (video.topic == topic.Spring) {
-        this.springvideos.push(video);
+      if (video.topic == "Spring") {
+        this.Spring.push(video);
         this.totalspring = this.totalspring + (Number)(video.duration);
       }
+      else(video.topic)
     }
 
   }

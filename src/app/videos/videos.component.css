@@ -15,15 +15,23 @@
     float: left;
 }
 #divRight {
-  transform: translate(30%,-150%);
-  
+  transform: translate(35%,-100%);
+  height: 40vh;
+  width: 60vw;
     display:block;
     float: left;
 }
 #footer {
 
-  transform: translate(-30%,500%);
+  transform: translate(-30%,50%);
     float: right;
+}
+
+
+.videoscroll{
+  overflow-y: scroll;
+  height: 60vh;
+  width:70vw;
 }
 
 @font-face{
@@ -54,3 +62,33 @@ select{
     margin-left: 5%;
     margin-right: 5%;
   }
+
+ 
+  td{
+    font-family: pixelmix;
+    width: 5vw;
+  }
+
+  th{
+    background: url("../../assets/AppImages/button width-700height-90.png") no-repeat;
+    background-size: auto;
+  }
+
+  option{
+    font-family: pixelmix;
+  }
+  select{
+    font-family: pixelmix;
+  }
+  
+
+#style-8::-webkit-scrollbar
+{
+	width: 10px;
+	background-color: transparent;
+}
+
+#style-8::-webkit-scrollbar-thumb
+{
+	background-color: #000000;	
+}

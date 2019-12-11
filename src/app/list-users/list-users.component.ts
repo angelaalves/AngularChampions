@@ -30,9 +30,7 @@ export class ListUsersComponent implements OnInit {
     // this.chooseList()
 
     this.http.get<Player[]>('http://localhost:8085/players/getAll', {}).subscribe(data => {
-      console.log(data);
       this.players = data;
-      console.log(this.players);
       for (let player of this.players) {
         if (player.userType == "Ancient") {
           this.ancients.push(player);
@@ -52,38 +50,5 @@ export class ListUsersComponent implements OnInit {
 
   }
 
-  /*setType(userType){
-    this.type = userType;
-  }
-    chooseList() {   
-      this.players = this.playerService.players;
-  
-      this.ancients = this.playerService.ancients;
-      this.warriors = this.playerService.warriors;
-      this.guildmasters = this.playerService.guildmasters;
-  
-      console.log(this.players);
-      console.log( this.ancients);
-      console.log(this.warriors);
-      console.log(this.guildmasters);
-      console.log(this.type);
-  
-      if (this.type == "Ancient") {
-        this.list = this.ancients;
-          console.log( this.list);
-  
-      }
-      if (this.type == "GuildMaster") {
-        this.list = this.guildmasters;  
-        console.log( this.list);
-      }
-      if (this.type == "Warrior") {
-        this.list = this.warriors; 
-         console.log( this.list);
-      }
-    // else (this.type)
-  // this.list = this.players;  
-  
-    }*/
 
 }
