@@ -28,7 +28,6 @@ export class AddEventsComponent implements OnInit {
     if (!form.valid) {
       return;
     }
-    const idEvent = "1";
     const name = form.value.name;
     const date = form.value.date;
     const eventType = form.value.eventType;
@@ -36,12 +35,11 @@ export class AddEventsComponent implements OnInit {
     console.log('addEventForm', form.value);
 
     var xhr = new XMLHttpRequest();
-    xhr.open('POST', 'http://localhost:8085/events/Create?idEvent=' + idEvent + '&eventName=' + name + '&eventDate=' + date +
+    xhr.open('POST', 'http://localhost:8085/events/Create?eventName=' + name + '&eventDate=' + date +
       '&eventType=' + eventType , true);
-    this.http.post<any>('http://localhost:8085/events/Create?idEvent=' + idEvent + '&eventName=' + name + '&eventDate=' + date +
+    this.http.post<any>('http://localhost:8085/events/Create?eventName=' + name + '&eventDate=' + date +
     '&eventType=' + eventType,
       {
-        idEvent,
         name, 
         date,
         eventType

@@ -2,7 +2,7 @@ import { Component, OnInit, Injectable, ViewContainerRef } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { UserLoggedComponent } from '../user-logged/user-logged.component';
 import { SessionService } from '../services/session.service';
-import { Subscription, Observable } from 'rxjs';
+import { Subject, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-header',
@@ -12,14 +12,13 @@ import { Subscription, Observable } from 'rxjs';
 
 @Injectable({providedIn: 'root'})
 export class HeaderComponent implements OnInit {
+  Authenticated=false;
   constructor(private router: Router, private route: ActivatedRoute, private session: SessionService) { }
-  isAuthenticated=false;
+  
   ngOnInit() {
-    
-  }
-
-  switchAuthentication(){
-    this.isAuthenticated=!this.isAuthenticated;
+    this.session.isAuthenticated.subscribe(didAuthenticate=>{
+      this.Authenticated=didAuthenticate;
+    })
   }
   onProfile(){
     if (this.session.getPlayerInSession().userType == "Ancient") {
@@ -53,13 +52,8 @@ export class HeaderComponent implements OnInit {
   onSignout(){
     localStorage.removeItem('playerlogged')
     localStorage.removeItem('token')
+    this.Authenticated=false;
     this.router.navigate(['login'], {relativeTo: this.route});
   }
 
-  handleAuthentication(){
-    console.log("fui chamado")
-    console.log(this.isAuthenticated)
-    this.isAuthenticated=!this.isAuthenticated;
-    console.log(this.isAuthenticated)
-  }
 }

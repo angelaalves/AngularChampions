@@ -64,6 +64,7 @@ import { GuildmasterPresenterPageComponent } from './guild-master/guildmaster-pr
 import { TableFilterPipe } from './list-users/user-list.pipe';
 import { SkinService } from './services/skin.service';
 import { ConfirmEqualValidatorDirective } from './shared/equal.validator.directive';
+import { GuildPlayerPresenterComponent } from './guild-list-start/guild-list/add-guild-list/guild-player-presenter/guild-player-presenter.component';
 
 
 @NgModule({
@@ -126,7 +127,8 @@ import { ConfirmEqualValidatorDirective } from './shared/equal.validator.directi
     PresenterPageComponent,
     PreviewSkinComponent,
     TableFilterPipe,
-    ConfirmEqualValidatorDirective
+    ConfirmEqualValidatorDirective,
+    GuildPlayerPresenterComponent
   ],
   imports: [
     //NgbModule,
