@@ -2,7 +2,7 @@ import { Component, OnInit, Injectable, ViewContainerRef } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { UserLoggedComponent } from '../user-logged/user-logged.component';
 import { SessionService } from '../services/session.service';
-import { Subscription, Observable } from 'rxjs';
+import { Subject, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-header',
@@ -15,7 +15,9 @@ export class HeaderComponent implements OnInit {
   constructor(private router: Router, private route: ActivatedRoute, private session: SessionService) { }
   isAuthenticated=false;
   ngOnInit() {
-    
+    this.session.isAuthenticated.subscribe(didAuthenticate=>{
+      this.Authenticated=didAuthenticate;
+    })
   }
 
   switchAuthentication(){

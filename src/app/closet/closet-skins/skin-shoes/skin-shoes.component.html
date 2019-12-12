@@ -1,5 +1,10 @@
 <div class="scrollmenu" id="style-8" style="margin-bottom: 5%;">
     <div *ngFor="let shoe of shoes;" style="display: inline-block;">
-        <img src={{shoe.imagePath}} style="width:100px;height:100px;" (click)="skinSelected(shoe)">
+        <div *ngIf="shoe.imagePath!='../../../../assets/AppImages/None.png'" style="width:100px;height:100px;">
+            <img src={{shoe.imagePath}} style="width:100px;height:100px;" (click)="skinSelected(shoe)">
+        </div>
+        <div *ngIf="shoe.imagePath==='../../../../assets/AppImages/None.png'">
+            <img src={{shoe.imagePath}} style="width:100px;height:100px;" (click)="skinSelectedNull()">
+        </div>
     </div>
 </div>

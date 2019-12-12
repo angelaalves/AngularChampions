@@ -2,7 +2,7 @@
         <div class="navbar-header" style="margin: auto;">
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown" appDropdown>
-                    <a style="cursor: pointer;" class="dropdown-toggle" role="button">
+                    <a style="cursor: pointer;" class="dropdown-toggle" role="button" *ngIf="Authenticated">
                         <img src="../assets/AppImages/hamburguer.png"  style="max-height: 70px;"><span></span>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-left"  style="background-color:whitesmoke">

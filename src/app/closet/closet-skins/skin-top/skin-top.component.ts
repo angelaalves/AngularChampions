@@ -18,9 +18,9 @@ import { skinType } from 'src/app/shared/skinType.enum';
 export class SkinTopComponent implements OnInit {
   @Input() tops: Skin[];
   currentUserSkins: Skin[];
-  currentSkinToBeBought : Skin;
-  playerInitialSkins: string[] = [];
-  playerViewingSkins: string[] = [];
+  currentSkinToBeBought: Skin;
+  playerInitialSkins: String[] = [];
+  playerViewingSkins: String[] = [];
 
   constructor(private router: Router, private route: ActivatedRoute, private skinSelectedService: SkinSelectedService, 
     private sessionService: SessionService, private skinService : SkinService) { }
@@ -28,38 +28,23 @@ export class SkinTopComponent implements OnInit {
   ngOnInit() {
     /*this.player = this.session.getPlayerInSession();
     console.log(this.player);
-    this.skinService.currentSkinSelected.subscribe(skin => this.currentSkinToBeBought = skin)*/
-    this.playerInitialSkins = this.sessionService.playerSession.imagePath;
-    console.log(this.playerInitialSkins);
-    this.playerViewingSkins = this.sessionService.playerSession.imagePath;
-    console.log(this.playerViewingSkins);
+    this.skinService.currentSkinSelected.subscribe(skin => this.currentSkinToBeBought = skin)
+    this.playerInitialSkins = this.session.playerSession.imagePath;
+    console.log("initial skins on init()" + this.playerInitialSkins);
+    this.playerViewingSkins = this.session.playerSession.imagePath;
+    console.log("viewing skins on init()" + this.playerViewingSkins);
+    console.log(this.player);
   }
 
-  /*skinSelected(skinIn: Skin) {
-
-    this.http.get<Skin[]>('http://localhost:8085/closet/activeSkins?idPlayerFK=' + this.player.idplayer, {}).subscribe(data => {
-      this.currentUserSkins = data;
-      console.log(this.currentUserSkins);
-      let counter = -1;
-      for (let skin of this.currentUserSkins) {
-        counter++;
-        if (skin.skinType == skinIn.skinType) {
-          this.currentUserSkins.splice(counter, 1, skin);
-          console.log(this.currentUserSkins);
+  playerHasBoughtSkin(skin: Skin) {
+    this.http.get<Skin[]>('http://localhost:8085/closet/Get?idSkinFK= &idPlayerFk=' + this.player.idplayer, {}).subscribe(data => {
+      for (let s of data) {
+        if (s.idskin == skin.idskin) {
+          return true;
         }
-      }
+      } return false;
     });
-
-    this.router.navigate(['../buy_skin'], { relativeTo: this.route });
   }
-
-  skinSelected(skinSelected: Skin){
-    this.skinSelectedService.addSkin(skinSelected);
-    console.log(skinSelected.imagePath);
-    this.sessionService.getPlayerInSession().changeImage(skinSelected.imagePath, skinSelected.skinType);
-    this.skinService.updateSkin(skinSelected);
-    //this.router.navigate(['../buy_skin'], {relativeTo: this.route});
-  }*/
 
   skinSelected(skinSelected: Skin) {
     this.playerViewingSkins = this.playerInitialSkins;
@@ -76,21 +61,12 @@ export class SkinTopComponent implements OnInit {
     //this.router.navigate(['../buy_skin'], {relativeTo: this.route});
   }
 
-  changeImage(imgPath: string, type: skinType) {
-    let index;
-    if (skinType.Hair == type) {
-      index = 0;
-    } else if (skinType.SkinColor == type) {
-      index = 1;
-    } else if (skinType.Top == type) {
-      index = 2;
-    } else if (skinType.Bottom == type) {
-      index = 3;
-    } else if (skinType.Shoes == type) {
-      index = 4;
-    } else if (skinType.Others == type) {
-      index = 5;
-    }
-    this.playerViewingSkins.splice(Number(index), 1, imgPath);
+
+  skinSelectedNull() {
+    this.playerViewingSkins = this.playerInitialSkins;
+    this.session.playerSession.changeImage("./../../../assets/Top/TopNull.png", skinType.Top);
+    this.skinService.updateSkin(new Skin("10000", "topNull", "./../../../assetsTop/TopNull.png", "0", "0", skinType.Top));
+    this.session.playerSession.imagePath = this.playerViewingSkins;
+    this.skinService.setAnySkinSelected(true);
   }
 }

@@ -16,16 +16,30 @@ import { skinType } from 'src/app/shared/skinType.enum';
 export class SkinBottomComponent implements OnInit {
   @Input() bottoms: Skin[];
   currentSkinToBeBought: Skin;
-  playerInitialSkins: string[] = [];
-  playerViewingSkins: string[] = [];
+  playerInitialSkins: String[] = [];
+  playerViewingSkins: String[] = [];
 
-  constructor(private router: Router, private route: ActivatedRoute, private skinSelectedService: SkinSelectedService,
-    private sessionService: SessionService, private skinService: SkinService) { }
+  constructor(private router: Router, private route: ActivatedRoute,
+    private session: SessionService, private skinService: SkinService, private closet: ClosetComponent) { }
 
   ngOnInit() {
-    this.playerInitialSkins = this.sessionService.playerSession.imagePath;
-    this.playerViewingSkins = this.playerInitialSkins;
-    this.skinSelected(this.currentSkinToBeBought);
+    this.player = this.session.getPlayerInSession();
+
+    console.log(this.player);
+
+    this.skinService.currentSkinSelected.subscribe(skin => this.currentSkinToBeBought = skin)
+
+    this.playerInitialSkins = this.session.playerSession.imagePath;
+
+    console.log("initial skins on init()" + this.playerInitialSkins);
+
+    this.playerViewingSkins = this.session.playerSession.imagePath;
+
+    console.log("viewing skins on init()" + this.playerViewingSkins);
+
+    console.log(this.player);
+
+    //this.skinSelected(this.currentSkinToBeBought);
   }
 
   skinSelected(skinSelected: Skin) {
@@ -43,21 +57,13 @@ export class SkinBottomComponent implements OnInit {
     //this.router.navigate(['../buy_skin'], {relativeTo: this.route});
   }
 
-  changeImage(imgPath: string, type: skinType) {
-    let index;
-    if (skinType.Hair == type) {
-      index = 0;
-    } else if (skinType.SkinColor == type) {
-      index = 1;
-    } else if (skinType.Top == type) {
-      index = 2;
-    } else if (skinType.Bottom == type) {
-      index = 3;
-    } else if (skinType.Shoes == type) {
-      index = 4;
-    } else if (skinType.Others == type) {
-      index = 5;
-    }
-    this.playerViewingSkins.splice(Number(index), 1, imgPath);
+  skinSelectedNull(){
+    this.playerViewingSkins = this.playerInitialSkins;
+    this.session.playerSession.changeImage("./../../../assets/Bottom/BottomNull.png", skinType.Bottom);
+
+    this.skinService.updateSkin(new Skin("10000","bottomNull","./../../../assets/Bottom/BottomNull.png","0","0",skinType.Bottom));
+
+    this.session.playerSession.imagePath = this.playerViewingSkins;
+    this.skinService.setAnySkinSelected(true);
   }
 }
