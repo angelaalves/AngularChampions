@@ -1,10 +1,10 @@
 export class watchedVideos {
 
-    public idvideoFK: string;
-    public idplayerFK: string;
+    public idVideoFK: string;
+    public idPlayerFK: string;
 
-    constructor(idvideoFK: string, idplayerFK: string) {
-        this.idvideoFK = idvideoFK;
-        this.idplayerFK = idplayerFK;
+    constructor(idVideoFK: string, idPlayerFK: string) {
+        this.idVideoFK = idVideoFK;
+        this.idPlayerFK = idPlayerFK;
     }
 }

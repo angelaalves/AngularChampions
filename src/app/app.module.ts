@@ -32,6 +32,7 @@ import { VideosComponent } from './videos/videos.component';
 import { RewardsToApproveComponent } from './rewards/rewards-to-approve/rewards-to-approve.component';
 import { AddSkinComponent } from './closet/add-skin/add-skin.component';
 import { ListUsersComponent } from './list-users/list-users.component';
+import { EventsElemComponent } from './events/events-elem/events-elem.component';
 import { AuthenticationComponent } from './login/authentication/authentication.component';
 import { HttpClientModule } from '@angular/common/http';
 import { AddEventsComponent } from './events/add-events/add-events.component';
@@ -64,7 +65,6 @@ import { GuildmasterPresenterPageComponent } from './guild-master/guildmaster-pr
 import { TableFilterPipe } from './list-users/user-list.pipe';
 import { SkinService } from './services/skin.service';
 import { ConfirmEqualValidatorDirective } from './shared/equal.validator.directive';
-import { GuildPlayerPresenterComponent } from './guild-list-start/guild-list/add-guild-list/guild-player-presenter/guild-player-presenter.component';
 
 
 @NgModule({
@@ -108,6 +108,7 @@ import { GuildPlayerPresenterComponent } from './guild-list-start/guild-list/add
     VideosComponent, 
     AddSkinComponent, 
     ListUsersComponent, 
+    EventsElemComponent,
     VideosComponent, 
     AddSkinComponent,
     AuthenticationComponent,
@@ -127,8 +128,7 @@ import { GuildPlayerPresenterComponent } from './guild-list-start/guild-list/add
     PresenterPageComponent,
     PreviewSkinComponent,
     TableFilterPipe,
-    ConfirmEqualValidatorDirective,
-    GuildPlayerPresenterComponent
+    ConfirmEqualValidatorDirective
   ],
   imports: [
     //NgbModule,

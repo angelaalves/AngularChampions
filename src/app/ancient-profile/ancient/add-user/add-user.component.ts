@@ -64,14 +64,7 @@ export class AddUserComponent implements OnInit {
         playerType,
         statusPlayer
       }
-    ).subscribe(success=>{
-      this.http.post('http://localhost:8085/players/SendEmail?playerEmail='+email, {}).subscribe(resData=>{
-      console.log(resData);
-    })
-    },error=>{
-      console.log("error creating player")
-    });
-    
+    ).subscribe();
 
     this.router.navigate(['/ancient_profile'], { relativeTo: this.route });
   }

@@ -13,26 +13,23 @@ export class PlayerService {
     guildmasters: Player[] = [];
     watchedvideos: watchedVideos[] = [];
 
-    constructor(private http: HttpClient) {
-        this.getPlayers();
+    constructor(private http: HttpClient) { 
+         this.getPlayers();
     }
 
     getPlayers() {
         return this.http.get<Player[]>('http://localhost:8085/players/getAll', {}).subscribe(data => {
             this.players = data;
             for (let i = 0; i < this.players.length; i++) {
-                this.http.get<String[]>('http://localhost:8085/closet/activeSkins?idPlayerFK=' + this.players[i].idplayer).subscribe(response => {
-                    this.players[i].imagePath = response;
-                    if (this.players[i].userType == userType.Warrior) {
-                        this.warriors.push(this.players[i]);
-                    }
-                    if (this.players[i].userType == userType.GuildMaster) {
-                        this.guildmasters.push(this.players[i]);
-                    }
-                    if (this.players[i].userType == userType.Ancient) {
-                        this.ancients.push(this.players[i]);
-                    }
-                })
+                if (this.players[i].userType == userType.Warrior) {
+                    this.warriors.push(this.players[i]);
+                }
+                if (this.players[i].userType == userType.GuildMaster) {
+                    this.guildmasters.push(this.players[i]);
+                }
+                if (this.players[i].userType == userType.Ancient) {
+                    this.ancients.push(this.players[i]);
+                }
             }
         })
     }
@@ -56,23 +53,8 @@ export class PlayerService {
             this.watchedvideos = data;
         });
     }
-    getActiveSkins(idplayer: String) {
-        this.http.get<string[]>('http://localhost:8085/closet/activeSkins?idPlayerFK=' + idplayer).subscribe(data => {
-            return data;
-        })
-    }
 
     getListOfPlayers() {
         return this.players;
-    }
-
-    getWarriors() {
-        return this.warriors;
-    }
-    getGuildMasters() {
-        return this.guildmasters;
-    }
-    getAncients() {
-        return this.ancients;
     }
 }

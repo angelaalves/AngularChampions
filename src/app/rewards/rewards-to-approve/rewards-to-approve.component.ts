@@ -19,7 +19,7 @@ export class RewardsToApproveComponent implements OnInit {
   public players: Player[] = [];
   public idAndNameOfPlayers: IDToUsername[] = [];
 
-  constructor(private http: HttpClient, private playerService: PlayerService) {}
+  constructor(private http: HttpClient, private playerService: PlayerService) { }
 
   ngOnInit() {
     this.players = this.playerService.getListOfPlayers();
@@ -51,7 +51,7 @@ export class RewardsToApproveComponent implements OnInit {
         }
       }
     });
-  } 
+  }
 
   check(reward: Reward) {
     const obj = JSON.stringify(reward);
@@ -64,12 +64,9 @@ export class RewardsToApproveComponent implements OnInit {
     for (let reward of this.rewardsApproved) {
       const idReward = reward.idreward;
       this.http.post<any>('http://localhost:8085/rewards/Approve?idReward=' + idReward,
-        { 
-          idReward 
-        }).subscribe(data => {
+        { idReward }).subscribe(data => {
           console.log(data);
         });
     }
-    this.getRewards();
   }
 }

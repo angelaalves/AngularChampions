@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-image-maker',
@@ -13,7 +13,6 @@ export class ImageMakerComponent implements OnInit {
  @Input() pantsImagePath:string
  @Input() shoesImagePath:string
  @Input() othersImagePath:string
- @Input() size=300;
  
   constructor() { }
 

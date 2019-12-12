@@ -7,7 +7,6 @@ import { AuthenticationService } from '../login/authentication/authentication.se
 import { SessionService } from '../services/session.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { SkinService } from '../services/skin.service';
-import { BehaviorSubject, EmptyError } from 'rxjs';
 
 @Component({
   selector: 'app-closet',
@@ -18,6 +17,8 @@ import { BehaviorSubject, EmptyError } from 'rxjs';
 @Injectable({ providedIn: 'root' })
 export class ClosetComponent implements OnInit {
   player: Player;
+  playerInitialSkins: String[] = [];
+  playerViewingSkins: String[] = [];
   skincolors: Skin[] = [];
   bottoms: Skin[] = [];
   hair: Skin[] = [];
@@ -25,35 +26,22 @@ export class ClosetComponent implements OnInit {
   shoes: Skin[] = [];
   others: Skin[] = [];
   currentSkinToBeBought: Skin;
-  newViewingSkins: String[];
-  initialSkins: String[];
-
-  private skin = new BehaviorSubject<Skin>(new Skin("", "", "", "", "", null));
-  closetSkinSelected = this.skin.asObservable();
-
 
   constructor(private session: SessionService, private http: HttpClient, private authService: AuthenticationService,
     private router: Router, private route: ActivatedRoute, private skinService: SkinService) { }
 
   ngOnInit() {
     this.player = this.session.getPlayerInSession();
-    this.initialSkins = this.session.getPlayerInSession().imagePath;
+    console.log(this.player);
     this.getSkins();
-    this.newViewingSkins = this.player.imagePath;
-    console.log("array de skins novas " + this.player.imagePath);
-
-    /**/
-    this.skinService.currentSkinSelected.subscribe(skin => this.currentSkinToBeBought = skin);
-    this.skinService.newViewingSkins.subscribe(skinPaths => this.newViewingSkins = skinPaths);
-    this.newViewingSkins = this.skinService.getArraySkin().getValue();
+    this.skinService.currentSkinSelected.subscribe(skin => this.currentSkinToBeBought = skin)
+    //this.playerInitialSkins = this.player.imagePath;
+    this.viewSkin(this.currentSkinToBeBought);
   }
 
-  viewSkin(skin: Skin) {
+  viewSkin(skin: Skin){
+    //this.playerViewingSkins = this.playerInitialSkins;
     this.session.getPlayerInSession().changeImage(skin.imagePath, skin.skinType);
-    console.log(skin.imagePath, skin.skinType);
-    //const obj2 = JSON.parse('{"idSkin": this.closetSkinSelected.idSkin, "skinName": this.closetSkinSelected.skinName, "imagePath": this.closetSkinSelected.imagePath,"minXP": this.closetSkinSelected.minXP, "champiesCost": this.closetSkinSelected.champiesCost, "skinType": this.closetSkinSelected.skinType}');
-    //console.log("json parse " + obj2);
-    //this.player.imagePath=this.skinService.getArraySkin().getValue();
   }
 
   getSkins() {
@@ -79,14 +67,6 @@ export class ClosetComponent implements OnInit {
   }
 
   redirectToBuySkin() {
-    if (this.skinService.getAnySkinSelected() === true) {
-      this.router.navigate(['../buy_skin'], { relativeTo: this.route });
-    }
-  }
-
-  resetToInitialSkins() {
-    this.skinService.setAnySkinSelected(false);
-    this.session.playerSession.resetImage();
-    this.skinService.updateSkin(null);
+    this.router.navigate(['../buy_skin'], { relativeTo: this.route });
   }
 }

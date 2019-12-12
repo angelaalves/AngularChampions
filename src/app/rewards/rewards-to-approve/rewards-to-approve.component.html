@@ -1,6 +1,6 @@
 <div id="divLeft">
     <div class="col-xs-4" style="text-align: center;" id="left">
-        <button class="btn btn-link" type="button"><img src="../../../assets/AppImages/rewardstoapprove.png"
+        <button class="btn btn-link" type="button"><img src="https://static.thenounproject.com/png/6758-200.png"
                 alt="text" class="img-responsive" style="max-height: 50px;"></button>
         <h4>Rewards to Approve</h4>
     </div>
@@ -19,7 +19,7 @@
                     <td scope="col">Approve</td>
                 </tr>
             </thead>
-            <tbody id="tableBody">
+            <tbody>
                 <tr *ngFor="let r of rewardsToApprove">
                     <td>{{r.idplayerGiverFK}}</td>
                     <td>{{r.idplayerReceiverFK}}</td>
@@ -36,4 +36,3 @@
         <button type="submit" class="btn btn-primary" id="save" style="margin-right: 1%;" (click)="save()">Save</button>
     </div>
 </div>
-

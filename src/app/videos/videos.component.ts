@@ -47,58 +47,62 @@ export class VideosComponent implements OnInit {
 
   ngOnInit() {
     this.allVideos();
+
     this.getWatchedVideos()
 
   }
 
+  /*check(watchedVideo: watchedVideos,evt: Event){
+    var target = evt.target;
+    if(target.checked){
+      this.watchedvideos.push(watchedVideo);
+    console.log(this.watchedvideos);
+    }else if(!target.checked){
+      this.watchedvideos.slice
+    }
+    
+  }*/
 
-  hasvideo(video: Video) {
-    const obj = JSON.stringify(video);
-
-    for (let v of this.videosWatchedByPlayer) {
-
-      if (v.idvideo == video.idvideo) {
-
-        return true;
-      }
-    } return false;
-  }
   allVideos(): Video[] {
 
     this.http.get<Video[]>('http://localhost:8085/videos/getAll').subscribe(data => {
+
+
       this.videos = data;
+      console.log(this.videos);
       this.videosbytopic();
     });
     return this.videos;
   }
 
   videosbytopic() {
-    this.Angular = [];
-    this.Java = [];
-    this.Spring = [];
+    this.angularvideos = [];
+    this.javavideos = [];
+    this.springvideos = [];
     this.totaljava = 0;
     this.totalangular = 0;
     this.totalspring = 0;
     for (let video of this.videos) {
 
-      if (video.topic == "Angular") {
-        this.Angular.push(video);
+      if (video.topic == topic.Angular) {
+        this.angularvideos.push(video);
         this.totalangular = this.totalangular + (Number)(video.duration);
 
       }
-      if (video.topic == "Java") {
-        this.Java.push(video);
+      if (video.topic == topic.Java) {
+        this.javavideos.push(video);
         this.totaljava = this.totaljava + (Number)(video.duration);
 
       }
-      if (video.topic == "Spring") {
-        this.Spring.push(video);
+      if (video.topic == topic.Spring) {
+        this.springvideos.push(video);
         this.totalspring = this.totalspring + (Number)(video.duration);
       }
       else (video.topic)
     }
 
   }
+
   getWatchedVideos() {
     this.videosWatchedByPlayer = [];
     this.watchedVideosByPlayer = [];
@@ -107,13 +111,16 @@ export class VideosComponent implements OnInit {
     this.idOfVideosUnchecked = [];
 
     this.http.get<watchedVideos[]>('http://localhost:8085/watchedVideos/Get?idPlayerFK=' + this.session.playerSession.idplayer).subscribe(data => {
-      const obj = JSON.stringify(data);
-      this.watchedVideosByPlayer = data;
-      console.log(this.watchedVideosByPlayer);
-      for (let aux of this.watchedVideosByPlayer) {
-        this.http.get<Video[]>('http://localhost:8085/videos/Get?idVideo=' + aux.idvideoFK).subscribe(res => {
-          const obj2 = JSON.stringify(res);
-          this.videosWatchedByPlayer.push(res[0]);
+      this.watchedvideos = data;
+
+      console.log("getwatchedvideos");
+      console.log(this.watchedvideos);
+
+      for (let wv of this.watchedvideos) {
+        this.http.get<Video[]>('http://localhost:8085/videos/Get?idVideo=' + wv.idVideoFK).subscribe(res => {
+          this.videoswatched.push(res[0]);
+          console.log("videoswatched");
+          console.log(this.videoswatched);
         });
       }
 

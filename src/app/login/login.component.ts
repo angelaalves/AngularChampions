@@ -58,6 +58,7 @@ export class LoginComponent implements OnInit {
 
 
   onSubmit(form: NgForm) {
+    this.header.handleAuthentication();
     if (!form.valid) {
       return;
     }
@@ -88,7 +89,6 @@ export class LoginComponent implements OnInit {
               if (this.session.getPlayerInSession().userType == "Warrior") {
                 this.router.navigate(['/warrior_profile'], { relativeTo: this.route });
               }
-              this.session.isAuthenticated.next(true);
             })
           } else{
             console.log("Player no longer active")
