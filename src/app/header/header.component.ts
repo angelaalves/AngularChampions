@@ -1,8 +1,6 @@
 import { Component, OnInit, Injectable, ViewContainerRef } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { UserLoggedComponent } from '../user-logged/user-logged.component';
 import { SessionService } from '../services/session.service';
-import { Subject, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-header',
@@ -19,6 +17,9 @@ export class HeaderComponent implements OnInit {
     this.session.isAuthenticated.subscribe(didAuthenticate=>{
       this.Authenticated=didAuthenticate;
     })
+    if(localStorage.getItem('playerlogged')){
+      this.session.isAuthenticated.next(true);
+    }
   }
   onProfile(){
     if (this.session.getPlayerInSession().userType == "Ancient") {

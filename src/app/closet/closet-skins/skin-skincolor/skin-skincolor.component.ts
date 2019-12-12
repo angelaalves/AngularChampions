@@ -5,6 +5,8 @@ import { SkinSelectedService } from '../skinSelected.service';
 import { SkinService } from 'src/app/services/skin.service';
 import { SessionService } from 'src/app/services/session.service';
 import { Player } from 'src/app/shared/player.model';
+import { Closet } from 'src/app/shared/closet.model';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-skin-skincolor',
@@ -18,9 +20,10 @@ export class SkinSkincolorComponent implements OnInit {
   currentSkinToBeBought : Skin;
   playerViewingSkins: String[] = [];
   playerInitialSkins: String[] = [];
+  alluserskins: Closet[] = [];
 
   constructor(private router: Router, private route: ActivatedRoute, private skinSelectedService: SkinSelectedService, 
-    private session: SessionService, private skinService : SkinService) { }
+    private session: SessionService, private skinService : SkinService, private http: HttpClient) { }
 
   ngOnInit() {
     this.player = this.session.getPlayerInSession();
@@ -38,6 +41,26 @@ export class SkinSkincolorComponent implements OnInit {
     console.log("viewing skins on init()" + this.playerViewingSkins); 
 
     console.log(this.player);
+    this.http.get<Closet[]>('http://localhost:8085/closet/Get?idSkinFK= &idPlayerFk=' + this.session.getPlayerInSession().idplayer + "&status=", {}).subscribe(data => {
+      this.alluserskins = data;
+      console.log("this.alluserskins ", this.alluserskins);
+    });
+  }
+
+  skinInUse(skin: Skin){
+    if(this.session.playerSession.imagePath.includes(skin.imagePath)){
+      return true;
+    }
+    return false;
+  }
+
+  playerHasBoughtSkin(skin: Skin) {
+    for (let s of this.alluserskins) {
+      if (s.idskinFK == skin.idskin) {
+        return true;
+      }
+    }
+    return false;
   }
 
   skinSelected(skinSelected: Skin){
