@@ -7,7 +7,6 @@ import { topic } from '../shared/topic.enum';
 import { FormGroup, NgForm, FormArray, FormControl, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { watchedVideos } from '../shared/watchedVideos.model';
-import { identifierModuleUrl } from '@angular/compiler';
 
 @Component({
   selector: 'app-videos',
@@ -20,21 +19,27 @@ export class VideosComponent implements OnInit {
   videoForm: FormGroup;
 
 
-  
+
   public Java: Video[];
   public Angular: Video[];
   public Spring: Video[];
+
   public watchedVideosByPlayer: watchedVideos[];
   public idOfVideosWatchedByPlayer: String[];
   public videosWatchedByPlayer: Video[];
-  public idOfVideosToCheck: String[];
-  public idOfVideosToUncheck: String[];
+
+  public idOfVideosChecked: String[];
+  public idOfVideosUnchecked: String[];
+
+
+  public videos: Video[];
 
   public topic: topic;
-  public videos: Video[];
   public totaljava: number;
   public totalangular: number;
   public totalspring: number;
+
+
 
   constructor(private router: Router, private route: ActivatedRoute, private session: SessionService, private http: HttpClient, private authService: AuthenticationService) {
     console.log(session.playerSession.idplayer);
@@ -90,7 +95,7 @@ export class VideosComponent implements OnInit {
         this.Spring.push(video);
         this.totalspring = this.totalspring + (Number)(video.duration);
       }
-      else(video.topic)
+      else (video.topic)
     }
 
   }
@@ -98,8 +103,9 @@ export class VideosComponent implements OnInit {
     this.videosWatchedByPlayer = [];
     this.watchedVideosByPlayer = [];
     this.idOfVideosWatchedByPlayer = [];
-    this.idOfVideosToCheck = [];
-    this.idOfVideosToUncheck = [];
+    this.idOfVideosChecked = [];
+    this.idOfVideosUnchecked = [];
+
     this.http.get<watchedVideos[]>('http://localhost:8085/watchedVideos/Get?idPlayerFK=' + this.session.playerSession.idplayer).subscribe(data => {
       const obj = JSON.stringify(data);
       this.watchedVideosByPlayer = data;
@@ -116,14 +122,14 @@ export class VideosComponent implements OnInit {
   }
 
   Save() {
-    if (this.idOfVideosToCheck != undefined) {
+    if (this.idOfVideosChecked != undefined) {
       console.log("Entrei no if 1");
-      for (let idVideo of this.idOfVideosToCheck) {
-        console.log(this.idOfVideosToCheck);
+
+      for (let idVideo of this.idOfVideosChecked) {
+
         const id = idVideo;
-        console.log("No save CHECK eu quero o id do video: " + id);
         const idplayer = this.session.playerSession.idplayer;
-        console.log("No save CHEK eu quero o idplayer: " + idplayer);
+
         this.http.post<any>('http://localhost:8085/watchedVideos/Create?idVideoFK=' + id + '&idPlayerFK=' + idplayer,
           {
             id,
@@ -133,14 +139,11 @@ export class VideosComponent implements OnInit {
           });
       }
     }
-    if (this.idOfVideosToUncheck != undefined) {
-      console.log("Entrei no if 2");
-      for (let idVideoU of this.idOfVideosToUncheck) {
-        console.log(this.idOfVideosToUncheck);
-        const id = idVideoU;
-        console.log("No save CHECK eu quero o id do video: " + idVideoU);
+    if (this.idOfVideosUnchecked != undefined) {
+      for (let idVideo of this.idOfVideosUnchecked) {
+        const id = idVideo;
         const idplayer = this.session.playerSession.idplayer;
-        console.log("No save CHEK eu quero o idplayer: " + idplayer);
+
         this.http.post<any>('http://localhost:8085/watchedVideos/Delete?idVideoFK=' + id + '&idPlayerFK=' + idplayer,
           {
             id,
@@ -150,6 +153,7 @@ export class VideosComponent implements OnInit {
           });
       }
     }
+
     if (this.session.getPlayerInSession().userType == "Ancient") {
       this.router.navigate(['/ancient_profile'], { relativeTo: this.route });
     }
@@ -161,17 +165,95 @@ export class VideosComponent implements OnInit {
     }
   }
 
-  check(video: String) {
+
+
+  checked(video: String) {
+    var exists: boolean;
+    exists = false;
     const obj = JSON.stringify(video);
     console.log("Check " + obj);
-    this.idOfVideosToCheck.push(video);
+    for (let x of this.idOfVideosChecked) {
+      if (x == video) {
+        exists = true;
+      }
+    }
 
+    if (exists == false) {
+      console.log("não existe vou adicionar" + video);
+      this.idOfVideosChecked.push(video);
+      console.log(this.idOfVideosChecked);
+    } else {
+      console.log("já existe vou remover " + video);
+      this.idOfVideosChecked.slice(this.idOfVideosChecked.indexOf(video), 1);
+      console.log(this.idOfVideosChecked.splice(this.idOfVideosChecked.indexOf(video), 1));
+      console.log(this.idOfVideosChecked);
+    }
   }
-  uncheck(video: String) {
+
+
+
+  unchecked(video: String) {
+    var exists: boolean;
+    exists = false;
     const obj = JSON.stringify(video);
-    console.log(" Uncheck " + obj);
-    this.idOfVideosToUncheck.push(video);
+    console.log("Uncheck " + obj);
+    for (let x of this.idOfVideosUnchecked) {
+      if (x == video) {
+        exists = true;
+
+      }
+    }
+    if (exists == false) {
+      console.log("não existe vou adicionar" + video);
+      this.idOfVideosUnchecked.push(video);
+      console.log(this.idOfVideosUnchecked);
+    } else {
+      console.log("já existe vou remover " + video);
+
+      this.idOfVideosUnchecked.splice(this.idOfVideosUnchecked.indexOf(video), 1);
+      console.log(this.idOfVideosUnchecked);
+    }
 
   }
+
+
+
+
+  /** 
+    howmany(id: String) {
+      var i: number;
+      for (let j of this.idOfVideosChecked) {
+        if (j == id) {
+          i++;
+        }
+      }
+      return i;
+   
+    }
+   
+   
+    pair(int: number) {
+      if (int % 2 == 0) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+ 
+  removepairs() {
+    var auxiliar: String[];
+    auxiliar = [];
+    auxiliar.push(this.idOfVideosChecked[0]);
+    for (let v of this.idOfVideosChecked) {
+      for (let a of auxiliar) {
+        auxiliar.push(v);
+        var i = this.howmany(v);
+        if (this.pair(i) != true) {
+
+        }
+      }
+    }
+  } */
+
 
 }
