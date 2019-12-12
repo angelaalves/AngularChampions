@@ -34,7 +34,7 @@
             </thead>
 
             <tbody style="background-color: whitesmoke; border: 2px solid rgb(65, 126, 218)">
-                <tr *ngFor="let video of videos | tableFilter: topic">
+                <tr *ngFor="let video of videos | tableFilter2: topic">
                     <td *ngIf="hasvideo(video) == true" style="background-color: lightgreen"><input type="checkbox"
                             (click)="unchecked(video.idvideo)" checked="true"><br></td>
                     <td *ngIf="hasvideo(video) == true" style="background-color: lightgreen">{{ video.videoName }}</td>
@@ -43,7 +43,7 @@
 
                 </tr>
 
-                <tr *ngFor="let video of videos | tableFilter: topic">
+                <tr *ngFor="let video of videos | tableFilter2: topic">
                     <td *ngIf="hasvideo(video) == false"><input type="checkbox" (click)="checked(video.idvideo)"><br></td>
                     <td *ngIf="hasvideo(video) == false" style="background-color: white">{{ video.videoName }}</td>
                     <td *ngIf="hasvideo(video) == false">{{ video.duration }}</td>

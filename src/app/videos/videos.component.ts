@@ -179,14 +179,13 @@ export class VideosComponent implements OnInit {
     }
 
     if (exists == false) {
-      console.log("não existe vou adicionar" + video);
+      console.log("não existe vou adicionar"+video);
       this.idOfVideosChecked.push(video);
-      console.log(this.idOfVideosChecked);
+      console.log(this.idOfVideosUnchecked);
     } else {
-      console.log("já existe vou remover " + video);
+      console.log("já existe vou remover "+video);
       this.idOfVideosChecked.slice(this.idOfVideosChecked.indexOf(video), 1);
-      console.log(this.idOfVideosChecked.splice(this.idOfVideosChecked.indexOf(video), 1));
-      console.log(this.idOfVideosChecked);
+       console.log(this.idOfVideosUnchecked);
     }
   }
 
@@ -204,14 +203,14 @@ export class VideosComponent implements OnInit {
       }
     }
     if (exists == false) {
-      console.log("não existe vou adicionar" + video);
+      console.log("não existe vou adicionar"+video);
       this.idOfVideosUnchecked.push(video);
       console.log(this.idOfVideosUnchecked);
     } else {
-      console.log("já existe vou remover " + video);
-
-      this.idOfVideosUnchecked.splice(this.idOfVideosUnchecked.indexOf(video), 1);
-      console.log(this.idOfVideosUnchecked);
+      console.log("já existe vou remover "+video);
+    
+      this.idOfVideosUnchecked.slice(this.idOfVideosUnchecked.indexOf(video), 1);
+        console.log(this.idOfVideosUnchecked);
     }
 
   }
