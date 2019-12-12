@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 export class AuthenticationComponent {
 
   constructor(private authService: AuthenticationService, private router: Router){}
-
+/*
   onSubmit(form:NgForm){
     if(!form.valid){
       return;
@@ -28,5 +28,5 @@ export class AuthenticationComponent {
       }
     );
     form.reset();
-  } 
+  } */
 }
