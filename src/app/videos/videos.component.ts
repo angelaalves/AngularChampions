@@ -184,7 +184,7 @@ export class VideosComponent implements OnInit {
       console.log(this.idOfVideosUnchecked);
     } else {
       console.log("já existe vou remover "+video);
-      this.idOfVideosChecked.slice(this.idOfVideosChecked.indexOf(video), 1);
+      this.idOfVideosChecked.splice(this.idOfVideosChecked.indexOf(video), 1);
        console.log(this.idOfVideosUnchecked);
     }
   }
@@ -209,7 +209,7 @@ export class VideosComponent implements OnInit {
     } else {
       console.log("já existe vou remover "+video);
     
-      this.idOfVideosUnchecked.slice(this.idOfVideosUnchecked.indexOf(video), 1);
+      this.idOfVideosUnchecked.splice(this.idOfVideosUnchecked.indexOf(video), 1);
         console.log(this.idOfVideosUnchecked);
     }
 
