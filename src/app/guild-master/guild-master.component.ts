@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, Injectable } from '@angular/core';
 import { Player } from '../shared/player.model';
-import { Router, ActivatedRoute, Params } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { SessionService } from '../services/session.service';
 
 @Component({
@@ -10,8 +10,6 @@ import { SessionService } from '../services/session.service';
 })
 @Injectable({ providedIn: 'root' })
 export class GuildMasterComponent implements OnInit {
-
-
   @Input() email: string;
   @Output() guildmaster: Player;
   id: number;

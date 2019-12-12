@@ -1,12 +1,12 @@
 <span class="divLeft">
     <app-image-maker [hairImagePath]="player.getImagePath(0)" [skinImagePath]="player.getImagePath(1)"
         [shirtImagePath]="player.getImagePath(2)" [pantsImagePath]="player.getImagePath(3)"
-        [shoesImagePath]="player.getImagePath(4)" [othersImagePath]="player.getImagePath(5)" style="width: 10px;">
+        [shoesImagePath]="player.getImagePath(4)" [othersImagePath]="player.getImagePath(5)" [size]=300>
     </app-image-maker>
 </span>
 <span class="divRight">
     <app-closet-skins [skincolors]="skincolors" [bottoms]="bottoms" [hair]="hair" [tops]="tops" [shoes]="shoes"
         [others]="others"></app-closet-skins>
-    <button type="button" class="btn" (click)="redirectToBuySkin()">Buy skin</button>
+    <button type="button" class="btn" (click)="redirectToBuySkin()">Add to <img src=""></button>
     <button type="button" class="btn" (click)="resetToInitialSkins()" style="margin-left: 1%;">Reset to initial skins</button>
 </span>

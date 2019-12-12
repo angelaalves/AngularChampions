@@ -15,14 +15,15 @@
     float: left;
 }
 #divRight {
-  transform: translate(30%,-150%);
-  
+  transform: translate(35%,-100%);
+  height: 40vh;
+  width: 60vw;
     display:block;
     float: left;
 }
 #footer {
 
-  transform: translate(-30%,500%);
+  transform: translate(-30%,50%);
     float: right;
 }
 

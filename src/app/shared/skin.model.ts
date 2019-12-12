@@ -1,15 +1,15 @@
 import { skinType } from './skinType.enum';
 
 export class Skin {
-    public idSkin: string;
+    public idskin: string;
     public skinName: string;
     public imagePath: string;
     public minXP: string;
     public champiesCost: string;
     public skinType: skinType;
 
-    constructor(idSkin: string, skinName: string, imagePath: string, minXP: string, champiesCost: string, skinType: skinType) {
-        this.idSkin = idSkin;
+    constructor(idskin: string, skinName: string, imagePath: string, minXP: string, champiesCost: string, skinType: skinType) {
+        this.idskin = idskin;
         this.skinName = skinName;
         this.imagePath = imagePath;
         this.minXP = minXP;

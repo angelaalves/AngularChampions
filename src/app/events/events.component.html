@@ -5,11 +5,23 @@
 </span>
 <span class="divRight">
     <form class="form-inline">
-        <div id="line">
-            <app-events-elem *ngFor="let eventEl of events; let i=index" [event]="eventEl" [index]="i">
-            </app-events-elem>
-            <button type="submit" class="btn btn-primary mb-2"
-                style="position: absolute; margin-top: 2%;">Save</button>
-        </div>
+            <div class="eventscroll" id="style-8">
+                    <div *ngFor="let event of events;" id="row" >
+                            <hr>
+                            <label class="form-check-label" type="inlineFormCheck" style="margin-right: 20px;margin-left: 5px;">
+                                <h3>{{event.eventName}}</h3>
+                            </label>
+                            <input class="form-check-input" type="checkbox" id="inlineFormCheck">
+                            <span class="form-check-label" for="inlineFormCheck" style="margin-right: 10px;">
+                                Went
+                            </span>
+                           
+                        </div>
+                    </div>
+            
     </form>
 </span>
+<div id="footer">
+    <button type="submit" class="btn btn-primary" id="save" style="margin-right: 1%;" (click)="save()">Save</button>
+</div>
+       

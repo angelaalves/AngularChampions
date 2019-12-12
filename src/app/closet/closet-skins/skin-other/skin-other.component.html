@@ -1,9 +1,16 @@
-<div class="scrollmenu" id="style-8"  style="margin-bottom: 3%;">
+<div class="scrollmenu" id="style-8" style="margin-bottom: 3%;">
   <div *ngFor="let other of others" style="display: inline-block;">
-    <div *ngIf="other.imagePath!='../../../../assets/AppImages/None.png'" style="width:100px;height:100px;">
-      <img src={{other.imagePath}} style="width:100px;height:100px;" (click)="skinSelected(other)">
-    </div>
-    <div *ngIf="other.imagePath==='../../../../assets/AppImages/None.png'">
-      <img src={{other.imagePath}} style="width:100px;height:100px;" (click)="skinSelectedNull()">
-    </div>
+    <div *ngIf="imageNull(other)==false && playerHasBoughtSkin(other)==false" style="width:100px;height:100px; position: relative;">
+      <img src={{other.imagePath}} style="max-width:100px;max-height:100px; position: absolute;" (click)="skinSelected(other)">
+      <img src="../../../../assets/AppImages/forsale.png" style="max-width:100px; margin-right: auto; margin-left: auto; position: absolute;" (click)="skinSelected(other)">
+  </div>
+  <div *ngIf="imageNull(other)==false && playerHasBoughtSkin(other)==true && skinInUse(other)==true" style="width:100px;height:100px; border-style: solid; border-width:1px black;">
+    <img src={{other.imagePath}} style="max-width:100px;max-height:100px;">
+  </div>
+  <div *ngIf="imageNull(other)==false && playerHasBoughtSkin(other)==true && skinInUse(other)==false" style="width:100px;height:100px;">
+    <img src={{other.imagePath}} style="max-width:100px;max-height:100px;" (click)="skinSelected(other)">
+  </div>
+  <div *ngIf="imageNull(other)==true" style="max-width:100px;max-height:100px;">
+    <img src={{other.imagePath}} style="max-width:100px;max-height:100px;" (click)="skinSelectedNull()">
+  </div>
 </div>
