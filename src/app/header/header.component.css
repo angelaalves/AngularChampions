@@ -14,15 +14,11 @@ nav {
 }
 
 .divLeft {
-  padding-right: 10vw;
-    height: 30vh;
-    width:105vw;
+    width:95vw;
     display:block;
     float: left;
 }
 .divRight {
-    padding-right: 10vw;
-    height: 30vh;
     display:block;
     float: right;
 }
