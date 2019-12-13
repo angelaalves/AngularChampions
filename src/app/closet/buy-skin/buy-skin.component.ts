@@ -36,13 +36,13 @@ export class BuySkinComponent implements OnInit {
     this.router.navigate(['../closet'], { relativeTo: this.route });
   }
 
+  removeItem(skin: Skin){
+    this.skinService.removeFromShoppingCart(skin);
+  }
+
   emptyCart(){
     this.skinService.emptyCart();
     this.redirectBackToCloset();
-  }
-
-  removeItem(skin: Skin){
-    this.skinService.removeFromShoppingCart(skin);
   }
 
   buySkin() {
