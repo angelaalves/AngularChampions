@@ -17,14 +17,23 @@
                 </ul>
             </li>
         </ul>
-        <ul class="nav navbar-nav navbar-right" style="float: right;">
+        <ul class="nav navbar-nav navbar-right" style="float: right;" data-toggle="dropdown">
             <li class="dropdown" appDropdown>
                 <a style="cursor: pointer;" class="dropdown-toggle" role="button" *ngIf="Authenticated">
                     <img src="../assets/AppImages/shoppingcar.png" style="max-height: 70px;"><span></span>
                 </a>
-                <ul class="dropdown-menu dropdown-menu-right" style="background-color:whitesmoke">
-                    <li><a style="cursor: pointer">Item 1</a></li>
-                    <li><a style="cursor: pointer">Item 2</a></li>
+                <ul class="dropdown-menu dropdown-menu-right" style="background-color:whitesmoke"
+                    *ngIf="shoppingCartSkins.length > 0">
+                    <div *ngFor="let item of shoppingCartSkins">
+                        <li style="margin-top: 1%;">
+                            <a style="cursor: pointer">
+                                <img src={{item.imagePath}} style="max-width: 30%; margin-left: 5%; margin-right: -5%;">
+                                <img src="../../assets/AppImages/minus.png"
+                                    style="max-width: 25%; float: right; margin-right: 5%;margin-left: -5%;"
+                                    (click)="removeItem(item)">
+                            </a>
+                        </li>
+                    </div>
                 </ul>
             </li>
         </ul>

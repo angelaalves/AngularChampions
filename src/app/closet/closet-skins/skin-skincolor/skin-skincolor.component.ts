@@ -21,6 +21,7 @@ export class SkinSkincolorComponent implements OnInit {
   playerViewingSkins: String[] = [];
   playerInitialSkins: String[] = [];
   alluserskins: Closet[] = [];
+  shoppingCartSkins: Skin[] = [];
 
   constructor(private router: Router, private route: ActivatedRoute, private skinSelectedService: SkinSelectedService, 
     private session: SessionService, private skinService : SkinService, private http: HttpClient) { }
@@ -30,7 +31,8 @@ export class SkinSkincolorComponent implements OnInit {
 
     console.log(this.player);
 
-    this.skinService.currentSkinSelected.subscribe(skin => this.currentSkinToBeBought = skin)
+    //this.skinService.currentSkinSelected.subscribe(skin => this.currentSkinToBeBought = skin)
+    this.skinService.shoppingCartSkins.subscribe(shoppingCart => this.shoppingCartSkins = shoppingCart);
 
     this.playerInitialSkins = this.session.playerSession.imagePath;
 
@@ -64,9 +66,14 @@ export class SkinSkincolorComponent implements OnInit {
   }
 
   skinSelected(skinSelected: Skin){
-    this.playerViewingSkins=this.playerInitialSkins;
+    this.playerViewingSkins = this.playerInitialSkins;
     this.session.playerSession.changeImage(skinSelected.imagePath, skinSelected.skinType);
-    this.skinService.updateSkin(skinSelected);
+
+    //this.skinService.updateSkin(skinSelected);
+    if (this.playerHasBoughtSkin(skinSelected) == false) {
+      this.skinService.addToShoppingCart(skinSelected);
+    }
     this.session.playerSession.imagePath = this.playerViewingSkins;
+    this.skinService.setAnySkinSelected(true);
   }
 }

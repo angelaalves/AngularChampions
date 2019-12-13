@@ -1,13 +1,14 @@
 <div style="text-align: center;">
   <div class="row">
-    <h2>Do you want to buy this skin?</h2>
+    <h2 style=" margin-bottom: 5%;">Shopping Cart</h2>
   </div>
-  <div class="row">
-    <img src={{currentSkinToBeBought.imagePath}} alt="" style="width:15%">
-    <h3>{{currentSkinToBeBought.champiesCost}}<img src="../../../assets/AppImages/Champies.png" alt=""
-        style="max-height: 50px;"></h3>
-    <h3>{{currentSkinToBeBought.minXP}}</h3>
-    <button type="button" class="btn" id="butao" (click)="buySkin()">Buy</button>
-    <button type="button" class="btn" id="butao" (click)="redirectBackToCloset()">Cancel</button>
+  <div class="col-xs-3" *ngFor="let skin of shoppingCartSkins" style="margin-bottom: 3%;">
+    <img src={{skin.imagePath}} alt="" style="width:15%">
+    <h4>Cost: {{skin.champiesCost}}<img src="../../../assets/AppImages/Champies.png" alt="" style="max-height: 50px;"></h4>
+    <h4>Minimum XP needed: {{skin.minXP}}</h4>
   </div>
+</div>
+<div>
+  <button type="button" class="btn" id="butao" (click)="buySkin()">Buy</button>
+  <button type="button" class="btn" id="butao" (click)="redirectBackToCloset()">Cancel</button>
 </div>

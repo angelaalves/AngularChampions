@@ -1,6 +1,8 @@
 import { Component, OnInit, Injectable, ViewContainerRef } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { SessionService } from '../services/session.service';
+import { SkinService } from '../services/skin.service';
+import { Skin } from '../shared/skin.model';
 
 @Component({
   selector: 'app-header',
@@ -11,7 +13,9 @@ import { SessionService } from '../services/session.service';
 @Injectable({providedIn: 'root'})
 export class HeaderComponent implements OnInit {
   Authenticated=false;
-  constructor(private router: Router, private route: ActivatedRoute, private session: SessionService) { }
+  shoppingCartSkins: Skin[] = [];
+
+  constructor(private router: Router, private route: ActivatedRoute, private session: SessionService, private skinService: SkinService) { }
   
   ngOnInit() {
     this.session.isAuthenticated.subscribe(didAuthenticate=>{
@@ -20,7 +24,13 @@ export class HeaderComponent implements OnInit {
     if(localStorage.getItem('playerlogged')){
       this.session.isAuthenticated.next(true);
     }
+    this.skinService.shoppingCartSkins.subscribe(shoppingCart => this.shoppingCartSkins = shoppingCart);
   }
+
+  removeItem(skin: Skin){
+    this.skinService.removeFromShoppingCart(skin);
+  }
+
   onProfile(){
     if (this.session.getPlayerInSession().userType == "Ancient") {
       this.router.navigate(['/ancient_profile'], { relativeTo: this.route });

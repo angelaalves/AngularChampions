@@ -1,14 +1,14 @@
-  nav {
-      background-color: transparent;
-      border: 10px solid transparent;
-      padding: 5px;
-  }
-  
-  @font-face {
-      src: url(../../fonts/ka1.ttf);
-      font-family: karmatic-arcade;
-  }
-  
-  * {
-      font-family: karmatic-arcade;
-  }
+nav {
+    background-color: transparent;
+    border: 10px solid transparent;
+    padding: 5px;
+}
+
+@font-face {
+    src: url(../../fonts/ka1.ttf);
+    font-family: karmatic-arcade;
+}
+
+* {
+    font-family: karmatic-arcade;
+}

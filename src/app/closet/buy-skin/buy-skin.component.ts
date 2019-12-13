@@ -18,7 +18,8 @@ import { SkinService } from 'src/app/services/skin.service';
 export class BuySkinComponent implements OnInit {
   player: Player;
   activeSkins: Skin[] = [];
-  currentSkinToBeBought: Skin;
+  //currentSkinToBeBought: Skin;
+  shoppingCartSkins: Skin[] = [];
 
   constructor(private router: Router, private route: ActivatedRoute, private http: HttpClient, private session: SessionService,
     private skinSelectedService: SkinSelectedService, private skinService: SkinService) {
@@ -26,8 +27,9 @@ export class BuySkinComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.skinService.currentSkinSelected.subscribe(skin =>{ this.currentSkinToBeBought = skin})
-    console.log(this.currentSkinToBeBought);
+    /*this.skinService.currentSkinSelected.subscribe(skin =>{ this.currentSkinToBeBought = skin})
+    console.log(this.currentSkinToBeBought);*/
+    this.skinService.shoppingCartSkins.subscribe(shoppingCart => this.shoppingCartSkins = shoppingCart);
   }
 
   redirectBackToCloset() {
@@ -35,41 +37,49 @@ export class BuySkinComponent implements OnInit {
   }
 
   buySkin() {
-    console.log(this.currentSkinToBeBought);
-    var idSkin = this.currentSkinToBeBought.idskin;
-    console.log("idSkin "+ idSkin);
+    console.log("shopping cart skins "+this.shoppingCartSkins);
+
     const idplayer = this.session.getPlayerInSession().idplayer;
 
-    if (this.player.myChampies >= this.currentSkinToBeBought.champiesCost && this.player.xp >= this.currentSkinToBeBought.minXP) {
-      this.http.post<any>('http://localhost:8085/closet/Create?idSkinFK=' + idSkin + '&idPlayerFk=' + idplayer + '&status=',
-        {
-          idSkin,
-          idplayer,
-        }
-      ).subscribe();
+    for (let item of this.shoppingCartSkins) {
 
-      this.activeSkins.push(this.currentSkinToBeBought);
+      var idSkin = item.idskin;
 
-      const myChampiesAfterBuyingSkin = Number(this.player.myChampies) - Number(this.currentSkinToBeBought.champiesCost);
+      console.log("idSkin " + idSkin);
 
-      this.http.post<any>('http://localhost:8085/players/Update?idPlayer=' + idplayer + '&idGuildFK= &userName= &email= &password= &gender= &userType= &xp= &champiesToGive= &myChampies=' + myChampiesAfterBuyingSkin + '&status= ',
-        {
-          idplayer,
-          myChampiesAfterBuyingSkin
-        }
-      ).subscribe();
+      if (this.player.myChampies >= item.champiesCost && this.player.xp >= item.minXP) {
+        this.http.post<any>('http://localhost:8085/closet/Create?idSkinFK=' + idSkin + '&idPlayerFk=' + idplayer + '&status=',
+          {
+            idSkin,
+            idplayer,
+          }
+        ).subscribe();
 
-      for (let activeSkin of this.activeSkins) {
-        const skinID = activeSkin.idskin;
-        const skinStatus = status.Inactive;
-        if (activeSkin.skinType === this.skinSelectedService.getSkin().skinType) {
-          this.http.post<any>('http://localhost:8085/closet/Update?idSkinFK=' + skinID + '&idPlayerFk=' + idplayer + '&status=' + skinStatus,
-            {
-              skinID,
-              idplayer,
-              skinStatus
-            }
-          );
+        this.activeSkins.push(item);
+
+        const myChampiesAfterBuyingSkin = Number(this.player.myChampies) - Number(item.champiesCost);
+
+        this.http.post<any>('http://localhost:8085/players/Update?idPlayer=' + idplayer + '&idGuildFK= &userName= &email= &password= &gender= &userType= &xp= &champiesToGive= &myChampies=' + myChampiesAfterBuyingSkin + '&status= ',
+          {
+            idplayer,
+            myChampiesAfterBuyingSkin
+          }
+        ).subscribe();
+
+        let counter :number = -1;
+        for (let activeSkin of this.activeSkins) {
+          counter++;
+          const skinID = activeSkin.idskin;
+          const skinStatus = status.Inactive;
+          if (activeSkin.skinType === item.skinType) {
+            this.http.post<any>('http://localhost:8085/closet/Update?idSkinFK=' + skinID + '&idPlayerFk=' + idplayer + '&status=' + skinStatus,
+              {
+                skinID,
+                idplayer,
+                skinStatus
+              }
+            );
+          }
         }
       }
     }

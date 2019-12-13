@@ -25,7 +25,7 @@ export class SkinTopComponent implements OnInit {
   playerInitialSkins: String[] = [];
   playerViewingSkins: String[] = [];
   alluserskins: Closet[] = [];
-
+  shoppingCartSkins: Skin[] = [];
 
   constructor(private session: SessionService, private router: Router, private route: ActivatedRoute, private http: HttpClient, private skinSelectedService: SkinSelectedService,
     private skinService: SkinService, private closet: ClosetComponent) { }
@@ -33,7 +33,8 @@ export class SkinTopComponent implements OnInit {
   ngOnInit() {
     this.player = this.session.getPlayerInSession();
     console.log(this.player);
-    this.skinService.currentSkinSelected.subscribe(skin => this.currentSkinToBeBought = skin)
+    //this.skinService.currentSkinSelected.subscribe(skin => this.currentSkinToBeBought = skin)
+    this.skinService.shoppingCartSkins.subscribe(shoppingCart => this.shoppingCartSkins = shoppingCart);
     this.playerInitialSkins = this.session.playerSession.imagePath;
     console.log("initial skins on init()" + this.playerInitialSkins);
     this.playerViewingSkins = this.session.playerSession.imagePath;
@@ -71,15 +72,20 @@ export class SkinTopComponent implements OnInit {
   skinSelected(skinSelected: Skin) {
     this.playerViewingSkins = this.playerInitialSkins;
     this.session.playerSession.changeImage(skinSelected.imagePath, skinSelected.skinType);
-    this.skinService.updateSkin(skinSelected);
-    this.session.playerSession.imagePath = this.playerInitialSkins;
+
+    //this.skinService.updateSkin(skinSelected);
+    if (this.playerHasBoughtSkin(skinSelected) == false) {
+      this.skinService.addToShoppingCart(skinSelected);
+    }
+    this.session.playerSession.imagePath = this.playerViewingSkins;
     this.skinService.setAnySkinSelected(true);
   }
 
   skinSelectedNull() {
     this.playerViewingSkins = this.playerInitialSkins;
     this.session.playerSession.changeImage("../../../../assets/Top/TopNull.png", skinType.Top);
-    this.skinService.updateSkin(new Skin("10000", "topNull", "../../../../assetsTop/TopNull.png", "0", "0", skinType.Top));
+    //this.skinService.updateSkin(new Skin("10000", "topNull", "../../../../assetsTop/TopNull.png", "0", "0", skinType.Top));
+    //this.skinService.addToShoppingCart(new Skin("10000", "topNull", "../../../../assetsTop/TopNull.png", "0", "0", skinType.Top));
     this.session.playerSession.imagePath = this.playerViewingSkins;
     this.skinService.setAnySkinSelected(true);
   }

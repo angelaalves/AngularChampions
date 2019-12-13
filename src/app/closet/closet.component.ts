@@ -24,9 +24,10 @@ export class ClosetComponent implements OnInit {
   tops: Skin[] = [];
   shoes: Skin[] = [];
   others: Skin[] = [];
-  currentSkinToBeBought: Skin;
+  //currentSkinToBeBought: Skin;
   newViewingSkins: String[];
   initialSkins: String[];
+  shoppingCartSkins: Skin[] = [];
 
   private skin = new BehaviorSubject<Skin>(new Skin("", "", "", "", "", null));
   closetSkinSelected = this.skin.asObservable();
@@ -43,7 +44,8 @@ export class ClosetComponent implements OnInit {
     console.log("array de skins novas " + this.player.imagePath);
 
     /**/
-    this.skinService.currentSkinSelected.subscribe(skin => this.currentSkinToBeBought = skin);
+    //this.skinService.currentSkinSelected.subscribe(skin => this.currentSkinToBeBought = skin);
+    this.skinService.shoppingCartSkins.subscribe(shoppingCart => this.shoppingCartSkins = shoppingCart);
     this.skinService.newViewingSkins.subscribe(skinPaths => this.newViewingSkins = skinPaths);
     this.newViewingSkins = this.skinService.getArraySkin().getValue();
   }
@@ -79,7 +81,7 @@ export class ClosetComponent implements OnInit {
   }
 
   redirectToBuySkin() {
-    if (this.skinService.getAnySkinSelected() === true) {
+    if (this.skinService.isShoppingCartEmpty()==false) {
       this.router.navigate(['../buy_skin'], { relativeTo: this.route });
     }
   }
@@ -87,6 +89,8 @@ export class ClosetComponent implements OnInit {
   resetToInitialSkins() {
     this.skinService.setAnySkinSelected(false);
     this.session.playerSession.resetImage();
-    this.skinService.updateSkin(null);
+    //this.skinService.updateSkin(null);
+    this.skinService.addToShoppingCart(null);
+    console.log("closet.component.ts: method resetToInitialSkins "+this.skinService.addToShoppingCart(null));
   }
 }

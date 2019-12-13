@@ -20,10 +20,11 @@ export class SkinBottomComponent implements OnInit {
   @Input() bottoms: Skin[];
   @Input() player: Player;
   currentUserSkins: Skin[];
-  currentSkinToBeBought: Skin;
+  //currentSkinToBeBought: Skin;
   playerInitialSkins: String[] = [];
   playerViewingSkins: String[] = [];
   alluserskins: Closet[] = [];
+  shoppingCartSkins: Skin[] = [];
 
   constructor(private router: Router, private route: ActivatedRoute,
     private session: SessionService, private skinService: SkinService, private closet: ClosetComponent, private http: HttpClient) { }
@@ -33,7 +34,8 @@ export class SkinBottomComponent implements OnInit {
 
     console.log(this.player);
 
-    this.skinService.currentSkinSelected.subscribe(skin => this.currentSkinToBeBought = skin)
+    //this.skinService.currentSkinSelected.subscribe(skin => this.currentSkinToBeBought = skin)
+    this.skinService.shoppingCartSkins.subscribe(shoppingCart => this.shoppingCartSkins = shoppingCart);
 
     this.playerInitialSkins = this.session.playerSession.imagePath;
 
@@ -50,8 +52,8 @@ export class SkinBottomComponent implements OnInit {
     });
   }
 
-  skinInUse(skin: Skin){
-    if(this.session.playerSession.imagePath.includes(skin.imagePath)){
+  skinInUse(skin: Skin) {
+    if (this.session.playerSession.imagePath.includes(skin.imagePath)) {
       return true;
     }
     return false;
@@ -77,8 +79,10 @@ export class SkinBottomComponent implements OnInit {
     this.playerViewingSkins = this.playerInitialSkins;
     this.session.playerSession.changeImage(skinSelected.imagePath, skinSelected.skinType);
 
-    this.skinService.updateSkin(skinSelected);
-
+    //this.skinService.updateSkin(skinSelected);
+    if (this.playerHasBoughtSkin(skinSelected) == false) {
+      this.skinService.addToShoppingCart(skinSelected);
+    }
     this.session.playerSession.imagePath = this.playerViewingSkins;
     this.skinService.setAnySkinSelected(true);
   }
@@ -87,7 +91,8 @@ export class SkinBottomComponent implements OnInit {
     this.playerViewingSkins = this.playerInitialSkins;
     this.session.playerSession.changeImage("./../../../assets/Bottom/BottomNull.png", skinType.Bottom);
 
-    this.skinService.updateSkin(new Skin("10000", "bottomNull", "./../../../assets/Bottom/BottomNull.png", "0", "0", skinType.Bottom));
+    //this.skinService.updateSkin(new Skin("10000", "bottomNull", "./../../../assets/Bottom/BottomNull.png", "0", "0", skinType.Bottom));
+    //this.skinService.addToShoppingCart(new Skin("10000", "bottomNull", "./../../../assets/Bottom/BottomNull.png", "0", "0", skinType.Bottom));
 
     this.session.playerSession.imagePath = this.playerViewingSkins;
     this.skinService.setAnySkinSelected(true);
