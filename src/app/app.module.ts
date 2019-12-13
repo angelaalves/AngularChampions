@@ -65,6 +65,7 @@ import { TableFilterPipe } from './list-users/user-list.pipe';
 import { SkinService } from './services/skin.service';
 import { ConfirmEqualValidatorDirective } from './shared/equal.validator.directive';
 import { GuildPlayerPresenterComponent } from './guild-list-start/guild-list/add-guild-list/guild-player-presenter/guild-player-presenter.component';
+import { TableFilterPipe2 } from './videos/videos.pipe';
 
 
 @NgModule({
@@ -127,6 +128,7 @@ import { GuildPlayerPresenterComponent } from './guild-list-start/guild-list/add
     PresenterPageComponent,
     PreviewSkinComponent,
     TableFilterPipe,
+    TableFilterPipe2,
     ConfirmEqualValidatorDirective,
     GuildPlayerPresenterComponent
   ],
@@ -139,7 +141,7 @@ import { GuildPlayerPresenterComponent } from './guild-list-start/guild-list/add
     ReactiveFormsModule,
     BrowserAnimationsModule
   ],
-  providers: [PlayerService, SessionService, ListUsersComponent, TableFilterPipe, SkinService],
+  providers: [PlayerService, SessionService, ListUsersComponent, TableFilterPipe, TableFilterPipe2 ,SkinService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

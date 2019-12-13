@@ -1,61 +1,66 @@
 <div class="row">
     <div class="col-xs-12" style="text-align: center;">
-        <img src="../../../assets/AppImages/DefaultFlag.png"
-            alt="flag" style="max-height: 200px;">
+        <img src="../../../assets/AppImages/DefaultFlag.png" alt="flag" style="max-height: 200px;">
     </div>
 </div>
-<div class="form-row">
-    <div class="col-xs-12" style="text-align: center;">
-        <h3 for="guildName">Guild Name</h3>
-        <input type="text" class="form-control" id="newGuildName"
-            style="max-width: 200px;margin-left: auto; margin-right: auto;">
-    </div>
-</div>
-<div class="row">
-    <div class="col-xs-3 col-xs-offset-4" style="cursor: pointer;transform: translate(16.5%, 7%);" *ngIf="!guildmasterSelected">
-        <ul>
-            <li class="dropdown" appDropdown>
-                <a style="cursor: pointer; margin-left: auto; margin-right: auto;" class="dropdown-toggle"
-                    role="button">
-                    <img src="../../../assets/AppImages/plus.png" alt="plus"
-                        style="max-height: 50px;margin-left: auto;margin-right: auto; vertical-align: middle;"><span></span>
-                </a>
-                <ul class="dropdown-menu dropdown-menu-left">
-                    <li *ngFor="let guildmasterEl of guildMasters"><a
-                            style="cursor: pointer;" (click)="onGuildMasterSelection(guildmasterEl)">{{guildmasterEl.userName}}</a></li>
-                </ul>
-            </li>
-        </ul>
-        <div class="pull-down" style="text-align: center;">
-            <h3 class="list-group-item-heading" id="createGuildMaster">Add GuildMaster</h3>
+<form #guildForm="ngForm" (ngSubmit)="createGuild(guildForm)" action="">
+    <div class="form-row">
+        <div class="col-xs-12" style="text-align: center;">
+            <h3 for="guildName">Guild Name</h3>
+            <input type="text" class="form-control" id="newGuildName" name="newGuildName"
+                style="max-width: 200px;margin-left: auto; margin-right: auto;" ngModel>
         </div>
     </div>
-    <div class="col-xs-3 col-xs-offset-4" style="transform: translate(16.5%, 7%);" *ngIf="guildmasterSelected">
-        <app-guild-player-presenter [player]="guildmasterSelected"></app-guild-player-presenter>
-    </div>
-</div>
-<div class="row">
-    <div class="col-xs-3" style="margin-left: auto; margin-right: auto;" *ngFor="let warriorEl of warriorsSelected">
-        <app-guild-player-presenter [player]="warriorEl"></app-guild-player-presenter>
-    </div>
-    <div class="col-xs-3" style="cursor: pointer;margin-left: auto;margin-right: auto; display: block;"
-        id="buttonAddPlayer">
-        <ul>
-            <li class="dropdown" appDropdown>
-                <a style="cursor: pointer" class="dropdown-toggle" role="button">
-                    <img src="../../../assets/AppImages/plus.png" alt="add" class="img-responsive"
-                        style="max-height: 50px;margin-left: auto;margin-right: auto;vertical-align: middle;">
-                </a>
-                <ul class="dropdown-menu dropdown-menu-left">
-                    <li *ngFor="let warriorEl of warriors"><a style="cursor: pointer" (click)="onWarriorSelection(warriorEl)">{{warriorEl.userName}}</a></li>
-                </ul>
-            </li>
-        </ul>
-        <div class="pull-down" style="text-align: center;">
-            <h3 class="list-group-item-heading">Add Player</h3>
+    <div class="row">
+        <div class="col-xs-3 col-xs-offset-4" style="cursor: pointer;transform: translate(16.5%, 7%);"
+            *ngIf="!guildmasterSelected">
+            <ul>
+                <li class="dropdown" appDropdown>
+                    <a style="cursor: pointer; margin-left: auto; margin-right: auto;" class="dropdown-toggle"
+                        role="button">
+                        <img src="../../../assets/AppImages/plus.png" alt="plus"
+                            style="max-height: 50px;margin-left: auto;margin-right: auto; vertical-align: middle;"><span></span>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-left">
+                        <li *ngFor="let guildmasterEl of guildMasters"><a style="cursor: pointer;"
+                                (click)="onGuildMasterSelection(guildmasterEl)">{{guildmasterEl.userName}}</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <div class="pull-down" style="text-align: center;">
+                <h3 class="list-group-item-heading" id="createGuildMaster">Add GuildMaster</h3>
+            </div>
+        </div>
+        <div class="col-xs-3 col-xs-offset-4" style="transform: translate(16.5%, 7%);" *ngIf="guildmasterSelected">
+            <app-guild-player-presenter [player]="guildmasterSelected"></app-guild-player-presenter>
         </div>
     </div>
-</div>
-<div class="row" style="text-align: right;padding-right: 50px;">
-    <button class="btn btn-primary" type="button">save</button>
-</div>
+    <div class="row">
+        <div class="col-xs-3" style="margin-left: auto; margin-right: auto;" *ngFor="let warriorEl of warriorsSelected">
+            <app-guild-player-presenter [player]="warriorEl"></app-guild-player-presenter>
+        </div>
+        <div class="col-xs-3" style="cursor: pointer;margin-left: auto;margin-right: auto; display: block;"
+            id="buttonAddPlayer">
+            <ul>
+                <li class="dropdown" appDropdown>
+                    <a style="cursor: pointer" class="dropdown-toggle" role="button">
+                        <img src="../../../assets/AppImages/plus.png" alt="add" class="img-responsive"
+                            style="max-height: 50px;margin-left: auto;margin-right: auto;vertical-align: middle;">
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-left">
+                        <li *ngFor="let warriorEl of warriors"><a style="cursor: pointer"
+                                (click)="onWarriorSelection(warriorEl)">{{warriorEl.userName}}</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <div class="pull-down" style="text-align: center;">
+                <h3 class="list-group-item-heading">Add Player</h3>
+            </div>
+        </div>
+    </div>
+    <div style="text-align: right;padding-right: 50px;">
+    <button class="btn btn-primary" type="button" (click)="removePlayer()">remove last</button></div>
+    <div class="form-row" style="text-align: right;padding-right: 50px;">
+        <button class="btn btn-primary" type="submit">save</button>
+    </div>
+</form>

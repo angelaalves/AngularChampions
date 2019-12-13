@@ -9,7 +9,7 @@ import { Player } from 'src/app/shared/player.model';
 export class AuthenticationService {
   user = new BehaviorSubject<Player>(null);
   constructor(private http: HttpClient) { }
- 
+ /*
   signup(email: string, password: string) {
     var xhr = new XMLHttpRequest();
     xhr.open('POST', 'http://localhost:8085/login', true); 
@@ -24,14 +24,8 @@ export class AuthenticationService {
            resData.gender, resData.userType, resData.xp, resData.champiesToGive, resData.myChampies, resData.status )
       })   
     );
-
-
-
-
-
- 
   }
- 
+ */
   private handleError(errorRes: HttpErrorResponse) {
     let errorMessage = 'an unknown error occurred';
     if (!errorRes.error || !errorRes.error.error) {

@@ -32,6 +32,7 @@
   overflow-y: scroll;
   height: 60vh;
   width:70vw;
+  overflow-x: hidden;
 }
 
 @font-face{
@@ -82,13 +83,20 @@ select{
   }
   
 
-#style-8::-webkit-scrollbar
-{
-	width: 10px;
-	background-color: transparent;
-}
 
-#style-8::-webkit-scrollbar-thumb
-{
-	background-color: #000000;	
-}
+  #style-8::-webkit-scrollbar-track
+  {
+    border: 1px solid black;
+    background-color:transparent;
+  }
+  
+  #style-8::-webkit-scrollbar
+  {
+    width: 10px;
+    background-color: transparent;
+  }
+  
+  #style-8::-webkit-scrollbar-thumb
+  {
+    background-color: #000000;	
+  }

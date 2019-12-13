@@ -3,10 +3,10 @@ import { Video } from '../shared/video.model';
 import { topic } from '../shared/topic.enum';
 
 @Pipe({
-  name: 'tableFilter'
+  name: 'tableFilter2'
 })
 
-export class TableFilterPipe implements PipeTransform {
+export class TableFilterPipe2 implements PipeTransform {
 
   transform(list: Video[], value: topic) {
  
