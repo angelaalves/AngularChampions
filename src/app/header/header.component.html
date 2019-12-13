@@ -1,42 +1,47 @@
 <nav class="navbar navbar-default">
-    <div class="navbar-header" style="margin: auto;">
-        <ul class="nav navbar-nav navbar-left">
-            <li class="dropdown" appDropdown>
-                <a style="cursor: pointer;" class="dropdown-toggle" role="button" *ngIf="Authenticated">
-                    <img src="../assets/AppImages/hamburguer.png" style="max-height: 70px;"><span></span>
-                </a>
-                <ul class="dropdown-menu dropdown-menu-left" style="background-color:whitesmoke">
-                    <li><a style="cursor: pointer" (click)="onProfile()">Profile</a></li>
-                    <li><a style="cursor: pointer" (click)="onCloset()">Closet</a></li>
-                    <li><a style="cursor: pointer" (click)="onReward()">Reward</a></li>
-                    <li><a style="cursor: pointer" (click)="onVideos()">Videos</a></li>
-                    <li><a style="cursor: pointer" (click)="onGuild()">Guild</a></li>
-                    <li><a style="cursor: pointer" (click)="onEvents()">Events</a></li>
-                    <li><a style="cursor: pointer" (click)="onNotifications()">Notifications</a></li>
-                    <li><a style="cursor: pointer" (click)="onSignout()">Signout</a></li>
-                </ul>
-            </li>
-        </ul>
-        <ul class="nav navbar-nav navbar-right" style="float: right;" data-toggle="dropdown">
-            <li class="dropdown" appDropdown>
-                <a style="cursor: pointer;" class="dropdown-toggle" role="button" *ngIf="Authenticated">
-                    <img src="../assets/AppImages/shoppingcar.png" style="max-height: 70px;"><span></span>
-                </a>
-                <ul class="dropdown-menu dropdown-menu-right" style="background-color:whitesmoke"
-                    *ngIf="shoppingCartSkins.length > 0">
-                    <div *ngFor="let item of shoppingCartSkins">
-                        <li style="margin-top: 1%;">
-                            <a style="cursor: pointer">
-                                <img src={{item.imagePath}} style="max-width: 30%; margin-left: 5%; margin-right: -5%;">
-                                <img src="../../assets/AppImages/minus.png"
-                                    style="max-width: 25%; float: right; margin-right: 5%;margin-left: -5%;"
-                                    (click)="removeItem(item)">
-                            </a>
-                        </li>
-                    </div>
-                </ul>
-            </li>
-        </ul>
+    <div class="divLeft">
+        <div class="navbar-header" style="margin: auto;">
+            <ul class="nav navbar-nav navbar-left">
+                <li class="dropdown" appDropdown>
+                    <a style="cursor: pointer;" class="dropdown-toggle" role="button" *ngIf="Authenticated">
+                        <img src="../assets/AppImages/hamburguer.png" style="max-height: 70px;"><span></span>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-left" style="background-color:whitesmoke">
+                        <li><a style="cursor: pointer" (click)="onProfile()">Profile</a></li>
+                        <li><a style="cursor: pointer" (click)="onCloset()">Closet</a></li>
+                        <li><a style="cursor: pointer" (click)="onReward()">Reward</a></li>
+                        <li><a style="cursor: pointer" (click)="onVideos()">Videos</a></li>
+                        <li><a style="cursor: pointer" (click)="onGuild()">Guild</a></li>
+                        <li><a style="cursor: pointer" (click)="onEvents()">Events</a></li>
+                        <li><a style="cursor: pointer" (click)="onNotifications()">Notifications</a></li>
+                        <li><a style="cursor: pointer" (click)="onSignout()">Signout</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <div class="divRigth">
+            <ul class="nav navbar-nav navbar-right" style="float: right;" data-toggle="dropdown">
+                <li class="dropdown" appDropdown>
+                    <a style="cursor: pointer;" class="dropdown-toggle" role="button" *ngIf="Authenticated">
+                        <img src="../assets/AppImages/shoppingcar.png" style="max-height: 70px;"><span></span>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-right" style="background-color:whitesmoke"
+                        *ngIf="shoppingCartSkins.length > 0">
+                        <div *ngFor="let item of shoppingCartSkins">
+                            <li style="margin-top: 1%;">
+                                <a style="cursor: pointer">
+                                    <img src={{item.imagePath}}
+                                        style="max-width: 30%; margin-left: 5%; margin-right: -5%;">
+                                    <img src="../../assets/AppImages/minus.png"
+                                        style="max-width: 25%; float: right; margin-right: 5%;margin-left: -5%;"
+                                        (click)="removeItem(item)">
+                                </a>
+                            </li>
+                        </div>
+                    </ul>
+                </li>
+            </ul>
+        </div>
     </div>
     <div class="navbar-collapse" [class.collapse]="collapsed" (window:resize)="collapsed=true">
     </div>
