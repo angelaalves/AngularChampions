@@ -3,7 +3,6 @@ import { Player } from '../shared/player.model';
 import { HttpClient } from '@angular/common/http';
 import { Skin } from '../shared/skin.model';
 import { skinType } from '../shared/skinType.enum';
-import { AuthenticationService } from '../login/authentication/authentication.service';
 import { SessionService } from '../services/session.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { SkinService } from '../services/skin.service';
@@ -32,12 +31,11 @@ export class ClosetComponent implements OnInit {
   private skin = new BehaviorSubject<Skin>(new Skin("", "", "", "", "", null));
   closetSkinSelected = this.skin.asObservable();
 
-
-  constructor(private session: SessionService, private http: HttpClient, private authService: AuthenticationService,
+  constructor(private session: SessionService, private http: HttpClient,
     private router: Router, private route: ActivatedRoute, private skinService: SkinService) { }
 
   ngOnInit() {
-    this.player = this.session.getPlayerInSession();
+    this.player = this.session.playerSession;
     this.initialSkins = this.session.getPlayerInSession().imagePath;
     this.getSkins();
     this.newViewingSkins = this.player.imagePath;
