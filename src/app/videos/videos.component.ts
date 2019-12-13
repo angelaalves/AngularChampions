@@ -199,7 +199,7 @@ export class VideosComponent implements OnInit {
     for (let x of this.idOfVideosUnchecked) {
       if (x == video) {
         exists = true;
-
+  
       }
     }
     if (exists == false) {
