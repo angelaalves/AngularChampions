@@ -3,13 +3,12 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --proxy-config proxy.config.js",
+    "start": "nodemon dist/server.js",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "prestart": "tsc -w",
-"start": "nodemon dist/server.js"
+    "prestart": "tsc -w"
   },
   "private": true,
   "dependencies": {
@@ -31,6 +30,7 @@
     "nodemon": "^2.0.1",
     "rxjs": "^6.5.3",
     "rxjs-compat": "^6.5.3",
+    "sweetalert2": "^9.5.3",
     "tslib": "^1.10.0",
     "zone.js": "~0.9.1"
   },
