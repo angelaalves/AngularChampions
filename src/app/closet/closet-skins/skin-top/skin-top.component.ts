@@ -20,11 +20,9 @@ import { Closet } from 'src/app/shared/closet.model';
 export class SkinTopComponent implements OnInit {
   @Input() tops: Skin[];
   @Input() player: Player;
-  currentUserSkins: Skin[];
-  currentSkinToBeBought: Skin;
   playerInitialSkins: String[] = [];
   playerViewingSkins: String[] = [];
-  alluserskins: Closet[] = [];
+  allsessionsuserskins: Closet[] = [];
   shoppingCartSkins: Skin[] = [];
 
   constructor(private session: SessionService, private router: Router, private route: ActivatedRoute, private http: HttpClient, private skinSelectedService: SkinSelectedService,
@@ -33,7 +31,6 @@ export class SkinTopComponent implements OnInit {
   ngOnInit() {
     this.player = this.session.getPlayerInSession();
     console.log(this.player);
-    //this.skinService.currentSkinSelected.subscribe(skin => this.currentSkinToBeBought = skin)
     this.skinService.shoppingCartSkins.subscribe(shoppingCart => this.shoppingCartSkins = shoppingCart);
     this.playerInitialSkins = this.session.playerSession.imagePath;
     console.log("initial skins on init()" + this.playerInitialSkins);
@@ -41,29 +38,34 @@ export class SkinTopComponent implements OnInit {
     console.log("viewing skins on init()" + this.playerViewingSkins);
     console.log(this.player);
     this.http.get<Closet[]>('http://localhost:8085/closet/Get?idSkinFK= &idPlayerFk=' + this.session.getPlayerInSession().idplayer + "&status=", {}).subscribe(data => {
-      this.alluserskins = data;
-      console.log("this.alluserskins ",this.alluserskins);
+      this.allsessionsuserskins = data;
+      console.log("this.alluserskins ", this.allsessionsuserskins);
+      for (let s of this.allsessionsuserskins) {
+        console.log(this.allsessionsuserskins + "element: " + s);
+        return true;
+      }
+      return false;
     });
   }
 
-  skinInUse(skin: Skin){
-    if(this.session.playerSession.imagePath.includes(skin.imagePath)){
+  skinInUse(skin: Skin) {
+    if (this.session.playerSession.imagePath.includes(skin.imagePath)) {
       return true;
     }
     return false;
   }
 
   playerHasBoughtSkin(skin: Skin) {
-    for (let s of this.alluserskins) {
-      if (s.idskinFK==skin.idskin) {
+    for (let s of this.allsessionsuserskins) {
+      if (s.idskinFK == skin.idskin) {
         return true;
       }
     }
     return false;
   }
 
-  imageNull(skin: Skin){
-    if(skin.imagePath=="../../assets/AppImages/None.png"){
+  imageNull(skin: Skin) {
+    if (skin.imagePath == "../../assets/AppImages/None.png") {
       return true;
     }
     return false;
@@ -73,7 +75,6 @@ export class SkinTopComponent implements OnInit {
     this.playerViewingSkins = this.playerInitialSkins;
     this.session.playerSession.changeImage(skinSelected.imagePath, skinSelected.skinType);
 
-    //this.skinService.updateSkin(skinSelected);
     if (this.playerHasBoughtSkin(skinSelected) == false) {
       this.skinService.addToShoppingCart(skinSelected);
     }
@@ -84,8 +85,6 @@ export class SkinTopComponent implements OnInit {
   skinSelectedNull() {
     this.playerViewingSkins = this.playerInitialSkins;
     this.session.playerSession.changeImage("../../../../assets/Top/TopNull.png", skinType.Top);
-    //this.skinService.updateSkin(new Skin("10000", "topNull", "../../../../assetsTop/TopNull.png", "0", "0", skinType.Top));
-    //this.skinService.addToShoppingCart(new Skin("10000", "topNull", "../../../../assetsTop/TopNull.png", "0", "0", skinType.Top));
     this.session.playerSession.imagePath = this.playerViewingSkins;
     this.skinService.setAnySkinSelected(true);
   }

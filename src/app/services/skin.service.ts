@@ -4,9 +4,7 @@ import { Skin } from '../shared/skin.model';
 
 @Injectable({ providedIn: 'root' })
 export class SkinService {
-    /*private skin = new BehaviorSubject<Skin>(new Skin("", "", "", "", "", null));
-    currentSkinSelected = this.skin.asObservable();*/
-
+   
     private s: String[] = ['', '', '', '', '', ''];
     private skinPaths = new BehaviorSubject<String[]>(this.s);
     newViewingSkins = this.skinPaths.asObservable();
@@ -74,15 +72,6 @@ export class SkinService {
     getSkinRemove() {
         return this.skinRemove;
     }
-
-    /*updateSkin(skin: Skin) {
-        this.skin.next(skin);
-        return skin;
-    }
- 
-    getSkin() {
-        return this.skin;
-    }*/
 
     getAnySkinSelected() {
         return this.anySkinSelected;

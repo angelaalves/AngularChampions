@@ -6,7 +6,7 @@ import { skinType } from '../shared/skinType.enum';
 import { SessionService } from '../services/session.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { SkinService } from '../services/skin.service';
-import { BehaviorSubject, EmptyError } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-closet',
@@ -23,7 +23,6 @@ export class ClosetComponent implements OnInit {
   tops: Skin[] = [];
   shoes: Skin[] = [];
   others: Skin[] = [];
-  //currentSkinToBeBought: Skin;
   newViewingSkins: String[];
   initialSkins: String[];
   shoppingCartSkins: Skin[] = [];
@@ -41,8 +40,6 @@ export class ClosetComponent implements OnInit {
     this.newViewingSkins = this.player.imagePath;
     console.log("array de skins novas " + this.player.imagePath);
 
-    /**/
-    //this.skinService.currentSkinSelected.subscribe(skin => this.currentSkinToBeBought = skin);
     this.skinService.shoppingCartSkins.subscribe(shoppingCart => this.shoppingCartSkins = shoppingCart);
     this.skinService.newViewingSkins.subscribe(skinPaths => this.newViewingSkins = skinPaths);
     this.newViewingSkins = this.skinService.getArraySkin().getValue();
@@ -51,9 +48,6 @@ export class ClosetComponent implements OnInit {
   viewSkin(skin: Skin) {
     this.session.getPlayerInSession().changeImage(skin.imagePath, skin.skinType);
     console.log(skin.imagePath, skin.skinType);
-    //const obj2 = JSON.parse('{"idSkin": this.closetSkinSelected.idSkin, "skinName": this.closetSkinSelected.skinName, "imagePath": this.closetSkinSelected.imagePath,"minXP": this.closetSkinSelected.minXP, "champiesCost": this.closetSkinSelected.champiesCost, "skinType": this.closetSkinSelected.skinType}');
-    //console.log("json parse " + obj2);
-    //this.player.imagePath=this.skinService.getArraySkin().getValue();
   }
 
   getSkins() {
@@ -87,7 +81,6 @@ export class ClosetComponent implements OnInit {
   resetToInitialSkins() {
     this.skinService.setAnySkinSelected(false);
     this.session.playerSession.resetImage();
-    //this.skinService.updateSkin(null);
     this.skinService.addToShoppingCart(null);
     console.log("closet.component.ts: method resetToInitialSkins "+this.skinService.addToShoppingCart(null));
   }

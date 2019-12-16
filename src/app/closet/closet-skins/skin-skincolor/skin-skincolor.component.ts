@@ -13,25 +13,23 @@ import { HttpClient } from '@angular/common/http';
   templateUrl: './skin-skincolor.component.html',
   styleUrls: ['./skin-skincolor.component.css']
 })
-@Injectable({providedIn: 'root'})
+@Injectable({ providedIn: 'root' })
 export class SkinSkincolorComponent implements OnInit {
   @Input() skincolors: Skin[];
   @Input() player: Player;
-  currentSkinToBeBought : Skin;
   playerViewingSkins: String[] = [];
   playerInitialSkins: String[] = [];
-  alluserskins: Closet[] = [];
+  allsessionsuserskins: Closet[] = [];
   shoppingCartSkins: Skin[] = [];
 
-  constructor(private router: Router, private route: ActivatedRoute, private skinSelectedService: SkinSelectedService, 
-    private session: SessionService, private skinService : SkinService, private http: HttpClient) { }
+  constructor(private router: Router, private route: ActivatedRoute, private skinSelectedService: SkinSelectedService,
+    private session: SessionService, private skinService: SkinService, private http: HttpClient) { }
 
   ngOnInit() {
     this.player = this.session.getPlayerInSession();
 
     console.log(this.player);
 
-    //this.skinService.currentSkinSelected.subscribe(skin => this.currentSkinToBeBought = skin)
     this.skinService.shoppingCartSkins.subscribe(shoppingCart => this.shoppingCartSkins = shoppingCart);
 
     this.playerInitialSkins = this.session.playerSession.imagePath;
@@ -40,24 +38,29 @@ export class SkinSkincolorComponent implements OnInit {
 
     this.playerViewingSkins = this.session.playerSession.imagePath;
 
-    console.log("viewing skins on init()" + this.playerViewingSkins); 
+    console.log("viewing skins on init()" + this.playerViewingSkins);
 
     console.log(this.player);
     this.http.get<Closet[]>('http://localhost:8085/closet/Get?idSkinFK= &idPlayerFk=' + this.session.getPlayerInSession().idplayer + "&status=", {}).subscribe(data => {
-      this.alluserskins = data;
-      console.log("this.alluserskins ", this.alluserskins);
+      this.allsessionsuserskins = data;
+      console.log("this.alluserskins ", this.allsessionsuserskins);
+      for (let s of this.allsessionsuserskins) {
+        console.log(this.allsessionsuserskins + "element: " + s);
+        return true;
+      }
+      return false;
     });
   }
 
-  skinInUse(skin: Skin){
-    if(this.session.playerSession.imagePath.includes(skin.imagePath)){
+  skinInUse(skin: Skin) {
+    if (this.session.playerSession.imagePath.includes(skin.imagePath)) {
       return true;
     }
     return false;
   }
 
   playerHasBoughtSkin(skin: Skin) {
-    for (let s of this.alluserskins) {
+    for (let s of this.allsessionsuserskins) {
       if (s.idskinFK == skin.idskin) {
         return true;
       }
@@ -65,11 +68,10 @@ export class SkinSkincolorComponent implements OnInit {
     return false;
   }
 
-  skinSelected(skinSelected: Skin){
+  skinSelected(skinSelected: Skin) {
     this.playerViewingSkins = this.playerInitialSkins;
     this.session.playerSession.changeImage(skinSelected.imagePath, skinSelected.skinType);
 
-    //this.skinService.updateSkin(skinSelected);
     if (this.playerHasBoughtSkin(skinSelected) == false) {
       this.skinService.addToShoppingCart(skinSelected);
     }

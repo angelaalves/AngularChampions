@@ -14,25 +14,23 @@ import { HttpClient } from '@angular/common/http';
   templateUrl: './skin-shoes.component.html',
   styleUrls: ['./skin-shoes.component.css']
 })
-@Injectable({providedIn: 'root'})
+@Injectable({ providedIn: 'root' })
 export class SkinShoesComponent implements OnInit {
   @Input() shoes: Skin[];
   @Input() player: Player;
-  //currentSkinToBeBought : Skin;
   playerViewingSkins: String[] = [];
   playerInitialSkins: String[] = [];
-  alluserskins: Closet[] = [];
+  allsessionsuserskins: Closet[] = [];
   shoppingCartSkins: Skin[] = [];
 
-  constructor(private router: Router, private route: ActivatedRoute, private skinSelectedService: SkinSelectedService, 
-    private session: SessionService, private skinService : SkinService, private http: HttpClient) { }
+  constructor(private router: Router, private route: ActivatedRoute, private skinSelectedService: SkinSelectedService,
+    private session: SessionService, private skinService: SkinService, private http: HttpClient) { }
 
   ngOnInit() {
     this.player = this.session.getPlayerInSession();
 
     console.log(this.player);
 
-    //this.skinService.currentSkinSelected.subscribe(skin => this.currentSkinToBeBought = skin)
     this.skinService.shoppingCartSkins.subscribe(shoppingCart => this.shoppingCartSkins = shoppingCart);
 
     this.playerInitialSkins = this.session.playerSession.imagePath;
@@ -41,43 +39,47 @@ export class SkinShoesComponent implements OnInit {
 
     this.playerViewingSkins = this.session.playerSession.imagePath;
 
-    console.log("viewing skins on init()" + this.playerViewingSkins); 
+    console.log("viewing skins on init()" + this.playerViewingSkins);
 
     console.log(this.player);
     this.http.get<Closet[]>('http://localhost:8085/closet/Get?idSkinFK= &idPlayerFk=' + this.session.getPlayerInSession().idplayer + "&status=", {}).subscribe(data => {
-      this.alluserskins = data;
-      console.log("this.alluserskins ",this.alluserskins);
+      this.allsessionsuserskins = data;
+      console.log("this.alluserskins ", this.allsessionsuserskins);
+      for (let s of this.allsessionsuserskins) {
+        console.log(this.allsessionsuserskins + "element: " + s);
+        return true;
+      }
+      return false;
     });
   }
 
-  skinInUse(skin: Skin){
-    if(this.session.playerSession.imagePath.includes(skin.imagePath)){
+  skinInUse(skin: Skin) {
+    if (this.session.playerSession.imagePath.includes(skin.imagePath)) {
       return true;
     }
     return false;
   }
-  
+
   playerHasBoughtSkin(skin: Skin) {
-    for (let s of this.alluserskins) {
-      if (s.idskinFK==skin.idskin) {
+    for (let s of this.allsessionsuserskins) {
+      if (s.idskinFK == skin.idskin) {
         return true;
       }
     }
     return false;
   }
 
-  imageNull(skin: Skin){
-    if(skin.imagePath=="../../assets/AppImages/None.png"){
+  imageNull(skin: Skin) {
+    if (skin.imagePath == "../../assets/AppImages/None.png") {
       return true;
     }
     return false;
-  } 
+  }
 
-  skinSelected(skinSelected: Skin){
+  skinSelected(skinSelected: Skin) {
     this.playerViewingSkins = this.playerInitialSkins;
     this.session.playerSession.changeImage(skinSelected.imagePath, skinSelected.skinType);
 
-    //this.skinService.updateSkin(skinSelected);
     if (this.playerHasBoughtSkin(skinSelected) == false) {
       this.skinService.addToShoppingCart(skinSelected);
     }
@@ -85,14 +87,10 @@ export class SkinShoesComponent implements OnInit {
     this.skinService.setAnySkinSelected(true);
   }
 
-  
-  skinSelectedNull(){
+
+  skinSelectedNull() {
     this.playerViewingSkins = this.playerInitialSkins;
     this.session.playerSession.changeImage("./../../../assets/Bottom/BottomNull.png", skinType.Shoes);
-
-    //this.skinService.updateSkin(new Skin("10000","shoesNull","./../../../assets/Shoes/ShoesNull.png","0","0",skinType.Shoes));
-    //this.skinService.addToShoppingCart(new Skin("10000","shoesNull","./../../../assets/Shoes/ShoesNull.png","0","0",skinType.Shoes));
-
     this.session.playerSession.imagePath = this.playerViewingSkins;
     this.skinService.setAnySkinSelected(true);
   }

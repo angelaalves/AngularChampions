@@ -7,6 +7,7 @@ import { Skin } from 'src/app/shared/skin.model';
 import { Player } from 'src/app/shared/player.model';
 import { SkinSelectedService } from '../closet-skins/skinSelected.service';
 import { SkinService } from 'src/app/services/skin.service';
+import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-buy-skin',
@@ -18,35 +19,51 @@ import { SkinService } from 'src/app/services/skin.service';
 export class BuySkinComponent implements OnInit {
   player: Player;
   activeSkins: Skin[] = [];
-  //currentSkinToBeBought: Skin;
   shoppingCartSkins: Skin[] = [];
+  closeResult: string;
 
   constructor(private router: Router, private route: ActivatedRoute, private http: HttpClient, private session: SessionService,
-    private skinSelectedService: SkinSelectedService, private skinService: SkinService) {
+    private skinSelectedService: SkinSelectedService, private skinService: SkinService, private modalService: NgbModal) {
     this.player = this.session.getPlayerInSession();
   }
 
   ngOnInit() {
-    /*this.skinService.currentSkinSelected.subscribe(skin =>{ this.currentSkinToBeBought = skin})
-    console.log(this.currentSkinToBeBought);*/
     this.skinService.shoppingCartSkins.subscribe(shoppingCart => this.shoppingCartSkins = shoppingCart);
+  }
+
+  open(content) {
+    this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
+      this.closeResult = `Closed with: ${result}`;
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    });
+  }
+
+  private getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return 'by clicking on a backdrop';
+    } else {
+      return `with: ${reason}`;
+    }
   }
 
   redirectBackToCloset() {
     this.router.navigate(['../closet'], { relativeTo: this.route });
   }
 
-  removeItem(skin: Skin){
+  removeItem(skin: Skin) {
     this.skinService.removeFromShoppingCart(skin);
   }
 
-  emptyCart(){
+  emptyCart() {
     this.skinService.emptyCart();
     this.redirectBackToCloset();
   }
 
   buySkin() {
-    console.log("shopping cart skins "+this.shoppingCartSkins);
+    console.log("shopping cart skins " + this.shoppingCartSkins);
 
     const idplayer = this.session.getPlayerInSession().idplayer;
 
@@ -75,7 +92,7 @@ export class BuySkinComponent implements OnInit {
           }
         ).subscribe();
 
-        let counter :number = -1;
+        let counter: number = -1;
         for (let activeSkin of this.activeSkins) {
           counter++;
           const skinID = activeSkin.idskin;
@@ -92,6 +109,6 @@ export class BuySkinComponent implements OnInit {
         }
       }
     }
-    this.router.navigate(['../closet'], { relativeTo: this.route });
+    //this.router.navigate(['../closet'], { relativeTo: this.route });
   }
 }
