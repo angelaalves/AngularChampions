@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormArray, Validators, NgForm } from '@angular/forms';
 import { Router, ActivatedRoute, Params } from '@angular/router';
-import { PlayerService } from '../services/player.service';
 import { HttpClient } from '@angular/common/http';
-
+import { SessionService } from '../services/session.service';
+import { Player } from '../shared/player.model';
+ 
 @Component({
   selector: 'app-change-password',
   templateUrl: './change-password.component.html',
@@ -11,65 +12,76 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ChangePasswordComponent implements OnInit {
   changePasswordForm: FormGroup;
-
-  constructor(private router: Router, private route: ActivatedRoute, private playerService: PlayerService, private http: HttpClient) { }
-
+  passwordCorrect: boolean;
+  oldPassword: string;
+  newPassword: string;
+  confirmPassword :String;
+  player: Player; 
+ 
+  constructor(private router: Router, private route: ActivatedRoute, private http: HttpClient, private session: SessionService) { }
+ 
   ngOnInit() {
+    this.player = this.session.playerSession;
+    console.log(this.session.playerSession.email);
+    console.log(this.session.playerSession.password);
     this.route.params
       .subscribe(
         (params: Params) => {
           this.initForm();
-      }
-    )
+        }
+      )
   }
-
  
-
-  onSubmit(form: NgForm){
+  verifyOldPassword(form: NgForm){
+    console.log("email: " + this.player.email + " password: " + this.player.password);
+    this.http.get<boolean>('http://localhost:8085/players/verifyPassword?email=' + this.player.email + '&password=' + this.player.password).subscribe(data => {
+      this.passwordCorrect = data;
+      if(this.passwordCorrect===false){
+        console.log(this.passwordCorrect);
+        this.player.password=this.oldPassword;
+        console.log("diferent passwords");
+      }
+      else {
+        console.log("same password")
+      }
+    });
+    
+  }
+ 
+  onSubmit(form: NgForm) {
     if (!form.valid) {
       return;
     }
-    const player = this.playerService.getPlayer(1);
-
-    const password = form.value.password;
-    
-    const newPassword=form.value.newPassword;
+   
+ 
+   const oldPassword = form.value.oldPassword;
+ 
+    const newPassword = form.value.newPassword;
     console.log(form.value);
-
-    var xhr = new XMLHttpRequest();
-
-    xhr.open('POST', 'http://localhost:8085/players/Update?idPlayer=' + player.idplayer + '&userName='  + player.userName + 
-    '&email=' + player.email + '&password=' + newPassword + '&gender='  + player.gender + '&userType=' + player.userType + '&xp=' + player.xp + 
-    '&champiesToGive='  + player.champiesToGive + '&myChampies=' + player.myChampies + '&=status' + player.status, true);
-
-    this.http.post<any>('http://localhost:8085/players/Update?idPlayer=',
-      {
-       newPassword
-      }
-    ).subscribe();
+ 
   }
-
+ 
   private initForm() {
-    let oldPassword='';
-    let newPassword='';
-    let confirmPassword='';
-
+    this.oldPassword = '';
+    this.newPassword = '';
+    this.confirmPassword = '';
+ 
     this.changePasswordForm = new FormGroup({
-      'oldPassword': new FormControl(oldPassword, Validators.required),
-      'newPassword': new FormControl(newPassword, Validators.required),
-      'confirmPassword': new FormControl(confirmPassword, Validators.required)
+      'oldPassword': new FormControl(this.oldPassword, Validators.required),
+      'newPassword': new FormControl(this.newPassword, Validators.required),
+      'confirmPassword': new FormControl(this.confirmPassword, Validators.required)
     });
   }
-
-  submit(addUserForm: FormGroup){
+ 
+  submit(addUserForm: FormGroup) {
     console.log(this.changePasswordForm);
-   // this.router.navigate(['/ancient_profile'], {relativeTo: this.route});
+    // this.router.navigate(['/ancient_profile'], {relativeTo: this.route});
   }
-
+ 
   changePassword(changePasswordForm: FormGroup) {
     (<FormArray>this.changePasswordForm.get('newPassword')).push(
       new FormGroup({
-        'oldPassword': new FormControl(null, Validators.required),
+        'oldPassword': new FormControl(this.verifyOldPassword, Validators.required),
         'newPassword': new FormControl(null, Validators.required),
         'confirmPassword': new FormControl(null, Validators.required)
       })

@@ -4,9 +4,7 @@ import { Skin } from '../shared/skin.model';
 
 @Injectable({ providedIn: 'root' })
 export class SkinService {
-    /*private skin = new BehaviorSubject<Skin>(new Skin("", "", "", "", "", null));
-    currentSkinSelected = this.skin.asObservable();*/
-
+   
     private s: String[] = ['', '', '', '', '', ''];
     private skinPaths = new BehaviorSubject<String[]>(this.s);
     newViewingSkins = this.skinPaths.asObservable();
@@ -17,6 +15,9 @@ export class SkinService {
 
     private anySkinSelected: boolean;
 
+    private skinExists: boolean = false;
+    private skinRemove: boolean = false;
+
     isShoppingCartEmpty() {
         if (this.skinsToBeBought.length > 0) {
             return false;
@@ -25,34 +26,52 @@ export class SkinService {
     }
 
     addToShoppingCart(skin: Skin) {
-        this.skinsToBeBought.push(skin);
-        this.shoppingCart.next(this.skinsToBeBought);
-        return skin;
+        for (let s of this.skinsToBeBought) {
+            if (s.idskin == skin.idskin) {
+                this.skinExists = true;
+            } else {
+                this.skinExists = false;
+            }
+        }
+        if (this.skinExists == false) {
+            this.skinsToBeBought.push(skin);
+            this.shoppingCart.next(this.skinsToBeBought);
+            return skin;
+        }
     }
 
     removeFromShoppingCart(skin: Skin) {
         for (let s of this.skinsToBeBought) {
             if (s.idskin == skin.idskin) {
-                this.skinsToBeBought.splice(this.skinsToBeBought.indexOf(skin), 1);
-                this.shoppingCart.next(this.skinsToBeBought);
-                return true;
+                this.skinRemove = true;
             }
         }
-        return false;
+        if (this.skinRemove == true) {
+            this.skinsToBeBought.splice(this.skinsToBeBought.indexOf(skin), 1);
+            this.shoppingCart.next(this.skinsToBeBought);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    emptyCart() {
+        const s: Skin[] = [];
+        this.skinsToBeBought = s;
+        this.shoppingCart.next(this.skinsToBeBought);
     }
 
     getShoppingCart() {
         return this.shoppingCart;
     }
 
-    /*updateSkin(skin: Skin) {
-        this.skin.next(skin);
-        return skin;
+    getSkinExists() {
+        return this.skinExists;
     }
 
-    getSkin() {
-        return this.skin;
-    }*/
+    getSkinRemove() {
+        return this.skinRemove;
+    }
 
     getAnySkinSelected() {
         return this.anySkinSelected;

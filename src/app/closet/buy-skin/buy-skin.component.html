@@ -4,11 +4,15 @@
   </div>
   <div class="col-xs-3" *ngFor="let skin of shoppingCartSkins" style="margin-bottom: 3%;">
     <img src={{skin.imagePath}} alt="" style="width:15%">
-    <h4>Cost: {{skin.champiesCost}}<img src="../../../assets/AppImages/Champies.png" alt="" style="max-height: 50px;"></h4>
+    <h4>Cost: {{skin.champiesCost}}<img src="../../../assets/AppImages/Champies.png" alt="" style="max-height: 50px;">
+    </h4>
     <h4>Minimum XP needed: {{skin.minXP}}</h4>
+    <img src="../../assets/AppImages/minus.png" style="max-width: 25%; float: right; margin-right: 5%;margin-left: -5%;"
+      (click)="removeItem(skin)">
   </div>
 </div>
 <div>
-  <button type="button" class="btn" id="butao" (click)="buySkin()">Buy</button>
-  <button type="button" class="btn" id="butao" (click)="redirectBackToCloset()">Cancel</button>
+  <button type="button" class="btn" (click)="buySkin()">Buy</button>
+  <button type="button" class="btn" style="margin-left: 1%;" (click)="emptyCart()"> Empty shopping cart</button>
+  <button type="button" class="btn" style="margin-left: 1%;" (click)="redirectBackToCloset()">Cancel</button>
 </div>
