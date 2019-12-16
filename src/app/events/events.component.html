@@ -1,27 +1,52 @@
 <span class="divLeft" style="text-align: center;">
     <img src="../assets/AppImages/Event.png" alt="text" class="img-responsive"
-    style="max-height: 300px;margin-left: auto;margin-right: auto;">
-<h2>Events</h2>
+        style="max-height: 300px;margin-left: auto;margin-right: auto;">
+        <label style=" font-size: 4ch;   transform: translate(5%,0%);">Events</label>
 </span>
 <span class="divRight">
-    <form class="form-inline">
-            <div class="eventscroll" id="style-8">
-                    <div *ngFor="let event of events;" id="row" >
-                            <hr>
-                            <label class="form-check-label" type="inlineFormCheck" style="margin-right: 20px;margin-left: 5px;">
-                                <h3>{{event.eventName}}</h3>
-                            </label>
-                            <input class="form-check-input" type="checkbox" id="inlineFormCheck">
-                            <span class="form-check-label" for="inlineFormCheck" style="margin-right: 10px;">
-                                Went
-                            </span>
-                           
-                        </div>
-                    </div>
-            
-    </form>
+
+    <div class="eventscroll" id="style-8">
+        <table class="table table-bordered">
+
+            <thead style="border: 2px solid rgb(0, 0, 0)">
+                <tr>
+                    <th scope="col">Went</th>
+                    <th scope="col">Event</th>
+                    <th scope="col">Date</th>
+
+
+                </tr>
+            </thead>
+
+            <tbody style="background-color: rgb(233, 231, 231); border: 2px solid rgb(0, 0, 0)">
+                <tr *ngFor="let event of events;">
+                    <td *ngIf="hasEvent(event) == true" style="background-color: lightgreen;opacity: 0.7;"><input
+                            type="checkbox" (click)="unchecked(event.idevent)" checked="true"><br></td>
+                    <td *ngIf="hasEvent(event) == true" style="background-color: lightgreen;opacity: 0.7;">
+                        {{event.eventName}}</td>
+                    <td *ngIf="hasEvent(event) == true" style="background-color: lightgreen;opacity: 0.7;">
+                        {{event.eventDate }}</td>
+
+
+                </tr>
+
+                <tr *ngFor="let event of events;">
+                    <td *ngIf="hasEvent(event) == false"><input type="checkbox" (click)="checked(event.idevent)"><br>
+                    </td>
+                    <td *ngIf="hasEvent(event) == false" style="background-color: rgb(228, 228, 228)">
+                        {{ event.eventName }}</td>
+                    <td *ngIf="hasEvent(event) == false">{{ event.eventDate}}</td>
+                </tr>
+            </tbody>
+
+        </table>
+
+
+    </div>
+
+
+
 </span>
 <div id="footer">
-    <button type="submit" class="btn btn-primary" id="save" style="margin-right: 1%;" (click)="save()">Save</button>
+    <button type="submit" class="btn btn-primary" id="save" style="margin-right: 1%;" (click)="Save()">Save</button>
 </div>
-       

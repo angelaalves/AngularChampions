@@ -1,7 +1,7 @@
 <div id="divLeft">
     <button class="btn btn-link" type="button"><img src="../../assets/AppImages/Videos.png" alt="text"
             class="img-responsive"></button>
-    <h3 style="text-align: center;">Videos</h3>
+            <label style=" font-size: 4ch;   transform: translate(35%,-60%);">Videos</label>
 
 </div>
 
@@ -11,7 +11,7 @@
     <div id="div_filter" style="display: inline-table">
         <label for="singleSelect">Topic:</label>
         <select select class="input-sm" name="singleSelect" id="singleSelect"
-            style=" background: whitesmoke; border: 2px solid rgb(65, 126, 218);" [(ngModel)]="topic">
+            style=" background: whitesmoke; border: 2px solid rgb(0, 0, 0);" [(ngModel)]="topic">
             <option value="">All</option>
             <option value="Java">Java</option>
             <option value="Angular">Angular</option>
@@ -24,7 +24,7 @@
     <div class="videoscroll" id="style-8">
         <table class="table table-bordered">
 
-            <thead style="border: 2px solid rgb(65, 126, 218)">
+            <thead style="border: 2px solid rgb(0, 0, 0)">
                 <tr>
                     <th scope="col">Seen</th>
                     <th scope="col">Video Name</th>
@@ -33,19 +33,19 @@
                 </tr>
             </thead>
 
-            <tbody style="background-color: whitesmoke; border: 2px solid rgb(65, 126, 218)">
+            <tbody style="background-color: rgb(233, 231, 231); border: 2px solid rgb(0, 0, 0)">
                 <tr *ngFor="let video of videos | tableFilter2: topic">
-                    <td *ngIf="hasvideo(video) == true" style="background-color: lightgreen"><input type="checkbox"
+                    <td *ngIf="hasvideo(video) == true" style="background-color: lightgreen;opacity: 0.7;"><input type="checkbox"
                             (click)="unchecked(video.idvideo)" checked="true"><br></td>
-                    <td *ngIf="hasvideo(video) == true" style="background-color: lightgreen">{{ video.videoName }}</td>
-                    <td *ngIf="hasvideo(video) == true" style="background-color: lightgreen">{{ video.duration }}</td>
+                    <td *ngIf="hasvideo(video) == true" style="background-color: lightgreen;opacity: 0.7;">{{ video.videoName }}</td>
+                    <td *ngIf="hasvideo(video) == true" style="background-color: lightgreen;opacity: 0.7;">{{ video.duration }}</td>
 
 
                 </tr>
 
                 <tr *ngFor="let video of videos | tableFilter2: topic">
                     <td *ngIf="hasvideo(video) == false"><input type="checkbox" (click)="checked(video.idvideo)"><br></td>
-                    <td *ngIf="hasvideo(video) == false" style="background-color: white">{{ video.videoName }}</td>
+                    <td *ngIf="hasvideo(video) == false" style="background-color: rgb(228, 228, 228)">{{ video.videoName }}</td>
                     <td *ngIf="hasvideo(video) == false">{{ video.duration }}</td>
                 </tr>
             </tbody>
