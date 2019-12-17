@@ -46,9 +46,7 @@ export class EventsComponent implements OnInit {
   allEvents() {
 
     this.http.get<Event[]>('http://localhost:8085/events/getAll').subscribe(data => {
-      console.log(data);
       this.events = data;
-      console.log("this.events no getAll events depois de atribuir a data" + this.events);
     });
   }
 
@@ -57,11 +55,9 @@ export class EventsComponent implements OnInit {
     this.http.get<AttendedEvents[]>('http://localhost:8085/attendedEvents/Get?idPlayerFK=' + this.session.playerSession.idplayer).subscribe(data => {
       const obj = JSON.stringify(data);
       this.attendedEventsByPlayer = data;
-      console.log("atendedevents no get attendedevents" + this.attendedEventsByPlayer);
       for (let aux of this.attendedEventsByPlayer) {
         this.http.get<Event[]>('http://localhost:8085/events/get?idEvent=' + aux.ideventFK).subscribe(res => {
           const obj2 = JSON.stringify(res);
-          console.log("res[0] no get event by idevent" + res[0]);
           this.eventsAttendedByPlayer.push(res[0]);
         });
       }
@@ -72,8 +68,6 @@ export class EventsComponent implements OnInit {
 
   Save() {
     if (this.idOfEventsChecked != undefined) {
-      console.log("Entrei no if 1");
-
       for (let idEvent of this.idOfEventsChecked) {
 
         const id = idEvent;
@@ -84,8 +78,6 @@ export class EventsComponent implements OnInit {
             id,
             idplayer
           }).subscribe(data => {
-            console.log("data no create events");
-            console.log(data);
           });
       }
     }
@@ -99,7 +91,6 @@ export class EventsComponent implements OnInit {
             id,
             idplayer
           }).subscribe(data => {
-            console.log(data);
           });
       }
     }
@@ -141,7 +132,6 @@ export class EventsComponent implements OnInit {
     var exists: boolean;
     exists = false;
     const obj = JSON.stringify(event);
-    console.log("Uncheck " + obj);
     for (let x of this.idOfEventsUnchecked) {
       if (x == event) {
         exists = true;

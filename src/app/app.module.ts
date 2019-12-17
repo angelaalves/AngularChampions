@@ -141,7 +141,7 @@ import { TableFilterPipe2 } from './videos/videos.pipe';
     ReactiveFormsModule,
     BrowserAnimationsModule
   ],
-  providers: [PlayerService, SessionService, ListUsersComponent, TableFilterPipe, TableFilterPipe2 ,SkinService],
+  providers: [PlayerService, SessionService, ListUsersComponent, TableFilterPipe, TableFilterPipe2 ,SkinService,PreviewSkinComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

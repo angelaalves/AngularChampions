@@ -42,7 +42,7 @@ export class VideosComponent implements OnInit {
 
 
   constructor(private router: Router, private route: ActivatedRoute, private session: SessionService, private http: HttpClient, private authService: AuthenticationService) {
-    console.log(session.playerSession.idplayer);
+
   }
 
   ngOnInit() {
@@ -109,7 +109,7 @@ export class VideosComponent implements OnInit {
     this.http.get<watchedVideos[]>('http://localhost:8085/watchedVideos/Get?idPlayerFK=' + this.session.playerSession.idplayer).subscribe(data => {
       const obj = JSON.stringify(data);
       this.watchedVideosByPlayer = data;
-      console.log(this.watchedVideosByPlayer);
+
       for (let aux of this.watchedVideosByPlayer) {
         this.http.get<Video[]>('http://localhost:8085/videos/Get?idVideo=' + aux.idvideoFK).subscribe(res => {
           const obj2 = JSON.stringify(res);
@@ -123,7 +123,7 @@ export class VideosComponent implements OnInit {
 
   Save() {
     if (this.idOfVideosChecked != undefined) {
-      console.log("Entrei no if 1");
+
 
       for (let idVideo of this.idOfVideosChecked) {
 
@@ -135,7 +135,6 @@ export class VideosComponent implements OnInit {
             id,
             idplayer
           }).subscribe(data => {
-            console.log(data);
           });
       }
     }
@@ -149,7 +148,6 @@ export class VideosComponent implements OnInit {
             id,
             idplayer
           }).subscribe(data => {
-            console.log(data);
           });
       }
     }
@@ -171,7 +169,6 @@ export class VideosComponent implements OnInit {
     var exists: boolean;
     exists = false;
     const obj = JSON.stringify(video);
-    console.log("Check " + obj);
     for (let x of this.idOfVideosChecked) {
       if (x == video) {
         exists = true;
@@ -179,13 +176,13 @@ export class VideosComponent implements OnInit {
     }
 
     if (exists == false) {
-      console.log("não existe vou adicionar"+video);
+
       this.idOfVideosChecked.push(video);
-      console.log(this.idOfVideosUnchecked);
+
     } else {
-      console.log("já existe vou remover "+video);
+
       this.idOfVideosChecked.splice(this.idOfVideosChecked.indexOf(video), 1);
-       console.log(this.idOfVideosUnchecked);
+
     }
   }
 
@@ -195,64 +192,21 @@ export class VideosComponent implements OnInit {
     var exists: boolean;
     exists = false;
     const obj = JSON.stringify(video);
-    console.log("Uncheck " + obj);
     for (let x of this.idOfVideosUnchecked) {
       if (x == video) {
         exists = true;
-  
+
       }
     }
     if (exists == false) {
-      console.log("não existe vou adicionar"+video);
       this.idOfVideosUnchecked.push(video);
-      console.log(this.idOfVideosUnchecked);
     } else {
-      console.log("já existe vou remover "+video);
-    
+
       this.idOfVideosUnchecked.splice(this.idOfVideosUnchecked.indexOf(video), 1);
-        console.log(this.idOfVideosUnchecked);
     }
 
   }
 
-
-
-
-  /** 
-    howmany(id: String) {
-      var i: number;
-      for (let j of this.idOfVideosChecked) {
-        if (j == id) {
-          i++;
-        }
-      }
-      return i;
-   
-    }
-   
-   
-    pair(int: number) {
-      if (int % 2 == 0) {
-        return true;
-      } else {
-        return false;
-      }
-    }
- 
-  removepairs() {
-    var auxiliar: String[];
-    auxiliar = [];
-    auxiliar.push(this.idOfVideosChecked[0]);
-    for (let v of this.idOfVideosChecked) {
-      for (let a of auxiliar) {
-        auxiliar.push(v);
-        var i = this.howmany(v);
-        if (this.pair(i) != true) {
-
-        }
-      }
-    }
-  } */
 
 
 }

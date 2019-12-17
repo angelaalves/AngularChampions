@@ -20,7 +20,5 @@ export class WarriorComponent implements OnInit {
   ngOnInit() {
     
     this.warrior = this.session.getPlayerInSession();
-    console.log("WarriorPlayer");
-    console.log(this.warrior);
   }
 }
