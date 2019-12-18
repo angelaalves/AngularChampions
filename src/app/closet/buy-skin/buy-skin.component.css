@@ -3,13 +3,35 @@
   width: 100px;  
   background-image:url('../../../assets/AppImages/Button.png');
   background-size: cover;
-  }
+}
   
-  @font-face{
-    src: url(../../../fonts/ka1.ttf);
-    font-family: karmatic-arcade;
-  }
+@font-face{
+  src: url(../../../fonts/ka1.ttf);
+  font-family: karmatic-arcade;
+}
 
-  *{
-    font-family: karmatic-arcade;
-  }
+*{
+  font-family: karmatic-arcade;
+}
+
+.scroll{
+  overflow-y: scroll;
+  height: 500px;
+}
+
+#style-8::-webkit-scrollbar-track
+{
+	border: 1px solid black;
+	background-color:transparent;
+}
+
+#style-8::-webkit-scrollbar
+{
+	width: 10px;
+	background-color: transparent;
+}
+
+#style-8::-webkit-scrollbar-thumb
+{
+	background-color: #000000;	
+}

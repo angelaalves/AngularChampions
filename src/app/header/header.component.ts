@@ -29,6 +29,8 @@ export class HeaderComponent implements OnInit {
 
   removeItem(skin: Skin){
     this.skinService.removeFromShoppingCart(skin);
+    //prevents menu from closing when clicked inside
+    event.stopPropagation();​
   }
 
   onProfile(){

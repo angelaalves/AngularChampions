@@ -1,13 +1,13 @@
 <div class="scrollmenu" style="margin-bottom: 3%;">
-  <div *ngFor="let bottom of bottoms" style="display: inline-block;">
+  <div *ngFor="let bottom of bottoms" style="display: inline-block; position: relative;">
     <div *ngIf="imageNull(bottom)==false && playerHasBoughtSkin(bottom)==false" style="width:100px;height:100px;">
-      <img src={{bottom.imagePath}} style="max-width:100px;max-height:100px;" (click)="skinSelected(bottom)">
+      <img src={{bottom.imagePath}} style="max-width:100px;max-height:100px; position: absolute;" (click)="skinSelected(bottom)">
       <img src="../../../../assets/AppImages/forsale.png" style="max-width:100px;" (click)="skinSelected(bottom)">
     </div>
     <div *ngIf="imageNull(bottom)==false && playerHasBoughtSkin(bottom)==true && skinInUse(bottom)==true"
-      style="width:100px;height:100px;">
-      <img src={{bottom.imagePath}} style="max-width:100px;max-height:100px;">
-      <img src="../../../../assets/AppImages/Using.png" style="max-width:100px;max-height:100px;">
+      style="width:100px;height:100px; position: relative;">
+      <img src={{bottom.imagePath}} style="max-width:100px;max-height:100px; position: absolute;">
+      <img src="../../../../assets/AppImages/selected.png" style="max-width:100px;max-height:100px;">
     </div>
     <div *ngIf="imageNull(bottom)==false && playerHasBoughtSkin(bottom)==true && skinInUse(bottom)==false"
       style="width:100px;height:100px;">

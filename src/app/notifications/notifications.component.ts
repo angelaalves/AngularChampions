@@ -4,7 +4,6 @@ import { SessionService } from '../services/session.service';
 import { AuthenticationService } from '../login/authentication/authentication.service';
 import { HttpClient } from '@angular/common/http';
 import { NotificationsReceivers } from '../shared/notificationsReceivers.model';
-import { ListenerService } from '../services/listener.service';
 
 @Component({
   selector: 'app-notifications',

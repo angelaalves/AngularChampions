@@ -20,7 +20,7 @@ export class ClosetSkinsComponent {
   @Input() others: Skin[];
   player: Player;
 
-  constructor(private router: Router, private route: ActivatedRoute, private skinSelectedService: SkinSelectedService, private sessionService: SessionService) { }
+  constructor(private router: Router, private route: ActivatedRoute) { }
 
   addSkin(){
     this.router.navigate(['/add_skin'], {relativeTo: this.route});

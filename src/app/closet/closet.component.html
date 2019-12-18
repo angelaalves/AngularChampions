@@ -8,5 +8,6 @@
     <app-closet-skins [skincolors]="skincolors" [bottoms]="bottoms" [hair]="hair" [tops]="tops" [shoes]="shoes"
         [others]="others"></app-closet-skins>
     <button type="button" class="btn" (click)="redirectToBuySkin()">Buy skins</button>
-    <button type="button" class="btn" (click)="resetToInitialSkins()" style="margin-left: 1%;">Reset to initial skins</button>
+    <button type="button" class="btn" style="margin-left: 1%;" (click)="emptyCart()">Empty shopping cart</button>
+    <button type="button" class="btn" style="margin-left: 1%;" (click)="resetToInitialSkins()">Reset to initial skins</button>
 </span>

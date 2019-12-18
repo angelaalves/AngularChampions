@@ -1,18 +1,19 @@
-<div style="text-align: center;">
+<div class="scroll" id="style-8" style="text-align: center;">
   <div class="row">
     <h2 style=" margin-bottom: 5%;">Shopping Cart</h2>
   </div>
-  <div class="col-xs-3" *ngFor="let skin of shoppingCartSkins" style="margin-bottom: 3%;">
-    <img src={{skin.imagePath}} alt="" style="width:15%">
-    <h4>Cost: {{skin.champiesCost}}<img src="../../../assets/AppImages/Champies.png" alt="" style="max-height: 50px;">
+  <div class="col-xs-3" *ngFor="let skin of shoppingCartSkins" style="margin-bottom: 3%; position: relative;">
+    <img src={{skin.imagePath}} alt="" style="width:25%">
+    <h4 style="text-align: center;">Cost: {{skin.champiesCost}}<img src="../../../assets/AppImages/Champies.png" alt=""
+        style="max-height: 50px;">
     </h4>
-    <h4>Minimum XP needed: {{skin.minXP}}</h4>
-    <img src="../../assets/AppImages/minus.png" style="max-width: 25%; float: right; margin-right: 5%;margin-left: -5%;"
+    <h4 style="text-align: center;">Minimum XP needed: {{skin.minXP}}</h4>
+    <img src="../../assets/AppImages/minus.png" style="max-width: 25%; margin-right: 5%;margin-left: -5%;"
       (click)="removeItem(skin)">
   </div>
 </div>
-<div>
+<div style="position: fixed; bottom: 20%; width: 100%; text-align: center;">
   <button type="button" class="btn" (click)="buySkin()">Buy</button>
-  <button type="button" class="btn" style="margin-left: 1%;" (click)="emptyCart()"> Empty shopping cart</button>
+  <button type="button" class="btn" style="margin-left: 1%;" (click)="emptyCart()">Empty shopping cart</button>
   <button type="button" class="btn" style="margin-left: 1%;" (click)="redirectBackToCloset()">Cancel</button>
 </div>
