@@ -1,0 +1,85 @@
+  /*.bottomright {
+      position: absolute;
+      /*bottom: 8px;
+    right: 16px;
+    font-size: 18px;*/
+  /*}
+  
+  .spaceBetweenLines {
+      padding-bottom: 1%;
+      padding-top: 2%;
+  }
+  
+  .spaceBetweenLines2 {
+      padding-bottom: 2%;
+  }*/
+  
+  @font-face {
+      src: url(../../fonts/ka1.ttf);
+      font-family: karmatic-arcade;
+  }
+  
+  * {
+      background-color: transparent;
+      color: white;
+      font-family: karmatic-arcade;
+  }
+  
+  /*#main {
+      height: auto;
+      width:900px;
+      padding: 10px;
+  }
+  
+  #main>div {
+      float: left;
+  }
+  
+  #right {
+      align-content: center;
+      text-align: left;
+  }
+  
+  #left {
+      margin: auto;
+      text-align: left;
+  }*/
+
+  .notificationscroll{
+    overflow-y: scroll;
+    height: 500px;
+}
+
+#style-8::-webkit-scrollbar-track
+{
+	border: 1px solid black;
+	background-color:transparent;
+}
+
+#style-8::-webkit-scrollbar
+{
+	width: 10px;
+	background-color: transparent;
+}
+
+#style-8::-webkit-scrollbar-thumb
+{
+	background-color: #000000;	
+}
+
+
+
+  #divLeft {
+    /*width:1000px;*/
+    padding-left: 10vw;
+    height: 30vh;
+    width: 30vw;
+    display:block;
+    float: left;
+}
+#divRight {
+    height: 50vh;
+    width:40vw;
+    display:block;
+    float: left;
+}

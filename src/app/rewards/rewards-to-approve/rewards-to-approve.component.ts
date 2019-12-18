@@ -4,6 +4,8 @@ import { HttpClient } from '@angular/common/http';
 import { PlayerService } from 'src/app/services/player.service';
 import { Player } from 'src/app/shared/player.model';
 import { IDToUsername } from 'src/app/shared/IDMatchedToUsername.model';
+import { SessionService } from 'src/app/services/session.service';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-rewards-to-approve',
@@ -19,7 +21,7 @@ export class RewardsToApproveComponent implements OnInit {
   public players: Player[] = [];
   public idAndNameOfPlayers: IDToUsername[] = [];
 
-  constructor(private http: HttpClient, private playerService: PlayerService) {}
+  constructor(private http: HttpClient, private playerService: PlayerService,private router: Router, private route: ActivatedRoute,  private session: SessionService) {}
 
   ngOnInit() {
     this.players = this.playerService.getListOfPlayers();
@@ -55,9 +57,24 @@ export class RewardsToApproveComponent implements OnInit {
 
   check(reward: Reward) {
     const obj = JSON.stringify(reward);
-    console.log(this.rewardsApproved.push(reward));
-    this.rewardsApproved.push(reward);
-    console.log("Reward approved " + obj);
+    var exists: boolean; 
+      exists = false;
+     for (let x of this.rewardsApproved) {
+      if (x == reward) {
+        exists = true;
+      }
+    }
+
+    if (exists == false) {
+ this.rewardsApproved.push(reward);
+
+    } else {
+
+      this.rewardsApproved.splice(this.rewardsApproved.indexOf(reward), 1);
+
+    }
+
+   
   }
 
   save() {
@@ -71,5 +88,16 @@ export class RewardsToApproveComponent implements OnInit {
         });
     }
     this.getRewards();
+    
+    if (this.session.getPlayerInSession().userType == "Ancient") {
+      this.router.navigate(['/ancient_profile'], { relativeTo: this.route });
+    }
+    if (this.session.getPlayerInSession().userType == "GuildMaster") {
+      this.router.navigate(['/guildmaster_profile'], { relativeTo: this.route });
+    }
+    if (this.session.getPlayerInSession().userType == "Warrior") {
+      this.router.navigate(['/warrior_profile'], { relativeTo: this.route });
+    }
   }
+
 }

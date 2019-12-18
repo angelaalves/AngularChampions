@@ -1,0 +1,22 @@
+#butao {
+    height: 100%;
+    width: 85%;
+    background-image: url('../../../../assets/AppImages/Button.png');
+    background-size: cover;
+}
+
+@font-face {
+    src: url(../../../../fonts/PressStart2P.ttf);
+    font-family: PressStart;
+}
+
+* {
+    font-family: PressStart;
+}
+
+h4 {
+    text-align: center;
+    font-size: 30px;
+    color: rgb(39, 39, 39);
+    font-family: PressStart, cursive;
+}
