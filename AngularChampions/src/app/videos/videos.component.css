@@ -1,0 +1,39 @@
+  /*#main{
+    padding: 10px;
+  }
+
+  #main>div{
+    float: left;
+  }
+
+  #right{
+    align-content: center;
+    text-align: left;
+  }
+  
+  #left{
+    margin:auto;
+    text-align: left;
+    display: inline;
+  }*/
+ 
+  #tabela{
+    grid-row: 1 /  3;
+  }
+
+  div button {
+    float: right;
+  }
+
+  @font-face{
+    src: url(../../fonts/ka1.ttf);
+    font-family: karmatic-arcade;
+  }
+
+  *{
+    font-family: karmatic-arcade;
+    background-color: transparent;
+    color: black;
+    margin-left: 5%;
+    margin-right: 5%;
+  }

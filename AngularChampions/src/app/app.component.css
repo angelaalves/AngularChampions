@@ -1,0 +1,21 @@
+.App-Container{
+    position: absolute;
+    overflow: auto;
+    width: 100%;
+    height: 100%;
+    background-image: url(../assets/AppImages/Bachgroumd.png);
+    background-size: cover;
+    image-rendering: crisp-edges;
+}
+  ::-webkit-scrollbar{
+    width: 8px;
+  }
+  ::-webkit-scrollbar-track{
+    background: black;
+  }
+  ::-webkit-scrollbar-thumb{
+    background: grey;
+  }
+  ::-webkit-scrollbar-thumb:hover{
+    background: white;
+  }
