@@ -9,6 +9,7 @@ import { SkinService } from 'src/app/services/skin.service';
 import { ModalService } from 'src/app/services/model.service';
 import Swal from 'sweetalert2'
 
+
 @Component({
   selector: 'app-buy-skin',
   templateUrl: './buy-skin.component.html',

@@ -1,5 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Player } from 'src/app/shared/player.model';
+import { PlayerService } from 'src/app/services/player.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-guild-member',
@@ -8,10 +10,11 @@ import { Player } from 'src/app/shared/player.model';
 })
 export class GuildMemberComponent implements OnInit {
   @Input() player: Player;
-  @Input() index: number;
-  constructor() { }
+  @Input() index: String;
+  constructor(private playerService: PlayerService, private route: ActivatedRoute) { }
 
   ngOnInit() {
+    //this.player=this.playerService.getPlayer(this.route.snapshot.params['idguild'])
   }
 
 }

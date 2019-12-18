@@ -37,8 +37,12 @@ export class PlayerService {
         })
     }
 
-    getPlayer(index: number) {
-        return this.players[index];
+    getPlayer(id: String) {
+        for(let player of this.players){
+            if(player.idplayer==id){
+                return player
+            }
+        }
     }
 
     addPlayer(player: Player) {
@@ -74,5 +78,24 @@ export class PlayerService {
     }
     getAncients() {
         return this.ancients;
+    }
+
+    getGuildMaster(id: String) {
+        for (let guildMaster of this.guildmasters) {
+            if (guildMaster.idplayer == id) {
+                return guildMaster;
+            }
+        }
+    }
+    getGuildWarriors(ids: String[]) {
+        var selectedWarriors: Player[] = [];
+        for (let id of ids) {
+            for (let warrior of this.warriors) {
+                if (warrior.idplayer == id) {
+                    selectedWarriors.push(warrior)
+                }
+            }
+        }
+        return selectedWarriors
     }
 }

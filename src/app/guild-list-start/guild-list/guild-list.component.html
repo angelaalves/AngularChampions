@@ -4,11 +4,12 @@
     </div>
 </div>
 <div>
-    <div class="row" >
-        <div class="col-xs-3" *ngFor="let guildEl of guilds; let i=index" id="divButtons">
-            <ul>
-                <app-guild-list-elem [guild]="guildEl" [index]="i"></app-guild-list-elem>
-                <!--<div style="margin: 0 auto; text-align: center;">
+    <div class="row">
+        <div class="col-xs-3" *ngFor="let guildEl of guilds" id="divButtons"
+            style="margin-left: auto;margin-right: auto;">
+            <app-guild-list-elem [guild]="guildEl" [index]="guildEl.idguild"></app-guild-list-elem>
+
+            <!--<div style="margin: 0 auto; text-align: center;">
                     <button type="submit" class="btn btn-primary" (click)="onGuild(i);"
                         style="width: 50%; text-align: center;">Edit</button>
                     <button type="submit" class="btn btn-danger" style="width: 50%; text-align: center;"
@@ -21,12 +22,11 @@
                         </div>                       
                     </div>
                 </div>-->
-            </ul>
         </div>
-        <div class="col-xs-3" style="cursor: pointer;transform: translate(30%, 30%);" (click)="onResponse()">
-            <a>
-                <img src="../../../assets/AppImages/plus.png" 
-                alt="add" class="img-responsive" style="max-height: 100px;margin-left: auto;margin-right: auto;vertical-align: middle;">
+        <div class="col-xs-3">
+            <a (click)="onResponse()" style="cursor:pointer">
+                <img src="../../../assets/AppImages/plus.png" alt="add" class="img-responsive"
+                    style="max-height: 100px;">
             </a>
         </div>
     </div>

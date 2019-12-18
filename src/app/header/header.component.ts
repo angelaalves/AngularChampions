@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { SessionService } from '../services/session.service';
 import { SkinService } from '../services/skin.service';
 import { Skin } from '../shared/skin.model';
+import { userType } from '../shared/userType.enum';
 
 @Component({
   selector: 'app-header',
@@ -54,7 +55,11 @@ export class HeaderComponent implements OnInit {
     this.router.navigate(['videos'], {relativeTo: this.route});
   }
   onGuild(){
-    this.router.navigate(['guild'], {relativeTo: this.route});
+    if(this.session.getPlayerInSession().userType==userType.GuildMaster || this.session.getPlayerInSession().userType==userType.Ancient){
+      this.router.navigate(['guilds_list'], {relativeTo: this.route});
+    }else{
+      this.router.navigate(['guild', this.session.getPlayerInSession().idplayer], {relativeTo: this.route});
+    }
   }
   onEvents(){
     this.router.navigate(['events'], {relativeTo: this.route});

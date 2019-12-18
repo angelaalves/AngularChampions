@@ -1,12 +1,12 @@
 <a style="cursor:pointer" [routerLink]="[index]" class="list-group-item clearfix">
     <span class="pull-up" style="text-align: center;">
-        <app-image-maker [hairImagePath]="player.getImagePath(0)" [skinImagePath]="player.getImagePath(1)"
-            [shirtImagePath]="player.getImagePath(2)" [pantsImagePath]="player.getImagePath(3)"
-            [shoesImagePath]="ancient.getImagePath(4)" [othersImagePath]="ancient.getImagePath(5)" >
+        <app-image-maker [hairImagePath]="player.imagePath[0]" [skinImagePath]="player.imagePath[1]"
+            [shirtImagePath]="player.imagePath[2]" [pantsImagePath]="player.imagePath[3]"
+            [shoesImagePath]="player.imagePath[4]" [othersImagePath]="player.imagePath[5]" [size]=150>
         </app-image-maker>
     </span>
     <div class="pull-down" style="text-align: center;">
-        <h3 class="list-group-item-heading">{{ player.name }}</h3>
+        <h3 class="list-group-item-heading">{{ player.userName }}</h3>
         <h4 class="list-group-item-text">XP {{ player.xp }}</h4>
     </div>
 </a>

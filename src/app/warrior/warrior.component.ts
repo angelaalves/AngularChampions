@@ -18,7 +18,6 @@ export class WarriorComponent implements OnInit {
   constructor(private session: SessionService, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
-    
     this.warrior = this.session.getPlayerInSession();
   }
 }

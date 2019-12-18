@@ -11,39 +11,23 @@ import { GuildListService } from 'src/app/services/guild-list.service';
 })
 
 export class GuildListComponent implements OnInit {
-  guilds: Guild[]=this.guildListService.getGuilds();
-  modal;
-  btn;
-  span;
+  guilds: Guild[]=[]
 
   constructor(private guildListService: GuildListService, private router: Router, private route: ActivatedRoute) {
-    console.log(this.guilds)
+    
   }
 
   ngOnInit() {
-    this.modal = document.getElementById("popup");
-    this.btn = document.getElementById("delete");
-    this.span = document.getElementsByClassName("close")[0];
-   
+    this.guildListService.getGuildsFromDataBase().subscribe(resData=>{
+      this.guilds=resData;
+    });
   }
 
   onResponse(){
     this.router.navigate(['../ancient_profile/add_guild'], {relativeTo: this.route})
   }
 
-  onGuild(index: number){
-    this.router.navigate(['./'+index], {relativeTo: this.route});
-  }
+  
 
-  delete(){
-    if(this.modal.style.display==="block"){
-      this.modal.style.display="none";
-    }else{
-      this.modal.style.display="block";
-    }
-  }
-
-  spanOnClick(){
-    this.modal.style.display = "none";
-  }
+  
 }

@@ -30,6 +30,6 @@ export class GuildMasterDetailsButtonsComponent implements OnInit {
   }
 
   redirectToGuilds(){
-    this.router.navigate(['/guild'], {relativeTo: this.route});
+    this.router.navigate(['/guilds_list'], {relativeTo: this.route});
   }
 }

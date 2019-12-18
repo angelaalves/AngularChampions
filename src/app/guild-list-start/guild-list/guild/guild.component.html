@@ -1,12 +1,11 @@
 <div class="row">
-    <div class="col-xs-12">
-        <img src="{{guild.flag}}" alt="{{guild.name}}" class="img-responsive"
-            style="max-height: 200px;">
+    <div style="margin-left: auto;margin-right: auto; display: block;">
+        <img src="{{guild.guildFlag}}" alt="{{guild.guildName}}" class="img-responsive" style="max-height: 200px;">
     </div>
 </div>
 <div class="row">
     <div class="col-xs-12" style="text-align: center;">
-        <h2>{{guild.name}}</h2>
+        <h2>{{guild.guildName}}</h2>
     </div>
 </div>
 <div class="row">
@@ -15,18 +14,12 @@
     </div>
 </div>
 <div class="row">
-    <div class="col-xs-3" *ngFor="let playerEl of players; let i=index" (click)="showInfo()">
-        <app-guild-member [player]="playerEl" [index]="i"></app-guild-member>
+    <div class="col-xs-3" *ngFor="let playerEl of players">
+        <app-guild-member [player]="playerEl" [index]="playerEl.idplayer"></app-guild-member>
     </div>
 </div>
 <div class="row" id="upcomingEvents">
     <div class="col-xs-12">
         <h3>Upcoming Events</h3>
-    </div>
-</div>
-<div class="row" id="profile">
-    <div class="col-xs-12">
-        <router-outlet>
-        </router-outlet>
     </div>
 </div>

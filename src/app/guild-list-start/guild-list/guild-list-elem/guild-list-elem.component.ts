@@ -10,7 +10,7 @@ import { Player } from 'src/app/shared/player.model';
 export class GuildListElemComponent implements OnInit {
   @Input() players: Player;
   @Input() guild: Guild;
-  @Input() index: number;
+  @Input() index: String;
 
   constructor() { }
 
