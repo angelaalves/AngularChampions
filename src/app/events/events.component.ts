@@ -7,6 +7,7 @@ import { FormGroup } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AuthenticationService } from '../login/authentication/authentication.service';
 import { eventType } from './event-type.enum';
+import { Player } from '../shared/player.model';
 
 @Component({
   selector: 'app-events',
@@ -21,17 +22,17 @@ export class EventsComponent implements OnInit {
   public idOfEventsChecked: String[] = [];
   public idOfEventsUnchecked: String[] = [];
   public events: Event[] = [];
-  public KickOffXP = 60000;
-  public CheckPointXP = 60000;
-  public ChristmasXP = 45000;
-  public FamilyXP = 45000;
-  public HappyHourXP = 4000;
-  public BoardGamesXP = 6000;
-  public TripXP = 15000;
-  public TalkingSessionsXP = 3000;
-  public OthersXP = 1125;
+  public KickOffXP = 6000;
+  public CheckPointXP = 6000;
+  public ChristmasXP = 4500;
+  public FamilyXP = 4500;
+  public HappyHourXP = 400;
+  public BoardGamesXP = 600;
+  public TripXP = 1500;
+  public TalkingSessionsXP = 300;
+  public OthersXP = 11;
 
-  constructor(private router: Router, private route: ActivatedRoute, private session: SessionService, private http: HttpClient, private authService: AuthenticationService) {
+  constructor(private router: Router, private route: ActivatedRoute, private session: SessionService, private http: HttpClient) {
   }
 
   ngOnInit() {
@@ -68,8 +69,7 @@ export class EventsComponent implements OnInit {
   }
 
   Save() {
-    
-    console.log("XP"+ this.session.playerSession.xp);
+
     if (this.idOfEventsChecked != undefined) {
       for (let idEvent of this.idOfEventsChecked) {
         const id = idEvent;
@@ -118,6 +118,8 @@ export class EventsComponent implements OnInit {
           if (eventaux.eventType === eventType.Other) {
             xp = (Number(xp) + this.OthersXP).toString();
           }
+          this.session.getPlayerInSession().xp = xp;
+          this.XP();
           const champiesToGive = this.session.playerSession.champiesToGive;
           const myChampies = this.session.playerSession.myChampies;
           const status = this.session.playerSession.status;
@@ -135,6 +137,7 @@ export class EventsComponent implements OnInit {
               status
             }).subscribe(data => {
             });
+
         });
       }
     }
@@ -157,33 +160,36 @@ export class EventsComponent implements OnInit {
           const gender = this.session.playerSession.gender;
           const userType = this.session.playerSession.userType;
           var xp = this.session.playerSession.xp;
-          if (eventaux.eventType === eventType.KickOff) {
+          if (eventaux.eventType == eventType.KickOff) {
             xp = (Number(xp) - this.KickOffXP).toString();
           }
-          if (eventaux.eventType === eventType.Checkpoint) {
+          if (eventaux.eventType == eventType.Checkpoint) {
+
             xp = (Number(xp) - this.CheckPointXP).toString();
           }
-          if (eventaux.eventType === eventType.ChristmasDinner) {
+          if (eventaux.eventType == eventType.ChristmasDinner) {
             xp = (Number(xp) - this.ChristmasXP).toString();
           }
-          if (eventaux.eventType === eventType.FamilyDay) {
+          if (eventaux.eventType == eventType.FamilyDay) {
             xp = (Number(xp) - this.FamilyXP).toString();
           }
-          if (eventaux.eventType === eventType.HappyHour) {
+          if (eventaux.eventType == eventType.HappyHour) {
             xp = (Number(xp) - this.HappyHourXP).toString();
           }
-          if (eventaux.eventType === eventType.BoardingGames) {
+          if (eventaux.eventType == eventType.BoardingGames) {
             xp = (Number(xp) - this.BoardGamesXP).toString();
           }
-          if (eventaux.eventType === eventType.AnnualTrip) {
+          if (eventaux.eventType == eventType.AnnualTrip) {
             xp = (Number(xp) - this.TripXP).toString();
           }
-          if (eventaux.eventType === eventType.TalkingSession) {
+          if (eventaux.eventType == eventType.TalkingSession) {
             xp = (Number(xp) - this.TalkingSessionsXP).toString();
           }
-          if (eventaux.eventType === eventType.Other) {
+          if (eventaux.eventType == eventType.Other) {
             xp = (Number(xp) - this.OthersXP).toString();
           }
+          this.session.getPlayerInSession().xp = xp;
+          this.XP();
           const champiesToGive = this.session.playerSession.champiesToGive;
           const myChampies = this.session.playerSession.myChampies;
           const status = this.session.playerSession.status;
@@ -205,7 +211,7 @@ export class EventsComponent implements OnInit {
         });
       }
     }
-    console.log("XP"+ this.session.playerSession.xp);
+
     if (this.session.getPlayerInSession().userType == "Ancient") {
       this.router.navigate(['/ancient_profile'], { relativeTo: this.route });
     }
@@ -214,6 +220,16 @@ export class EventsComponent implements OnInit {
     }
     if (this.session.getPlayerInSession().userType == "Warrior") {
       this.router.navigate(['/warrior_profile'], { relativeTo: this.route });
+    }
+  }
+
+  XP() {
+    var playerData: Player = JSON.parse(localStorage.getItem('playerlogged'));
+
+    if (!playerData) {
+      return;
+    } else {
+      localStorage.setItem("playerlogged", JSON.stringify(this.session.playerSession));
     }
   }
 

@@ -10,6 +10,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 
 export class GuildMasterDetailsXpComponent implements OnInit {
   @Input() XP:number;
+  barXP:number;
   constructor(private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
@@ -18,7 +19,7 @@ export class GuildMasterDetailsXpComponent implements OnInit {
   }
 
   percentageXP(){
-    this.XP=this.XP/10000
+    this.barXP=this.XP/1000;
  
  
   }

@@ -13,13 +13,14 @@ import { SessionService } from 'src/app/services/session.service';
 
 export class WarriorDetailsXPComponent implements OnInit {
   @Input() XP:number;
+  barXP:number;
   constructor(private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.percentageXP();
   }
   percentageXP(){
-    this.XP=this.XP/10000
+    this.barXP=this.XP/10000;
  
  
   }

@@ -7,6 +7,7 @@ import { topic } from '../shared/topic.enum';
 import { FormGroup, NgForm, FormArray, FormControl, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { watchedVideos } from '../shared/watchedVideos.model';
+import { Player } from 'AngularChampions/src/app/shared/player.model';
 
 @Component({
   selector: 'app-videos',
@@ -38,6 +39,8 @@ export class VideosComponent implements OnInit {
   public totaljava: number;
   public totalangular: number;
   public totalspring: number;
+
+  public videoXP: 30;
 
 
 
@@ -136,8 +139,37 @@ export class VideosComponent implements OnInit {
             idplayer
           }).subscribe(data => {
           });
+        const idPlayer = this.session.playerSession.idplayer;
+        const userName = this.session.playerSession.userName;
+        const email = this.session.playerSession.email;
+        const password = this.session.playerSession.password;
+        const gender = this.session.playerSession.gender;
+        const userType = this.session.playerSession.userType;
+        var xp = this.session.playerSession.xp;
+        xp = (Number(xp) + this.videoXP).toString();
+        this.session.getPlayerInSession().xp = xp;
+        this.XP();
+        const champiesToGive = this.session.playerSession.champiesToGive;
+        const myChampies = this.session.playerSession.myChampies;
+        const status = this.session.playerSession.status;
+        this.http.post<any>('http://localhost:8085/players/Update?idPlayer=' + idPlayer + '&userName=' + userName + '&email=' + email + '&password=' + password + '&gender=' + gender + '&userType=' + userType + '&xp=' + xp + '&champiesToGive=' + champiesToGive + '&myChampies=' + myChampies + '&status=' + status,
+          {
+            idPlayer,
+            userName,
+            email,
+            password,
+            gender,
+            userType,
+            xp,
+            champiesToGive,
+            myChampies,
+            status
+          }).subscribe(data => {
+          });
+
       }
     }
+
     if (this.idOfVideosUnchecked != undefined) {
       for (let idVideo of this.idOfVideosUnchecked) {
         const id = idVideo;
@@ -149,20 +181,56 @@ export class VideosComponent implements OnInit {
             idplayer
           }).subscribe(data => {
           });
+          const idPlayer = this.session.playerSession.idplayer;
+          const userName = this.session.playerSession.userName;
+          const email = this.session.playerSession.email;
+          const password = this.session.playerSession.password;
+          const gender = this.session.playerSession.gender;
+          const userType = this.session.playerSession.userType;
+          var xp = this.session.playerSession.xp;
+          xp = (Number(xp) + this.videoXP).toString();
+          this.session.getPlayerInSession().xp = xp;
+          this.XP();
+          const champiesToGive = this.session.playerSession.champiesToGive;
+          const myChampies = this.session.playerSession.myChampies;
+          const status = this.session.playerSession.status;
+          this.http.post<any>('http://localhost:8085/players/Update?idPlayer=' + idPlayer + '&userName=' + userName + '&email=' + email + '&password=' + password + '&gender=' + gender + '&userType=' + userType + '&xp=' + xp + '&champiesToGive=' + champiesToGive + '&myChampies=' + myChampies + '&status=' + status,
+            {
+              idPlayer,
+              userName,
+              email,
+              password,
+              gender,
+              userType,
+              xp,
+              champiesToGive,
+              myChampies,
+              status
+            }).subscribe(data => {
+            });
+      }
+
+
+      if (this.session.getPlayerInSession().userType == "Ancient") {
+        this.router.navigate(['/ancient_profile'], { relativeTo: this.route });
+      }
+      if (this.session.getPlayerInSession().userType == "GuildMaster") {
+        this.router.navigate(['/guildmaster_profile'], { relativeTo: this.route });
+      }
+      if (this.session.getPlayerInSession().userType == "Warrior") {
+        this.router.navigate(['/warrior_profile'], { relativeTo: this.route });
       }
     }
+  }
+  XP() {
+    var playerData: Player = JSON.parse(localStorage.getItem('playerlogged'));
 
-    if (this.session.getPlayerInSession().userType == "Ancient") {
-      this.router.navigate(['/ancient_profile'], { relativeTo: this.route });
-    }
-    if (this.session.getPlayerInSession().userType == "GuildMaster") {
-      this.router.navigate(['/guildmaster_profile'], { relativeTo: this.route });
-    }
-    if (this.session.getPlayerInSession().userType == "Warrior") {
-      this.router.navigate(['/warrior_profile'], { relativeTo: this.route });
+    if (!playerData) {
+      return;
+    } else {
+      localStorage.setItem("playerlogged", JSON.stringify(this.session.playerSession));
     }
   }
-
 
 
   checked(video: String) {
