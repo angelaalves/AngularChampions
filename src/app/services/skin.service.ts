@@ -25,13 +25,12 @@ export class SkinService {
         return true;
     }
 
-    addToShoppingCart(skin: Skin) {
+    addToShoppingCart(skin: Skin) {  
+        this.skinExists=false;
         if (this.skinsToBeBought.length > 0) {
             for (let s of this.skinsToBeBought) {
                 if (s.idskin == skin.idskin) {
                     this.skinExists = true;
-                } else {
-                    this.skinExists = false;
                 }
             }
             if (this.skinExists == false) {
