@@ -6,11 +6,9 @@
 
     </div>
     <div id="divRigth">
-
         <div style="padding-right: 10px;">
             <div class="notificationscroll" id="style-8">
                 <tr *ngFor="let notification of notviewed;">
-
                     <div class="spaceBetweenLines" style="margin-top: 3%; margin-left: 2em">
                         <span class="label label-default" style="font-size: 15pt">Notification</span>
                     </div>
@@ -18,43 +16,10 @@
                         <p style="font-family: pixelmix;">{{notification.description}}</p>
                     </div>
                 </tr>
- <button class="btn btn-primary"
-        style="margin-top: 2%; margin-left: 75%; background: rgb(65, 126, 218); border: 2px solid whitesmoke;"
-        (click)="redirectToProfile()">Close</button>
-
+                <button class="btn btn-primary"
+                    style="margin-top: 2%; margin-left: 75%; background: rgb(65, 126, 218); border: 2px solid whitesmoke;"
+                    (click)="redirectToProfile()">Close</button>
             </div>
         </div>
     </div>
-   
 </div>
-<!--
-<span id="divLeft">
-
-  
-</span>
-
-<span id="divRight">
-    <div class="spaceBetweenLines">
-        <span class="label label-default" style="font-size: 15pt">Notification 1</span>
-    </div>
-    <div class="spaceBetweenLines2">
-        <p>description of the notification</p>
-    </div>
-    <div class="spaceBetweenLines">
-        <span class="label label-default" style="font-size: 15pt">Notification 2</span>
-    </div>
-    <div class="spaceBetweenLines2">
-        <p>description of the notification</p>
-    </div>
-    <div class="spaceBetweenLines">
-        <span class="label label-default" style="font-size: 15pt">Notification 3</span>
-    </div>
-    <div class="spaceBetweenLines2">
-        <p>description of the notification</p>
-    </div>
-
-    <div class="bottomright">
-        <button class="btn btn-primary" (click)="redirectToProfile()">Close</button>
-    </div>
-</span>
--->

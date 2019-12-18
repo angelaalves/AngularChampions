@@ -1,10 +1,10 @@
-import { Injectable, SystemJsNgModuleLoader } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { Skin } from '../shared/skin.model';
 
 @Injectable({ providedIn: 'root' })
 export class SkinService {
-   
+
     private s: String[] = ['', '', '', '', '', ''];
     private skinPaths = new BehaviorSubject<String[]>(this.s);
     newViewingSkins = this.skinPaths.asObservable();
@@ -25,19 +25,29 @@ export class SkinService {
         return true;
     }
 
-    addToShoppingCart(skin: Skin) {
-        for (let s of this.skinsToBeBought) {
-            if (s.idskin == skin.idskin) {
-                this.skinExists = true;
-            } else {
-                this.skinExists = false;
+    addToShoppingCart(skin: Skin) {  
+        this.skinExists=false;
+        if (this.skinsToBeBought.length > 0) {
+            for (let s of this.skinsToBeBought) {
+                if (s.idskin == skin.idskin) {
+                    this.skinExists = true;
+                }
             }
-        }
-        if (this.skinExists == false) {
+            if (this.skinExists == false) {
+                this.skinsToBeBought.push(skin);
+                this.shoppingCart.next(this.skinsToBeBought);
+                return skin;
+            }
+        } else if (this.skinsToBeBought.length <= 0){
             this.skinsToBeBought.push(skin);
             this.shoppingCart.next(this.skinsToBeBought);
             return skin;
         }
+    }
+
+    removeAllFromShoppingCart() {
+        const skinsToBeBought: Skin[] = []
+        this.shoppingCart = new BehaviorSubject<Skin[]>(skinsToBeBought);
     }
 
     removeFromShoppingCart(skin: Skin) {

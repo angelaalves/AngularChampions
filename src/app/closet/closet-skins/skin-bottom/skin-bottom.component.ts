@@ -61,6 +61,15 @@ export class SkinBottomComponent implements OnInit {
     return false;
   }
 
+  emptyCart() {
+    this.skinService.emptyCart();
+    this.redirectBackToCloset();
+  }
+
+  redirectBackToCloset() {
+    this.router.navigate(['../closet'], { relativeTo: this.route });
+  }
+
   imageNull(skin: Skin) {
     if (skin.imagePath == "../../assets/AppImages/None.png") {
       return true;
@@ -75,14 +84,13 @@ export class SkinBottomComponent implements OnInit {
     if (this.playerHasBoughtSkin(skinSelected) == false) {
       this.skinService.addToShoppingCart(skinSelected);
     }
-    this.session.playerSession.imagePath = this.playerViewingSkins;
+    this.session.playerSession.imagePath = this.session.playerSession.imagePath;
     this.skinService.setAnySkinSelected(true);
   }
 
   skinSelectedNull() {
     this.playerViewingSkins = this.playerInitialSkins;
     this.session.playerSession.changeImage("./../../../assets/Bottom/BottomNull.png", skinType.Bottom);
-
     this.session.playerSession.imagePath = this.playerViewingSkins;
     this.skinService.setAnySkinSelected(true);
   }

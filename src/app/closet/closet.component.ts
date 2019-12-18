@@ -42,7 +42,7 @@ export class ClosetComponent implements OnInit {
 
     this.skinService.shoppingCartSkins.subscribe(shoppingCart => this.shoppingCartSkins = shoppingCart);
     this.skinService.newViewingSkins.subscribe(skinPaths => this.newViewingSkins = skinPaths);
-    this.newViewingSkins = this.skinService.getArraySkin().getValue();
+    //this.newViewingSkins = this.skinService.getArraySkin().getValue();
   }
 
   viewSkin(skin: Skin) {
@@ -73,15 +73,22 @@ export class ClosetComponent implements OnInit {
   }
 
   redirectToBuySkin() {
-    if (this.skinService.isShoppingCartEmpty()==false) {
+    if (this.skinService.isShoppingCartEmpty() == false) {
       this.router.navigate(['../buy_skin'], { relativeTo: this.route });
     }
   }
-
+  
   resetToInitialSkins() {
     this.skinService.setAnySkinSelected(false);
     this.session.playerSession.resetImage();
-    this.skinService.addToShoppingCart(null);
-    console.log("closet.component.ts: method resetToInitialSkins "+this.skinService.addToShoppingCart(null));
+  }
+
+  emptyCart() {
+    this.skinService.emptyCart();
+    this.redirectBackToCloset();
+  }
+
+  redirectBackToCloset() {
+    this.router.navigate(['../closet'], { relativeTo: this.route });
   }
 }

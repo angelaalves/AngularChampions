@@ -5,7 +5,6 @@ import { status } from '../../shared/status.enum';
 import { SessionService } from 'src/app/services/session.service';
 import { Skin } from 'src/app/shared/skin.model';
 import { Player } from 'src/app/shared/player.model';
-import { SkinSelectedService } from '../closet-skins/skinSelected.service';
 import { SkinService } from 'src/app/services/skin.service';
 import { ModalService } from 'src/app/services/model.service';
 import Swal from 'sweetalert2'
@@ -24,7 +23,7 @@ export class BuySkinComponent implements OnInit {
   bodyText: string = '';
 
   constructor(private router: Router, private route: ActivatedRoute, private http: HttpClient, private session: SessionService,
-    private skinSelectedService: SkinSelectedService, private skinService: SkinService, private modalService: ModalService) {
+    private skinService: SkinService, private modalService: ModalService) {
     this.player = this.session.getPlayerInSession();
   }
 
@@ -54,15 +53,11 @@ export class BuySkinComponent implements OnInit {
   }
 
   buySkin() {
-    console.log("shopping cart skins " + this.shoppingCartSkins);
-
     const idplayer = this.session.getPlayerInSession().idplayer;
 
     for (let item of this.shoppingCartSkins) {
 
       var idSkin = item.idskin;
-
-      console.log("idSkin " + idSkin);
 
       if (this.player.myChampies >= item.champiesCost && this.player.xp >= item.minXP) {
         this.http.post<any>('http://localhost:8085/closet/Create?idSkinFK=' + idSkin + '&idPlayerFk=' + idplayer + '&status=',
@@ -98,8 +93,7 @@ export class BuySkinComponent implements OnInit {
             );
           }
         }
-        this.router.navigate(['../closet'], { relativeTo: this.route });
-      } else {
+      } else if ((this.player.myChampies < item.champiesCost) || (this.player.xp < item.minXP)) {
         Swal.fire({
           icon: 'error',
           title: 'Oops...',
@@ -107,6 +101,10 @@ export class BuySkinComponent implements OnInit {
           footer: 'Please shorten your shopping cart'
         });
       }
+      this.player.changeImage(item.imagePath, item.skinType);
+      this.activeSkins.push(item);
+      this.skinService.emptyCart();
+      this.router.navigate(['../closet'], { relativeTo: this.route });
     }
   }
 }

@@ -34,18 +34,13 @@ export class SkinSkincolorComponent implements OnInit {
 
     this.playerInitialSkins = this.session.playerSession.imagePath;
 
-    console.log("initial skins on init()" + this.playerInitialSkins);
-
     this.playerViewingSkins = this.session.playerSession.imagePath;
-
-    console.log("viewing skins on init()" + this.playerViewingSkins);
 
     console.log(this.player);
     this.http.get<Closet[]>('http://localhost:8085/closet/Get?idSkinFK= &idPlayerFk=' + this.session.getPlayerInSession().idplayer + "&status=", {}).subscribe(data => {
       this.allsessionsuserskins = data;
       console.log("this.alluserskins ", this.allsessionsuserskins);
       for (let s of this.allsessionsuserskins) {
-        console.log(this.allsessionsuserskins + "element: " + s);
         return true;
       }
       return false;
@@ -75,7 +70,7 @@ export class SkinSkincolorComponent implements OnInit {
     if (this.playerHasBoughtSkin(skinSelected) == false) {
       this.skinService.addToShoppingCart(skinSelected);
     }
-    this.session.playerSession.imagePath = this.playerViewingSkins;
+    this.session.playerSession.imagePath = this.session.playerSession.imagePath;
     this.skinService.setAnySkinSelected(true);
   }
 }
