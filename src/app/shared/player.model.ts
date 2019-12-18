@@ -29,6 +29,7 @@ export class Player {
         this.gender = gender;
         this.status = status;
     }
+    
     getImagePath(index: number) {
         return this.imagePath[index];
     }

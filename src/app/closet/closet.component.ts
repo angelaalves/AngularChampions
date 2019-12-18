@@ -23,9 +23,6 @@ export class ClosetComponent implements OnInit {
   tops: Skin[] = [];
   shoes: Skin[] = [];
   others: Skin[] = [];
-  newViewingSkins: String[];
-  initialSkins: String[];
-  shoppingCartSkins: Skin[] = [];
 
   private skin = new BehaviorSubject<Skin>(new Skin("", "", "", "", "", null));
   closetSkinSelected = this.skin.asObservable();
@@ -35,14 +32,7 @@ export class ClosetComponent implements OnInit {
 
   ngOnInit() {
     this.player = this.session.playerSession;
-    this.initialSkins = this.session.getPlayerInSession().imagePath;
     this.getSkins();
-    this.newViewingSkins = this.player.imagePath;
-    console.log("array de skins novas " + this.player.imagePath);
-
-    this.skinService.shoppingCartSkins.subscribe(shoppingCart => this.shoppingCartSkins = shoppingCart);
-    this.skinService.newViewingSkins.subscribe(skinPaths => this.newViewingSkins = skinPaths);
-    //this.newViewingSkins = this.skinService.getArraySkin().getValue();
   }
 
   viewSkin(skin: Skin) {
@@ -85,10 +75,10 @@ export class ClosetComponent implements OnInit {
 
   emptyCart() {
     this.skinService.emptyCart();
-    this.redirectBackToCloset();
+    this.router.navigate(['../closet'], { relativeTo: this.route });
   }
 
-  redirectBackToCloset() {
-    this.router.navigate(['../closet'], { relativeTo: this.route });
+  applySkins(){
+    
   }
 }
