@@ -13,6 +13,13 @@ export class GuildMasterDetailsXpComponent implements OnInit {
   constructor(private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
+   this.percentageXP();
+    
   }
 
+  percentageXP(){
+    this.XP=this.XP/10000
+ 
+ 
+  }
 }

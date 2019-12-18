@@ -6,6 +6,7 @@ import { AttendedEvents } from './attendedevents.model';
 import { FormGroup } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AuthenticationService } from '../login/authentication/authentication.service';
+import { eventType } from './event-type.enum';
 
 @Component({
   selector: 'app-events',
@@ -20,38 +21,40 @@ export class EventsComponent implements OnInit {
   public idOfEventsChecked: String[] = [];
   public idOfEventsUnchecked: String[] = [];
   public events: Event[] = [];
+  public KickOffXP = 60000;
+  public CheckPointXP = 60000;
+  public ChristmasXP = 45000;
+  public FamilyXP = 45000;
+  public HappyHourXP = 4000;
+  public BoardGamesXP = 6000;
+  public TripXP = 15000;
+  public TalkingSessionsXP = 3000;
+  public OthersXP = 1125;
 
   constructor(private router: Router, private route: ActivatedRoute, private session: SessionService, private http: HttpClient, private authService: AuthenticationService) {
-    console.log(session.playerSession.idplayer);
   }
 
   ngOnInit() {
     this.allEvents();
     this.getAttendedEvents()
-
   }
-
 
   hasEvent(event: Event) {
     const obj = JSON.stringify(event);
-
     for (let v of this.eventsAttendedByPlayer) {
-      console.log("V of eventsattendedbyplayer no hasEvent" + v);
       if (v.idevent == event.idevent) {
-
         return true;
       }
     } return false;
   }
-  allEvents() {
 
+  allEvents() {
     this.http.get<Event[]>('http://localhost:8085/events/getAll').subscribe(data => {
       this.events = data;
     });
   }
 
   getAttendedEvents() {
-
     this.http.get<AttendedEvents[]>('http://localhost:8085/attendedEvents/Get?idPlayerFK=' + this.session.playerSession.idplayer).subscribe(data => {
       const obj = JSON.stringify(data);
       this.attendedEventsByPlayer = data;
@@ -61,40 +64,148 @@ export class EventsComponent implements OnInit {
           this.eventsAttendedByPlayer.push(res[0]);
         });
       }
-
     });
-
   }
 
   Save() {
+    
+    console.log("XP"+ this.session.playerSession.xp);
     if (this.idOfEventsChecked != undefined) {
       for (let idEvent of this.idOfEventsChecked) {
-
         const id = idEvent;
         const idplayer = this.session.playerSession.idplayer;
-
         this.http.post<any>('http://localhost:8085/attendedEvents/Create?idEventsFK=' + id + '&idPlayerFK=' + idplayer,
           {
             id,
             idplayer
           }).subscribe(data => {
           });
+        var eventaux: Event;
+        this.http.get<Event[]>('http://localhost:8085/events/get?idEvent=' + idEvent).subscribe(res => {
+          const obj2 = JSON.stringify(res);
+          eventaux = res[0];
+          const idPlayer = this.session.playerSession.idplayer;
+          const userName = this.session.playerSession.userName;
+          const email = this.session.playerSession.email;
+          const password = this.session.playerSession.password;
+          const gender = this.session.playerSession.gender;
+          const userType = this.session.playerSession.userType;
+          var xp = this.session.playerSession.xp;
+          if (eventaux.eventType === eventType.KickOff) {
+            xp = (Number(xp) + this.KickOffXP).toString();
+          }
+          if (eventaux.eventType === eventType.Checkpoint) {
+            xp = (Number(xp) + this.CheckPointXP).toString();
+          }
+          if (eventaux.eventType === eventType.ChristmasDinner) {
+            xp = (Number(xp) + this.ChristmasXP).toString();
+          }
+          if (eventaux.eventType === eventType.FamilyDay) {
+            xp = (Number(xp) + this.FamilyXP).toString();
+          }
+          if (eventaux.eventType === eventType.HappyHour) {
+            xp = (Number(xp) + this.HappyHourXP).toString();
+          }
+          if (eventaux.eventType === eventType.BoardingGames) {
+            xp = (Number(xp) + this.BoardGamesXP).toString();
+          }
+          if (eventaux.eventType === eventType.AnnualTrip) {
+            xp = (Number(xp) + this.TripXP).toString();
+          }
+          if (eventaux.eventType === eventType.TalkingSession) {
+            xp = (Number(xp) + this.TalkingSessionsXP).toString();
+          }
+          if (eventaux.eventType === eventType.Other) {
+            xp = (Number(xp) + this.OthersXP).toString();
+          }
+          const champiesToGive = this.session.playerSession.champiesToGive;
+          const myChampies = this.session.playerSession.myChampies;
+          const status = this.session.playerSession.status;
+          this.http.post<any>('http://localhost:8085/players/Update?idPlayer=' + idPlayer + '&userName=' + userName + '&email=' + email + '&password=' + password + '&gender=' + gender + '&userType=' + userType + '&xp=' + xp + '&champiesToGive=' + champiesToGive + '&myChampies=' + myChampies + '&status=' + status,
+            {
+              idPlayer,
+              userName,
+              email,
+              password,
+              gender,
+              userType,
+              xp,
+              champiesToGive,
+              myChampies,
+              status
+            }).subscribe(data => {
+            });
+        });
       }
     }
     if (this.idOfEventsUnchecked != undefined) {
       for (let idEvent of this.idOfEventsUnchecked) {
         const id = idEvent;
         const idplayer = this.session.playerSession.idplayer;
-
         this.http.post<any>('http://localhost:8085/attendedEvents/Delete?idEventsFK=' + id + '&idPlayerFK=' + idplayer,
           {
             id,
             idplayer
-          }).subscribe(data => {
-          });
+          }).subscribe(data => { });
+        this.http.get<Event[]>('http://localhost:8085/events/get?idEvent=' + idEvent).subscribe(res => {
+          const obj2 = JSON.stringify(res);
+          eventaux = res[0];
+          const idPlayer = this.session.playerSession.idplayer;
+          const userName = this.session.playerSession.userName;
+          const email = this.session.playerSession.email;
+          const password = this.session.playerSession.password;
+          const gender = this.session.playerSession.gender;
+          const userType = this.session.playerSession.userType;
+          var xp = this.session.playerSession.xp;
+          if (eventaux.eventType === eventType.KickOff) {
+            xp = (Number(xp) - this.KickOffXP).toString();
+          }
+          if (eventaux.eventType === eventType.Checkpoint) {
+            xp = (Number(xp) - this.CheckPointXP).toString();
+          }
+          if (eventaux.eventType === eventType.ChristmasDinner) {
+            xp = (Number(xp) - this.ChristmasXP).toString();
+          }
+          if (eventaux.eventType === eventType.FamilyDay) {
+            xp = (Number(xp) - this.FamilyXP).toString();
+          }
+          if (eventaux.eventType === eventType.HappyHour) {
+            xp = (Number(xp) - this.HappyHourXP).toString();
+          }
+          if (eventaux.eventType === eventType.BoardingGames) {
+            xp = (Number(xp) - this.BoardGamesXP).toString();
+          }
+          if (eventaux.eventType === eventType.AnnualTrip) {
+            xp = (Number(xp) - this.TripXP).toString();
+          }
+          if (eventaux.eventType === eventType.TalkingSession) {
+            xp = (Number(xp) - this.TalkingSessionsXP).toString();
+          }
+          if (eventaux.eventType === eventType.Other) {
+            xp = (Number(xp) - this.OthersXP).toString();
+          }
+          const champiesToGive = this.session.playerSession.champiesToGive;
+          const myChampies = this.session.playerSession.myChampies;
+          const status = this.session.playerSession.status;
+          this.http.post<any>('http://localhost:8085/players/Update?idPlayer=' + idPlayer + '&userName=' + userName + '&email=' + email + '&password=' + password + '&gender=' + gender + '&userType=' + userType + '&xp=' + xp + '&champiesToGive=' + champiesToGive + '&myChampies=' + myChampies + '&status=' + status,
+            {
+              idPlayer,
+              userName,
+              email,
+              password,
+              gender,
+              userType,
+              xp,
+              champiesToGive,
+              myChampies,
+              status
+            }).subscribe(data => {
+            });
+
+        });
       }
     }
-
+    console.log("XP"+ this.session.playerSession.xp);
     if (this.session.getPlayerInSession().userType == "Ancient") {
       this.router.navigate(['/ancient_profile'], { relativeTo: this.route });
     }
@@ -106,8 +217,6 @@ export class EventsComponent implements OnInit {
     }
   }
 
-
-
   checked(event: String) {
     var exists: boolean;
     exists = false;
@@ -117,16 +226,12 @@ export class EventsComponent implements OnInit {
         exists = true;
       }
     }
-
     if (exists == false) {
       this.idOfEventsChecked.push(event);
     } else {
       this.idOfEventsChecked.splice(this.idOfEventsChecked.indexOf(event), 1);
-
     }
   }
-
-
 
   unchecked(event: String) {
     var exists: boolean;
@@ -135,23 +240,14 @@ export class EventsComponent implements OnInit {
     for (let x of this.idOfEventsUnchecked) {
       if (x == event) {
         exists = true;
-
       }
     }
     if (exists == false) {
       this.idOfEventsUnchecked.push(event);
     } else {
-
       this.idOfEventsUnchecked.splice(this.idOfEventsUnchecked.indexOf(event), 1);
-
     }
-
   }
-
-
-
-
-
 
 }
 

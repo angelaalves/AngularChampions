@@ -1,0 +1,21 @@
+<div class="scrollmenu" id="style-8" style="margin-bottom: 5%;">
+  <div *ngFor="let shoe of shoes;" style="display: inline-block;position: relative;">
+    <div *ngIf="imageNull(shoe)==false && playerHasBoughtSkin(shoe)==false" style="width:100px;height:100px;">
+      <img src={{shoe.imagePath}} style="max-width:100px;max-height:100px; position: absolute;" (click)="skinSelected(shoe)">
+      <img src="../../../../assets/AppImages/forsale.png"
+        style="max-width:100px; margin-right: auto; margin-left: auto;" (click)="skinSelected(shoe)">
+    </div>
+    <div *ngIf="imageNull(shoe)==false && playerHasBoughtSkin(shoe)==true && skinInUse(shoe)==true"
+      style="width:100px;height:100px; position: relative;">
+      <img src={{shoe.imagePath}} style="max-width:100px;max-height:100px; position: absolute;">
+      <img src="../../../../assets/AppImages/selected.png" style="max-width:100px;max-height:100px;">
+    </div>
+    <div *ngIf="imageNull(shoe)==false && playerHasBoughtSkin(shoe)==true && skinInUse(shoe)==false"
+      style="width:100px;height:100px;">
+      <img src={{shoe.imagePath}} style="max-width:100px;max-height:100px;" (click)="skinSelected(shoe)">
+    </div>
+    <div *ngIf="imageNull(shoe)==true" style="max-width:100px;max-height:100px;">
+      <img src={{shoe.imagePath}} style="max-width:100px;max-height:100px;" (click)="skinSelectedNull()">
+    </div>
+  </div>
+</div>

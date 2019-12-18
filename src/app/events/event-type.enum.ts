@@ -1,11 +1,11 @@
 export enum eventType{
-    KickOff="kick-off",
-    Checkpoint="checkpoint",
-    ChristmasDinner="christmasDinner",
-    FamilyDay="familyDay",
-    HappyHour="happy-hour",
-    BoardingGames="boardingGames",
-    AnnualTrip="annualTrip",
-    TalkingSession="talkingSession",
-    Other="other"
+    KickOff="Kick-off",
+    Checkpoint="Checkpoint",
+    ChristmasDinner="Christmas Dinner",
+    FamilyDay="FamilyDay",
+    HappyHour="Happy-Hour",
+    BoardingGames="Boardgames",
+    AnnualTrip="Annual Trip",
+    TalkingSession="Talking Session",
+    Other="Other"
 }
