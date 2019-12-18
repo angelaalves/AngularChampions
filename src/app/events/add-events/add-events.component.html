@@ -8,16 +8,16 @@
 <div id="divRight">
     <form #eventForm="ngForm" (ngSubmit)="onSubmit(eventForm)" class="container-fluid">
         <div class="form-group" style="display:inline; margin-right: 20%; margin-left: 5%;">
-            <label style="margin-right: 10px; margin-top: 5%">Event Name</label><br>
+            <label style="width: 800px;margin-right: 10px; margin-top: 5%">Event Name</label><br>
             <input type="text" class="form-control input-sm" name="name" value="name"
-                style=" background: whitesmoke; border: 2px solid rgb(65, 126, 218); max-width: 24.5%; margin-left: 4em;"
+                style=" width: 800px; background: whitesmoke; border: 2px solid rgb(65, 126, 218); margin-left: 4em;"
                 ngModel required>
         </div>
         <br>
         <div class="form-group" style="display:inline-block; margin-right: 20%; margin-left: 5%; margin-top: 1%;">
             <label style="margin-right: 10px;">Event Date</label><br>
             <input type="date" class="form-control input-sm" name="date" value="date"
-                style="background: whitesmoke; border: 2px solid rgb(65, 126, 218);" ngModel required>
+                style="background: whitesmoke; border: 2px solid rgb(65, 126, 218);width: 800px;" ngModel required>
         </div>
 
         <br>
@@ -26,7 +26,7 @@
             <label style="margin-right: 10px;">Type of Event</label><br>
             <div style="display: inline-block;">
                 <select id="inputSubject" data="type" name="eventType" value="eventType" class="form-control input-sm"
-                    style=" margin-top: 1%; margin-left: 1em; background: whitesmoke; border: 2px solid rgb(65, 126, 218)"
+                    style="width: 800px; margin-top: 1%; margin-left: 1em; background: whitesmoke; border: 2px solid rgb(65, 126, 218)"
                     ngModel required>
                     <option selected>Select the type of event</option>
                     <option>Kick-off</option>
@@ -46,26 +46,20 @@
 
         <div style="display:inline-block; margin-right: 20%; margin-left: 5%; margin-top: 1%;">
             <div class="input-group clockpicker" style="margin-top: 5%;">
-                <label style="margin-right: 10px; margin-top: 1%;">Start hour</label>
-                <label style="margin-left: 25px; margin-top: 1%;">Finish hour</label><br>
+                <label style="margin-right: 150px; margin-top: 1%;">Start hour     </label>
+                <label style="margin-left: 25px; margin-top: 1%;">Finish hour     </label><br>
                 <input type="time" value="startHour" class="form-control input-sm" name="startHour"
-                    style="background: whitesmoke; border: 2px solid rgb(65, 126, 218); max-width: 40%; margin-left: 1em;"
+                    style="background: whitesmoke; border: 2px solid rgb(65, 126, 218); width: 250px; margin-left: 1em;"
                     ngModel required>
                 <input type="time" value="finishHour" class="form-control input-sm" name="finishHour"
-                    style="background: whitesmoke; border: 2px solid rgb(65, 126, 218); max-width: 40%; margin-left: 3em;"
+                    style="background: whitesmoke; border: 2px solid rgb(65, 126, 218);width: 250px; margin-left: 3em;"
                     ngModel required>
             </div>
         </div>
 
         <br>
 
-        <div class="form-check" style="display:inline-block; margin-right: 20%; margin-left: 5%; margin-top: 1%;">
-            <label class="form-check-label" style="margin-right: 10px;">Is this event recurrent?
-                <input type="checkbox" class="form-check-input" name="repetition" value="isEventRecurrent"
-                    style=" background-color: whitesmoke; height: 25px; width: 25px; " ngModel>
-                <span class="checkmark"></span>
-            </label>
-        </div>
+        
 
         <br>
 

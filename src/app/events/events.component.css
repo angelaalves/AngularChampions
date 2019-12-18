@@ -1,64 +1,104 @@
 
- @font-face {
-      src: url(../../fonts/ka1.ttf);
-      font-family: karmatic-arcade;
+  #tabela{
+    grid-row: 1 /  3;
+  }
+
+  div button {
+    float: right;
   }
   
-  * {
-      background-color: transparent;
-      color: black;
-      font-family: karmatic-arcade;
-  }
-  @font-face{
-    src: url(../../fonts/pixelmix.ttf);
-    font-family: pixelmix;
-  }
-
-
-  .eventscroll{
-    overflow-y: scroll;
-    height: 500px;
+  .divLeft {
+    height: 30vh;
+    width: 30vw;
+    transform: translate(-20%,0%);
+    display:block;
+    float: left;
 }
-
-#style-8::-webkit-scrollbar-track
-{
-	border: 1px solid black;
-	background-color:transparent;
+.divRight {
+  transform: translate(15%,-60%);
+  height: 45vh;
+  width: 85vw;
+    display:block;
+    float: left;
 }
-
-#style-8::-webkit-scrollbar
-{
-	width: 10px;
-	background-color: transparent;
-}
-
-#style-8::-webkit-scrollbar-thumb
-{
-	background-color: #000000;	
-}
-
-
-
-
 #footer {
 
-  transform: translate(-30%,500%);
-  padding-right: 2vw;
+  transform: translate(0%,-150%);
     float: right;
 }
 
 
-.divLeft {
-  height: 50vh;
-  width: 20vw;
-  display:block;
-  float: left;
+.eventscroll{
+  overflow-y: scroll;
+
+  overflow-x: hidden;
 }
-.divRight {
-  padding-left: 5vw;
-  padding-right: 2vw;
-  height: 50vh;
-  width:80vw;
-  display:block;
-  float: left;
+
+@font-face{
+    src: url(../../fonts/pixelmix.ttf);
+    font-family: pixelmix;
+  }
+  
+  input{
+      font-family: pixelmix;
+  }
+
+  textarea{
+    font-family: pixelmix;
 }
+
+select{
+    font-family: pixelmix;
+}
+  @font-face{
+    src: url(../../fonts/ka1.ttf);
+    font-family: karmatic-arcade;
+  }
+
+  *{
+    font-family: karmatic-arcade;
+    background-color: transparent;
+    color: black;
+    margin-left: 5%;
+    margin-right: 5%;
+  }
+
+ 
+  td{
+    font-family: pixelmix;
+    width: 5vw;
+    opacity: 0.9;
+  }
+
+  th{
+    background: url("../../assets/AppImages/button width-700height-90.png") no-repeat ;
+    opacity: 0.9;
+    background-size: auto;
+    
+  }
+
+  option{
+    font-family: pixelmix;
+  }
+  select{
+    font-family: pixelmix;
+  }
+  
+
+
+  #style-8::-webkit-scrollbar-track
+  {
+    border: 1px solid black;
+    background-color:transparent;
+  }
+  
+  #style-8::-webkit-scrollbar
+  {
+    width: 10px;
+    background-color: transparent;
+  }
+  
+  #style-8::-webkit-scrollbar-thumb
+  {
+    background-color: #000000;	
+  }

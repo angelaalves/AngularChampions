@@ -32,7 +32,6 @@ export class GuildListComponent implements OnInit {
   }
 
   onGuild(index: number){
-    console.log(this.guilds[index]);
     this.router.navigate(['./'+index], {relativeTo: this.route});
   }
 

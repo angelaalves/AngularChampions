@@ -68,11 +68,14 @@ select{
   td{
     font-family: pixelmix;
     width: 5vw;
+    opacity: 0.9;
   }
 
   th{
-    background: url("../../assets/AppImages/button width-700height-90.png") no-repeat;
+    background: url("../../assets/AppImages/button width-700height-90.png") no-repeat ;
+    opacity: 0.9;
     background-size: auto;
+    
   }
 
   option{

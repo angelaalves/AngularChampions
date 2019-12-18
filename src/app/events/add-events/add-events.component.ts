@@ -31,9 +31,6 @@ export class AddEventsComponent implements OnInit {
     const name = form.value.name;
     const date = form.value.date;
     const eventType = form.value.eventType;
-
-    console.log('addEventForm', form.value);
-
     var xhr = new XMLHttpRequest();
     xhr.open('POST', 'http://localhost:8085/events/Create?eventName=' + name + '&eventDate=' + date +
       '&eventType=' + eventType , true);

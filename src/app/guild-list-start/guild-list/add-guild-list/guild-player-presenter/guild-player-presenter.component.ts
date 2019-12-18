@@ -13,7 +13,6 @@ export class GuildPlayerPresenterComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.player)
   }
 
 }
