@@ -8,6 +8,7 @@ import { SessionService } from '../services/session.service';
   templateUrl: './guild-master.component.html',
   styleUrls: ['./guild-master.component.css']
 })
+
 @Injectable({ providedIn: 'root' })
 export class GuildMasterComponent implements OnInit {
   @Input() email: string;
@@ -17,9 +18,6 @@ export class GuildMasterComponent implements OnInit {
   constructor(private session: SessionService, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
-
-
     this.guildmaster = this.session.getPlayerInSession();
-
   }
 }
