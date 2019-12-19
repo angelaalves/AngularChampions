@@ -79,6 +79,6 @@ export class ClosetComponent implements OnInit {
   }
 
   applySkins(){
-    
+   
   }
 }

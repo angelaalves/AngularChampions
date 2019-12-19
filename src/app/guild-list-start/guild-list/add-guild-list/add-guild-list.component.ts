@@ -1,14 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { GuildListService } from 'src/app/services/guild-list.service';
-import { FormGroup, FormControl, Validators, NgForm } from '@angular/forms';
+import { NgForm } from '@angular/forms';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Player } from 'src/app/shared/player.model';
 import { PlayerService } from 'src/app/services/player.service';
-import { BehaviorSubject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { formatDate } from '@angular/common';
-import { start } from 'repl';
-
 
 @Component({
   selector: 'app-add-guild-list',

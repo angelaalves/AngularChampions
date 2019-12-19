@@ -12,6 +12,7 @@ import { Player } from 'src/app/shared/player.model';
 export class GuildmasterPresenterPageComponent implements OnInit {
   @Input() guildmaster: Player;
   id: number;
+  
   constructor(private router: Router, private route: ActivatedRoute) {
 
   }

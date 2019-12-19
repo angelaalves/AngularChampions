@@ -17,6 +17,7 @@
 .scroll{
   overflow-y: scroll;
   height: 500px;
+  margin: 5%;
 }
 
 #style-8::-webkit-scrollbar-track
