@@ -25,6 +25,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { PresenterPageComponent } from './warrior/presenter-page/presenter-page.component';
 import { ImageMakerComponent } from './image-maker/image-maker.component';
 import { BuySkinComponent } from './closet/buy-skin/buy-skin.component';
+import { InsertNewVideoComponent } from 'AngularChampions/src/app/videos/insert-new-video/insert-new-video.component';
 
 const appRoutes: Routes=[
     {path: '', redirectTo: '/login', pathMatch:'full'},
@@ -33,7 +34,7 @@ const appRoutes: Routes=[
     {path: 'change_password', component: ChangePasswordComponent},
     {path: 'warrior_profile', component: WarriorComponent},
     {path: 'guild/:idplayer', component: GuildComponent},
-    {path: 'guildmaster_profile', component: GuildMasterComponent},
+    {path: 'guildmaster_profile', component: GuildMasterComponent,},
     {path: 'ancient_profile', component: AncientProfileComponent, children:[
         {path: '', component: AncientComponent},
         {path: 'add_guild', component: AddGuildListComponent},
@@ -58,6 +59,7 @@ const appRoutes: Routes=[
     {path: 'closet', component: ClosetComponent},
     {path: 'buy_skin', component: BuySkinComponent},
     {path: 'videos', component: VideosComponent},
+    {path:'insert_new_video', component: InsertNewVideoComponent},
     {path: 'add_skin', component: AddSkinComponent},
     {path: 'image', component: ImageMakerComponent} 
  ]

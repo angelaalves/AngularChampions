@@ -1,5 +1,5 @@
-import { Component, OnInit, Injectable } from '@angular/core';
-import { SessionService } from '../services/session.service';
+
+import { Component, OnInit, Injectable, Input } from '@angular/core';
 import { AuthenticationService } from '../login/authentication/authentication.service';
 import { HttpClient } from '@angular/common/http';
 import { Video } from '../shared/video.model';
@@ -8,6 +8,8 @@ import { FormGroup } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { watchedVideos } from '../shared/watchedVideos.model';
 import { Player } from 'AngularChampions/src/app/shared/player.model';
+
+import { SessionService } from '../services/session.service';
 
 @Component({
   selector: 'app-videos',
@@ -36,12 +38,12 @@ export class VideosComponent implements OnInit {
   public totaljava: number;
   public totalangular: number;
   public totalspring: number;
-
-  public videoXP: 30;
+  
 
 
 
   constructor(private router: Router, private route: ActivatedRoute, private session: SessionService, private http: HttpClient, private authService: AuthenticationService) {
+    console.log(this.session.playerSession);
   }
 
   ngOnInit() {
@@ -119,16 +121,23 @@ export class VideosComponent implements OnInit {
             idplayer
           }).subscribe(data => {
           });
+          console.log(this.session.playerSession);
         const idPlayer = this.session.playerSession.idplayer;
+        console.log(idPlayer);
         const userName = this.session.playerSession.userName;
+        console.log(userName);
         const email = this.session.playerSession.email;
         const password = this.session.playerSession.password;
         const gender = this.session.playerSession.gender;
         const userType = this.session.playerSession.userType;
-        var xp = this.session.playerSession.xp;
-        xp = (Number(xp) + this.videoXP).toString();
+        console.log("1"+this.session.playerSession.xp);
+
+        
+        var xp=this.session.playerSession.xp;
+        xp = (Number(this.session.playerSession.xp)+30).toString();
         this.session.getPlayerInSession().xp = xp;
         this.XP();
+       
         const champiesToGive = this.session.playerSession.champiesToGive;
         const myChampies = this.session.playerSession.myChampies;
         const status = this.session.playerSession.status;
@@ -149,7 +158,8 @@ export class VideosComponent implements OnInit {
 
       }
     }
-
+    console.log("this.session.playerSession.xp" + this.session.playerSession.xp);
+    console.log("xp " + xp);
     if (this.idOfVideosUnchecked != undefined) {
       for (let idVideo of this.idOfVideosUnchecked) {
         const id = idVideo;
@@ -161,33 +171,33 @@ export class VideosComponent implements OnInit {
             idplayer
           }).subscribe(data => {
           });
-          const idPlayer = this.session.playerSession.idplayer;
-          const userName = this.session.playerSession.userName;
-          const email = this.session.playerSession.email;
-          const password = this.session.playerSession.password;
-          const gender = this.session.playerSession.gender;
-          const userType = this.session.playerSession.userType;
-          var xp = this.session.playerSession.xp;
-          xp = (Number(xp) + this.videoXP).toString();
-          this.session.getPlayerInSession().xp = xp;
-          this.XP();
-          const champiesToGive = this.session.playerSession.champiesToGive;
-          const myChampies = this.session.playerSession.myChampies;
-          const status = this.session.playerSession.status;
-          this.http.post<any>('http://localhost:8085/players/Update?idPlayer=' + idPlayer + '&userName=' + userName + '&email=' + email + '&password=' + password + '&gender=' + gender + '&userType=' + userType + '&xp=' + xp + '&champiesToGive=' + champiesToGive + '&myChampies=' + myChampies + '&status=' + status,
-            {
-              idPlayer,
-              userName,
-              email,
-              password,
-              gender,
-              userType,
-              xp,
-              champiesToGive,
-              myChampies,
-              status
-            }).subscribe(data => {
-            });
+        const idPlayer = this.session.playerSession.idplayer;
+        const userName = this.session.playerSession.userName;
+        const email = this.session.playerSession.email;
+        const password = this.session.playerSession.password;
+        const gender = this.session.playerSession.gender;
+        const userType = this.session.playerSession.userType;
+        var xp=this.session.playerSession.xp;
+        xp = (Number(this.session.playerSession.xp)-30).toString();
+       this.session.getPlayerInSession().xp = xp;
+        this.XP();
+        const champiesToGive = this.session.playerSession.champiesToGive;
+        const myChampies = this.session.playerSession.myChampies;
+        const status = this.session.playerSession.status;
+        this.http.post<any>('http://localhost:8085/players/Update?idPlayer=' + idPlayer + '&userName=' + userName + '&email=' + email + '&password=' + password + '&gender=' + gender + '&userType=' + userType + '&xp=' + xp + '&champiesToGive=' + champiesToGive + '&myChampies=' + myChampies + '&status=' + status,
+          {
+            idPlayer,
+            userName,
+            email,
+            password,
+            gender,
+            userType,
+            xp,
+            champiesToGive,
+            myChampies,
+            status
+          }).subscribe(data => {
+          });
       }
 
 

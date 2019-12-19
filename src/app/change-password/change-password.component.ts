@@ -4,6 +4,7 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { SessionService } from '../services/session.service';
 import { Player } from '../shared/player.model';
+import { ThrowStmt } from '@angular/compiler';
  
 @Component({
   selector: 'app-change-password',
@@ -12,7 +13,7 @@ import { Player } from '../shared/player.model';
 })
 export class ChangePasswordComponent implements OnInit {
   changePasswordForm: FormGroup;
-  passwordCorrect: boolean;
+  passwordCorrect = false;
   oldPassword: string;
   newPassword: string;
   confirmPassword :String;
@@ -22,33 +23,48 @@ export class ChangePasswordComponent implements OnInit {
  
   ngOnInit() {
     this.player = this.session.playerSession;
-    console.log(this.session.playerSession.email);
-    console.log(this.session.playerSession.password);
-    this.route.params
-      .subscribe(
-        (params: Params) => {
-          this.initForm();
-        }
-      )
+   
   }
  
   verifyOldPassword(form: NgForm){
+    let oldPassword = form.value.oldPassword;
     console.log("email: " + this.player.email + " password: " + this.player.password);
-    this.http.get<boolean>('http://localhost:8085/players/verifyPassword?email=' + this.player.email + '&password=' + this.player.password).subscribe(data => {
+    this.http.get<boolean>('http://localhost:8085/players/verifyPassword?email=' + this.player.email + '&password=' + oldPassword).subscribe(data => {
       this.passwordCorrect = data;
       if(this.passwordCorrect===false){
         console.log(this.passwordCorrect);
-        this.player.password=this.oldPassword;
-        console.log("diferent passwords");
+        this.player.password=oldPassword;
+        console.log("same passwords");
       }
       else {
-        console.log("same password")
+        console.log("different password")
       }
     });
     
   }
  
-  onSubmit(form: NgForm) {
+  updatePassword(form: NgForm){
+
+    let confirmPassword = form.value.confirmPassword;
+
+    this.http.post<Player>('http://localhost:8085/players/Update?idPlayer=' + this.player.idplayer + '&userName=' + this.player.userName +
+      '&email=' + this.player.email + '&password=' + confirmPassword + "&gender=" + this.player.gender + "&userType=" + this.player.userType + '&xp=' + this.player.xp + '&champiesToGive=' + this.player.champiesToGive
+      + '&myChampies=' +this.player.myChampies + '&status=' + this.player.status,
+      {
+        confirmPassword
+      }
+    ).subscribe(success=>{
+      if(this.oldPassword != confirmPassword) {
+        this.player.password = confirmPassword;
+      }
+    else {
+      console.log("Unable to change password")
+    }
+    });
+
+
+  }
+ /* onSubmit(form: NgForm) {
     if (!form.valid) {
       return;
     }
@@ -86,5 +102,5 @@ export class ChangePasswordComponent implements OnInit {
         'confirmPassword': new FormControl(null, Validators.required)
       })
     );
-  }
+  }*/
 }

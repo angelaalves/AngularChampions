@@ -6,6 +6,7 @@ import { Player } from '../shared/player.model';
 import { RewardService } from '../services/reward.service';
 import { SessionService } from '../services/session.service';
 import { PlayerService } from '../services/player.service';
+import { format } from 'url';
 
 @Component({
   selector: 'app-rewards',
@@ -22,7 +23,7 @@ export class RewardsComponent implements OnInit {
   warriors: Player[] = [];
   warriorSelected: boolean = false;
   receiver: string;
-
+  champies: string;
   constructor(private router: Router, private route: ActivatedRoute, private http: HttpClient, private rewardsToApprove: RewardService, private sessionService: SessionService, private playerService: PlayerService) { }
 
   ngOnInit() {
@@ -43,7 +44,7 @@ export class RewardsComponent implements OnInit {
     this.warriorSelected = true;
     this.playerReceiver = warriorEl;
   }
-
+  
   onSubmit(form: NgForm) {
     if (!form.valid) {
       return;
@@ -57,5 +58,16 @@ export class RewardsComponent implements OnInit {
     }, error => {
       console.log("something went wrong")
     })
+    if (this.sessionService.getPlayerInSession().userType == "Ancient") {
+      this.router.navigate(['/ancient_profile'], { relativeTo: this.route });
+    }
+    if (this.sessionService.getPlayerInSession().userType == "GuildMaster") {
+      this.router.navigate(['/guildmaster_profile'], { relativeTo: this.route });
+    }
+    if (this.sessionService.getPlayerInSession().userType == "Warrior") {
+      this.router.navigate(['/warrior_profile'], { relativeTo: this.route });
+    }
   }
+
+
 }
