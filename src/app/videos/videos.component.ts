@@ -1,9 +1,11 @@
+import { Component, OnInit, Injectable } from '@angular/core';
+import { SessionService } from '../services/session.service';
 import { Component, OnInit, Injectable, Input } from '@angular/core';
 import { AuthenticationService } from '../login/authentication/authentication.service';
 import { HttpClient } from '@angular/common/http';
 import { Video } from '../shared/video.model';
 import { topic } from '../shared/topic.enum';
-import { FormGroup, NgForm, FormArray, FormControl, Validators } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { watchedVideos } from '../shared/watchedVideos.model';
 import { Player } from 'AngularChampions/src/app/shared/player.model';
@@ -20,8 +22,6 @@ import { SessionService } from '../services/session.service';
 export class VideosComponent implements OnInit {
   videoForm: FormGroup;
 
-
-
   public Java: Video[];
   public Angular: Video[];
   public Spring: Video[];
@@ -32,7 +32,6 @@ export class VideosComponent implements OnInit {
 
   public idOfVideosChecked: String[];
   public idOfVideosUnchecked: String[];
-
 
   public videos: Video[];
 
@@ -51,23 +50,18 @@ export class VideosComponent implements OnInit {
   ngOnInit() {
     this.allVideos();
     this.getWatchedVideos()
-
   }
-
 
   hasvideo(video: Video) {
     const obj = JSON.stringify(video);
-
     for (let v of this.videosWatchedByPlayer) {
-
       if (v.idvideo == video.idvideo) {
-
         return true;
       }
     } return false;
   }
+  
   allVideos(): Video[] {
-
     this.http.get<Video[]>('http://localhost:8085/videos/getAll').subscribe(data => {
       this.videos = data;
       this.videosbytopic();
@@ -83,25 +77,19 @@ export class VideosComponent implements OnInit {
     this.totalangular = 0;
     this.totalspring = 0;
     for (let video of this.videos) {
-
       if (video.topic == "Angular") {
         this.Angular.push(video);
         this.totalangular = this.totalangular + (Number)(video.duration);
-
-      }
-      if (video.topic == "Java") {
+      }if (video.topic == "Java") {
         this.Java.push(video);
         this.totaljava = this.totaljava + (Number)(video.duration);
-
-      }
-      if (video.topic == "Spring") {
+      }if (video.topic == "Spring") {
         this.Spring.push(video);
         this.totalspring = this.totalspring + (Number)(video.duration);
-      }
-      else (video.topic)
+      }else (video.topic)
     }
-
   }
+
   getWatchedVideos() {
     this.videosWatchedByPlayer = [];
     this.watchedVideosByPlayer = [];
@@ -119,17 +107,12 @@ export class VideosComponent implements OnInit {
           this.videosWatchedByPlayer.push(res[0]);
         });
       }
-
     });
-
   }
 
   Save() {
     if (this.idOfVideosChecked != undefined) {
-
-
       for (let idVideo of this.idOfVideosChecked) {
-
         const id = idVideo;
         const idplayer = this.session.playerSession.idplayer;
 
@@ -250,19 +233,12 @@ export class VideosComponent implements OnInit {
         exists = true;
       }
     }
-
     if (exists == false) {
-
       this.idOfVideosChecked.push(video);
-
     } else {
-
       this.idOfVideosChecked.splice(this.idOfVideosChecked.indexOf(video), 1);
-
     }
   }
-
-
 
   unchecked(video: String) {
     var exists: boolean;
@@ -271,18 +247,12 @@ export class VideosComponent implements OnInit {
     for (let x of this.idOfVideosUnchecked) {
       if (x == video) {
         exists = true;
-
       }
     }
     if (exists == false) {
       this.idOfVideosUnchecked.push(video);
     } else {
-
       this.idOfVideosUnchecked.splice(this.idOfVideosUnchecked.indexOf(video), 1);
     }
-
   }
-
-
-
 }

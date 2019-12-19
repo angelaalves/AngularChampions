@@ -55,11 +55,8 @@ export class BuySkinComponent implements OnInit {
 
   buySkin() {
     const idplayer = this.session.getPlayerInSession().idplayer;
-
     for (let item of this.shoppingCartSkins) {
-
       var idSkin = item.idskin;
-
       if (this.player.myChampies >= item.champiesCost && this.player.xp >= item.minXP) {
         this.http.post<any>('http://localhost:8085/closet/Create?idSkinFK=' + idSkin + '&idPlayerFk=' + idplayer + '&status=',
           {
@@ -67,18 +64,14 @@ export class BuySkinComponent implements OnInit {
             idplayer,
           }
         ).subscribe();
-
         this.activeSkins.push(item);
-
         const myChampiesAfterBuyingSkin = Number(this.player.myChampies) - Number(item.champiesCost);
-
         this.http.post<any>('http://localhost:8085/players/Update?idPlayer=' + idplayer + '&idGuildFK= &userName= &email= &password= &gender= &userType= &xp= &champiesToGive= &myChampies=' + myChampiesAfterBuyingSkin + '&status= ',
           {
             idplayer,
             myChampiesAfterBuyingSkin
           }
         ).subscribe();
-
         let counter: number = -1;
         for (let activeSkin of this.activeSkins) {
           counter++;

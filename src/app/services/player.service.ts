@@ -1,6 +1,6 @@
 import { Player } from '../shared/player.model';
 import { userType } from '../shared/userType.enum';
-import { Injectable, OnInit } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { watchedVideos } from '../shared/watchedVideos.model';
 
