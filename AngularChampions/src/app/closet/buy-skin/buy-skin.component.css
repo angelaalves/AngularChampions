@@ -1,0 +1,15 @@
+#butao {
+  height:50px;
+  width: 100px;  
+  background-image:url('../../../assets/AppImages/Button.png');
+  background-size: cover;
+  }
+  
+  @font-face{
+    src: url(../../../fonts/ka1.ttf);
+    font-family: karmatic-arcade;
+  }
+
+  *{
+    font-family: karmatic-arcade;
+  }

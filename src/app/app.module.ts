@@ -66,6 +66,7 @@ import { SkinService } from './services/skin.service';
 import { ConfirmEqualValidatorDirective } from './shared/equal.validator.directive';
 import { GuildPlayerPresenterComponent } from './guild-list-start/guild-list/add-guild-list/guild-player-presenter/guild-player-presenter.component';
 import { TableFilterPipe2 } from './videos/videos.pipe';
+import { InsertNewVideoComponent } from 'AngularChampions/src/app/videos/insert-new-video/insert-new-video.component';
 
 
 @NgModule({
@@ -130,7 +131,8 @@ import { TableFilterPipe2 } from './videos/videos.pipe';
     TableFilterPipe,
     TableFilterPipe2,
     ConfirmEqualValidatorDirective,
-    GuildPlayerPresenterComponent
+    GuildPlayerPresenterComponent,
+    InsertNewVideoComponent
   ],
   imports: [
     //NgbModule,
