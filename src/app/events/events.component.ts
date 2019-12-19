@@ -87,6 +87,7 @@ export class EventsComponent implements OnInit {
           const idPlayer = this.session.playerSession.idplayer;
           const userName = this.session.playerSession.userName;
           const email = this.session.playerSession.email;
+          console.log                                                                                                                                                                                                                                                      
           const password = this.session.playerSession.password;
           const gender = this.session.playerSession.gender;
           const userType = this.session.playerSession.userType;

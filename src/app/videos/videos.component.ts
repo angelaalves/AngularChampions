@@ -1,5 +1,4 @@
-import { Component, OnInit, Injectable } from '@angular/core';
-import { SessionService } from '../services/session.service';
+
 import { Component, OnInit, Injectable, Input } from '@angular/core';
 import { AuthenticationService } from '../login/authentication/authentication.service';
 import { HttpClient } from '@angular/common/http';
