@@ -11,7 +11,8 @@ import { ActivatedRoute } from '@angular/router';
 export class GuildMemberComponent implements OnInit {
   @Input() player: Player;
   @Input() index: String;
-  constructor(private playerService: PlayerService, private route: ActivatedRoute) { }
+  @Input() isChampion=false;
+  constructor() { }
 
   ngOnInit() {
     //this.player=this.playerService.getPlayer(this.route.snapshot.params['idguild'])

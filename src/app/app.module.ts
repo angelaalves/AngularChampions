@@ -141,7 +141,8 @@ import { InsertNewVideoComponent } from 'AngularChampions/src/app/videos/insert-
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    ngfModule
   ],
   providers: [PlayerService, SessionService, ListUsersComponent, TableFilterPipe, TableFilterPipe2 ,SkinService,PreviewSkinComponent],
   bootstrap: [AppComponent]

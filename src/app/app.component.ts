@@ -3,6 +3,9 @@ import { SessionService } from './services/session.service';
 import { HttpClient } from '@angular/common/http';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Player } from './shared/player.model';
+import { GuildListService } from './services/guild-list.service';
+import { PlayerService } from './services/player.service';
+import { userType } from './shared/userType.enum';
 
 
 @Component({
@@ -13,7 +16,7 @@ import { Player } from './shared/player.model';
 export class AppComponent implements OnInit {
   title = 'Project-Champions';
 
-  constructor(private session: SessionService) { }
+  constructor(private session: SessionService, private guildService: GuildListService, private playerService: PlayerService) { }
 
   ngOnInit() {
     const playerData: Player = JSON.parse(localStorage.getItem('playerlogged'));
@@ -23,6 +26,10 @@ export class AppComponent implements OnInit {
       const player = new Player(playerData.idplayer, playerData.userName, playerData.email, playerData.password, playerData.imagePath, playerData.xp, playerData.champiesToGive, playerData.myChampies, playerData.userType, playerData.gender, playerData.status)
       this.session.openSession(player)
     }
+    this.playerService.getPlayers()
+    this.guildService.ngOnInit()
+    console.log(this.guildService.getGuilds())
+    
   }
 
 

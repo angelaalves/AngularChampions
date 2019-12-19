@@ -22,4 +22,7 @@ export class SessionService {
     getPlayerInSession(): Player {
         return this.playerSession;
     }
+    getGuildFromPlayer(idplayer: String){
+        return this.guildService.getGuildByPlayer(idplayer)
+    }
 }

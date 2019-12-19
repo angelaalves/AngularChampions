@@ -1,6 +1,6 @@
 <div class="row">
-    <div style="margin-left: auto;margin-right: auto; display: block;">
-        <img src="{{guild.guildFlag}}" alt="{{guild.guildName}}" class="img-responsive" style="max-height: 200px;">
+    <div class="col-xs-12" style="text-align: center;">
+        <img src="{{guild.guildFlag}}" alt="{{guild.guildName}}" style="max-height: 200px;">
     </div>
 </div>
 <div class="row">
@@ -13,6 +13,7 @@
         <app-guild-member [player]="guildmaster"></app-guild-member>
     </div>
 </div>
+<hr >
 <div class="row">
     <div class="col-xs-3" *ngFor="let playerEl of players">
         <app-guild-member [player]="playerEl" [index]="playerEl.idplayer"></app-guild-member>
