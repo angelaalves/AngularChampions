@@ -36,7 +36,8 @@ export class ClosetComponent implements OnInit {
   }
 
   viewSkin(skin: Skin) {
-    this.session.getPlayerInSession().changeImage(skin.imagePath, skin.skinType);
+    //this.session.getPlayerInSession().changeImage(skin.imagePath, skin.skinType);
+    
     console.log(skin.imagePath, skin.skinType);
   }
 
