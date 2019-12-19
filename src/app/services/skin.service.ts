@@ -88,7 +88,7 @@ export class SkinService {
     }
 
     getArraySkin() {
-        return this.skinPaths;
+        return this.s;
     }
 
     setArraySkin(paths: String[]) {

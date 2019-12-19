@@ -7,7 +7,6 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { PlayerService } from 'src/app/services/player.service';
 import { SessionService } from '../services/session.service';
 import { HttpHeaders, HttpErrorResponse, HttpClient } from '@angular/common/http';
-import { IfStmt } from '@angular/compiler';
 import { HeaderComponent } from '../header/header.component';
 
 @Component({
@@ -28,11 +27,8 @@ export class LoginComponent implements OnInit {
 
   }
 
-
   constructor(private router: Router, private route: ActivatedRoute, private session: SessionService, private http: HttpClient, private authService: AuthenticationService, private playerService: PlayerService, private header: HeaderComponent) {
-    
   }
-
 
   private httpOptions = {
     headers: new HttpHeaders({
@@ -45,17 +41,11 @@ export class LoginComponent implements OnInit {
     return this.currentUserSubject.value;
   }
 
-
   private getImagePathlog(playerid: String) {
-
     this.http.get<string[]>('http://localhost:8085/closet/activeSkins?idPlayerFK=' + playerid).subscribe(data => {
-
       this.outfit = data;
-
     });
-
   }
-
 
   onSubmit(form: NgForm) {
     if (!form.valid) {

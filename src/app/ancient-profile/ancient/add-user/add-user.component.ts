@@ -1,5 +1,5 @@
 import { Component, OnInit, Injectable } from '@angular/core';
-import { FormGroup, FormControl, Validators, FormBuilder, NgForm, FormArray } from '@angular/forms'
+import { FormGroup, FormControl, Validators, NgForm, FormArray } from '@angular/forms'
 import { ActivatedRoute, Router, Params } from '@angular/router';
 import { Player } from 'src/app/shared/player.model';
 import { PlayerService } from 'src/app/services/player.service';
@@ -17,7 +17,7 @@ import { userType } from 'src/app/shared/userType.enum';
 export class AddUserComponent implements OnInit {
   addUserForm: FormGroup;
 
-  constructor(private router: Router, private route: ActivatedRoute, private playerService: PlayerService,private http: HttpClient) {
+  constructor(private router: Router, private route: ActivatedRoute, private playerService: PlayerService, private http: HttpClient) {
   }
 
   ngOnInit() {
@@ -32,7 +32,7 @@ export class AddUserComponent implements OnInit {
     if (!form.valid) {
       return;
     }
-    
+
     const id = "1";
     const name = form.value.name;
     const email = form.value.email;
@@ -64,15 +64,13 @@ export class AddUserComponent implements OnInit {
         playerType,
         statusPlayer
       }
-    ).subscribe(success=>{
-      this.http.post('http://localhost:8085/players/SendEmail?playerEmail='+email, {}).subscribe(resData=>{
-      console.log(resData);
-    })
-    },error=>{
+    ).subscribe(success => {
+      this.http.post('http://localhost:8085/players/SendEmail?playerEmail=' + email, {}).subscribe(resData => {
+        console.log(resData);
+      })
+    }, error => {
       console.log("error creating player")
     });
-    
-
     this.router.navigate(['/ancient_profile'], { relativeTo: this.route });
   }
 
