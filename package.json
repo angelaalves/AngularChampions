@@ -29,6 +29,7 @@
     "file-saver": "^2.0.2",
     "html2canvas": "^1.0.0-rc.5",
     "ng2-file-upload": "^1.4.0",
+    "ngx-drag-scroll": "^8.0.0-beta.2",
     "ngx-filesaver": "^8.1.0",
     "nodemailer": "^6.3.1",
     "nodemon": "^2.0.1",

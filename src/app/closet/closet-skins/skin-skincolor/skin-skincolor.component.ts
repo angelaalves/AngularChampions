@@ -70,7 +70,6 @@ export class SkinSkincolorComponent implements OnInit {
     if (this.playerHasBoughtSkin(skinSelected) == false) {
       this.skinService.addToShoppingCart(skinSelected);
     }
-    this.session.playerSession.imagePath = this.session.playerSession.imagePath;
     this.skinService.setAnySkinSelected(true);
   }
 }

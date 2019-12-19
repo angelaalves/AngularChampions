@@ -19,7 +19,6 @@ export class AddGuildListComponent implements OnInit {
   warriors: Player[];
 
   constructor(private http: HttpClient,private guildService: GuildListService, private router: Router, private route: ActivatedRoute, private playerService: PlayerService) { 
-  
   }
 
   ngOnInit() { 
@@ -48,8 +47,8 @@ export class AddGuildListComponent implements OnInit {
   createGuild(form: NgForm){
     const name=form.value.newGuildName;
     var playerIds: String[]=[];
-    const startDate=new Date()
-    const endDate=new Date().setMonth(startDate.getMonth()+6)
+    const startDate=new Date();
+    const endDate=new Date().setMonth(startDate.getMonth()+6);
     for(let playerId of this.warriorsSelected){
       playerIds.push(playerId.idplayer)
     }

@@ -1,9 +1,9 @@
 <span class="divLeft">
-    <app-image-maker [hairImagePath]="guildmaster.getImagePath(0)" [skinImagePath]="guildmaster.getImagePath(1)"
-        [shirtImagePath]="guildmaster.getImagePath(2)" [pantsImagePath]="guildmaster.getImagePath(3)"
-        [shoesImagePath]="guildmaster.getImagePath(4)" [othersImagePath]="guildmaster.getImagePath(5)">
+    <app-image-maker [hairImagePath]="activeSkins[0]" [skinImagePath]="activeSkins[1]"
+        [shirtImagePath]="activeSkins[2]" [pantsImagePath]="activeSkins[3]"
+        [shoesImagePath]="activeSkins[4]" [othersImagePath]="activeSkins[5]">
     </app-image-maker>
-    <h2>{{name}}</h2>
+    <h2 style="text-align: center;">{{guildmaster.userName}}</h2>
 </span>
 <span class="divRight">
     <app-guild-master-details-xp [XP]="this.guildmaster.xp"></app-guild-master-details-xp>
@@ -12,4 +12,4 @@
         [coinsReceive]="this.guildmaster.myChampies"></app-guild-master-details-coins>
     <hr>
     <app-guild-master-details-buttons></app-guild-master-details-buttons>
-</span>
+</div>

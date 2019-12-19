@@ -21,6 +21,7 @@ export class RewardsComponent implements OnInit {
   giver: String;
   warriors: Player[] = [];
   warriorSelected: boolean = false;
+  receiver: string;
 
   constructor(private router: Router, private route: ActivatedRoute, private http: HttpClient, private rewardsToApprove: RewardService, private sessionService: SessionService, private playerService: PlayerService) { }
 
@@ -28,6 +29,14 @@ export class RewardsComponent implements OnInit {
     this.giver = this.sessionService.getPlayerInSession().userName;
     this.warriors = this.playerService.getWarriors();
     console.log(this.warriors);
+    let index = -1;
+    for (let el of this.warriors) {
+      this.receiver = el.userName;
+      index++;
+      if (el.userName === this.giver) {
+        this.warriors.splice(index, 1);
+      }
+    }
   }
 
   onPlayerSelection(warriorEl: Player) {
@@ -39,11 +48,11 @@ export class RewardsComponent implements OnInit {
     if (!form.valid) {
       return;
     }
-    const playerGiver=this.sessionService.getPlayerInSession().userName;
-    const playerReceiver=form.value.to;
-    const timeSpent=form.value.time;
-    const reason=form.value.reason;
-    this.http.post('http://localhost:8085/rewards/Reward?playerGiver='+playerGiver+'&playerReceiver='+playerReceiver+'&time='+timeSpent+'&justification='+reason, {playerGiver, playerReceiver, timeSpent, reason}).subscribe(resData=>{
+    const playerGiver = this.sessionService.getPlayerInSession().userName;
+    const playerReceiver = form.value.receiver;
+    const timeSpent = form.value.time;
+    const reason = form.value.reason;
+    this.http.post('http://localhost:8085/rewards/Reward?playerGiver=' + playerGiver + '&playerReceiver=' + playerReceiver + '&time=' + timeSpent + '&justification=' + reason, { playerGiver, playerReceiver, timeSpent, reason }).subscribe(resData => {
       console.log("success")
     }, error => {
       console.log("something went wrong")

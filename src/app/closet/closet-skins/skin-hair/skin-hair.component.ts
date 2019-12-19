@@ -79,7 +79,6 @@ export class SkinHairComponent implements OnInit {
     if (this.playerHasBoughtSkin(skinSelected) == false) {
       this.skinService.addToShoppingCart(skinSelected);
     }
-    this.session.playerSession.imagePath = this.session.playerSession.imagePath;
     this.skinService.setAnySkinSelected(true);
   }
 
@@ -87,7 +86,6 @@ export class SkinHairComponent implements OnInit {
   skinSelectedNull(){
     this.playerViewingSkins = this.playerInitialSkins;
     this.session.playerSession.changeImage("./../../../assets/Hair/HairNull.png", skinType.Hair);
-    this.session.playerSession.imagePath = this.playerViewingSkins;
     this.skinService.setAnySkinSelected(true);
   }
 }

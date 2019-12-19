@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, Injectable } from '@angular/core';
+import { DragScrollComponent } from 'ngx-drag-scroll';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Skin } from 'src/app/shared/skin.model';
 import { SkinService } from 'src/app/services/skin.service';
@@ -79,7 +80,6 @@ export class SkinOtherComponent implements OnInit {
     if (this.playerHasBoughtSkin(skinSelected) == false) {
       this.skinService.addToShoppingCart(skinSelected);
     }
-    this.session.playerSession.imagePath = this.session.playerSession.imagePath;
     this.skinService.setAnySkinSelected(true);
   }
 
@@ -87,7 +87,6 @@ export class SkinOtherComponent implements OnInit {
   skinSelectedNull() {
     this.playerViewingSkins = this.playerInitialSkins;
     this.session.playerSession.changeImage("./../../../assets/Others/OthersNull.png", skinType.Others);
-    this.session.playerSession.imagePath = this.playerViewingSkins;
     this.skinService.setAnySkinSelected(true);
   }
 }
