@@ -28,6 +28,17 @@ export class HeaderComponent implements OnInit {
     this.skinService.shoppingCartSkins.subscribe(shoppingCart => this.shoppingCartSkins = shoppingCart);
   }
 
+  isItCloset(){
+var bol=false;
+    if(this.router.url === '/closet'){
+      if(this.session.playerSession.userType==userType.Warrior){
+          bol=true;
+      }    
+    }
+    return bol;
+  }
+
+
   removeItem(skin: Skin){
     this.skinService.removeFromShoppingCart(skin);
     //prevents menu from closing when clicked inside

@@ -18,6 +18,9 @@ export class RewardsToApproveComponent implements OnInit {
   public rewardsToApprove: Reward[] = [];
   public rewardsApproved: Reward[] = [];
 
+  public rewardsDisapproved: Reward[] = [];
+
+
   public players: Player[] = [];
   public idAndNameOfPlayers: IDToUsername[] = [];
 
@@ -39,16 +42,11 @@ export class RewardsToApproveComponent implements OnInit {
       }
 
       for (let i = 0; i < this.rewardsToApprove.length; i++) {
-        console.log("linha 41");
         for (let p of this.players) {
-          console.log("linha 43");
-          if (this.rewardsToApprove[i].idplayerGiverFK == p.idplayer) {
-            console.log(p.userName);
+           if (this.rewardsToApprove[i].idplayerGiverFK == p.idplayer) {
             this.rewardsToApprove[i].idplayerGiverFK = p.userName;
-            console.log(p.userName);
           } if (this.rewardsToApprove[i].idplayerReceiverFK == p.idplayer) {
             this.rewardsToApprove[i].idplayerReceiverFK = p.userName;
-            console.log(p.userName);
           }
         }
       }
@@ -77,10 +75,41 @@ export class RewardsToApproveComponent implements OnInit {
    
   }
 
+  uncheck(reward: Reward) {
+    const obj = JSON.stringify(reward);
+    var exists: boolean; 
+      exists = false;
+     for (let x of this.rewardsDisapproved) {
+      if (x == reward) {
+        exists = true;
+      }
+    }
+
+    if (exists == false) {
+ this.rewardsDisapproved.push(reward);
+
+    } else {
+
+      this.rewardsDisapproved.splice(this.rewardsDisapproved.indexOf(reward), 1);
+
+    }
+
+   
+  }
+
   save() {
     for (let reward of this.rewardsApproved) {
       const idReward = reward.idreward;
       this.http.post<any>('http://localhost:8085/rewards/Approve?idReward=' + idReward,
+        { 
+          idReward 
+        }).subscribe(data => {
+          console.log(data);
+        });
+    }
+    for (let reward of this.rewardsDisapproved) {
+      const idReward = reward.idreward;
+      this.http.post<any>('http://localhost:8085/rewards/Disapprove?idReward=' + idReward,
         { 
           idReward 
         }).subscribe(data => {

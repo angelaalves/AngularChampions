@@ -17,6 +17,7 @@
                     <td scope="col">Justification</td>
                     <td scope="col">Time spent</td>
                     <td scope="col">Approve</td>
+                    <td scope="col">Disapprove</td>
                 </tr>
             </thead>
             <tbody id="tableBody">
@@ -29,6 +30,10 @@
                     <td>
                         <label class="custom-control-label" for="approve">Approve</label>
                         <input type="checkbox" (click)="check(r)">
+                    </td>
+                    <td>
+                        <label class="custom-control-label" for="disapprove">Disapprove</label>
+                        <input type="checkbox" (click)="uncheck(r)">
                     </td>
                 </tr>
             </tbody>

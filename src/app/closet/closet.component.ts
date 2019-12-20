@@ -9,6 +9,7 @@ import { SkinService } from '../services/skin.service';
 import { BehaviorSubject } from 'rxjs';
 import { status } from 'src/app/shared/status.enum';
 import { Closet } from '../shared/closet.model';
+import { userType } from '../shared/userType.enum';
 
 @Component({
   selector: 'app-closet',
@@ -106,5 +107,14 @@ export class ClosetComponent implements OnInit {
         }
       }
     }
+  }
+
+
+  isItaWarrior(){
+    var bol=false;
+    if(this.session.playerSession.userType==userType.Warrior){
+      bol=true;
+    }
+    return bol;
   }
 }

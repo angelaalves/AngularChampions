@@ -64,14 +64,32 @@ export class BuySkinComponent implements OnInit {
             idplayer,
           }
         ).subscribe();
-        this.activeSkins.push(item);
+        this.activeSkins.push(item); 
+        const userName= this.session.playerSession.userName;
+        const email= this.session.playerSession.email;
+        const password= this.session.playerSession.password;
+        const gender= this.session.playerSession.gender;
+         const  xp= this.session.playerSession.xp;
+         const champiesToGive= this.session.playerSession.champiesToGive;
+         const userType= this.session.playerSession.userType;
+         const status2= this.session.playerSession.status;
         const myChampiesAfterBuyingSkin = Number(this.player.myChampies) - Number(item.champiesCost);
-        this.http.post<any>('http://localhost:8085/players/Update?idPlayer=' + idplayer + '&idGuildFK= &userName= &email= &password= &gender= &userType= &xp= &champiesToGive= &myChampies=' + myChampiesAfterBuyingSkin + '&status= ',
+        this.http.post<any>('http://localhost:8085/players/Update?idPlayer=' + idplayer + ' &userName='+userName+' &email='+email+' &password='+password+' &gender='+gender+' &userType='+userType+' &xp='+xp+' &champiesToGive='+champiesToGive+' &myChampies=' + myChampiesAfterBuyingSkin + '&status= '+status2,
           {
             idplayer,
-            myChampiesAfterBuyingSkin
+            userName,
+            email,
+            password,
+            gender,
+            userType,
+            xp,
+            champiesToGive,
+            myChampiesAfterBuyingSkin,
+            status2
           }
         ).subscribe();
+        this.session.getPlayerInSession().myChampies = myChampiesAfterBuyingSkin.toString();
+        this.Champies();
         let counter: number = -1;
         for (let activeSkin of this.activeSkins) {
           counter++;
@@ -99,6 +117,15 @@ export class BuySkinComponent implements OnInit {
       this.activeSkins.push(item);
       this.skinService.emptyCart();
       this.router.navigate(['../closet'], { relativeTo: this.route });
+    }
+  }
+  Champies() {
+    var playerData: Player = JSON.parse(localStorage.getItem('playerlogged'));
+
+    if (!playerData) {
+      return;
+    } else {
+      localStorage.setItem("playerlogged", JSON.stringify(this.session.playerSession));
     }
   }
 }
