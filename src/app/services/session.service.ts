@@ -4,12 +4,14 @@ import { LoginComponent } from '../login/login.component';
 import { Subject } from 'rxjs';
 import { Closet } from '../shared/closet.model';
 import { HttpClient } from '@angular/common/http';
+import { GuildListService } from './guild-list.service';
 
 @Injectable({ providedIn: 'root' })
 export class SessionService {
     playerSession: Player;
     login: LoginComponent;
     isAuthenticated = new Subject<boolean>();
+    guildservice:GuildListService;
 
     openSession(player: Player) {
         this.playerSession = player;
@@ -23,6 +25,6 @@ export class SessionService {
         return this.playerSession;
     }
     getGuildFromPlayer(idplayer: String){
-        return this.guildService.getGuildByPlayer(idplayer)
+        return this.guildservice.getGuildByPlayer(idplayer)
     }
 }

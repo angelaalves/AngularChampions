@@ -23,12 +23,11 @@ export class AppComponent implements OnInit {
     if (!playerData) {
       return;
     } else {
-      const player = new Player(playerData.idplayer, playerData.userName, playerData.email, playerData.password, playerData.imagePath, playerData.xp, playerData.champiesToGive, playerData.myChampies, playerData.userType, playerData.gender, playerData.status)
-      this.session.openSession(player)
+      const player = new Player(playerData.idplayer, playerData.userName, playerData.email, playerData.password, playerData.imagePath, playerData.xp, playerData.champiesToGive, playerData.myChampies, playerData.userType, playerData.gender, playerData.status);
+      this.session.openSession(player);
     }
-    this.playerService.getPlayers()
-    this.guildService.ngOnInit()
-    console.log(this.guildService.getGuilds())
+    this.playerService.getPlayers();
+    this.guildService.ngOnInit();
     
   }
 

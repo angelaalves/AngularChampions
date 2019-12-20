@@ -40,6 +40,7 @@ export class GuildListService implements OnInit {
         return this.http.get<Guild[]>('http://localhost:8085/guild/getAll').pipe(tap(resData => {
             this.guilds = resData;
             for (let guild of this.guilds) {
+                console.log(guild.idguild);
                 this.http.get<String>('http://localhost:8085/guildPlayers/getGuildMaster?idGuild=' + guild.idguild).subscribe(guildMasterId => {
                     guild.guildmaster = this.playerService.getGuildMaster(guildMasterId)
                 })
