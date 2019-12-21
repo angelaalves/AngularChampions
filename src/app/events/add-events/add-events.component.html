@@ -10,14 +10,14 @@
         <div class="form-group" style="display:inline; margin-right: 20%; margin-left: 5%;">
             <label style="width: 800px;margin-right: 10px; margin-top: 5%">Event Name</label><br>
             <input type="text" class="form-control input-sm" name="name" value="name"
-                style=" width: 800px; background: whitesmoke; border: 2px solid rgb(65, 126, 218); margin-left: 4em;"
+                style=" width: 800px; background: whitesmoke; border: 2px solid  rgb(66, 66, 66); margin-left: 4em;"
                 ngModel required>
         </div>
         <br>
         <div class="form-group" style="display:inline-block; margin-right: 20%; margin-left: 5%; margin-top: 1%;">
             <label style="margin-right: 10px;">Event Date</label><br>
             <input type="date" class="form-control input-sm" name="date" value="date"
-                style="background: whitesmoke; border: 2px solid rgb(65, 126, 218);width: 800px;" ngModel required>
+                style="background: whitesmoke; border: 2px solid rgb(66, 66, 66);width: 800px;" ngModel required>
         </div>
 
         <br>
@@ -26,7 +26,7 @@
             <label style="margin-right: 10px;">Type of Event</label><br>
             <div style="display: inline-block;">
                 <select id="inputSubject" data="type" name="eventType" value="eventType" class="form-control input-sm"
-                    style="width: 800px; margin-top: 1%; margin-left: 1em; background: whitesmoke; border: 2px solid rgb(65, 126, 218)"
+                    style="width: 800px; margin-top: 1%; margin-left: 1em; background: whitesmoke; border: 2px solid rgb(66, 66, 66)"
                     ngModel required>
                     <option selected>Select the type of event</option>
                     <option>Kick-off</option>
@@ -49,10 +49,10 @@
                 <label style="margin-right: 150px; margin-top: 1%;">Start hour     </label>
                 <label style="margin-left: 25px; margin-top: 1%;">Finish hour     </label><br>
                 <input type="time" value="startHour" class="form-control input-sm" name="startHour"
-                    style="background: whitesmoke; border: 2px solid rgb(65, 126, 218); width: 250px; margin-left: 1em;"
+                    style="background: whitesmoke; border: 2px solid rgb(66, 66, 66);; width: 250px; margin-left: 1em;"
                     ngModel required>
                 <input type="time" value="finishHour" class="form-control input-sm" name="finishHour"
-                    style="background: whitesmoke; border: 2px solid rgb(65, 126, 218);width: 250px; margin-left: 3em;"
+                    style="background: whitesmoke; border: 2px solid rgb(66, 66, 66);width: 250px; margin-left: 3em;"
                     ngModel required>
             </div>
         </div>
@@ -63,8 +63,8 @@
 
         <br>
 
-        <button type="submit" class="btn btn-primary" [disabled]="!eventForm.valid"
-            style="margin-right: 60%; width:35%; margin-top: 3%; background: rgb(65, 126, 218); border: 2px solid whitesmoke;">Submit</button>
+        <button type="submit" class="btn btn-primary" [disabled]="!eventForm.valid" id="butao"
+            style="margin-right: 60%; width:35%; margin-top: 3%;">Submit</button>
     </form>
 
 </div>

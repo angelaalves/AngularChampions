@@ -10,7 +10,7 @@
                 <div class="form-group">
                     <label for="name">Name of the new player</label><br>
                     <input class="input-sm" type="text" name="name" value="name"
-                        style="background: whitesmoke; border: 2px solid rgb(65, 126, 218); margin-left: 5em; width: 30%;"
+                        style="background: whitesmoke; border: 2px solid  rgb(66, 66, 66); margin-left: 5em; width: 30%;"
                         ngModel required>
                 </div>
             </div>
@@ -48,7 +48,7 @@
                 <div class="form-group">
                     <label style="margin-top: 1%;" for="email">Email</label><br>
                     <input class="input-sm" type="email" name="email"
-                        style="background: whitesmoke; border: 2px solid rgb(65, 126, 218); margin-left: 5em; width: 30%;"
+                        style="background: whitesmoke; border: 2px solid  rgb(66, 66, 66);margin-left: 5em; width: 30%;"
                         ngModel required email>
                 </div>
             </div>
@@ -58,7 +58,7 @@
                 <div class="form-group">
                     <label style="margin-top: 1%;" for="confirmPassword">Password</label><br>
                     <input class="input-sm" type="password" name="password"
-                        style="background: whitesmoke; border: 2px solid rgb(65, 126, 218); margin-left: 5em; width: 30%;"
+                        style="background: whitesmoke; border: 2px solid rgb(66, 66, 66); margin-left: 5em; width: 30%;"
                         ngModel required minlength="6">
                 </div>
             </div>
@@ -66,8 +66,8 @@
         <div class="form-row">
             <div class="col-7">
                 <div class="form-group">
-                    <button type="submit" class="btn btn-primary" [disabled]="!addUserForm.valid"
-                        style="margin-left: 4em; width: 30%; margin-top: 3%; background: rgb(65, 126, 218); border: 2px solid whitesmoke;">Add</button>
+                    <button type="submit" class="btn btn-primary" [disabled]="!addUserForm.valid" id="butao"
+                        style="margin-left: 4em; width: 30%; margin-top: 3%; ">Add</button>
                 </div>
             </div>
         </div>

@@ -1,7 +1,7 @@
 <div>
    <div id="div_filter" style="display: inline-table">
         <label for="singleSelect">Display players by:</label><br>
-        <select select class="input-sm" name="singleSelect" id="singleSelect" style=" background: whitesmoke; border: 2px solid rgb(65, 126, 218);" [(ngModel)]="userType">
+        <select select class="input-sm" name="singleSelect" id="singleSelect" style=" background: whitesmoke; border: 2px solid rgb(66, 66, 66);" [(ngModel)]="userType">
             <option value="">All</option>
             <option value="Ancient">Ancients</option>
             <option value="GuildMaster">Guild Master</option>
@@ -12,7 +12,7 @@
     <h2 style="margin-top: 3%;" >Players</h2>
 
     <table class="table table-bordered" style="margin-left: 5%; margin-right: 5%; ">
-        <thead style="border: 2px solid rgb(65, 126, 218)">
+        <thead style="border: 2px solid rgb(66, 66, 66);">
             <tr>
                 <th scope="col">Username</th>
                 <th scope="col">Email</th>
@@ -24,7 +24,7 @@
                 <th scope="col">Status</th>
             </tr>
         </thead>
-        <tbody style="background-color: whitesmoke; border: 2px solid rgb(65, 126, 218)">
+        <tbody style="background-color: whitesmoke; border: 2px solid rgb(66, 66, 66);">
             <tr *ngFor="let playerEl of players | tableFilter: userType" >
                 <td *ngIf="playerEl.status == 'Active'" style="background-color: white">{{ playerEl.userName }}</td>
                 <td *ngIf="playerEl.status == 'Active'">{{ playerEl.email }}</td>

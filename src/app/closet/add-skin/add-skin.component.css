@@ -12,6 +12,12 @@
   src: url(../../../fonts/pixelmix.ttf);
   font-family: pixelmix;
 }
+#butao {
+  color:black;
+    border: 4px solid black;
+    background-image: url('../../../assets/AppImages/btnforeverything.png');
+    background-size: cover;
+  }
 
 input{
     font-family: pixelmix;
