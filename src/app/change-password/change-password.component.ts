@@ -4,7 +4,7 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { SessionService } from '../services/session.service';
 import { Player } from '../shared/player.model';
-import { ThrowStmt } from '@angular/compiler';
+
  
 @Component({
   selector: 'app-change-password',

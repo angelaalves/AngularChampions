@@ -28,6 +28,7 @@ export class AddEventsComponent implements OnInit {
     if (!form.valid) {
       return;
     }
+    
     const name = form.value.name;
     const date = form.value.date;
     const eventType = form.value.eventType;

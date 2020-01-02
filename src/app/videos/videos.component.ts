@@ -254,4 +254,8 @@ export class VideosComponent implements OnInit {
       this.idOfVideosUnchecked.splice(this.idOfVideosUnchecked.indexOf(video), 1);
     }
   }
+
+  addNewVideo(){
+    this.router.navigate(['/add_new_video'], { relativeTo: this.route });
+  }
 }
