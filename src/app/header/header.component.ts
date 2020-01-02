@@ -69,6 +69,7 @@ var bol=false;
     if(this.session.getPlayerInSession().userType==userType.GuildMaster || this.session.getPlayerInSession().userType==userType.Ancient){
       this.router.navigate(['guilds_list'], {relativeTo: this.route});
     }else{
+      console.log(this.session.getGuildFromPlayer(this.session.getPlayerInSession().idplayer))
       this.router.navigate(['guild', this.session.getGuildFromPlayer(this.session.getPlayerInSession().idplayer).idguild], {relativeTo: this.route});
     }
   }

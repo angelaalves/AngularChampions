@@ -1,5 +1,4 @@
 import { Component, OnInit, Input, Injectable } from '@angular/core';
-import { DragScrollComponent } from 'ngx-drag-scroll';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Skin } from 'src/app/shared/skin.model';
 import { SkinService } from 'src/app/services/skin.service';

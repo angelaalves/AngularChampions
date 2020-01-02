@@ -24,7 +24,11 @@ export class LoginComponent implements OnInit {
   public outfit: string[];
 
   ngOnInit() {
-
+    if(localStorage.getItem('playerlogged')){
+      localStorage.removeItem('playerlogged')
+      localStorage.removeItem('token')
+      this.session.isAuthenticated.next(false)
+    }
   }
 
   constructor(private router: Router, private route: ActivatedRoute, private session: SessionService, private http: HttpClient, private authService: AuthenticationService, private playerService: PlayerService, private header: HeaderComponent) {

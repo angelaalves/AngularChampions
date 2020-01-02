@@ -28,13 +28,15 @@ export class RewardsComponent implements OnInit {
 
   ngOnInit() {
     this.giver = this.sessionService.getPlayerInSession().userName;
-    this.warriors = this.playerService.getWarriors();
+    if(this.warriors.length<=0){
+      this.warriors = this.playerService.getWarriors();
+    }
     console.log(this.warriors);
     let index = -1;
     for (let el of this.warriors) {
       this.receiver = el.userName;
       index++;
-      if (el.userName === this.giver) {
+      if (el.userName == this.giver) {
         this.warriors.splice(index, 1);
       }
     }

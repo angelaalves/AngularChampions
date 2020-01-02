@@ -26,7 +26,7 @@ export class AppComponent implements OnInit {
       const player = new Player(playerData.idplayer, playerData.userName, playerData.email, playerData.password, playerData.imagePath, playerData.xp, playerData.champiesToGive, playerData.myChampies, playerData.userType, playerData.gender, playerData.status);
       this.session.openSession(player);
     }
-    this.playerService.getPlayers();
+    this.playerService
     this.guildService.ngOnInit();
     
   }
