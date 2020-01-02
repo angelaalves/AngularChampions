@@ -22,20 +22,20 @@
         </div>
         <div style="margin-top: 1%;">
             <img src="../../assets/AppImages/clock.png" style="margin-right: 1em;" width="40" height="70">
-            <select style="background-color: whitesmoke; border: 2px solid  rgb(66, 66, 66)" value="time" name="time" (click)="changechampies(time)"
+            <select style="background-color: whitesmoke; border: 2px solid  rgb(66, 66, 66)" value="time" name="time" [(value)]="selected"
                 ngModel>
-                <option value="Short" name="Short"
-                    style="background-color: whitesmoke; border: 2px solid  rgb(66, 66, 66)">under
+                <option value="1" name="Short"
+                    style="background-color: whitesmoke; border: 2px solid  rgb(66, 66, 66)" >under
                     5 minutes</option>
-                <option value="Medium" name="Medium"
+                <option value="2" name="Medium"
                     style="background-color: whitesmoke; border: 2px solid  rgb(66, 66, 66)">
                     between 5 and 15 minutes</option>
-                <option value="Long" name="Long"
+                <option value="3" name="Long"
                     style="background-color: whitesmoke; border: 2px solid  rgb(66, 66, 66)">over
                     15 minutes</option>
             </select>
           
-            <img src="../../assets/AppImages/ChampiesToGive1.png" style="margin-left: 1em;" width="60" height="60">
+            <img src="../../assets/AppImages/ChampiesToGive1.png" style="margin-left: 1em;" width="60" height="60">{{selected}}
             {{champies}}
         </div>
         <div style="margin-top: 3%;">
