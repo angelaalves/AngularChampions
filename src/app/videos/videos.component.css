@@ -23,7 +23,7 @@
 }
 #footer {
 
-  transform: translate(-30%,50%);
+  transform: translate(220%,60%);
     float: right;
 }
 
@@ -103,3 +103,11 @@ select{
   {
     background-color: #000000;	
   }
+
+  #save {
+    color:black;
+      border: 4px solid black;
+      transform: (20%,10%);
+      background-image: url('../../assets/AppImages/btnforeverything.png');
+      background-size: cover;
+    }
