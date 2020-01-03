@@ -24,6 +24,7 @@ export class SkinTopComponent implements OnInit {
   playerViewingSkins: String[] = [];
   allsessionsuserskins: Closet[] = [];
   shoppingCartSkins: Skin[] = [];
+  skins: Skin[] = [];
 
   constructor(private session: SessionService, private router: Router, private route: ActivatedRoute, private http: HttpClient, private skinSelectedService: SkinSelectedService,
     private skinService: SkinService, private closet: ClosetComponent) { }
@@ -32,10 +33,11 @@ export class SkinTopComponent implements OnInit {
     this.player = this.session.getPlayerInSession();
     console.log(this.player);
     this.skinService.shoppingCartSkins.subscribe(shoppingCart => this.shoppingCartSkins = shoppingCart);
+    this.skinService.changingSkins.subscribe(newSkinsSelected => this.skins = newSkinsSelected);
     this.playerInitialSkins = this.session.playerSession.imagePath;
     this.playerViewingSkins = this.session.playerSession.imagePath;
     console.log(this.player);
-    this.http.get<Closet[]>('http://localhost:8085/closet/Get?idSkinFK= &idPlayerFk=' + this.session.getPlayerInSession().idplayer + "&status=", {}).subscribe(data => {
+    this.http.get<Closet[]>('http://localhost:8188/closet/Get?idSkinFK= &idPlayerFk=' + this.session.getPlayerInSession().idplayer + "&status=", {}).subscribe(data => {
       this.allsessionsuserskins = data;
       console.log("this.alluserskins ", this.allsessionsuserskins);
       for (let s of this.allsessionsuserskins) {
@@ -76,11 +78,13 @@ export class SkinTopComponent implements OnInit {
       this.skinService.addToShoppingCart(skinSelected);
     }
     this.skinService.setAnySkinSelected(true);
+    this.skinService.addNewSkinInUse(skinSelected);
   }
 
-  skinSelectedNull() {
+  skinSelectedNull(skinSelected: Skin) {
     this.playerViewingSkins = this.playerInitialSkins;
     this.session.playerSession.changeImage("../../../../assets/Top/TopNull.png", skinType.Top);
     this.skinService.setAnySkinSelected(true);
+    this.skinService.addNewSkinInUse(skinSelected);
   }
 }

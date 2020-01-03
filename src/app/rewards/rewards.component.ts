@@ -58,7 +58,7 @@ export class RewardsComponent implements OnInit {
     const playerReceiver = form.value.receiver;
     const timeSpent = form.value.time;
     const reason = form.value.reason;
-    this.http.post('http://localhost:8085/rewards/Reward?playerGiver=' + playerGiver + '&playerReceiver=' + playerReceiver + '&time=' + timeSpent + '&justification=' + reason, { playerGiver, playerReceiver, timeSpent, reason }).subscribe(resData => {
+    this.http.post('http://localhost:8188/rewards/Reward?playerGiver=' + playerGiver + '&playerReceiver=' + playerReceiver + '&time=' + timeSpent + '&justification=' + reason, { playerGiver, playerReceiver, timeSpent, reason }).subscribe(resData => {
       console.log("success")
     }, error => {
       console.log("something went wrong")

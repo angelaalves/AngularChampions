@@ -16,6 +16,6 @@
       <img src={{other.imagePath}} style="max-width:100px;max-height:100px;" (click)="skinSelected(other)">
     </div>
     <div *ngIf="imageNull(other)==true" style="max-width:100px;max-height:100px;">
-      <img src={{other.imagePath}} style="max-width:100px;max-height:100px;" (click)="skinSelectedNull()">
+      <img src={{other.imagePath}} style="max-width:100px;max-height:100px;" (click)="skinSelectedNull(other)">
     </div>
   </div>

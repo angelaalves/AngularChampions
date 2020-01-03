@@ -29,7 +29,7 @@ export class ChangePasswordComponent implements OnInit {
   verifyOldPassword(form: NgForm){
     let oldPassword = form.value.oldPassword;
     console.log("email: " + this.player.email + " password: " + this.player.password);
-    this.http.get<boolean>('http://localhost:8085/players/verifyPassword?email=' + this.player.email + '&password=' + oldPassword).subscribe(data => {
+    this.http.get<boolean>('http://localhost:8188/players/verifyPassword?email=' + this.player.email + '&password=' + oldPassword).subscribe(data => {
       this.passwordCorrect = data;
       if(this.passwordCorrect===false){
         console.log(this.passwordCorrect);
@@ -47,7 +47,7 @@ export class ChangePasswordComponent implements OnInit {
 
     let confirmPassword = form.value.confirmPassword;
 
-    this.http.post<Player>('http://localhost:8085/players/Update?idPlayer=' + this.player.idplayer + '&userName=' + this.player.userName +
+    this.http.post<Player>('http://localhost:8188/players/Update?idPlayer=' + this.player.idplayer + '&userName=' + this.player.userName +
       '&email=' + this.player.email + '&password=' + confirmPassword + "&gender=" + this.player.gender + "&userType=" + this.player.userType + '&xp=' + this.player.xp + '&champiesToGive=' + this.player.champiesToGive
       + '&myChampies=' +this.player.myChampies + '&status=' + this.player.status,
       {
