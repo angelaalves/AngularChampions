@@ -1,13 +1,13 @@
 import { Component, Injectable, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router, ActivatedRoute } from '@angular/router';
-import { status } from '../../shared/status.enum';
 import { SessionService } from 'src/app/services/session.service';
 import { Skin } from 'src/app/shared/skin.model';
 import { Player } from 'src/app/shared/player.model';
 import { SkinService } from 'src/app/services/skin.service';
 import { ModalService } from 'src/app/services/model.service';
 import Swal from 'sweetalert2'
+import { status } from 'AngularChampions/src/app/shared/status.enum';
 
 @Component({
   selector: 'app-buy-skin',
@@ -60,7 +60,7 @@ export class BuySkinComponent implements OnInit {
       var idSkin = item.idskin;
 
       if (this.player.myChampies >= item.champiesCost && this.player.xp >= item.minXP) {
-        this.http.post<any>('http://localhost:8085/closet/Create?idSkinFK=' + idSkin + '&idPlayerFk=' + idplayer + '&status=',
+        this.http.post<any>('http://localhost:8189/closet/Create?idSkinFK=' + idSkin + '&idPlayerFk=' + idplayer + '&status=',
           {
             idSkin,
             idplayer,
@@ -71,7 +71,7 @@ export class BuySkinComponent implements OnInit {
 
         const myChampiesAfterBuyingSkin = Number(this.player.myChampies) - Number(item.champiesCost);
 
-        this.http.post<any>('http://localhost:8085/players/Update?idPlayer=' + idplayer + '&idGuildFK= &userName= &email= &password= &gender= &userType= &xp= &champiesToGive= &myChampies=' + myChampiesAfterBuyingSkin + '&status= ',
+        this.http.post<any>('http://localhost:8189/players/Update?idPlayer=' + idplayer + '&idGuildFK= &userName= &email= &password= &gender= &userType= &xp= &champiesToGive= &myChampies=' + myChampiesAfterBuyingSkin + '&status= ',
           {
             idplayer,
             myChampiesAfterBuyingSkin
@@ -82,9 +82,9 @@ export class BuySkinComponent implements OnInit {
         for (let activeSkin of this.activeSkins) {
           counter++;
           const skinID = activeSkin.idskin;
-          const skinStatus = status.Inactive;
+          const skinStatus: status = status.Inactive;
           if (activeSkin.skinType === item.skinType) {
-            this.http.post<any>('http://localhost:8085/closet/Update?idSkinFK=' + skinID + '&idPlayerFk=' + idplayer + '&status=' + skinStatus,
+            this.http.post<any>('http://localhost:8189/closet/Update?idSkinFK=' + skinID + '&idPlayerFk=' + idplayer + '&status=' + skinStatus,
               {
                 skinID,
                 idplayer,

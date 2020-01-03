@@ -18,10 +18,10 @@ export class PlayerService {
     }
 
     getPlayers() {
-        return this.http.get<Player[]>('http://localhost:8188/players/getAll', {}).subscribe(data => {
+        return this.http.get<Player[]>('http://localhost:8189/players/getAll', {}).subscribe(data => {
             this.players = data;
             for (let i = 0; i < this.players.length; i++) {
-                this.http.get<String[]>('http://localhost:8188/closet/activeSkins?idPlayerFK=' + this.players[i].idplayer).subscribe(response => {
+                this.http.get<String[]>('http://localhost:8189/closet/activeSkins?idPlayerFK=' + this.players[i].idplayer).subscribe(response => {
                     this.players[i].imagePath = response;
                     if (this.players[i].userType == userType.Warrior) {
                         this.warriors.push(this.players[i]);
@@ -55,13 +55,13 @@ export class PlayerService {
     }
 
     getWatchedVideos(player: Player) {
-        this.http.get<watchedVideos[]>('http://localhost:8188/watchedVideos/get?idPlayerFK=' + player.idplayer, {}).subscribe(data => {
+        this.http.get<watchedVideos[]>('http://localhost:8189/watchedVideos/get?idPlayerFK=' + player.idplayer, {}).subscribe(data => {
             console.log(data);
             this.watchedvideos = data;
         });
     }
     getActiveSkins(idplayer: String) {
-        this.http.get<string[]>('http://localhost:8188/closet/activeSkins?idPlayerFK=' + idplayer).subscribe(data => {
+        this.http.get<string[]>('http://localhost:8189/closet/activeSkins?idPlayerFK=' + idplayer).subscribe(data => {
             return data;
         })
     }

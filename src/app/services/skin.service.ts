@@ -35,14 +35,13 @@ export class SkinService implements OnInit {
     constructor(private http: HttpClient, private session: SessionService) {
         const estado: status = status.Active;
         this.player = this.session.getPlayerInSession();
-        
     }
 
     ngOnInit() {
-        this.http.get<Closet[]>('http://localhost:8188/closet/Get?idPlayerFk=' + this.player.idPlayer + "&status=" + status, {}).subscribe(data => {
+        this.http.get<Closet[]>('http://localhost:8189/closet/Get?idPlayerFk=' + this.player.idPlayer + "&status=" + status, {}).subscribe(data => {
             console.log(data);
             for (let d of data) {
-                this.http.get<Skin>('http://localhost:8188/skins/Get=idSkin' + d.idskinFK).subscribe(resdata => {
+                this.http.get<Skin>('http://localhost:8189/skins/Get=idSkin' + d.idskinFK).subscribe(resdata => {
                     console.log(resdata);
                     this.skins.push(resdata);
                 });

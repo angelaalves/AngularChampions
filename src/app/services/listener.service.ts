@@ -12,7 +12,7 @@ export class ListenerService{
     constructor(private http: HttpClient, private playerSession: SessionService){}
 
     listen(){
-        return this.http.get('http://localhost:8188/notificationreceivers/Get?idPlayerReceiverFK='+ this.playerSession.getPlayerInSession().idplayer).pipe(map((res)=> this.ping.next(res)));
+        return this.http.get('http://localhost:8189/notificationreceivers/Get?idPlayerReceiverFK='+ this.playerSession.getPlayerInSession().idplayer).pipe(map((res)=> this.ping.next(res)));
         
     }
 }

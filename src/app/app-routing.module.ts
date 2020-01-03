@@ -26,43 +26,51 @@ import { PresenterPageComponent } from './warrior/presenter-page/presenter-page.
 import { ImageMakerComponent } from './image-maker/image-maker.component';
 import { BuySkinComponent } from './closet/buy-skin/buy-skin.component';
 import { AddNewVideoComponent } from './videos/add-new-video/add-new-video.component';
+import { ForgotpasswordComponent } from './login/forgotpassword/forgotpassword.component';
 
-const appRoutes: Routes=[
-    {path: '', redirectTo: '/login', pathMatch:'full'},
-    {path: 'login', component: LoginComponent},
-    {path: 'set_password', component: SetPasswordComponent},
-    {path: 'change_password', component: ChangePasswordComponent},
-    {path: 'warrior_profile', component: WarriorComponent},
-    {path: 'guild/:idguild', component: GuildComponent},
-    {path: 'guildmaster_profile', component: GuildMasterComponent},
-    {path: 'ancient_profile', component: AncientProfileComponent, children:[
-        {path: '', component: AncientComponent},
-        {path: 'add_guild', component: AddGuildListComponent},
-        {path: 'add_events', component: AddEventsComponent}, 
-        {path: 'add_skin', component: AddSkinComponent},
-        {path: 'add_user', component: AddUserComponent}
-    ]},
-    {path: 'ancient_profile', component: AncientComponent},
-    {path: 'guilds_list', component: GuildListStartComponent, children:[
-        {path:'', component: GuildListComponent},
-        {path: ':idguild', component: GuildComponent, children:[
-            {path:'', component: GuildComponent},
-            {path: ':id', component: PresenterPageComponent}
-        ]},
-        {path:'add_guild', component: AddGuildListComponent}
-    ]},
-    {path: 'list_users', component: ListUsersComponent},
-    {path: 'rewards', component: RewardsComponent},
-    {path: 'rewards_to_approve', component: RewardsToApproveComponent},
-    {path: 'events', component: EventsComponent},
-    {path: 'notifications', component: NotificationsComponent},
-    {path: 'closet', component: ClosetComponent},
-    {path: 'buy_skin', component: BuySkinComponent},
-    {path: 'videos', component: VideosComponent},
-    {path:'add_new_video', component: AddNewVideoComponent},
-    {path: 'add_skin', component: AddSkinComponent},
-    {path: 'image', component: ImageMakerComponent} 
- ]
+const appRoutes: Routes = [
+    { path: '', redirectTo: '/login', pathMatch: 'full' },
+    { path: 'login', component: LoginComponent },
+    { path: 'set_password', component: SetPasswordComponent },
+    { path: 'change_password', component: ChangePasswordComponent },
+    { path: 'warrior_profile', component: WarriorComponent },
+    { path: 'guild/:idguild', component: GuildComponent },
+    { path: 'guildmaster_profile', component: GuildMasterComponent },
+    {
+        path: 'ancient_profile', component: AncientProfileComponent, children: [
+            { path: '', component: AncientComponent },
+            { path: 'add_guild', component: AddGuildListComponent },
+            { path: 'add_events', component: AddEventsComponent },
+            { path: 'add_skin', component: AddSkinComponent },
+            { path: 'add_user', component: AddUserComponent }
+        ]
+    },
+    { path: 'ancient_profile', component: AncientComponent },
+    {
+        path: 'guilds_list', component: GuildListStartComponent, children: [
+            { path: '', component: GuildListComponent },
+            {
+                path: ':idguild', component: GuildComponent, children: [
+                    { path: '', component: GuildComponent },
+                    { path: ':id', component: PresenterPageComponent }
+                ]
+            },
+            { path: 'add_guild', component: AddGuildListComponent }
+        ]
+    },
+    { path: 'list_users', component: ListUsersComponent },
+    { path: 'rewards', component: RewardsComponent },
+    { path: 'rewards_to_approve', component: RewardsToApproveComponent },
+    { path: 'events', component: EventsComponent },
+    { path: 'notifications', component: NotificationsComponent },
+    { path: 'closet', component: ClosetComponent },
+    { path: 'buy_skin', component: BuySkinComponent },
+    { path: 'videos', component: VideosComponent },
+    { path: 'add_new_video', component: AddNewVideoComponent },
+    { path: 'add_skin', component: AddSkinComponent },
+    { path: 'image', component: ImageMakerComponent },
+    { path: 'forgot_password', component: ForgotpasswordComponent }
+]
 
 
 @NgModule({

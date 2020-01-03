@@ -85,7 +85,7 @@ export class LoginComponent implements OnInit {
     const password = form.value.password;
     this.authService.signup(email, password).subscribe(
       resData => {
-        this.http.post<Player>('http://localhost:8085/players/Login', { email, password })
+        this.http.post<Player>('http://localhost:8189/players/Login', { email, password })
         console.log(resData);
         this.createuser(resData);
         this.player = this.createuser(resData);

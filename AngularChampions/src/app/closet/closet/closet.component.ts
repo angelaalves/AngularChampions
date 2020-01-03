@@ -1,12 +1,12 @@
 import { Component, OnInit, Injectable } from '@angular/core';
-import { Player } from '../shared/player.model';
-import { HttpClient } from '@angular/common/http';
-import { Skin } from '../shared/skin.model';
-import { skinType } from '../shared/skinType.enum';
-import { SessionService } from '../services/session.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import { SkinService } from '../services/skin.service';
 import { BehaviorSubject } from 'rxjs';
+import { Skin } from 'src/app/shared/skin.model';
+import { SessionService } from '../../services/session.service';
+import { SkinService } from 'src/app/services/skin.service';
+import { HttpClient } from '@angular/common/http';
+import { skinType } from 'src/app/shared/skinType.enum';
+import { Player } from '../../shared/player.model';
 
 @Component({
   selector: 'app-closet',
@@ -42,7 +42,7 @@ export class ClosetComponent implements OnInit {
 
   getSkins() {
     return new Promise(resolve => {
-      this.http.get<Skin[]>('http://localhost:8085/skins/getAll', {}).subscribe(data => {
+      this.http.get<Skin[]>('http://localhost:8189/skins/getAll', {}).subscribe(data => {
         for (var d of data) {
           if (d.skinType == skinType.Bottom) {
             this.bottoms.push(d);

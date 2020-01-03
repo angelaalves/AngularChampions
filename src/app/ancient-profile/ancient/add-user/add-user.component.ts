@@ -51,7 +51,7 @@ export class AddUserComponent implements OnInit {
     this.playerService.addPlayer(new Player(id, name, email, password, skins, xp, champiesToGive, myChampies, playerType, gender, statusPlayer));
     console.log('addUserForm', form.value);
 
-    this.http.post<Player>('http://localhost:8188/players/Create?idPlayer=' + id + '&userName=' + name +
+    this.http.post<Player>('http://localhost:8189/players/Create?idPlayer=' + id + '&userName=' + name +
       '&email=' + email + '&password=' + password + "&gender=" + gender + "&userType=" + playerType + '&xp=' + xp + '&champiesToGive=' + champiesToGive
       + '&myChampies=' + myChampies + '&status=' + statusPlayer,
       {
@@ -68,14 +68,14 @@ export class AddUserComponent implements OnInit {
         statusPlayer
       }
     ).subscribe(success => {
-      this.http.post('http://localhost:8188/players/SendEmail?playerEmail=' + email, {}).subscribe(resData => {
+      this.http.post('http://localhost:8189/players/SendEmail?playerEmail=' + email, {}).subscribe(resData => {
         console.log(resData);
       })
     }, error => {
       console.log("error creating player")
     });
     var idplayer: String;
-    this.http.get<Player>('http://localhost:8085/players/Get?userName=' + name).subscribe(res => {
+    this.http.get<Player>('http://localhost:8189/players/Get?userName=' + name).subscribe(res => {
       idplayer = res.idplayer;
       console.log(idplayer);
 
@@ -96,14 +96,14 @@ export class AddUserComponent implements OnInit {
   addAllSkins(idplayer: String, gender: String) {
 
     var allskins: Skin[];
-    this.http.get<Skin[]>('http://localhost:8085/skins/getAll').subscribe(res => {
+    this.http.get<Skin[]>('http://localhost:8189/skins/getAll').subscribe(res => {
       allskins = res;
       console.log(allskins);
     });
     for (let skin of allskins) {
       const idskin = skin.idskin;
       const status = 'Inactive';
-      this.http.post<Closet>('http://localhost:8085/closet/Create?idSkinFK=' + idskin + '&idPlayerFk=' + idplayer +
+      this.http.post<Closet>('http://localhost:8189/closet/Create?idSkinFK=' + idskin + '&idPlayerFk=' + idplayer +
         '&status=' + status,
         {
           idskin,
@@ -124,7 +124,7 @@ export class AddUserComponent implements OnInit {
       for (let skin of skinsToActive) {
         const idskin = skin;
         const status = 'Active';
-        this.http.post<Closet>('http://localhost:8085/closet/Update?idSkinFK=' + idskin + '&idPlayerFk=' + idplayer +
+        this.http.post<Closet>('http://localhost:8189/closet/Update?idSkinFK=' + idskin + '&idPlayerFk=' + idplayer +
           '&status=' + status,
           {
             idskin,
@@ -145,7 +145,7 @@ export class AddUserComponent implements OnInit {
       for (let skin of skinsToActive) {
         const idskin = skin;
         const status = 'Active';
-        this.http.post<Closet>('http://localhost:8085/closet/Update?idSkinFK=' + idskin + '&idPlayerFk=' + idplayer +
+        this.http.post<Closet>('http://localhost:8189/closet/Update?idSkinFK=' + idskin + '&idPlayerFk=' + idplayer +
           '&status=' + status,
           {
             idskin,
@@ -170,7 +170,7 @@ export class AddUserComponent implements OnInit {
       for (let skin of skinsToAdd) {
         const idskin = skin;
         const status = 'Inactive';
-        this.http.post<Closet>('http://localhost:8085/closet/Create?idSkinFK=' + idskin + '&idPlayerFk=' + idplayer +
+        this.http.post<Closet>('http://localhost:8189/closet/Create?idSkinFK=' + idskin + '&idPlayerFk=' + idplayer +
           '&status=' + status,
           {
             idskin,
@@ -190,7 +190,7 @@ export class AddUserComponent implements OnInit {
       for (let skin of skinsToActive) {
         const idskin = skin;
         const status = 'Active';
-        this.http.post<Closet>('http://localhost:8085/closet/Update?idSkinFK=' + idskin + '&idPlayerFk=' + idplayer +
+        this.http.post<Closet>('http://localhost:8189/closet/Update?idSkinFK=' + idskin + '&idPlayerFk=' + idplayer +
           '&status=' + status,
           {
             idskin,
@@ -210,7 +210,7 @@ export class AddUserComponent implements OnInit {
       for (let skin of skinsToAdd) {
         const idskin = skin;
         const status = 'Inactive';
-        this.http.post<Closet>('http://localhost:8085/closet/Create?idSkinFK=' + idskin + '&idPlayerFk=' + idplayer +
+        this.http.post<Closet>('http://localhost:8189/closet/Create?idSkinFK=' + idskin + '&idPlayerFk=' + idplayer +
           '&status=' + status,
           {
             idskin,
@@ -229,7 +229,7 @@ export class AddUserComponent implements OnInit {
       for (let skin of skinsToActive) {
         const idskin = skin;
         const status = 'Active';
-        this.http.post<Closet>('http://localhost:8085/closet/Update?idSkinFK=' + idskin + '&idPlayerFk=' + idplayer +
+        this.http.post<Closet>('http://localhost:8189/closet/Update?idSkinFK=' + idskin + '&idPlayerFk=' + idplayer +
           '&status=' + status,
           {
             idskin,
