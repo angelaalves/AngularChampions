@@ -24,7 +24,13 @@ export class LoginComponent implements OnInit {
   public outfit: string[];
 
   ngOnInit() {
- 
+    var playerData: Player = JSON.parse(localStorage.getItem('playerlogged'));
+
+    if (localStorage.getItem("playerlogged")) {
+       localStorage.removeItem("playerlogged");
+       localStorage.removeItem("token");
+       this.session.isAuthenticated.next(false);
+    }
 
 
   }
