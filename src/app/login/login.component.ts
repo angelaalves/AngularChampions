@@ -24,6 +24,8 @@ export class LoginComponent implements OnInit {
   public outfit: string[];
 
   ngOnInit() {
+ 
+
 
   }
 
@@ -62,7 +64,7 @@ export class LoginComponent implements OnInit {
           if (resData[0].status == 'Active') {
             this.http.get<string[]>('http://localhost:8085/closet/activeSkins?idPlayerFK=' + resData[0].idplayer).subscribe(data => {
               this.outfit = data;
-              //Create player so we can givew him an imagepath
+              //Create player so we can give him an imagepath
               this.player = new Player(resData[0].idplayer,  resData[0].userName, resData[0].email, resData[0].password, this.outfit, resData[0].xp,
                 resData[0].champiesToGive, resData[0].myChampies, resData[0].userType, resData[0].gender, resData[0].status);
               //Give a player to the player session so we can use it on other components

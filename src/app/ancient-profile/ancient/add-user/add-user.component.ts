@@ -23,6 +23,7 @@ export class AddUserComponent implements OnInit {
   }
 
   ngOnInit() {
+  
     this.route.params.subscribe(
       (params: Params) => {
         this.initForm();
@@ -244,7 +245,7 @@ export class AddUserComponent implements OnInit {
 
   private initForm() {
     let name = '';
-    let usertype = '';
+    let userType = '';
     let gender = '';
     let email = '';
     let password = '';
