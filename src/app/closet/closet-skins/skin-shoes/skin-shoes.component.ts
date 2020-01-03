@@ -41,7 +41,7 @@ export class SkinShoesComponent implements OnInit {
     this.playerViewingSkins = this.session.playerSession.imagePath;
 
     console.log(this.player);
-    this.http.get<Closet[]>('http://localhost:8188/closet/Get?idSkinFK= &idPlayerFk=' + this.session.getPlayerInSession().idplayer + "&status=", {}).subscribe(data => {
+    this.http.get<Closet[]>('http://localhost:8189/closet/Get?idSkinFK= &idPlayerFk=' + this.session.getPlayerInSession().idplayer + "&status=", {}).subscribe(data => {
       this.allsessionsuserskins = data;
       console.log("this.alluserskins ", this.allsessionsuserskins);
       for (let s of this.allsessionsuserskins) {

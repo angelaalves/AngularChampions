@@ -13,7 +13,7 @@ export class PlayerService{
     constructor(private http:HttpClient){}
  
     getPlayers(){
-        return this.http.get<Player[]>('http://localhost:8085/players/getAll', {}).subscribe(data => {
+        return this.http.get<Player[]>('http://localhost:8189/players/getAll', {}).subscribe(data => {
             console.log(data);
             this.players=data;
         })

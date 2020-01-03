@@ -29,7 +29,7 @@ export class ListUsersComponent implements OnInit {
   ngOnInit() {
     // this.chooseList()
 
-    this.http.get<Player[]>('http://localhost:8188/players/getAll', {}).subscribe(data => {
+    this.http.get<Player[]>('http://localhost:8189/players/getAll', {}).subscribe(data => {
       this.players = data;
       for (let player of this.players) {
         if (player.userType == "Ancient") {
@@ -44,11 +44,5 @@ export class ListUsersComponent implements OnInit {
         else (player.userType)
       }
     })
-
-
-
-
   }
-
-
 }

@@ -1,8 +1,8 @@
-import { Component, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { catchError, tap } from 'rxjs/operators';
 import { Subject, throwError } from 'rxjs';
-import { Player } from 'src/app/shared/player.model';
+import { Player } from '../../shared/player.model';
 
 
 @Injectable({ providedIn: 'root' })
@@ -13,8 +13,8 @@ export class AuthenticationService {
 
   signup(email: string, password: string) {
     var xhr = new XMLHttpRequest();
-    xhr.open('POST', 'http://localhost:8085/players/Login?email='+email+'&password='+password, true); 
-    return this.http.post<Player>('http://localhost:8085/players/Login?email='+email+'&password='+password,
+    xhr.open('POST', 'http://localhost:8189/players/Login?email='+email+'&password='+password, true); 
+    return this.http.post<Player>('http://localhost:8189/players/Login?email='+email+'&password='+password,
       {
         email: email,
         password: password
@@ -25,12 +25,6 @@ export class AuthenticationService {
    
       })   
     );
-
-
-
-
-
-
   }
 
   private handleError(errorRes: HttpErrorResponse) {

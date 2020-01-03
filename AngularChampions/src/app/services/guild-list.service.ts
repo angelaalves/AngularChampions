@@ -23,7 +23,7 @@ export class GuildListService{
     constructor(private http: HttpClient, private playerService: PlayerService){}
 
     getPlayer(){
-        return this.http.get<Player[]>('localhost:8085').subscribe(message=>{
+        return this.http.get<Player[]>('localhost:8189').subscribe(message=>{
             console.log(message);
         });
     }

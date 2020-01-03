@@ -68,6 +68,7 @@ import { GuildPlayerPresenterComponent } from './guild-list-start/guild-list/add
 import { TableFilterPipe2 } from './videos/videos.pipe';
 import { InsertNewVideoComponent } from 'AngularChampions/src/app/videos/insert-new-video/insert-new-video.component';
 import { AddNewVideoComponent } from './videos/add-new-video/add-new-video.component';
+import { ForgotpasswordComponent } from './login/forgotpassword/forgotpassword.component';
 
 
 @NgModule({
@@ -134,7 +135,8 @@ import { AddNewVideoComponent } from './videos/add-new-video/add-new-video.compo
     ConfirmEqualValidatorDirective,
     GuildPlayerPresenterComponent,
     InsertNewVideoComponent,
-    AddNewVideoComponent
+    AddNewVideoComponent,
+    ForgotpasswordComponent
   ],
   imports: [
     //NgbModule,
