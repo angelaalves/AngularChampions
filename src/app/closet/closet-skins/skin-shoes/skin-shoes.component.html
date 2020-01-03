@@ -15,7 +15,7 @@
       <img src={{shoe.imagePath}} style="max-width:100px;max-height:100px;" (click)="skinSelected(shoe)">
     </div>
     <div *ngIf="imageNull(shoe)==true" style="max-width:100px;max-height:100px;">
-      <img src={{shoe.imagePath}} style="max-width:100px;max-height:100px;" (click)="skinSelectedNull()">
+      <img src={{shoe.imagePath}} style="max-width:100px;max-height:100px;" (click)="skinSelectedNull(shoe)">
     </div>
   </div>
 </div>

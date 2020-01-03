@@ -58,7 +58,7 @@ export class BuySkinComponent implements OnInit {
     for (let item of this.shoppingCartSkins) {
       var idSkin = item.idskin;
       if (this.player.myChampies >= item.champiesCost && this.player.xp >= item.minXP) {
-        this.http.post<any>('http://localhost:8085/closet/Create?idSkinFK=' + idSkin + '&idPlayerFk=' + idplayer + '&status=',
+        this.http.post<any>('http://localhost:8188/closet/Create?idSkinFK=' + idSkin + '&idPlayerFk=' + idplayer + '&status=',
           {
             idSkin,
             idplayer,
@@ -96,7 +96,7 @@ export class BuySkinComponent implements OnInit {
           const skinID = activeSkin.idskin;
           const skinStatus = status.Inactive;
           if (activeSkin.skinType === item.skinType) {
-            this.http.post<any>('http://localhost:8085/closet/Update?idSkinFK=' + skinID + '&idPlayerFk=' + idplayer + '&status=' + skinStatus,
+            this.http.post<any>('http://localhost:8188/closet/Update?idSkinFK=' + skinID + '&idPlayerFk=' + idplayer + '&status=' + skinStatus,
               {
                 skinID,
                 idplayer,

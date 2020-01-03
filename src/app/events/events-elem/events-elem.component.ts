@@ -17,7 +17,7 @@ export class EventsElemComponent implements OnInit {
 
   ngOnInit() {
 
-    this.http.post<any[]>('http://localhost:8085/events/getAll', {}).subscribe(eventsData => {
+    this.http.post<any[]>('http://localhost:8188/events/getAll', {}).subscribe(eventsData => {
       this.events = eventsData;
     });
   }

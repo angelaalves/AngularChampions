@@ -13,7 +13,7 @@ import { SessionService } from 'src/app/services/session.service';
 @Injectable({ providedIn: 'root' })
 export class GuildmasterPresenterPageComponent implements OnInit {
   @Input() guildmaster: Player;
-  activeSkins: String[]=[];
+  activeSkins: String[] = [];
   id: number;
 
   constructor(private router: Router, private route: ActivatedRoute, private http: HttpClient, private session: SessionService) { }
@@ -23,7 +23,7 @@ export class GuildmasterPresenterPageComponent implements OnInit {
       this.id = +params['id'];
     });
     const idplayer = this.session.getPlayerInSession().idplayer;
-    this.http.get<String[]>('http://localhost:8085/closet/activeSkins?idPlayerFK=' + idplayer, {}).subscribe(data => {
+    this.http.get<String[]>('http://localhost:8188/closet/activeSkins?idPlayerFK=' + idplayer, {}).subscribe(data => {
       this.activeSkins = data;
       console.log(this.activeSkins);
     });

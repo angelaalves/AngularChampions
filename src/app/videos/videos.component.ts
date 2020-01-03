@@ -61,7 +61,7 @@ export class VideosComponent implements OnInit {
   }
   
   allVideos(): Video[] {
-    this.http.get<Video[]>('http://localhost:8085/videos/getAll').subscribe(data => {
+    this.http.get<Video[]>('http://localhost:8188/videos/getAll').subscribe(data => {
       this.videos = data;
       this.videosbytopic();
     });
@@ -96,12 +96,12 @@ export class VideosComponent implements OnInit {
     this.idOfVideosChecked = [];
     this.idOfVideosUnchecked = [];
 
-    this.http.get<watchedVideos[]>('http://localhost:8085/watchedVideos/Get?idPlayerFK=' + this.session.playerSession.idplayer).subscribe(data => {
+    this.http.get<watchedVideos[]>('http://localhost:8188/watchedVideos/Get?idPlayerFK=' + this.session.playerSession.idplayer).subscribe(data => {
       const obj = JSON.stringify(data);
       this.watchedVideosByPlayer = data;
 
       for (let aux of this.watchedVideosByPlayer) {
-        this.http.get<Video[]>('http://localhost:8085/videos/Get?idVideo=' + aux.idvideoFK).subscribe(res => {
+        this.http.get<Video[]>('http://localhost:8188/videos/Get?idVideo=' + aux.idvideoFK).subscribe(res => {
           const obj2 = JSON.stringify(res);
           this.videosWatchedByPlayer.push(res[0]);
         });
@@ -115,7 +115,7 @@ export class VideosComponent implements OnInit {
         const id = idVideo;
         const idplayer = this.session.playerSession.idplayer;
 
-        this.http.post<any>('http://localhost:8085/watchedVideos/Create?idVideoFK=' + id + '&idPlayerFK=' + idplayer,
+        this.http.post<any>('http://localhost:8188/watchedVideos/Create?idVideoFK=' + id + '&idPlayerFK=' + idplayer,
           {
             id,
             idplayer
@@ -141,7 +141,7 @@ export class VideosComponent implements OnInit {
         const champiesToGive = this.session.playerSession.champiesToGive;
         const myChampies = this.session.playerSession.myChampies;
         const status = this.session.playerSession.status;
-        this.http.post<any>('http://localhost:8085/players/Update?idPlayer=' + idPlayer + '&userName=' + userName + '&email=' + email + '&password=' + password + '&gender=' + gender + '&userType=' + userType + '&xp=' + xp + '&champiesToGive=' + champiesToGive + '&myChampies=' + myChampies + '&status=' + status,
+        this.http.post<any>('http://localhost:8188/players/Update?idPlayer=' + idPlayer + '&userName=' + userName + '&email=' + email + '&password=' + password + '&gender=' + gender + '&userType=' + userType + '&xp=' + xp + '&champiesToGive=' + champiesToGive + '&myChampies=' + myChampies + '&status=' + status,
           {
             idPlayer,
             userName,
@@ -165,7 +165,7 @@ export class VideosComponent implements OnInit {
         const id = idVideo;
         const idplayer = this.session.playerSession.idplayer;
 
-        this.http.post<any>('http://localhost:8085/watchedVideos/Delete?idVideoFK=' + id + '&idPlayerFK=' + idplayer,
+        this.http.post<any>('http://localhost:8188/watchedVideos/Delete?idVideoFK=' + id + '&idPlayerFK=' + idplayer,
           {
             id,
             idplayer
@@ -184,7 +184,7 @@ export class VideosComponent implements OnInit {
         const champiesToGive = this.session.playerSession.champiesToGive;
         const myChampies = this.session.playerSession.myChampies;
         const status = this.session.playerSession.status;
-        this.http.post<any>('http://localhost:8085/players/Update?idPlayer=' + idPlayer + '&userName=' + userName + '&email=' + email + '&password=' + password + '&gender=' + gender + '&userType=' + userType + '&xp=' + xp + '&champiesToGive=' + champiesToGive + '&myChampies=' + myChampies + '&status=' + status,
+        this.http.post<any>('http://localhost:8188/players/Update?idPlayer=' + idPlayer + '&userName=' + userName + '&email=' + email + '&password=' + password + '&gender=' + gender + '&userType=' + userType + '&xp=' + xp + '&champiesToGive=' + champiesToGive + '&myChampies=' + myChampies + '&status=' + status,
           {
             idPlayer,
             userName,

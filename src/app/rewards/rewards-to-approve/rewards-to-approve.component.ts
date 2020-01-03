@@ -33,7 +33,7 @@ export class RewardsToApproveComponent implements OnInit {
   }
 
   getRewards() {
-    this.http.get<Reward[]>('http://localhost:8085/rewards/getAllRewardsToApprove', {}).subscribe(data => {
+    this.http.get<Reward[]>('http://localhost:8188/rewards/getAllRewardsToApprove', {}).subscribe(data => {
       for (let d of data) {
         const split = d.dateOfReward.split("T");
         console.log(split[0]);
@@ -100,7 +100,7 @@ export class RewardsToApproveComponent implements OnInit {
   save() {
     for (let reward of this.rewardsApproved) {
       const idReward = reward.idreward;
-      this.http.post<any>('http://localhost:8085/rewards/Approve?idReward=' + idReward,
+      this.http.post<any>('http://localhost:8188/rewards/Approve?idReward=' + idReward,
         { 
           idReward 
         }).subscribe(data => {

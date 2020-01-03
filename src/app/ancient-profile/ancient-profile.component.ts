@@ -9,20 +9,14 @@ import { ClosetComponent } from '../closet/closet.component';
   styleUrls: ['./ancient-profile.component.css']
 })
 
-@Injectable({providedIn:"root"})
+@Injectable({ providedIn: "root" })
 export class AncientProfileComponent implements OnInit {
 
+  public ancient: Player;
 
-public ancient: Player;
-
-
-  constructor(private session: SessionService, private closet:ClosetComponent) {
-    }
+  constructor(private session: SessionService, private closet: ClosetComponent) { }
 
   ngOnInit() {
-  
-    this.ancient= this.session.getPlayerInSession();
-
+    this.ancient = this.session.getPlayerInSession();
   }
-
 }

@@ -26,6 +26,7 @@ export class ClosetComponent implements OnInit {
   tops: Skin[] = [];
   shoes: Skin[] = [];
   others: Skin[] = [];
+  allSkins: Skin[] = [];
   allsessionsuserskins: Closet[] = [];
 
   private skin = new BehaviorSubject<Skin>(new Skin("", "", "", "", "", null));
@@ -33,7 +34,7 @@ export class ClosetComponent implements OnInit {
 
   constructor(private session: SessionService, private http: HttpClient,
     private router: Router, private route: ActivatedRoute, private skinService: SkinService) {
-    this.http.get<Closet[]>('http://localhost:8085/closet/Get?idSkinFK= &idPlayerFk=' + this.session.getPlayerInSession().idplayer + "&status=", {}).subscribe(data => {
+    this.http.get<Closet[]>('http://localhost:8188/closet/Get?idSkinFK= &idPlayerFk=' + this.session.getPlayerInSession().idplayer + "&status=", {}).subscribe(data => {
       this.allsessionsuserskins = data;
       console.log("this.alluserskins ", this.allsessionsuserskins);
     });
@@ -46,7 +47,8 @@ export class ClosetComponent implements OnInit {
 
   getSkins() {
     return new Promise(resolve => {
-      this.http.get<Skin[]>('http://localhost:8085/skins/getAll', {}).subscribe(data => {
+      this.http.get<Skin[]>('http://localhost:8188/skins/getAll', {}).subscribe(data => {
+        this.allSkins = data;
         for (var d of data) {
           if (d.skinType == skinType.Bottom) {
             this.bottoms.push(d);
@@ -83,30 +85,53 @@ export class ClosetComponent implements OnInit {
   }
 
   applySkins() {
-    let objSkin: Closet;
-    const statusSkin: status = status.Active;
-    for (let skin of this.allsessionsuserskins) {
-      this.http.get<Closet>('http://localhost:8085/closet/Get?idSkinFK=' + skin.idskinFK).subscribe(data => {
-        objSkin = data[0];
+    const activeSkins: Skin[] = this.skinService.getSkins();
+    const inactiveSkins: Skin[] = this.skinService.getInactiveSkinsToBe();
+    for (let inactive of inactiveSkins) {
+      const idskinToChange = inactive.idskin;
+      const idPlayer = this.player.idplayer;
+      const statusInactive = status.Inactive;
+      this.http.post('http://localhost:8188/closet/Update?idSkinFK=' + idskinToChange + "&idPlayerFk=" + idPlayer + "&status=" + statusInactive, { idskinToChange, idPlayer, statusInactive }).subscribe(data => {
+        console.log(data);
       });
-      if (skin.idskinFK == objSkin.idskinFK) {
-        const idskin = skin.idskinFK;
-        const idPlayer = this.session.getPlayerInSession().idplayer;
-        this.http.post('http://localhost:8085/closet/Update?idSkinFK=' + skin.idskinFK + "&idPlayerFk=" + idPlayer + "&status=" + statusSkin, { idskin, idPlayer, statusSkin }).subscribe(data => {
-          console.log(data);
-        });
-        //this.session.getPlayerInSession().changeImage(skin.imagePath, objSkin.skinType);
-        let counter = 0;
-        for (let item of this.session.getPlayerInSession().imagePath) {
-          counter++;
-          const idskinToChange = this.session.getPlayerInSession().imagePath[counter];
-          const statusInactive = status.Inactive;
-          this.http.post('http://localhost:8085/closet/Update?idSkinFK=' + idskinToChange + "&idPlayerFk=" + idPlayer + "&status=" + statusInactive, { idskinToChange, idPlayer, statusInactive }).subscribe(data => {
-            console.log(data);
-          });
-        }
-      }
     }
+
+    for (let active of activeSkins) {
+      const statusSkin: status = status.Active;
+      const idskin = active.idskin;
+      const idPlayer = this.player.idplayer;
+      this.http.post('http://localhost:8188/closet/Update?idSkinFK=' + idskin + "&idPlayerFk=" + idPlayer + "&status=" + statusSkin, { idskin, idPlayer, statusSkin }).subscribe(data => {
+        console.log(data);
+      });
+    }
+
+    // // let objSkin: Closet;
+    // const statusSkin: status = status.Active;
+    // let s: Skin[];
+    // for (let skin of this.allsessionsuserskins) {
+    //   // this.http.get<Closet>('http://localhost:8188/closet/Get?idSkinFK=' + skin.idskinFK).subscribe(data => {
+    //   //     objSkin = data;
+    //   // });
+    //   this.http.get<Skin>('http://localhost:8188/skins/Get?idSkin=' + skin.idskinFK).subscribe(data => {
+    //     s.push(data);
+    //   });
+    // } for (let skin of s) {
+    //   const idskin = skin.idskin;
+    //   const idPlayer = this.player.idplayer;
+    //   this.http.post('http://localhost:8188/closet/Update?idSkinFK=' + skin.idskin + "&idPlayerFk=" + idPlayer + "&status=" + statusSkin, { idskin, idPlayer, statusSkin }).subscribe(data => {
+    //     console.log(data);
+    //   });
+    //   //this.session.getPlayerInSession().changeImage(skin.imagePath, objSkin.skinType);
+    //   let counter = 0;
+    //   for (let item of this.session.getPlayerInSession().imagePath) {
+    //     counter++;
+    //     const idskinToChange = this.player.imagePath[counter];
+    //     const statusInactive = status.Inactive;
+    //     this.http.post('http://localhost:8188/closet/Update?idSkinFK=' + idskinToChange + "&idPlayerFk=" + idPlayer + "&status=" + statusInactive, { idskinToChange, idPlayer, statusInactive }).subscribe(data => {
+    //       console.log(data);
+    //     });
+    //   }
+    // }
   }
 
 
