@@ -86,7 +86,11 @@ export class AddUserComponent implements OnInit {
     } else {
       this.addAllSkins(idplayer, gender);
     }
-    this.router.navigate(['/ancient_profile'], { relativeTo: this.route });
+
+    
+      this.router.navigate(['/ancient_profile'], { relativeTo: this.route });
+   
+ 
   }
 
   addAllSkins(idplayer: String, gender: String) {

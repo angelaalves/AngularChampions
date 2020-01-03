@@ -10,6 +10,7 @@ import { watchedVideos } from '../shared/watchedVideos.model';
 import { Player } from 'AngularChampions/src/app/shared/player.model';
 
 import { SessionService } from '../services/session.service';
+import { userType } from '../shared/userType.enum';
 
 @Component({
   selector: 'app-videos',
@@ -223,6 +224,14 @@ export class VideosComponent implements OnInit {
   }
 
 
+  isItaWarrior(){
+    var bol=false;
+    if(this.session.playerSession.userType==userType.Warrior){
+      bol=true;
+    }
+    return bol;
+  }
+  
   checked(video: String) {
     var exists: boolean;
     exists = false;

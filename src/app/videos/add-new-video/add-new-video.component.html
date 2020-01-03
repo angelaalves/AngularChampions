@@ -1,8 +1,7 @@
 <form #addNewVideoForm="ngForm" (ngSubmit)="onSubmit(addNewVideoForm); addNewVideoForm.reset()" action="">
     <div id="Left">
-        <button class="btn btn-link" type="button"><img src="../../../assets/AppImages/Videos.png" alt="text"
-                class="img-responsive"></button>
-        <label style=" font-size: 4ch;   transform: translate(35%,-60%);">Add New Videos</label>
+        <img style="width:400px" src="../../../assets/AppImages/Videos.png">
+        <label style=" font-size:3ch;   transform: translate(0%,-60%);">Add New Video</label>
     </div>
 
     <div id="Right" class="form-row">
@@ -10,14 +9,14 @@
             <div class="form-group" style="display:inline-block; margin-right: 20%; margin-left: 5%; margin-top: 1%;">
                 <label style="margin-right: 10px;">Video Name</label>
                 <input type="text" class="form-control input-sm" name="videoName" value="videoName"
-                    style=" width: 800px; background: whitesmoke; border: 2px solid rgb(65, 126, 218);  margin-left: 5em;"
+                    style=" width: 800px; background: whitesmoke; border: 2px solid rgb(66, 66, 66);  margin-left: 5em;"
                     ngModel required>
             </div>
             <br>
             <div class="form-group" style="display:inline-block; margin-right: 20%; margin-left: 5%; margin-top: 1%;">
                 <label style="margin-right: 10px;">Subject</label><br>
                 <select id="inputSubject" data="type" name="videoTopic" value="videoTopic" class="form-control input-sm"
-                    style="width: 800px; margin-top: 1%; margin-left: 5em; background: whitesmoke; border: 2px solid rgb(65, 126, 218)"
+                    style="width: 800px; margin-top: 1%; margin-left: 5em; background: whitesmoke; border: 2px solid rgb(66, 66, 66)"
                     ngModel required>
                     <option selected>Select a Video Topic</option>
                     <option>Java</option>
@@ -30,7 +29,7 @@
                 <label style="margin-right: 10px;">Priority</label>
                 <select id="inputPriority" data="type" name="videPriority" value="videoPriority"
                     class="form-control input-sm"
-                    style="width: 800px; margin-top: 1%; margin-left: 5em; background: whitesmoke; border: 2px solid rgb(65, 126, 218)"
+                    style="width: 800px; margin-top: 1%; margin-left: 5em; background: whitesmoke; border: 2px solid rgb(66, 66, 66)"
                     ngModel required>
                     <option selected>Select video priority</option>
                     <option>High</option>
@@ -39,9 +38,14 @@
                 </select>
             </div>
             <br>
-            <button type="submit" class="btn btn-primary" [disabled]="!addNewVideoForm.valid"
-                style="width:20%; margin-top: 3%; background: rgb(65, 126, 218); border: 2px solid whitesmoke;">Add
-                Video</button>
+
+
         </div>
     </div>
+    <div id="footer">
+
+        <button type="submit" id="AButton" class="btn btn-primary" [disabled]="!addNewVideoForm.valid">Add
+            Video</button>
+    </div>
+
 </form>

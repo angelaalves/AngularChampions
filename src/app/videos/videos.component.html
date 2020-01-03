@@ -1,7 +1,9 @@
 <div id="divLeft">
-    <button class="btn btn-link" type="button"><img src="../../assets/AppImages/Videos.png" alt="text"
-            class="img-responsive"></button>
-    <label style=" font-size: 4ch;   transform: translate(35%,-60%);">Videos</label>
+<img style="width:90%" src="../../assets/AppImages/Videos.png">
+    <label style=" font-size: 4ch;   transform: translate(35%,-60%);">Videos</label> 
+    <div *ngIf="isItaWarrior()==false">
+        <button id="save"class="btn btn-primary" (click)="addNewVideo()">Add</button>
+    </div>
 </div>
 <div id="divRight">
     <div id="div_filter" style="display: inline-table">
@@ -13,10 +15,12 @@
             <option value="Angular">Angular</option>
             <option value="Spring">Spring</option>
         </select>
+
     </div>
     <br>
     <br>
     <br>
+   
     <div class="videoscroll" id="style-8">
         <table class="table table-bordered">
             <thead style="border: 2px solid rgb(0, 0, 0)">
@@ -48,6 +52,6 @@
     </div>
     <div id="footer">
         <button type="submit" class="btn btn-primary" id="save" style="margin-right: 1%;" (click)="Save()">Save</button>
-        <button class="btn btn-primary" (click)="addNewVideo()">Add</button>
+
     </div>
 </div>

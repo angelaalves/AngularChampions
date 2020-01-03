@@ -20,22 +20,28 @@
 
 
    
- #butao {
+  #AButton {
     color:black;
       border: 4px solid black;
+      transform: (20%,10%);
       background-image: url('../../../../assets/AppImages/btnforeverything.png');
       background-size: cover;
     }
+    #footer {
+    
+          transform: translate(30%,300%);
+            float: right;
+        }
 #Left {
    
     height: 20vh;
     width: 0vw;
-    transform: translate(0%,20%);
+    transform: translate(-50%,20%);
     display:block;
     float: left;
 }
 #Right { 
-    transform: translate(10%,-40%);
+    transform: translate(15%,-40%);
     height: 30vh;
     width:80vw;
     display:block;

@@ -16,3 +16,18 @@
       font-family: pixelmix;
   }
   
+
+   
+  #AButton {
+    color:black;
+      border: 4px solid black;
+      transform: (20%,10%);
+      background-image: url('../../../../assets/AppImages/btnforeverything.png');
+      background-size: cover;
+      margin-right:5px;
+    }
+    #footer {
+    
+          transform: translate(-20%,-5%);
+            float: right;
+        }  

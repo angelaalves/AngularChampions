@@ -54,9 +54,17 @@
     float: left;
 }
  
-#butao {
-  color:black;
-    border: 4px solid black;
-    background-image: url('../../../assets/AppImages/btnforeverything.png');
-    background-size: cover;
-  }
+
+
+  #AButton {
+    color:black;
+      border: 4px solid black;
+      transform: (20%,10%);
+      background-image: url('../../../assets/AppImages/btnforeverything.png');
+      background-size: cover;
+    }
+    #footer {
+
+      transform: translate(170%,200%);
+        float: right;
+    }
