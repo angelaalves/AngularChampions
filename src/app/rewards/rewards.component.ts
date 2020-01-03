@@ -1,6 +1,6 @@
 import { Component, OnInit, Injectable } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { NgForm } from '@angular/forms';
+import { NgForm, ControlContainer } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { Player } from '../shared/player.model';
 import { RewardService } from '../services/reward.service';
@@ -16,6 +16,7 @@ import { format } from 'url';
 
 @Injectable({ providedIn: 'root' })
 export class RewardsComponent implements OnInit {
+  selected = '0';
   idReward: number = 1;
   playerGiver: Player;
   playerReceiver: Player;
@@ -24,6 +25,8 @@ export class RewardsComponent implements OnInit {
   warriorSelected: boolean = false;
   receiver: string;
   champies: string;
+
+  champiesgiven:String="";
   constructor(private router: Router, private route: ActivatedRoute, private http: HttpClient, private rewardsToApprove: RewardService, private sessionService: SessionService, private playerService: PlayerService) { }
 
   ngOnInit() {
@@ -71,5 +74,8 @@ export class RewardsComponent implements OnInit {
     }
   }
 
+setChampiesgiven(champies:String){
+ console.log(champies);
+}
 
 }
