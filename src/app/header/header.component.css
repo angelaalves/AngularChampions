@@ -12,7 +12,16 @@ nav {
 * {
     font-family: karmatic-arcade;
 }
-
+#pretty {
+    color:black;
+      border: 1px solid black;
+      transform: (20%,10%);
+      background-image: url('../../assets/AppImages/btnforeverything.png');
+      
+      
+      background-size: cover;
+      margin-right:5px;
+    }
 .divLeft {
     width:95vw;
     display:block;

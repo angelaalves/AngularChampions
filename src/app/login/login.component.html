@@ -24,18 +24,17 @@
                         <input type="password" id="password" class="form-control"
                             style="background: whitesmoke; border: 2px solid rgb(66, 66, 66);" ngModel name="password"
                             required>
+                        <button style=" transform:(200%,0%);font-size: 12px; float:right; margin-top:3px;background-color: transparent;border: 2px solid transparent;color:rgb(80, 80, 80);" type='submit'>
+                        Forgot your password?</button>
                     </div>
                 </div>
             </div>
             <div class="form-row">
                 <div class="col-7">
                     <div class="form-group">
-                        <button type='submit' class="btn btn-primary" id="butao"
-                            [disabled]="!loginForm.valid">
+                        <button type='submit' class="btn btn-primary" id="AButton" [disabled]="!loginForm.valid">
                             Login</button>
-                        <button type='submit' class="btn btn-primary"
-                            style="background: rgb(65, 126, 218); border: 2px solid whitesmoke;">
-                            Forgot your password?</button>
+
                     </div>
                 </div>
             </div>
