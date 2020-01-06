@@ -66,7 +66,6 @@ import { SkinService } from './services/skin.service';
 import { ConfirmEqualValidatorDirective } from './shared/equal.validator.directive';
 import { GuildPlayerPresenterComponent } from './guild-list-start/guild-list/add-guild-list/guild-player-presenter/guild-player-presenter.component';
 import { TableFilterPipe2 } from './videos/videos.pipe';
-import { InsertNewVideoComponent } from 'AngularChampions/src/app/videos/insert-new-video/insert-new-video.component';
 import { AddNewVideoComponent } from './videos/add-new-video/add-new-video.component';
 import { ForgotpasswordComponent } from './login/forgotpassword/forgotpassword.component';
 
@@ -134,9 +133,9 @@ import { ForgotpasswordComponent } from './login/forgotpassword/forgotpassword.c
     TableFilterPipe2,
     ConfirmEqualValidatorDirective,
     GuildPlayerPresenterComponent,
-    InsertNewVideoComponent,
     AddNewVideoComponent,
     ForgotpasswordComponent
+    AddNewVideoComponent
   ],
   imports: [
     //NgbModule,
