@@ -68,9 +68,7 @@ export class AddUserComponent implements OnInit {
         statusPlayer
       }
     ).subscribe(success => {
-      this.http.post('http://localhost:8085/players/SendEmail?playerEmail=' + email, {}).subscribe(resData => {
-        console.log(resData);
-      })
+      console.log("success")
     }, error => {
       console.log("error creating player")
     });

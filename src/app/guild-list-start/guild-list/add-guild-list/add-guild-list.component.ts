@@ -13,6 +13,7 @@ import { formatDate } from '@angular/common';
   styleUrls: ['./add-guild-list.component.css']
 })
 export class AddGuildListComponent implements OnInit {
+  guildFlag:String="../../../assets/AppImages/DefaultFlag.png";
   warriorsSelected:Player[]=[];
   guildmasterSelected: Player;
   guildMasters: Player[];
@@ -52,9 +53,16 @@ export class AddGuildListComponent implements OnInit {
     for(let playerId of this.warriorsSelected){
       playerIds.push(playerId.idplayer)
     }
-    this.http.post('http://localhost:8085/guild/Create?guildName='+name+'&startDate='+formatDate(startDate, "yyyy-MM-dd","en-UK")+'&endDate='+formatDate(endDate, "yyyy-MM-dd","en-UK")+'&guildFlag=../../assets/AppImages/DefaultFlag.png&status=Active',{}).subscribe(response=>{
+    this.http.post('http://localhost:8085/guild/Create?guildName='+name+'&startDate='+formatDate(startDate, "yyyy-MM-dd","en-UK")+'&endDate='+formatDate(endDate, "yyyy-MM-dd","en-UK")+'&guildFlag='+this.guildFlag+'&status=Active',{}).subscribe(response=>{
       this.http.get('http://localhost:8085/guildPlayers/createRecent?startDate='+formatDate(startDate, "yyyy-MM-dd","en-UK")+'&guildmaster='+this.guildmasterSelected.idplayer+'&players='+playerIds.toString()).subscribe()
     });
     this.router.navigate(['..'], {relativeTo: this.route});
+  }
+  selectFlag(){
+    document.getElementById('upload-file').click();
+  }
+  chooseFlag(fileInput: File){
+    this.guildFlag='../../../assets/AppImages/'+fileInput.name
+    console.log(this.guildFlag)
   }
 }

@@ -24,7 +24,7 @@ export class RewardsToApproveComponent implements OnInit {
   public players: Player[] = [];
   public idAndNameOfPlayers: IDToUsername[] = [];
 
-  constructor(private http: HttpClient, private playerService: PlayerService,private router: Router, private route: ActivatedRoute,  private session: SessionService) {}
+  constructor(private http: HttpClient, private playerService: PlayerService, private router: Router, private route: ActivatedRoute, private session: SessionService) { }
 
   ngOnInit() {
     this.players = this.playerService.getListOfPlayers();
@@ -38,12 +38,15 @@ export class RewardsToApproveComponent implements OnInit {
         const split = d.dateOfReward.split("T");
         console.log(split[0]);
         d.dateOfReward = split[0];
-        this.rewardsToApprove = data;
+        if (d.champiesGiven != "0") {
+          this.rewardsToApprove.push(d);
+        }
+
       }
 
       for (let i = 0; i < this.rewardsToApprove.length; i++) {
         for (let p of this.players) {
-           if (this.rewardsToApprove[i].idplayerGiverFK == p.idplayer) {
+          if (this.rewardsToApprove[i].idplayerGiverFK == p.idplayer) {
             this.rewardsToApprove[i].idplayerGiverFK = p.userName;
           } if (this.rewardsToApprove[i].idplayerReceiverFK == p.idplayer) {
             this.rewardsToApprove[i].idplayerReceiverFK = p.userName;
@@ -51,20 +54,20 @@ export class RewardsToApproveComponent implements OnInit {
         }
       }
     });
-  } 
+  }
 
   check(reward: Reward) {
     const obj = JSON.stringify(reward);
-    var exists: boolean; 
-      exists = false;
-     for (let x of this.rewardsApproved) {
+    var exists: boolean;
+    exists = false;
+    for (let x of this.rewardsApproved) {
       if (x == reward) {
         exists = true;
       }
     }
 
     if (exists == false) {
- this.rewardsApproved.push(reward);
+      this.rewardsApproved.push(reward);
 
     } else {
 
@@ -72,21 +75,21 @@ export class RewardsToApproveComponent implements OnInit {
 
     }
 
-   
+
   }
 
   uncheck(reward: Reward) {
     const obj = JSON.stringify(reward);
-    var exists: boolean; 
-      exists = false;
-     for (let x of this.rewardsDisapproved) {
+    var exists: boolean;
+    exists = false;
+    for (let x of this.rewardsDisapproved) {
       if (x == reward) {
         exists = true;
       }
     }
 
     if (exists == false) {
- this.rewardsDisapproved.push(reward);
+      this.rewardsDisapproved.push(reward);
 
     } else {
 
@@ -94,30 +97,28 @@ export class RewardsToApproveComponent implements OnInit {
 
     }
 
-   
+
   }
 
   save() {
-    for (let reward of this.rewardsApproved) {
-      const idReward = reward.idreward;
-      this.http.post<any>('http://localhost:8085/rewards/Approve?idReward=' + idReward,
-        { 
-          idReward 
-        }).subscribe(data => {
-          console.log(data);
-        });
+    var rewardsApprovedId: String[] = [];
+    var rewardsDisapprovedId: String[] = [];
+    for (let r of this.rewardsApproved) {
+      rewardsApprovedId.push(r.idreward)
     }
-    for (let reward of this.rewardsDisapproved) {
-      const idReward = reward.idreward;
-      this.http.post<any>('http://localhost:8085/rewards/Disapprove?idReward=' + idReward,
-        { 
-          idReward 
-        }).subscribe(data => {
-          console.log(data);
-        });
+    this.http.post('http://localhost:8085/rewards/Approve?idReward=' + rewardsApprovedId.toString(),
+      {}).subscribe(data => {
+        console.log("approved");
+      });
+    for (let r of this.rewardsDisapproved) {
+      rewardsDisapprovedId.push(r.idreward)
     }
-    this.getRewards();
-    
+    this.http.post('http://localhost:8085/rewards/Disapprove?idReward=' + rewardsDisapprovedId.toString(),
+      {}).subscribe(data => {
+        console.log("disapproved");
+      });
+    //this.getRewards();
+
     if (this.session.getPlayerInSession().userType == "Ancient") {
       this.router.navigate(['/ancient_profile'], { relativeTo: this.route });
     }
