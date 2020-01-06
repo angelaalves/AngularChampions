@@ -51,6 +51,7 @@ export class AddUserComponent implements OnInit {
     this.playerService.addPlayer(new Player(id, name, email, password, skins, xp, champiesToGive, myChampies, playerType, gender, statusPlayer));
     console.log('addUserForm', form.value);
 
+    //Nova funçao dou apenas as cenas do form
     this.http.post<Player>('http://localhost:8085/players/Create?idPlayer=' + id + '&userName=' + name +
       '&email=' + email + '&password=' + password + "&gender=" + gender + "&userType=" + playerType + '&xp=' + xp + '&champiesToGive=' + champiesToGive
       + '&myChampies=' + myChampies + '&status=' + statusPlayer,
@@ -68,6 +69,7 @@ export class AddUserComponent implements OnInit {
         statusPlayer
       }
     ).subscribe(success => {
+      // retirar o senbd player
       this.http.post('http://localhost:8085/players/SendEmail?playerEmail=' + email, {}).subscribe(resData => {
         console.log(resData);
       })

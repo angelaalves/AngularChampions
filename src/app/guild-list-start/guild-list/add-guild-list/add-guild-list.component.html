@@ -1,6 +1,10 @@
 <div class="row">
     <div class="col-xs-12" style="text-align: center;">
-        <img src="../../../assets/AppImages/DefaultFlag.png" alt="flag" style="max-height: 200px;">
+        <div class="scrollmenu" id="style-8" style="margin-bottom: 3%;">
+            <div *ngFor="let flag of flagss" style="display: inline-block; position: relative;">
+              <img src={{flag}} style="max-width:100px;max-height:100px; position: absolute;" (click)="flagSelected(flag)">
+            </div>
+          </div>
     </div>
 </div>
 <form #guildForm="ngForm" (ngSubmit)="createGuild(guildForm)" action="">

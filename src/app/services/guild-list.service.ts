@@ -8,6 +8,7 @@ import { tap } from 'rxjs/operators';
 export class GuildListService implements OnInit {
 
     private guilds: Guild[] = [];
+    
     constructor(private http: HttpClient, private playerService: PlayerService) {
 
     }
