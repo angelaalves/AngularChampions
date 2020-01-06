@@ -135,7 +135,7 @@ import { ForgotpasswordComponent } from './login/forgotpassword/forgotpassword.c
     ConfirmEqualValidatorDirective,
     GuildPlayerPresenterComponent,
     AddNewVideoComponent,
-    ForgotpasswordComponent
+    ForgotpasswordComponent,
     AddNewVideoComponent
   ],
   imports: [
