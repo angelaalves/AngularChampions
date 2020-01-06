@@ -19,9 +19,8 @@ export class ForgotpasswordComponent implements OnInit {
     if (!form.valid) {
       return;
     }
-    const pass= Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 5);
     const email = form.value.email;
-    this.http.post('http://localhost:8085/players/forgotPasswordMail?playerEmail=' + email + '&randomPass=' + pass, {email,pass}).subscribe(resData => {
+    this.http.post('http://localhost:8085/players/forgotPassword?playerEmail=' + email , {email}).subscribe(resData => {
       console.log(resData);
     })
   }
