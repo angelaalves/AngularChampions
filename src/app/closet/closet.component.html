@@ -3,21 +3,22 @@
         [shirtImagePath]="player.getImagePath(2)" [pantsImagePath]="player.getImagePath(3)"
         [shoesImagePath]="player.getImagePath(4)" [othersImagePath]="player.getImagePath(5)" [size]=300>
     </app-image-maker>
-     <button type="button" class="btn" id="butao" style="margin-top: 1%; width:300px;" (click)="applySkins()">Apply skins</button>
+    <button type="button" class="btn" id="butao" style="margin-top: 1%; width:300px;" (click)="applySkins()">Apply
+        skins</button>
 
-    <button type="button" class="btn" id="butao"style="margin-left: 1%; margin-top: 1%;width:300px;" (click)="resetToInitialSkins()">Reset to
+    <button type="button" class="btn" id="butao" style="margin-left: 1%; margin-top: 1%;width:300px;"
+        (click)="resetToInitialSkins()">Reset to
         initial skins</button>
     <div *ngIf="isItaWarrior()==true">
-        <button type="button" class="btn"id="butao" style="margin-left: 1%; margin-top: 1%;width:300px;" (click)="redirectToBuySkin()">Buy
+        <button type="button" class="btn" id="butao" style="margin-left: 1%; margin-top: 1%;width:300px;"
+            (click)="redirectToBuySkin()">Buy
             skins</button>
-        <button type="button" class="btn" id="butao"style="margin-left: 1%; margin-top: 1%;width:300px;" (click)="emptyCart()">Empty shopping
+        <button type="button" class="btn" id="butao" style="margin-left: 1%; margin-top: 1%;width:300px;"
+            (click)="emptyCart()">Empty shopping
             cart</button>
     </div>
 </span>
 <span class="divRight">
     <app-closet-skins [skincolors]="skincolors" [bottoms]="bottoms" [hair]="hair" [tops]="tops" [shoes]="shoes"
         [others]="others"></app-closet-skins>
-
-
-   
 </span>

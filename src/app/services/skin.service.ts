@@ -39,15 +39,16 @@ export class SkinService implements OnInit {
     }
 
     ngOnInit() {
-        this.http.get<Closet[]>('http://localhost:8085/closet/Get?idPlayerFk=' + this.player.idplayer + "&status=" + status, {}).subscribe(data => {
+        this.http.get<Closet[]>('http://localhost:8085/closet/Get?idPlayerFk=' + this.player.idPlayer + "&status=" + status, {}).subscribe(data => {
             console.log(data);
             for (let d of data) {
                 this.http.get<Skin>('http://localhost:8085/skins/Get=idSkin' + d.idskinFK).subscribe(resdata => {
-                    console.log(resdata);
+                    console.log("resdata ng on init do skin service:"+resdata);
                     this.skins.push(resdata);
+                    this.inactiveSkinsToBe.push(resdata);
+                    console.log("skin service: "+this.inactiveSkinsToBe);
                 });
             }
-            //transformar closet em skins e atribuir ao objeto this.inactiveSkins
         });
     }
 
@@ -73,7 +74,7 @@ export class SkinService implements OnInit {
         } else if (skinType.Others == skin.skinType) {
             index = 5;
         }
-        console.log(skin);
+        console.log(this.skins);
         this.inactiveSkinsToBe.push(this.skins[index]);
         console.log(this.inactiveSkinsToBe);
         this.newSkinsSelected.next(this.skins.splice(Number(index), 0, skin));
