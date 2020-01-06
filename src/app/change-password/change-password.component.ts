@@ -64,7 +64,7 @@ export class ChangePasswordComponent implements OnInit {
     const confirmPassword = form.value.confirmPassword;
     const newPassword = form.value.newPassword;
 
-    this.http.post<Player>('http://localhost:8189/players/Update?idPlayer=' + this.player.idplayer + '&userName=' + this.player.userName +
+    this.http.post<Player>('http://localhost:8085/players/Update?idPlayer=' + this.player.idplayer + '&userName=' + this.player.userName +
       '&email=' + this.player.email + '&password=' + confirmPassword + "&gender=" + this.player.gender + "&userType=" + this.player.userType + '&xp=' + this.player.xp + '&champiesToGive=' + this.player.champiesToGive
       + '&myChampies=' +this.player.myChampies + '&status=' + this.player.status,
       {

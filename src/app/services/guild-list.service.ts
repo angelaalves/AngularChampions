@@ -13,13 +13,13 @@ export class GuildListService implements OnInit {
     }
 
     ngOnInit() {
-        this.http.get<Guild[]>('http://localhost:8189/guild/getAll').subscribe(resData => {
+        this.http.get<Guild[]>('http://localhost:8085/guild/getAll').subscribe(resData => {
             this.guilds = resData;
             for (let guild of this.guilds) {
-                this.http.get<String>('http://localhost:8189/guildPlayers/getGuildMaster?idGuild=' + guild.idguild).subscribe(guildMasterId => {
+                this.http.get<String>('http://localhost:8085/guildPlayers/getGuildMaster?idGuild=' + guild.idguild).subscribe(guildMasterId => {
                     guild.guildmaster = this.playerService.getGuildMaster(guildMasterId)
                 })
-                this.http.get<String[]>('http://localhost:8189/guildPlayers/getMembers?idGuild=' + guild.idguild).subscribe(membersIds => {
+                this.http.get<String[]>('http://localhost:8085/guildPlayers/getMembers?idGuild=' + guild.idguild).subscribe(membersIds => {
                     guild.members = this.playerService.getGuildWarriors(membersIds)
                 })
             }
@@ -37,14 +37,14 @@ export class GuildListService implements OnInit {
         return this.guilds;
     }
     getGuildsFromDataBase() {
-        return this.http.get<Guild[]>('http://localhost:8189/guild/getAll').pipe(tap(resData => {
+        return this.http.get<Guild[]>('http://localhost:8085/guild/getAll').pipe(tap(resData => {
             this.guilds = resData;
             for (let guild of this.guilds) {
                 console.log(guild.idguild);
-                this.http.get<String>('http://localhost:8189/guildPlayers/getGuildMaster?idGuild=' + guild.idguild).subscribe(guildMasterId => {
+                this.http.get<String>('http://localhost:8085/guildPlayers/getGuildMaster?idGuild=' + guild.idguild).subscribe(guildMasterId => {
                     guild.guildmaster = this.playerService.getGuildMaster(guildMasterId)
                 })
-                this.http.get<String[]>('http://localhost:8189/guildPlayers/getMembers?idGuild=' + guild.idguild).subscribe(membersIds => {
+                this.http.get<String[]>('http://localhost:8085/guildPlayers/getMembers?idGuild=' + guild.idguild).subscribe(membersIds => {
                     guild.members = this.playerService.getGuildWarriors(membersIds)
                 })
             }

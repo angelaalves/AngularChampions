@@ -32,14 +32,14 @@ export class NotificationsComponent implements OnInit {
     for (let idsofnoti of this.putview) {
       console.log("idsofnoti ");
       console.log(idsofnoti);
-      this.http.get<NotificationsReceivers[]>('http://localhost:8189/notificationreceivers/Get?idNotificationReceiver=' + idsofnoti).subscribe(dataaux => {
+      this.http.get<NotificationsReceivers[]>('http://localhost:8085/notificationreceivers/Get?idNotificationReceiver=' + idsofnoti).subscribe(dataaux => {
         const notificationnowseen = dataaux[0];
         const idNotificationReceiver = notificationnowseen.idnotificationReceiver;
         const idPlayerReceiverFK = notificationnowseen.idplayerReceiverFK;
         const ID_Notification_FK = notificationnowseen.idnotificationFK;
         const ID_Guild_FK = notificationnowseen.idguildFK;
         const notificationSeen = "1";
-        this.http.post<NotificationsReceivers>('http://localhost:8189/notificationreceivers/Update?idNotificationReceiver='
+        this.http.post<NotificationsReceivers>('http://localhost:8085/notificationreceivers/Update?idNotificationReceiver='
           + idNotificationReceiver + '&idPlayerReceiverFK=' + idPlayerReceiverFK +
           '&ID_Notification_FK=' + ID_Notification_FK + '&ID_Guild_FK=' + ID_Guild_FK + '&notificationSeen=' + notificationSeen,
           { idNotificationReceiver, idPlayerReceiverFK, ID_Notification_FK, ID_Guild_FK, notificationSeen }).subscribe(resData => {
@@ -61,7 +61,7 @@ export class NotificationsComponent implements OnInit {
   getNotifications() {
     this.notviewed = [];
     this.putview = [];
-    this.http.get<NotificationsReceivers[]>('http://localhost:8189/notificationreceivers/Get?idPlayerReceiverFK=' + this.session.playerSession.idplayer).subscribe(data => {
+    this.http.get<NotificationsReceivers[]>('http://localhost:8085/notificationreceivers/Get?idPlayerReceiverFK=' + this.session.playerSession.idplayer).subscribe(data => {
       this.notificationreceiver = data;
       this.notificationids = [];
       for (let noti of this.notificationreceiver) {
@@ -71,7 +71,7 @@ export class NotificationsComponent implements OnInit {
         }
       }
       for (let id of this.notificationids) {
-        this.http.get<Notification[]>('http://localhost:8189/notifications/Get?ID_Notification=' + id).subscribe(data => {
+        this.http.get<Notification[]>('http://localhost:8085/notifications/Get?ID_Notification=' + id).subscribe(data => {
           this.notviewed.push(data[0]);
         });
       }

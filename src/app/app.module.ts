@@ -70,6 +70,7 @@ import { AddNewVideoComponent } from './videos/add-new-video/add-new-video.compo
 import { ForgotpasswordComponent } from './login/forgotpassword/forgotpassword.component';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,

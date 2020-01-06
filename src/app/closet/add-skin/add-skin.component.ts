@@ -68,7 +68,7 @@ fileData: File=null;
 
     console.log('addUserForm', form.value);
 
-    this.http.post<any>('http://localhost:8189/skins/Create?idSkin=' + idSkin + '&skinName=' + skinName + '&imagePath=' + imagePath + '&minXP=' + minXP +
+    this.http.post<any>('http://localhost:8085/skins/Create?idSkin=' + idSkin + '&skinName=' + skinName + '&imagePath=' + imagePath + '&minXP=' + minXP +
       '&champiesCost=' + champiesCost + '&skinType=' + skinType,
       {
         idSkin,

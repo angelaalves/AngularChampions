@@ -4,9 +4,10 @@ import { Skin } from '../shared/skin.model';
 import { skinType } from '../shared/skinType.enum';
 import { HttpClient } from '@angular/common/http';
 import { Closet } from '../shared/closet.model';
-import { SessionService } from 'AngularChampions/src/app/services/session.service';
-import { status } from 'AngularChampions/src/app/shared/status.enum';
-import { Player } from 'AngularChampions/src/app/shared/player.model';
+import { SessionService } from './session.service';
+import { Player } from '../shared/player.model';
+import { status } from '../shared/status.enum';
+
 
 @Injectable({ providedIn: 'root' })
 export class SkinService implements OnInit {
@@ -38,10 +39,10 @@ export class SkinService implements OnInit {
     }
 
     ngOnInit() {
-        this.http.get<Closet[]>('http://localhost:8189/closet/Get?idPlayerFk=' + this.player.idPlayer + "&status=" + status, {}).subscribe(data => {
+        this.http.get<Closet[]>('http://localhost:8085/closet/Get?idPlayerFk=' + this.player.idplayer + "&status=" + status, {}).subscribe(data => {
             console.log(data);
             for (let d of data) {
-                this.http.get<Skin>('http://localhost:8189/skins/Get=idSkin' + d.idskinFK).subscribe(resdata => {
+                this.http.get<Skin>('http://localhost:8085/skins/Get=idSkin' + d.idskinFK).subscribe(resdata => {
                     console.log(resdata);
                     this.skins.push(resdata);
                 });

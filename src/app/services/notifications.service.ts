@@ -12,6 +12,6 @@ export class NotificationsService{
 
     fetchNotifications(email){
         const from=this.sessionService.getPlayerInSession().email
-        return this.http.get('http://localhost:8189/Notifications/send')
+        return this.http.get('http://localhost:8085/Notifications/send')
     }
 }

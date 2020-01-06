@@ -12,8 +12,8 @@ export class AuthenticationService {
  /*
   signup(email: string, password: string) {
     var xhr = new XMLHttpRequest();
-    xhr.open('POST', 'http://localhost:8189/login', true); 
-    return this.http.post<Player>('http://localhost:8189/login',
+    xhr.open('POST', 'http://localhost:8085/login', true); 
+    return this.http.post<Player>('http://localhost:8085/login',
       {
         email: email,
         password: password

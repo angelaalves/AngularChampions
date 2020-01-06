@@ -56,13 +56,13 @@ export class LoginComponent implements OnInit {
     //Login with email and password
     const email = form.value.email;
     const password = form.value.password;
-    this.http.post<any>('http://localhost:8189/login', { email: email, password: password }, { observe: 'response' }).subscribe(
+    this.http.post<any>('http://localhost:8085/login', { email: email, password: password }, { observe: 'response' }).subscribe(
       resData => {
         let token = resData.body;
         localStorage.setItem('token', token);
-        this.http.post<Player>('http://localhost:8189/players/Get?email=' + email, { email: email }).subscribe(resData => {
+        this.http.post<Player>('http://localhost:8085/players/Get?email=' + email, { email: email }).subscribe(resData => {
           if (resData[0].status == 'Active') {
-            this.http.get<string[]>('http://localhost:8189/closet/activeSkins?idPlayerFK=' + resData[0].idplayer).subscribe(data => {
+            this.http.get<string[]>('http://localhost:8085/closet/activeSkins?idPlayerFK=' + resData[0].idplayer).subscribe(data => {
               this.outfit = data;
               //Create player so we can give him an imagepath
               this.player = new Player(resData[0].idplayer, resData[0].userName, resData[0].email, resData[0].password, this.outfit, resData[0].xp,

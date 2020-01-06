@@ -23,7 +23,7 @@ export class GuildmasterPresenterPageComponent implements OnInit {
       this.id = +params['id'];
     });
     const idplayer = this.session.getPlayerInSession().idplayer;
-    this.http.get<String[]>('http://localhost:8189/closet/activeSkins?idPlayerFK=' + idplayer, {}).subscribe(data => {
+    this.http.get<String[]>('http://localhost:8085/closet/activeSkins?idPlayerFK=' + idplayer, {}).subscribe(data => {
       this.activeSkins = data;
       console.log(this.activeSkins);
     });

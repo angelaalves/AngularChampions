@@ -52,8 +52,8 @@ export class AddGuildListComponent implements OnInit {
     for(let playerId of this.warriorsSelected){
       playerIds.push(playerId.idplayer)
     }
-    this.http.post('http://localhost:8189/guild/Create?guildName='+name+'&startDate='+formatDate(startDate, "yyyy-MM-dd","en-UK")+'&endDate='+formatDate(endDate, "yyyy-MM-dd","en-UK")+'&guildFlag=../../assets/AppImages/DefaultFlag.png&status=Active',{}).subscribe(response=>{
-      this.http.get('http://localhost:8189/guildPlayers/createRecent?startDate='+formatDate(startDate, "yyyy-MM-dd","en-UK")+'&guildmaster='+this.guildmasterSelected.idplayer+'&players='+playerIds.toString()).subscribe()
+    this.http.post('http://localhost:8085/guild/Create?guildName='+name+'&startDate='+formatDate(startDate, "yyyy-MM-dd","en-UK")+'&endDate='+formatDate(endDate, "yyyy-MM-dd","en-UK")+'&guildFlag=../../assets/AppImages/DefaultFlag.png&status=Active',{}).subscribe(response=>{
+      this.http.get('http://localhost:8085/guildPlayers/createRecent?startDate='+formatDate(startDate, "yyyy-MM-dd","en-UK")+'&guildmaster='+this.guildmasterSelected.idplayer+'&players='+playerIds.toString()).subscribe()
     });
     this.router.navigate(['..'], {relativeTo: this.route});
   }

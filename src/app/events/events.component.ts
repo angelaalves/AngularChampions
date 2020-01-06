@@ -50,17 +50,17 @@ export class EventsComponent implements OnInit {
   }
 
   allEvents() {
-    this.http.get<Event[]>('http://localhost:8189/events/getAll').subscribe(data => {
+    this.http.get<Event[]>('http://localhost:8085/events/getAll').subscribe(data => {
       this.events = data;
     });
   }
 
   getAttendedEvents() {
-    this.http.get<AttendedEvents[]>('http://localhost:8189/attendedEvents/Get?idPlayerFK=' + this.session.playerSession.idplayer).subscribe(data => {
+    this.http.get<AttendedEvents[]>('http://localhost:8085/attendedEvents/Get?idPlayerFK=' + this.session.playerSession.idplayer).subscribe(data => {
       const obj = JSON.stringify(data);
       this.attendedEventsByPlayer = data;
       for (let aux of this.attendedEventsByPlayer) {
-        this.http.get<Event[]>('http://localhost:8189/events/get?idEvent=' + aux.ideventFK).subscribe(res => {
+        this.http.get<Event[]>('http://localhost:8085/events/get?idEvent=' + aux.ideventFK).subscribe(res => {
           const obj2 = JSON.stringify(res);
           this.eventsAttendedByPlayer.push(res[0]);
         });
@@ -74,14 +74,14 @@ export class EventsComponent implements OnInit {
       for (let idEvent of this.idOfEventsChecked) {
         const id = idEvent;
         const idplayer = this.session.playerSession.idplayer;
-        this.http.post<any>('http://localhost:8189/attendedEvents/Create?idEventsFK=' + id + '&idPlayerFK=' + idplayer,
+        this.http.post<any>('http://localhost:8085/attendedEvents/Create?idEventsFK=' + id + '&idPlayerFK=' + idplayer,
           {
             id,
             idplayer
           }).subscribe(data => {
           });
         var eventaux: Event;
-        this.http.get<Event[]>('http://localhost:8189/events/get?idEvent=' + idEvent).subscribe(res => {
+        this.http.get<Event[]>('http://localhost:8085/events/get?idEvent=' + idEvent).subscribe(res => {
           const obj2 = JSON.stringify(res);
           eventaux = res[0];
           const idPlayer = this.session.playerSession.idplayer;
@@ -124,7 +124,7 @@ export class EventsComponent implements OnInit {
           const champiesToGive = this.session.playerSession.champiesToGive;
           const myChampies = this.session.playerSession.myChampies;
           const status = this.session.playerSession.status;
-          this.http.post<any>('http://localhost:8189/players/Update?idPlayer=' + idPlayer + '&userName=' + userName + '&email=' + email + '&password=' + password + '&gender=' + gender + '&userType=' + userType + '&xp=' + xp + '&champiesToGive=' + champiesToGive + '&myChampies=' + myChampies + '&status=' + status,
+          this.http.post<any>('http://localhost:8085/players/Update?idPlayer=' + idPlayer + '&userName=' + userName + '&email=' + email + '&password=' + password + '&gender=' + gender + '&userType=' + userType + '&xp=' + xp + '&champiesToGive=' + champiesToGive + '&myChampies=' + myChampies + '&status=' + status,
             {
               idPlayer,
               userName,
@@ -146,12 +146,12 @@ export class EventsComponent implements OnInit {
       for (let idEvent of this.idOfEventsUnchecked) {
         const id = idEvent;
         const idplayer = this.session.playerSession.idplayer;
-        this.http.post<any>('http://localhost:8189/attendedEvents/Delete?idEventsFK=' + id + '&idPlayerFK=' + idplayer,
+        this.http.post<any>('http://localhost:8085/attendedEvents/Delete?idEventsFK=' + id + '&idPlayerFK=' + idplayer,
           {
             id,
             idplayer
           }).subscribe(data => { });
-        this.http.get<Event[]>('http://localhost:8189/events/get?idEvent=' + idEvent).subscribe(res => {
+        this.http.get<Event[]>('http://localhost:8085/events/get?idEvent=' + idEvent).subscribe(res => {
           const obj2 = JSON.stringify(res);
           eventaux = res[0];
           const idPlayer = this.session.playerSession.idplayer;
@@ -194,7 +194,7 @@ export class EventsComponent implements OnInit {
           const champiesToGive = this.session.playerSession.champiesToGive;
           const myChampies = this.session.playerSession.myChampies;
           const status = this.session.playerSession.status;
-          this.http.post<any>('http://localhost:8189/players/Update?idPlayer=' + idPlayer + '&userName=' + userName + '&email=' + email + '&password=' + password + '&gender=' + gender + '&userType=' + userType + '&xp=' + xp + '&champiesToGive=' + champiesToGive + '&myChampies=' + myChampies + '&status=' + status,
+          this.http.post<any>('http://localhost:8085/players/Update?idPlayer=' + idPlayer + '&userName=' + userName + '&email=' + email + '&password=' + password + '&gender=' + gender + '&userType=' + userType + '&xp=' + xp + '&champiesToGive=' + champiesToGive + '&myChampies=' + myChampies + '&status=' + status,
             {
               idPlayer,
               userName,
