@@ -11,6 +11,7 @@ export class SessionService {
     playerSession: Player;
     login: LoginComponent;
     isAuthenticated = new Subject<boolean>();
+    isAncient = new Subject<boolean>();
     guildservice:GuildListService;
 
     openSession(player: Player) {

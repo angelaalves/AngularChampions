@@ -15,6 +15,7 @@ import { userType } from '../shared/userType.enum';
 export class HeaderComponent implements OnInit {
   Authenticated=false;
   shoppingCartSkins: Skin[] = [];
+  isAncient=false;
 
   constructor(private router: Router, private route: ActivatedRoute, private session: SessionService, private skinService: SkinService) { }
   
@@ -22,8 +23,14 @@ export class HeaderComponent implements OnInit {
     this.session.isAuthenticated.subscribe(didAuthenticate=>{
       this.Authenticated=didAuthenticate;
     })
+    this.session.isAncient.subscribe(userType=>{
+      this.isAncient=userType;
+    })
     if(localStorage.getItem('playerlogged')){
       this.session.isAuthenticated.next(true);
+    }
+    if(this.session.getPlayerInSession().userType=='Ancient'){
+      this.session.isAncient.next(true);
     }
     this.skinService.shoppingCartSkins.subscribe(shoppingCart => this.shoppingCartSkins = shoppingCart);
   }
@@ -83,6 +90,7 @@ var bol=false;
     localStorage.removeItem('playerlogged')
     localStorage.removeItem('token')
     this.Authenticated=false;
+    this.isAncient=false;
     this.router.navigate(['login'], {relativeTo: this.route});
   }
 

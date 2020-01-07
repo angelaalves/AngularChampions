@@ -9,7 +9,7 @@
         <div class="col-xs-12" style="text-align: center;">
             <h3 for="guildName">Guild Name</h3>
             <input type="text" class="form-control" id="newGuildName" name="newGuildName"
-                style="max-width: 200px;margin-left: auto; margin-right: auto;" ngModel>
+                style="max-width: 200px;margin-left: auto; margin-right: auto;" ngModel required>
         </div>
     </div>
     <div class="row">
@@ -60,8 +60,9 @@
         </div>
     </div>
     <div id="footer">
-              <div class="form-row">
-            <button class="btn btn-primary" type="button" id="AButton" (click)="removePlayer()">remove last</button> <button class="btn btn-primary" id="AButton" type="submit">save</button>
+        <div class="form-row">
+            <button class="btn btn-primary" type="button" id="AButton" (click)="removePlayer()">remove last</button>
+            <button class="btn btn-primary" id="AButton" type="submit" [disabled]="!guildForm.valid">save</button>
         </div>
     </div>
 </form>

@@ -7,6 +7,7 @@ import { RewardService } from '../services/reward.service';
 import { SessionService } from '../services/session.service';
 import { PlayerService } from '../services/player.service';
 import { format } from 'url';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-rewards',
@@ -16,6 +17,7 @@ import { format } from 'url';
 
 @Injectable({ providedIn: 'root' })
 export class RewardsComponent implements OnInit {
+  valueSelected= new Subject<string>();
   selected = '0';
   idReward: number = 1;
   playerGiver: Player;
@@ -30,6 +32,9 @@ export class RewardsComponent implements OnInit {
   constructor(private router: Router, private route: ActivatedRoute, private http: HttpClient, private rewardsToApprove: RewardService, private sessionService: SessionService, private playerService: PlayerService) { }
 
   ngOnInit() {
+    this.valueSelected.subscribe(value=>{
+      this.selected=value;
+    })
     this.giver = this.sessionService.getPlayerInSession().userName;
     if(this.warriors.length<=0){
       this.warriors = this.playerService.getWarriors();
@@ -76,6 +81,11 @@ export class RewardsComponent implements OnInit {
 
 setChampiesgiven(champies:String){
  console.log(champies);
+}
+changeValueSelected(i:string){
+  console.log(i)
+  console.log(this.selected)
+  this.valueSelected.next(i);
 }
 
 }

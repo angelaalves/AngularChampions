@@ -9,8 +9,8 @@
                     <ul class="dropdown-menu dropdown-menu-left" id="pretty">
                         <li><a style="cursor: pointer"  (click)="onProfile()">Profile</a></li>
                         <li><a style="cursor: pointer" (click)="onCloset()">Closet</a></li>
-                        <li><a style="cursor: pointer" (click)="onReward()">Reward</a></li>
-                        <li><a style="cursor: pointer" (click)="onVideos()">Videos</a></li>
+                        <li *ngIf="!isAncient"><a style="cursor: pointer" (click)="onReward()">Reward</a></li>
+                        <li *ngIf="!isAncient"><a style="cursor: pointer" (click)="onVideos()">Videos</a></li>
                         <li><a style="cursor: pointer" (click)="onGuild()">Guild</a></li>
                         <li><a style="cursor: pointer" (click)="onEvents()">Events</a></li>
                         <li><a style="cursor: pointer" (click)="onNotifications()">Notifications</a></li>

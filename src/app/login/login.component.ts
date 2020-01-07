@@ -76,6 +76,7 @@ export class LoginComponent implements OnInit {
               this.session.openSession(this.player);
               //Select the profile using the usertype
               if (this.session.getPlayerInSession().userType == "Ancient") {
+                this.session.isAncient.next(true);
                 this.router.navigate(['/ancient_profile'], { relativeTo: this.route });
               }
               if (this.session.getPlayerInSession().userType == "GuildMaster") {
