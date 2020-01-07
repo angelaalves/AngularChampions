@@ -60,7 +60,7 @@ export class BuySkinComponent implements OnInit {
       var idSkin = item.idskin;
 
       if (this.player.myChampies >= item.champiesCost && this.player.xp >= item.minXP) {
-        this.http.post<any>('http://localhost:8189/closet/Create?idSkinFK=' + idSkin + '&idPlayerFk=' + idplayer + '&status=',
+        this.http.post<any>('http://localhost:8085/closet/Create?idSkinFK=' + idSkin + '&idPlayerFk=' + idplayer + '&status=',
           {
             idSkin,
             idplayer,
@@ -71,7 +71,7 @@ export class BuySkinComponent implements OnInit {
 
         const myChampiesAfterBuyingSkin = Number(this.player.myChampies) - Number(item.champiesCost);
 
-        this.http.post<any>('http://localhost:8189/players/Update?idPlayer=' + idplayer + '&idGuildFK= &userName= &email= &password= &gender= &userType= &xp= &champiesToGive= &myChampies=' + myChampiesAfterBuyingSkin + '&status= ',
+        this.http.post<any>('http://localhost:8085/players/Update?idPlayer=' + idplayer + '&idGuildFK= &userName= &email= &password= &gender= &userType= &xp= &champiesToGive= &myChampies=' + myChampiesAfterBuyingSkin + '&status= ',
           {
             idplayer,
             myChampiesAfterBuyingSkin
@@ -84,7 +84,7 @@ export class BuySkinComponent implements OnInit {
           const skinID = activeSkin.idskin;
           const skinStatus: status = status.Inactive;
           if (activeSkin.skinType === item.skinType) {
-            this.http.post<any>('http://localhost:8189/closet/Update?idSkinFK=' + skinID + '&idPlayerFk=' + idplayer + '&status=' + skinStatus,
+            this.http.post<any>('http://localhost:8085/closet/Update?idSkinFK=' + skinID + '&idPlayerFk=' + idplayer + '&status=' + skinStatus,
               {
                 skinID,
                 idplayer,

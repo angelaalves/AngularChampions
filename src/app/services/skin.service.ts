@@ -43,7 +43,7 @@ export class SkinService implements OnInit {
             console.log(data);
             for (let d of data) {
                 this.http.get<Skin>('http://localhost:8085/skins/Get=idSkin' + d.idskinFK).subscribe(resdata => {
-                    console.log("resdata ng on init do skin service:"+resdata);
+                    console.log(resdata);
                     this.skins.push(resdata);
                     this.inactiveSkinsToBe.push(resdata);
                     console.log("skin service: "+this.inactiveSkinsToBe);

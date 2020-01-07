@@ -22,6 +22,7 @@ export class LoginComponent implements OnInit {
   public player: Player;
   public data: AuthenticationService;
   public outfit: string[];
+  public loginIncorrect : boolean = false;
 
   ngOnInit() {
     if (localStorage.getItem('playerlogged')) {
@@ -50,14 +51,17 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(form: NgForm) {
+    this.loginIncorrect=false;
     if (!form.valid) {
       return;
+      
     }
     //Login with email and password
     const email = form.value.email;
     const password = form.value.password;
     this.http.post<any>('http://localhost:8085/login', { email: email, password: password }, { observe: 'response' }).subscribe(
       resData => {
+        this.loginIncorrect=false;
         let token = resData.body;
         localStorage.setItem('token', token);
         this.http.post<Player>('http://localhost:8085/players/Get?email=' + email, { email: email }).subscribe(resData => {
@@ -90,10 +94,25 @@ export class LoginComponent implements OnInit {
             console.log("Failed Authentication")
           }
         );
+       
         form.reset();
-      }
-    )
+      }, error=>{
+        this.loginWarning();
+      } 
+    );
+    
+     
   }
+
+  loginWarning(){
+    if(this.loginIncorrect=true){
+      this.router.navigate(['../login_warning_message'], {relativeTo: this.route});
+    }
+    
+  }
+
+    
+
 
   private handleError(errorRes: HttpErrorResponse) {
     let errorMessage = 'an unknown error occurred';

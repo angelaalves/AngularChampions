@@ -42,7 +42,7 @@ export class ClosetComponent implements OnInit {
 
   getSkins() {
     return new Promise(resolve => {
-      this.http.get<Skin[]>('http://localhost:8189/skins/getAll', {}).subscribe(data => {
+      this.http.get<Skin[]>('http://localhost:8085/skins/getAll', {}).subscribe(data => {
         for (var d of data) {
           if (d.skinType == skinType.Bottom) {
             this.bottoms.push(d);

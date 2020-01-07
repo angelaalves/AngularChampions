@@ -68,6 +68,8 @@ import { GuildPlayerPresenterComponent } from './guild-list-start/guild-list/add
 import { TableFilterPipe2 } from './videos/videos.pipe';
 import { AddNewVideoComponent } from './videos/add-new-video/add-new-video.component';
 import { ForgotpasswordComponent } from './login/forgotpassword/forgotpassword.component';
+import { WarningLoginComponent } from './login/warning-login/warning-login.component';
+import { ChangePasswordWarningComponent } from './change-password/change-password-warning/change-password-warning.component';
 
 
 
@@ -134,7 +136,10 @@ import { ForgotpasswordComponent } from './login/forgotpassword/forgotpassword.c
     TableFilterPipe2,
     ConfirmEqualValidatorDirective,
     GuildPlayerPresenterComponent,
+    ForgotpasswordComponent,
     AddNewVideoComponent,
+    WarningLoginComponent,
+    ChangePasswordWarningComponent
     ForgotpasswordComponent,
     AddNewVideoComponent
   ],

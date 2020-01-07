@@ -39,7 +39,7 @@ export class SkinBottomComponent implements OnInit {
     this.playerViewingSkins = this.session.playerSession.imagePath;
 
     console.log(this.player);
-    this.http.get<Closet[]>('http://localhost:8189/closet/Get?idSkinFK= &idPlayerFk=' + this.session.getPlayerInSession().idplayer + "&status=", {}).subscribe(data => {
+    this.http.get<Closet[]>('http://localhost:8085/closet/Get?idSkinFK= &idPlayerFk=' + this.session.getPlayerInSession().idplayer + "&status=", {}).subscribe(data => {
       this.allsessionsuserskins = data;
       console.log("this.alluserskins ", this.allsessionsuserskins);
     });

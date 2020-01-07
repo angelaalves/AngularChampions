@@ -11,7 +11,7 @@ import { AncientProfileComponent } from './ancient-profile/ancient-profile.compo
 import { ListUsersComponent } from './list-users/list-users.component';
 import { GuildListStartComponent } from './guild-list-start/guild-list-start.component';
 import { ClosetComponent } from './closet/closet.component';
-import { NgModule } from '@angular/core';
+import { NgModule, Component } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { SetPasswordComponent } from './set-password/set-password.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
@@ -27,12 +27,16 @@ import { ImageMakerComponent } from './image-maker/image-maker.component';
 import { BuySkinComponent } from './closet/buy-skin/buy-skin.component';
 import { AddNewVideoComponent } from './videos/add-new-video/add-new-video.component';
 import { ForgotpasswordComponent } from './login/forgotpassword/forgotpassword.component';
+import { WarningLoginComponent } from './login/warning-login/warning-login.component';
+import { ChangePasswordWarningComponent } from './change-password/change-password-warning/change-password-warning.component';
 
 const appRoutes: Routes = [
     { path: '', redirectTo: '/login', pathMatch: 'full' },
-    { path: 'login', component: LoginComponent },
+    { path: 'login', component: LoginComponent},
+    { path: 'login_warning_message', component: WarningLoginComponent},
     { path: 'set_password', component: SetPasswordComponent },
     { path: 'change_password', component: ChangePasswordComponent },
+    { path: 'change_password_warning', component: ChangePasswordWarningComponent },
     { path: 'warrior_profile', component: WarriorComponent },
     { path: 'guild/:idguild', component: GuildComponent },
     { path: 'guildmaster_profile', component: GuildMasterComponent },

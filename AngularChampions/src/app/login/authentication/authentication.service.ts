@@ -13,8 +13,8 @@ export class AuthenticationService {
 
   signup(email: string, password: string) {
     var xhr = new XMLHttpRequest();
-    xhr.open('POST', 'http://localhost:8189/players/Login?email='+email+'&password='+password, true); 
-    return this.http.post<Player>('http://localhost:8189/players/Login?email='+email+'&password='+password,
+    xhr.open('POST', 'http://localhost:8085/players/Login?email='+email+'&password='+password, true); 
+    return this.http.post<Player>('http://localhost:8085/players/Login?email='+email+'&password='+password,
       {
         email: email,
         password: password
