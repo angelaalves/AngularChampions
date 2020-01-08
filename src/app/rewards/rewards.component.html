@@ -22,16 +22,16 @@
         </div>
         <div style="margin-top: 1%;">
             <img src="../../assets/AppImages/clock.png" style="margin-right: 1em;" width="40" height="70">
-            <select style="background-color: whitesmoke; border: 2px solid  rgb(66, 66, 66)" value="time" name="time" [(value)]="selected"
-                ngModel>
-                <option value="1" name="Short"
-                    style="background-color: whitesmoke; border: 2px solid  rgb(66, 66, 66)" (click)="changeValueSelected('1')">under
+            <select #selectedTime style="background-color: whitesmoke; border: 2px solid  rgb(66, 66, 66)" value="time" name="time"
+                ngModel (change)="timeSelected(selectedTime.value)">
+                <option value="Short" name="Short"
+                    style="background-color: whitesmoke; border: 2px solid  rgb(66, 66, 66)" [selected]="1">under
                     5 minutes</option>
-                <option value="2" name="Medium"
-                    style="background-color: whitesmoke; border: 2px solid  rgb(66, 66, 66)" (click)="changeValueSelected('2')">
+                <option value="Medium" name="Medium"
+                    style="background-color: whitesmoke; border: 2px solid  rgb(66, 66, 66)" [selected]="2">
                     between 5 and 15 minutes</option>
-                <option value="3" name="Long"
-                    style="background-color: whitesmoke; border: 2px solid  rgb(66, 66, 66)" (click)="changeValueSelected('3')">over
+                <option value="Long" name="Long"
+                    style="background-color: whitesmoke; border: 2px solid  rgb(66, 66, 66)" [selected]="3">over
                     15 minutes</option>
             </select>
           

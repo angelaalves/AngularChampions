@@ -17,7 +17,7 @@ import { Subject } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class RewardsComponent implements OnInit {
-  valueSelected= new Subject<string>();
+  valueSelected = new Subject<string>();
   selected = '0';
   idReward: number = 1;
   playerGiver: Player;
@@ -28,18 +28,17 @@ export class RewardsComponent implements OnInit {
   receiver: string;
   champies: string;
 
-  champiesgiven:String="";
+  champiesgiven: String = "";
   constructor(private router: Router, private route: ActivatedRoute, private http: HttpClient, private rewardsToApprove: RewardService, private sessionService: SessionService, private playerService: PlayerService) { }
 
   ngOnInit() {
-    this.valueSelected.subscribe(value=>{
-      this.selected=value;
+    this.valueSelected.subscribe(value => {
+      this.selected = value;
     })
     this.giver = this.sessionService.getPlayerInSession().userName;
-    if(this.warriors.length<=0){
+    if (this.warriors.length <= 0) {
       this.warriors = this.playerService.getWarriors();
     }
-    console.log(this.warriors);
     let index = -1;
     for (let el of this.warriors) {
       this.receiver = el.userName;
@@ -54,7 +53,7 @@ export class RewardsComponent implements OnInit {
     this.warriorSelected = true;
     this.playerReceiver = warriorEl;
   }
-  
+
   onSubmit(form: NgForm) {
     if (!form.valid) {
       return;
@@ -64,28 +63,40 @@ export class RewardsComponent implements OnInit {
     const timeSpent = form.value.time;
     const reason = form.value.reason;
     this.http.post('http://localhost:8085/rewards/Reward?playerGiver=' + playerGiver + '&playerReceiver=' + playerReceiver + '&time=' + timeSpent + '&justification=' + reason, { playerGiver, playerReceiver, timeSpent, reason }).subscribe(resData => {
+      this.http.post<Player>('http://localhost:8085/players/Get?userName=' + playerGiver, {}).subscribe(resData => {
+
+        //Create player so we can give him an imagepath
+        var player = new Player(resData[0].idplayer, resData[0].userName, resData[0].email, resData[0].password, this.sessionService.getPlayerInSession().imagePath, resData[0].xp,
+          resData[0].champiesToGive, resData[0].myChampies, resData[0].userType, resData[0].gender, resData[0].status);
+        //Give a player to the player session so we can use it on other components
+        localStorage.setItem('playerlogged', JSON.stringify(player))
+        this.sessionService.openSession(player);
+        if (this.sessionService.getPlayerInSession().userType == "Ancient") {
+          this.router.navigate(['/ancient_profile'], { relativeTo: this.route });
+        }
+        if (this.sessionService.getPlayerInSession().userType == "GuildMaster") {
+          this.router.navigate(['/guildmaster_profile'], { relativeTo: this.route });
+        }
+        if (this.sessionService.getPlayerInSession().userType == "Warrior") {
+          this.router.navigate(['/warrior_profile'], { relativeTo: this.route });
+        }
+      });
       console.log("success")
     }, error => {
       console.log("something went wrong")
     })
-    if (this.sessionService.getPlayerInSession().userType == "Ancient") {
-      this.router.navigate(['/ancient_profile'], { relativeTo: this.route });
-    }
-    if (this.sessionService.getPlayerInSession().userType == "GuildMaster") {
-      this.router.navigate(['/guildmaster_profile'], { relativeTo: this.route });
-    }
-    if (this.sessionService.getPlayerInSession().userType == "Warrior") {
-      this.router.navigate(['/warrior_profile'], { relativeTo: this.route });
-    }
   }
 
-setChampiesgiven(champies:String){
- console.log(champies);
-}
-changeValueSelected(i:string){
-  console.log(i)
-  console.log(this.selected)
-  this.valueSelected.next(i);
-}
-
+  setChampiesgiven(champies: String) {
+    console.log(champies);
+  }
+  timeSelected(time: string) {
+    if (time == "Short") {
+      this.valueSelected.next('1');
+    } else if (time == "Medium") {
+      this.valueSelected.next('2');
+    } else if (time == "Long") {
+      this.valueSelected.next('3')
+    }
+  }
 }

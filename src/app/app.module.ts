@@ -139,8 +139,7 @@ import { ChangePasswordWarningComponent } from './change-password/change-passwor
     ForgotpasswordComponent,
     AddNewVideoComponent,
     WarningLoginComponent,
-    ChangePasswordWarningComponent
-    ForgotpasswordComponent,
+    ChangePasswordWarningComponent,
     AddNewVideoComponent
   ],
   imports: [

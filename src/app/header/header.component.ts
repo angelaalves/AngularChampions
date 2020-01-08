@@ -4,6 +4,9 @@ import { SessionService } from '../services/session.service';
 import { SkinService } from '../services/skin.service';
 import { Skin } from '../shared/skin.model';
 import { userType } from '../shared/userType.enum';
+import { listLazyRoutes } from '@angular/compiler/src/aot/lazy_routes';
+import { GuildListComponent } from '../guild-list-start/guild-list/guild-list.component';
+import { GuildListService } from '../services/guild-list.service';
 
 @Component({
   selector: 'app-header',
@@ -17,7 +20,7 @@ export class HeaderComponent implements OnInit {
   shoppingCartSkins: Skin[] = [];
   isAncient=false;
 
-  constructor(private router: Router, private route: ActivatedRoute, private session: SessionService, private skinService: SkinService) { }
+  constructor(private router: Router, private route: ActivatedRoute, private session: SessionService, private skinService: SkinService, private guildListService: GuildListService) { }
   
   ngOnInit() {
     this.session.isAuthenticated.subscribe(didAuthenticate=>{
@@ -76,8 +79,8 @@ var bol=false;
     if(this.session.getPlayerInSession().userType==userType.GuildMaster || this.session.getPlayerInSession().userType==userType.Ancient){
       this.router.navigate(['guilds_list'], {relativeTo: this.route});
     }else{
-      console.log(this.session.getGuildFromPlayer(this.session.getPlayerInSession().idplayer))
-      this.router.navigate(['guild', this.session.getGuildFromPlayer(this.session.getPlayerInSession().idplayer).idguild], {relativeTo: this.route});
+      var guildID=this.guildListService.getGuildByPlayer(this.session.getPlayerInSession().idplayer).idguild
+      this.router.navigate(['guild', guildID], {relativeTo: this.route});
     }
   }
   onEvents(){

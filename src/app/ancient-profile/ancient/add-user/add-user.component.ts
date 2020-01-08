@@ -36,7 +36,6 @@ export class AddUserComponent implements OnInit {
       return;
     }
 
-    const id = "1";
     const name = form.value.name;
     const email = form.value.email;
     const password = form.value.password;
@@ -47,39 +46,28 @@ export class AddUserComponent implements OnInit {
     const gender = form.value.gender;
     const playerType = form.value.playertype;
     const statusPlayer = status.Active;
-    console.log(form.value.name)
-    this.playerService.addPlayer(new Player(id, name, email, password, skins, xp, champiesToGive, myChampies, playerType, gender, statusPlayer));
-    console.log('addUserForm', form.value);
-
-    this.http.post<Player>('http://localhost:8085/players/Create?idPlayer=' + id + '&userName=' + name +
-      '&email=' + email + '&password=' + password + "&gender=" + gender + "&userType=" + playerType + '&xp=' + xp + '&champiesToGive=' + champiesToGive
-      + '&myChampies=' + myChampies + '&status=' + statusPlayer,
+    
+    
+    this.http.post<Player>('http://localhost:8085/players/CreateNewPlayer?&userName=' + name +
+      '&email=' + email + "&gender=" + gender + "&userType=" + playerType,
       {
-        id,
         name,
         email,
-        password,
-        skins,
-        xp,
-        champiesToGive,
-        myChampies,
         gender,
-        playerType,
-        statusPlayer
+        playerType
       }
     ).subscribe(success => {
-      this.http.post('http://localhost:8085/players/SendEmail?playerEmail=' + email, {}).subscribe(resData => {
-        console.log(resData);
-      })
+      this.http.get<Player>('http://localhost:8085/players/Get?userName=' + name).subscribe(res => {
+      idplayer = res.idplayer;
+      console.log(res.idplayer);
+      this.playerService.addPlayer(new Player(idplayer, name, email, password, skins, xp, champiesToGive, myChampies, playerType, gender, statusPlayer));
+    }); 
     }, error => {
       console.log("error creating player")
     });
-    var idplayer: String;
-    this.http.get<Player>('http://localhost:8085/players/Get?userName=' + name).subscribe(res => {
-      idplayer = res.idplayer;
-      console.log(idplayer);
-
-    });
+    var idplayer: string;
+    
+    
 
     if (playerType == userType.Warrior) {
       this.addActiveSkins(idplayer, gender);
@@ -98,7 +86,6 @@ export class AddUserComponent implements OnInit {
     var allskins: Skin[];
     this.http.get<Skin[]>('http://localhost:8085/skins/getAll').subscribe(res => {
       allskins = res;
-      console.log(allskins);
     });
     for (let skin of allskins) {
       const idskin = skin.idskin;
