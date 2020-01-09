@@ -1,10 +1,10 @@
-<div class="row">
-    <div class="col-xs-12" style="text-align: center;">
-        <a (click)=selectFlag()><img src={{flag}} alt="flag" style="max-height: 200px;"></a>
-        <input class="hidden" type="file" id="upload-file" name="upload-file" (click)=chooseFlag($event)>
-    </div>
-</div>
 <form #guildForm="ngForm" (ngSubmit)="createGuild(guildForm)" action="">
+    <div class="row">
+        <div class="col-xs-12" style="text-align: center;">
+            <a (click)=selectFlag()><img src={{flag}} alt="flag" style="max-height: 200px;"></a>
+            <input class="hidden" type="file" id="upload-file" name="upload-file" (click)=chooseFlag($event)>
+        </div>
+    </div>
     <div class="form-row">
         <div class="col-xs-12" style="text-align: center;">
             <h3 for="guildName">Guild Name</h3>
@@ -16,24 +16,29 @@
         <div class="col-xs-3 col-xs-offset-4"
             style="cursor: pointer;transform: translate(16.5%, 7%); display: flex; flex-wrap: wrap;">
             <ul>
-                <li class="dropdown" appDropdown>
+                <li class="dropdown" appDropdown style="display: inline-block;">
                     <a style="cursor: pointer; margin-left: auto; margin-right: auto;" class="dropdown-toggle"
                         role="button">
                         <img src="../../../assets/AppImages/plus.png" alt="flag"
                             style="max-height: 50px;margin-left: auto;margin-right: auto; vertical-align: middle;flex: 25%;"><span></span>
                     </a>
-                    <ul class="dropdown-menu dropdown-menu-center">
+                    <ul class="dropdown-menu dropdown-menu-center" style="display: inline-block">
                         <li *ngFor="let flag of flags"> <img src={{flag}} alt="flag"
-                                style="max-height: 100px;margin-left: auto;margin-right: auto; vertical-align: middle;" (click)="changeFlag(flag)"><a
-                                style="cursor: pointer;" ></a></li>
+                                style="max-height: 100px;margin-left: auto;margin-right: auto; vertical-align: middle;"
+                                (click)="changeFlag(flag)"><a style="cursor: pointer;"></a></li>
                     </ul>
                 </li>
             </ul>
             <div class="pull-down" style="text-align: center;">
                 <h3 class="list-group-item-heading" id="createGuildMaster">Change flag</h3>
             </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-3 col-xs-offset-4"
+            style="cursor: pointer;transform: translate(16.5%, 7%); display: flex; flex-wrap: wrap;" *ngIf="!guildmasterSelected">
             <ul>
-                <li class="dropdown" appDropdown>
+                <li class="dropdown" appDropdown style="display: inline-block;">
                     <a style="cursor: pointer; margin-left: auto; margin-right: auto;" class="dropdown-toggle"
                         role="button">
                         <img src="../../../assets/AppImages/plus.png" alt="plus"
@@ -60,7 +65,7 @@
         <div class="col-xs-3" style="cursor: pointer;margin-left: auto;margin-right: auto; display: block;"
             id="buttonAddPlayer">
             <ul>
-                <li class="dropdown" appDropdown>
+                <li class="dropdown" appDropdown style="display: inline-block">
                     <a style="cursor: pointer" class="dropdown-toggle" role="button">
                         <img src="../../../assets/AppImages/plus.png" alt="add" class="img-responsive"
                             style="max-height: 50px;margin-left: auto;margin-right: auto;vertical-align: middle;">
@@ -78,8 +83,8 @@
     </div>
     <div id="footer">
         <div class="form-row">
-            <button class="btn btn-primary" type="button" id="AButton" (click)="removePlayer()">remove last</button>
-            <button class="btn btn-primary" id="AButton" type="submit" [disabled]="!guildForm.valid" (click)="submit()">save</button>
+            <button class="btn btn-primary" type="button" id="BButton" (click)="removePlayer()">remove last</button>
+            <button class="btn btn-primary" type="submit" id="AButton" [disabled]="!guildForm.valid">save</button>
         </div>
     </div>
 </form>

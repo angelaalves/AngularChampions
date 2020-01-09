@@ -15,15 +15,16 @@
                     <!-- <option style="margin-left: 3%; background-color: whitesmoke; border: 2px solid rgb(65, 126, 218)">
                         Choose warrior</option> -->
                     <option *ngFor="let warriorEl of warriors" (click)="onPlayerSelection(warriorEl)"
-                        style="margin-left: 3%; background-color: whitesmoke; border: 2px solid  rgb(66, 66, 66)" selected>
+                        style="margin-left: 3%; background-color: whitesmoke; border: 2px solid  rgb(66, 66, 66)"
+                        selected>
                         {{warriorEl.userName}}</option>
                 </select>
             </div>
         </div>
         <div style="margin-top: 1%;">
             <img src="../../assets/AppImages/clock.png" style="margin-right: 1em;" width="40" height="70">
-            <select #selectedTime style="background-color: whitesmoke; border: 2px solid  rgb(66, 66, 66)" value="time" name="time"
-                ngModel (change)="timeSelected(selectedTime.value)">
+            <select #selectedTime style="background-color: whitesmoke; border: 2px solid  rgb(66, 66, 66)" value="time"
+                name="time" ngModel (change)="timeSelected(selectedTime.value)">
                 <option value="Short" name="Short"
                     style="background-color: whitesmoke; border: 2px solid  rgb(66, 66, 66)" [selected]="1">under
                     5 minutes</option>
@@ -34,18 +35,20 @@
                     style="background-color: whitesmoke; border: 2px solid  rgb(66, 66, 66)" [selected]="3">over
                     15 minutes</option>
             </select>
-          
-            <img src="../../assets/AppImages/ChampiesToGive1.png" style="margin-left: 1em;" width="60" height="60">{{selected}}
+
+            <img src="../../assets/AppImages/ChampiesToGive1.png" style="margin-left: 1em;" width="60"
+                height="60">{{selected}}
         </div>
         <div style="margin-top: 3%;">
             <label id="labelWhy" style=" font-size: 2ch;">Justify</label>
         </div>
         <div>
-            <textarea rows="7" cols="60" maxlength="9000" style="background-color: whitesmoke; border: 2px solid  rgb(66, 66, 66)"
-                name="reason" ngModel required></textarea>
+            <textarea rows="7" cols="60" maxlength="9000"
+                style="background-color: whitesmoke; border: 2px solid  rgb(66, 66, 66)" name="reason" ngModel
+                required></textarea>
         </div>
         <button type="submit" class="btn btn-link" style="margin-right: 6%; float:right">
-            <img src="../../assets/AppImages/msg.png" style="margin-right: 1em;" width="100" >
+            <img src="../../assets/AppImages/msg.png" style="margin-right: 1em;" width="100">
         </button>
     </form>
 </div>
