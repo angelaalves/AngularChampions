@@ -16,6 +16,7 @@ import { SessionService } from 'src/app/services/session.service';
 export class AddGuildListComponent implements OnInit {
   flag: String;
   warriorsSelected: Player[] = [];
+  flag: String;
   guildmasterSelected: Player;
   guildMasters: Player[];
   warriors: Player[];
