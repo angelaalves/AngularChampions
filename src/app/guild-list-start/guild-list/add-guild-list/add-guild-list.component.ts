@@ -26,15 +26,9 @@ export class AddGuildListComponent implements OnInit {
     "../../../../assets/Flags/flag9.png", "../../../../assets/Flags/flag10.png"];
 
 
-  
-  public flags: ["../../../../../assets/Flags/flag1.png", "../../../../../assets/Flags/flag2.png",
-   "../../../../../assets/Flags/flag3.png", "../../../../../assets/Flags/flag4.png",
-    "../../../../../assets/Flags/flag5.png", "../../../../../assets/Flags/flag6.png",
-     "../../../../../assets/Flags/flag7.png", "../../../../../assets/Flags/flag8.png",
-      "../../../../../assets/Flags/flag9.png", "../../../../../assets/Flags/flag10.png"];
 
 
-  constructor(private http: HttpClient,private guildService: GuildListService, private router: Router, private route: ActivatedRoute, private playerService: PlayerService) { 
+  constructor(private http: HttpClient,private guildService: GuildListService,private session: SessionService, private router: Router, private route: ActivatedRoute, private playerService: PlayerService) { 
   }
 
   ngOnInit() {
