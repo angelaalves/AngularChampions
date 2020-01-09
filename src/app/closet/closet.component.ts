@@ -134,7 +134,6 @@ export class ClosetComponent implements OnInit {
     // }
   }
 
-
   isItaWarrior(){
     var bol=false;
     if(this.session.playerSession.userType==userType.Warrior){

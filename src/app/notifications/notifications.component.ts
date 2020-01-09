@@ -61,7 +61,7 @@ export class NotificationsComponent implements OnInit {
   getNotifications() {
     this.notviewed = [];
     this.putview = [];
-    this.http.get<NotificationsReceivers[]>('http://localhost:8085/notificationreceivers/Get?idPlayerReceiverFK=' + this.session.playerSession.idplayer).subscribe(data => {
+    this.http.get<NotificationsReceivers[]>('http://localhost:8085/notificationreceivers/Get?idPlayerReceiverFK=' + this.session.getPlayerInSession().idplayer).subscribe(data => {
       this.notificationreceiver = data;
       this.notificationids = [];
       for (let noti of this.notificationreceiver) {
