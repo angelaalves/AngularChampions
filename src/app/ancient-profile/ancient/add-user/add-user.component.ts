@@ -18,17 +18,22 @@ import { Closet } from 'src/app/shared/closet.model';
 @Injectable({ providedIn: 'root' })
 export class AddUserComponent implements OnInit {
   addUserForm: FormGroup;
-
+   allskins: Skin[];
   constructor(private router: Router, private route: ActivatedRoute, private playerService: PlayerService, private http: HttpClient) {
   }
 
   ngOnInit() {
-  
+
     this.route.params.subscribe(
       (params: Params) => {
         this.initForm();
       }
     )
+    this.http.get<Skin[]>('http://localhost:8085/skins/getAll').subscribe(res => {
+      this.allskins = res;
+      console.log(res);
+      console.log(this.allskins);
+    });
   }
 
   onSubmit(form: NgForm) {
@@ -46,8 +51,8 @@ export class AddUserComponent implements OnInit {
     const gender = form.value.gender;
     const playerType = form.value.playertype;
     const statusPlayer = status.Active;
-    
-    
+
+
     this.http.post<Player>('http://localhost:8085/players/CreateNewPlayer?&userName=' + name +
       '&email=' + email + "&gender=" + gender + "&userType=" + playerType,
       {
@@ -58,16 +63,16 @@ export class AddUserComponent implements OnInit {
       }
     ).subscribe(success => {
       this.http.get<Player>('http://localhost:8085/players/Get?userName=' + name).subscribe(res => {
-      idplayer = res.idplayer;
-      console.log(res.idplayer);
-      this.playerService.addPlayer(new Player(idplayer, name, email, password, skins, xp, champiesToGive, myChampies, playerType, gender, statusPlayer));
-    }); 
+        idplayer = res.idplayer;
+        console.log(res.idplayer);
+        this.playerService.addPlayer(new Player(idplayer, name, email, password, skins, xp, champiesToGive, myChampies, playerType, gender, statusPlayer));
+      });
     }, error => {
       console.log("error creating player")
     });
     var idplayer: string;
-    
-    
+
+
 
     if (playerType == userType.Warrior) {
       this.addActiveSkins(idplayer, gender);
@@ -75,43 +80,20 @@ export class AddUserComponent implements OnInit {
       this.addAllSkins(idplayer, gender);
     }
 
-    
-      this.router.navigate(['/ancient_profile'], { relativeTo: this.route });
-   
- 
+
+    this.router.navigate(['/ancient_profile'], { relativeTo: this.route });
+
+
   }
 
   addAllSkins(idplayer: String, gender: String) {
 
-    var allskins: Skin[];
-    this.http.get<Skin[]>('http://localhost:8085/skins/getAll').subscribe(res => {
-      allskins = res;
-    });
-    for (let skin of allskins) {
-      const idskin = skin.idskin;
-      const status = 'Inactive';
-      this.http.post<Closet>('http://localhost:8085/closet/Create?idSkinFK=' + idskin + '&idPlayerFk=' + idplayer +
-        '&status=' + status,
-        {
-          idskin,
-          idplayer,
-          status
-        }
-      ).subscribe(success => {
+   
 
-        console.log(success);
-
-      }, error => {
-        console.log("error creating closet")
-      });
-    }
-    if (gender == 'F') {
-      
-      const skinsToActive = ["7", "9", "43", "57", "69", "78"];
-      for (let skin of skinsToActive) {
-        const idskin = skin;
-        const status = 'Active';
-        this.http.post<Closet>('http://localhost:8085/closet/Update?idSkinFK=' + idskin + '&idPlayerFk=' + idplayer +
+      for (let skin of this.allskins) {
+        const idskin = skin.idskin;
+        const status = 'Inactive';
+        this.http.post<Closet>('http://localhost:8085/closet/Create?idSkinFK=' + idskin + '&idPlayerFk=' + idplayer +
           '&status=' + status,
           {
             idskin,
@@ -126,28 +108,50 @@ export class AddUserComponent implements OnInit {
           console.log("error creating closet")
         });
       }
-    } else {
-     
-      const skinsToActive = ["7", "25", "43", "65", "68", "78"];
-      for (let skin of skinsToActive) {
-        const idskin = skin;
-        const status = 'Active';
-        this.http.post<Closet>('http://localhost:8085/closet/Update?idSkinFK=' + idskin + '&idPlayerFk=' + idplayer +
-          '&status=' + status,
-          {
-            idskin,
-            idplayer,
-            status
-          }
-        ).subscribe(success => {
+      if (gender == 'F') {
 
-          console.log(success);
+        const skinsToActive = ["7", "9", "43", "57", "69", "78"];
+        for (let skin of skinsToActive) {
+          const idskin = skin;
+          const status = 'Active';
+          this.http.post<Closet>('http://localhost:8085/closet/Update?idSkinFK=' + idskin + '&idPlayerFk=' + idplayer +
+            '&status=' + status,
+            {
+              idskin,
+              idplayer,
+              status
+            }
+          ).subscribe(success => {
 
-        }, error => {
-          console.log("error updating closet")
-        });
+            console.log(success);
+
+          }, error => {
+            console.log("error creating closet")
+          });
+        }
+      } else {
+
+        const skinsToActive = ["7", "25", "43", "65", "68", "78"];
+        for (let skin of skinsToActive) {
+          const idskin = skin;
+          const status = 'Active';
+          this.http.post<Closet>('http://localhost:8085/closet/Update?idSkinFK=' + idskin + '&idPlayerFk=' + idplayer +
+            '&status=' + status,
+            {
+              idskin,
+              idplayer,
+              status
+            }
+          ).subscribe(success => {
+
+            console.log(success);
+
+          }, error => {
+            console.log("error updating closet")
+          });
+        }
       }
-    }
+   
   }
 
   addActiveSkins(idplayer: String, gender: String) {

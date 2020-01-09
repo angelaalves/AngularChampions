@@ -5,8 +5,6 @@
 
   *{
     font-family: karmatic-arcade;
-    margin-left: 5%;
-    margin-right: 5%;
   }
 
   @font-face{
@@ -14,10 +12,9 @@
     font-family: pixelmix;
   }
 
-
-
   td{
     font-family: pixelmix;
+    
   }
 
   th{

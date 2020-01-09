@@ -1,51 +1,62 @@
-<div>
-   <div id="div_filter" style="display: inline-table">
+<div id="center"> 
+     <div style="padding-right: 50px; padding-left:50px;">
+    <div id="div_filter" style="display: inline-table;">
         <label for="singleSelect">Display players by:</label><br>
-        <select select class="input-sm" name="singleSelect" id="singleSelect" style=" background: whitesmoke; border: 2px solid rgb(66, 66, 66);" [(ngModel)]="userType">
+        <select select class="input-sm" name="singleSelect" id="singleSelect"
+            style=" background: whitesmoke; border: 2px solid rgb(66, 66, 66);" [(ngModel)]="userType">
             <option value="">All</option>
             <option value="Ancient">Ancients</option>
             <option value="GuildMaster">Guild Master</option>
-            <option value="Warrior">Warriors</option>   
+            <option value="Warrior">Warriors</option>
         </select>
     </div>
+  
+    <h2 style="margin-top: 3%;">Players</h2>
 
-    <h2 style="margin-top: 3%;" >Players</h2>
+        <table class="table table-bordered" style="margin: 0 auto;">
+            <thead style="border: 2px solid rgb(66, 66, 66);">
+                <tr>
+                    <th scope="col">Username</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Gender</th>
+                    <th scope="col">User Type</th>
+                    <th scope="col">XP</th>
+                    <th scope="col">Champies To Give</th>
+                    <th scope="col">My Champies</th>
+                    <th scope="col">Status</th>
+                </tr>
+            </thead>
+            <tbody style="background-color: whitesmoke; border: 2px solid rgb(66, 66, 66);">
+                <tr *ngFor="let playerEl of players | tableFilter: userType">
+                    <td *ngIf="playerEl.status == 'Active'" style="background-color: white">{{ playerEl.userName }}</td>
+                    <td *ngIf="playerEl.status == 'Active'">{{ playerEl.email }}</td>
+                    <td *ngIf="playerEl.status == 'Active'">{{ playerEl.gender }}</td>
+                    <td *ngIf="playerEl.status == 'Active'">{{ playerEl.userType }}</td>
+                    <td *ngIf="playerEl.status == 'Active'">{{ playerEl.xp }}</td>
+                    <td *ngIf="playerEl.status == 'Active'">{{ playerEl.champiesToGive }}</td>
+                    <td *ngIf="playerEl.status == 'Active'">{{ playerEl.myChampies }}</td>
+                    <td *ngIf="playerEl.status == 'Active'">{{ playerEl.status }}</td>
+                </tr>
 
-    <table class="table table-bordered" style="margin-left: 5%; margin-right: 5%; ">
-        <thead style="border: 2px solid rgb(66, 66, 66);">
-            <tr>
-                <th scope="col">Username</th>
-                <th scope="col">Email</th>
-                <th scope="col">Gender</th>
-                <th scope="col">User Type</th>
-                <th scope="col">XP</th>
-                <th scope="col">Champies To Give</th>
-                <th scope="col">My Champies</th>
-                <th scope="col">Status</th>
-            </tr>
-        </thead>
-        <tbody style="background-color: whitesmoke; border: 2px solid rgb(66, 66, 66);">
-            <tr *ngFor="let playerEl of players | tableFilter: userType" >
-                <td *ngIf="playerEl.status == 'Active'" style="background-color: white">{{ playerEl.userName }}</td>
-                <td *ngIf="playerEl.status == 'Active'">{{ playerEl.email }}</td>
-                <td *ngIf="playerEl.status == 'Active'">{{ playerEl.gender }}</td>
-                <td *ngIf="playerEl.status == 'Active'">{{ playerEl.userType }}</td>
-                <td *ngIf="playerEl.status == 'Active'">{{ playerEl.xp }}</td>
-                <td *ngIf="playerEl.status == 'Active'">{{ playerEl.champiesToGive }}</td>
-                <td *ngIf="playerEl.status == 'Active'">{{ playerEl.myChampies }}</td>
-                <td *ngIf="playerEl.status == 'Active'">{{ playerEl.status }}</td>
-            </tr>
-
-            <tr *ngFor="let playerEl of players | tableFilter: userType">
-                <td *ngIf="playerEl.status == 'Inactive'" style="background-color: rgb(233, 125, 106);">{{ playerEl.userName }}</td>
-                <td *ngIf="playerEl.status == 'Inactive'" style="background-color: rgb(233, 125, 106);">{{ playerEl.email }}</td>
-                <td *ngIf="playerEl.status == 'Inactive'" style="background-color: rgb(233, 125, 106);">{{ playerEl.gender }}</td>
-                <td *ngIf="playerEl.status == 'Inactive'" style="background-color: rgb(233, 125, 106);">{{ playerEl.userType }}</td>
-                <td *ngIf="playerEl.status == 'Inactive'" style="background-color: rgb(233, 125, 106);">{{ playerEl.xp }}</td>
-                <td *ngIf="playerEl.status == 'Inactive'" style="background-color: rgb(233, 125, 106);">{{ playerEl.champiesToGive }}</td>
-                <td *ngIf="playerEl.status == 'Inactive'" style="background-color: rgb(233, 125, 106);">{{ playerEl.myChampies }}</td>
-                <td *ngIf="playerEl.status == 'Inactive'" style="background-color: rgb(233, 125, 106);">{{ playerEl.status }}</td>
-            </tr>
-        </tbody>
-    </table>
+                <tr *ngFor="let playerEl of players | tableFilter: userType">
+                    <td *ngIf="playerEl.status == 'Inactive'" style="background-color: rgb(233, 125, 106);">
+                        {{ playerEl.userName }}</td>
+                    <td *ngIf="playerEl.status == 'Inactive'" style="background-color: rgb(233, 125, 106);">
+                        {{ playerEl.email }}</td>
+                    <td *ngIf="playerEl.status == 'Inactive'" style="background-color: rgb(233, 125, 106);">
+                        {{ playerEl.gender }}</td>
+                    <td *ngIf="playerEl.status == 'Inactive'" style="background-color: rgb(233, 125, 106);">
+                        {{ playerEl.userType }}</td>
+                    <td *ngIf="playerEl.status == 'Inactive'" style="background-color: rgb(233, 125, 106);">
+                        {{ playerEl.xp }}</td>
+                    <td *ngIf="playerEl.status == 'Inactive'" style="background-color: rgb(233, 125, 106);">
+                        {{ playerEl.champiesToGive }}</td>
+                    <td *ngIf="playerEl.status == 'Inactive'" style="background-color: rgb(233, 125, 106);">
+                        {{ playerEl.myChampies }}</td>
+                    <td *ngIf="playerEl.status == 'Inactive'" style="background-color: rgb(233, 125, 106);">
+                        {{ playerEl.status }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </div>
