@@ -100,9 +100,7 @@ export class LoginComponent implements OnInit {
       }, error=>{
         this.loginWarning();
       } 
-    );
-    
-     
+    );    
   }
 
   loginWarning(){
@@ -110,10 +108,7 @@ export class LoginComponent implements OnInit {
       this.router.navigate(['../login_warning_message'], {relativeTo: this.route});
     }
     
-  }
-
-    
-
+  }  
 
   private handleError(errorRes: HttpErrorResponse) {
     let errorMessage = 'an unknown error occurred';

@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-xs-12" style="text-align: center;">
-        <a (click)=selectFlag()><img src={{guildFlag}} alt="flag" style="max-height: 200px;"></a>
+        <a (click)=selectFlag()><img src={{flag}} alt="flag" style="max-height: 200px;"></a>
         <input class="hidden" type="file" id="upload-file" name="upload-file" (click)=chooseFlag($event)>
     </div>
 </div>
@@ -79,7 +79,7 @@
     <div id="footer">
         <div class="form-row">
             <button class="btn btn-primary" type="button" id="AButton" (click)="removePlayer()">remove last</button>
-            <button class="btn btn-primary" id="AButton" type="submit" [disabled]="!guildForm.valid">save</button>
+            <button class="btn btn-primary" id="AButton" type="submit" [disabled]="!guildForm.valid" (click)="submit()">save</button>
         </div>
     </div>
 </form>

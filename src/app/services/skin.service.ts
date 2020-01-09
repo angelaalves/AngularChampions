@@ -1,4 +1,4 @@
-import { Injectable, OnInit } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { Skin } from '../shared/skin.model';
 import { skinType } from '../shared/skinType.enum';
@@ -7,7 +7,6 @@ import { Closet } from '../shared/closet.model';
 import { SessionService } from './session.service';
 import { Player } from '../shared/player.model';
 import { status } from '../shared/status.enum';
-
 
 @Injectable({ providedIn: 'root' })
 export class SkinService {
@@ -32,15 +31,14 @@ export class SkinService {
     private skinRemove: boolean = false;
 
     player: Player; 
-    estado = status.Active;
 
     constructor(private http: HttpClient, private session: SessionService) {}
 
     ngOnInit() {
-        this.http.get<Closet[]>('http://localhost:8085/closet/Get?idPlayerFk=' + this.player.idplayer + "&status=" + status, {}).subscribe(data => {
+        this.http.get<Closet[]>('http://localhost:8085/closet/Get?idSkinFK=&idPlayerFk=' + this.player.idplayer + "&status=" + status.Active, {}).subscribe(data => {
             console.log(data);
             for (let d of data) {
-                this.http.get<Skin>('http://localhost:8085/skins/Get=idSkin' + d.idskinFK).subscribe(resdata => {
+                this.http.get<Skin>('http://localhost:8085/skins/Get?idSkin=' + d.idskinFK).subscribe(resdata => {
                     console.log(resdata);
                     this.skins.push(resdata);
                     this.inactiveSkinsToBe.push(resdata);
@@ -59,9 +57,10 @@ export class SkinService {
 
     addNewSkinInUse(skin: Skin) {
         this.player = this.session.getPlayerInSession();
-        this.http.get<Closet[]>('http://localhost:8085/closet/Get?idPlayerFk=' + this.player.idplayer + "&status=" + this.estado, {}).subscribe(data => {
+        this.http.get<Closet[]>('http://localhost:8085/closet/Get?idPlayerFk=' + this.player.idplayer + "&status=" + status.Active, {}).subscribe(data => {
             console.log(data);
             for (let d of data) {
+                console.log("dentro do for");
                 console.log(d.idskinFK);
                 this.http.get<Skin[]>('http://localhost:8085/skins/Get?idSkin=' + d.idskinFK).subscribe(resdata => {
                     console.log(resdata[0]);
