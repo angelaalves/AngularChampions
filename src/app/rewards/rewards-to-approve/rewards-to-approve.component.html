@@ -1,26 +1,26 @@
 <div id="divLeft">
     <div class="col-xs-4" style="text-align: center;" id="left">
-        <button class="btn btn-link" type="button"><img src="../../../assets/AppImages/rewardstoapprove.png"
-                alt="text" class="img-responsive" style="max-height: 50px;"></button>
-        <h4>Rewards to Approve</h4>
+        <img src="../../../assets/AppImages/rewardstoapprove.png"
+                alt="text" class="img-responsive" style="max-height:400px;margin-left: auto;margin-right: auto;">
+                <label style=" font-size: 2ch;   transform: translate(5%,0%);">Rewards to Approve</label>
     </div>
 </div>
 
 <div id="divRight">
-    <div class="centered" style="margin-top: 1%;">
-        <table class="table">
-            <thead>
+    <div class="eventscroll" id="style-8">
+        <table class="table table-bordered">
+            <thead  style="border: 2px solid rgb(0, 0, 0)">
                 <tr>
-                    <td scope="col">From</td>
-                    <td scope="col">To</td>
-                    <td scope="col">Date</td>
-                    <td scope="col">Justification</td>
-                    <td scope="col">Time spent</td>
-                    <td scope="col">Approve</td>
-                    <td scope="col">Disapprove</td>
+                    <th  scope="col">From</th >
+                    <th  scope="col">To</th >
+                    <th  scope="col">Date</th >
+                    <th  scope="col">Justification</th >
+                    <th  scope="col">Time spent</th >
+                    <th  scope="col">Approve</th >
+                    <th  scope="col">Disapprove</th >
                 </tr>
             </thead>
-            <tbody id="tableBody">
+            <tbody id="tableBody"  style="background-color: rgb(233, 231, 231); border: 2px solid rgb(0, 0, 0)">
                 <tr *ngFor="let r of rewardsToApprove">
                     <td>{{r.idplayerGiverFK}}</td>
                     <td>{{r.idplayerReceiverFK}}</td>

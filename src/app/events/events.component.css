@@ -15,22 +15,25 @@
     float: left;
 }
 .divRight {
-  transform: translate(15%,-60%);
-  height: 45vh;
-  width: 85vw;
+ 
+
+    transform: translate(30%,-80%);
+  height: 40vh;
+  width: 60vw;
     display:block;
     float: left;
 }
 #footer {
 
-  transform: translate(0%,-150%);
-    float: right;
+  transform: translate(10%,700%);
+  float: right;
 }
 
 
 .eventscroll{
   overflow-y: scroll;
-
+  height: 60vh;
+  width:70vw;
   overflow-x: hidden;
 }
 
