@@ -70,6 +70,7 @@ import { AddNewVideoComponent } from './videos/add-new-video/add-new-video.compo
 import { ForgotpasswordComponent } from './login/forgotpassword/forgotpassword.component';
 import { WarningLoginComponent } from './login/warning-login/warning-login.component';
 import { ChangePasswordWarningComponent } from './change-password/change-password-warning/change-password-warning.component';
+import { ErrorClosetComponent } from './closet/error-closet/error-closet.component';
 
 
 
@@ -140,7 +141,8 @@ import { ChangePasswordWarningComponent } from './change-password/change-passwor
     AddNewVideoComponent,
     WarningLoginComponent,
     ChangePasswordWarningComponent,
-    AddNewVideoComponent
+    AddNewVideoComponent,
+    ErrorClosetComponent
   ],
   imports: [
     //NgbModule,

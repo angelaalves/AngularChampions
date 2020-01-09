@@ -106,12 +106,7 @@ export class BuySkinComponent implements OnInit {
           }
         }
       } else if ((this.player.myChampies < item.champiesCost) || (this.player.xp < item.minXP)) {
-        Swal.fire({
-          icon: 'error',
-          title: 'Oops...',
-          text: 'You do not have enough champies and/or xp to purchase everything in your shopping cart',
-          footer: 'Please shorten your shopping cart'
-        });
+        this.router.navigate(['../app-error-closet'], { relativeTo: this.route });
       }
       this.player.changeImage(item.imagePath, item.skinType);
       this.activeSkins.push(item);
