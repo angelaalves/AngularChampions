@@ -5,23 +5,23 @@
 
 * {
     font-family: karmatic-arcade;
-    color: rgba(197, 6, 6, 0.836);
+    color: rgba(3, 3, 3, 0.836);
+    font-size: large;
     background-color: transparent;
 }
  
-
-#divLeft {
-    padding-left: 10vw;
-    height: 30vh;
-    width: 30vw;
-    transform: translate(-20%,10%);
-    display:block;
-    float: left;
-}
-#divRight {
-  padding-right: 10vw;
-    height: 30vh;
-    width:60vw;
-    display:block;
-    float: left;
-}
+img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto }
+div.container4 {
+    height: 10em;
+    position: relative }
+div.container4 p {
+    margin: 0;
+    background: yellow;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%) }
