@@ -9,7 +9,7 @@
         <div class="col-xs-12" style="text-align: center;">
             <h3 for="guildName">Guild Name</h3>
             <input type="text" class="form-control" id="newGuildName" name="newGuildName"
-                style="max-width: 400px;margin-left: auto; margin-right: auto;background: whitesmoke; border: 2px solid rgb(66, 66, 66)" ngModel required>
+                style="max-width: 200px;margin-left: auto; margin-right: auto;" ngModel required>
         </div>
     </div>
     <div class="row">
@@ -22,7 +22,7 @@
                         <img src="../../../assets/AppImages/plus.png" alt="flag"
                             style="max-height: 50px;margin-left: auto;margin-right: auto; vertical-align: middle;flex: 25%;"><span></span>
                     </a>
-                    <ul class="dropdown-menu dropdown-menu-center" style="display: inline-block">
+                    <ul class="dropdown-menu dropdown-menu-center">
                         <li *ngFor="let flag of flags"> <img src={{flag}} alt="flag"
                                 style="max-height: 100px;margin-left: auto;margin-right: auto; vertical-align: middle;"
                                 (click)="changeFlag(flag)"><a style="cursor: pointer;"></a></li>
@@ -65,7 +65,7 @@
         <div class="col-xs-3" style="cursor: pointer;margin-left: auto;margin-right: auto; display: block;"
             id="buttonAddPlayer">
             <ul>
-                <li class="dropdown" appDropdown style="display: inline-block">
+                <li class="dropdown" appDropdown>
                     <a style="cursor: pointer" class="dropdown-toggle" role="button">
                         <img src="../../../assets/AppImages/plus.png" alt="add" class="img-responsive"
                             style="max-height: 50px;margin-left: auto;margin-right: auto;vertical-align: middle;">

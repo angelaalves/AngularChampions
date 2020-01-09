@@ -40,8 +40,7 @@ const appRoutes: Routes = [
     { path: 'warrior_profile', component: WarriorComponent },
     { path: 'guild/:idguild', component: GuildComponent },
     { path: 'guildmaster_profile', component: GuildMasterComponent },
-    {
-        path: 'ancient_profile', component: AncientProfileComponent, children: [
+    { path: 'ancient_profile', component: AncientProfileComponent, children: [
             { path: '', component: AncientComponent },
             { path: 'add_guild', component: AddGuildListComponent },
             { path: 'add_events', component: AddEventsComponent },
@@ -50,16 +49,14 @@ const appRoutes: Routes = [
         ]
     },
     { path: 'ancient_profile', component: AncientComponent },
-    {
-        path: 'guilds_list', component: GuildListStartComponent, children: [
+    {path: 'guilds_list', component: GuildListStartComponent, children: [
             { path: '', component: GuildListComponent },
-            {
-                path: ':idguild', component: GuildComponent, children: [
+            { path: 'add_guild', component: AddGuildListComponent },
+            { path: ':idguild', component: GuildComponent, children: [
                     { path: '', component: GuildComponent },
                     { path: ':id', component: PresenterPageComponent }
                 ]
-            },
-            { path: 'add_guild', component: AddGuildListComponent }
+            }
         ]
     },
     { path: 'list_users', component: ListUsersComponent },

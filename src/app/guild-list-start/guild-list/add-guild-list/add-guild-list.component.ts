@@ -42,16 +42,7 @@ export class AddGuildListComponent implements OnInit {
   }
 
   submit() {
-    if (this.session.getPlayerInSession().userType == "Ancient") {
-      this.session.isAncient.next(true);
-      this.router.navigate(['/ancient_profile'], { relativeTo: this.route });
-    }
-    if (this.session.getPlayerInSession().userType == "GuildMaster") {
-      this.router.navigate(['/guildmaster_profile'], { relativeTo: this.route });
-    }
-    if (this.session.getPlayerInSession().userType == "Warrior") {
-      this.router.navigate(['/warrior_profile'], { relativeTo: this.route });
-    }
+    
   }
 
   changeFlag(flag: string) {
