@@ -1,4 +1,4 @@
-import { Injectable, OnInit } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { Skin } from '../shared/skin.model';
 import { skinType } from '../shared/skinType.enum';
@@ -8,9 +8,8 @@ import { SessionService } from './session.service';
 import { Player } from '../shared/player.model';
 import { status } from '../shared/status.enum';
 
-
 @Injectable({ providedIn: 'root' })
-export class SkinService implements OnInit {
+export class SkinService {
 
     private inactiveSkinsToBe: Skin[] = [];
 
@@ -31,18 +30,15 @@ export class SkinService implements OnInit {
     private skinExists: boolean = false;
     private skinRemove: boolean = false;
 
-    player: Player;
+    player: Player; 
 
-    constructor(private http: HttpClient, private session: SessionService) {
-        const estado: status = status.Active;
-        this.player = this.session.getPlayerInSession();
-    }
+    constructor(private http: HttpClient, private session: SessionService) {}
 
     ngOnInit() {
-        this.http.get<Closet[]>('http://localhost:8085/closet/Get?idPlayerFk=' + this.player.idplayer + "&status=" + status, {}).subscribe(data => {
+        this.http.get<Closet[]>('http://localhost:8085/closet/Get?idSkinFK=&idPlayerFk=' + this.player.idplayer + "&status=" + status.Active, {}).subscribe(data => {
             console.log(data);
             for (let d of data) {
-                this.http.get<Skin>('http://localhost:8085/skins/Get=idSkin' + d.idskinFK).subscribe(resdata => {
+                this.http.get<Skin>('http://localhost:8085/skins/Get?idSkin=' + d.idskinFK).subscribe(resdata => {
                     console.log(resdata);
                     this.skins.push(resdata);
                     this.inactiveSkinsToBe.push(resdata);
@@ -60,6 +56,23 @@ export class SkinService implements OnInit {
     }
 
     addNewSkinInUse(skin: Skin) {
+        this.player = this.session.getPlayerInSession();
+        this.http.get<Closet[]>('http://localhost:8085/closet/Get?idPlayerFk=' + this.player.idplayer + "&status=" + status.Active, {}).subscribe(data => {
+            console.log(data);
+            for (let d of data) {
+                console.log("dentro do for");
+                console.log(d.idskinFK);
+                this.http.get<Skin[]>('http://localhost:8085/skins/Get?idSkin=' + d.idskinFK).subscribe(resdata => {
+                    console.log(resdata[0]);
+                    this.skins.push(resdata[0]);
+                    console.log("this.skins");
+                    console.log(this.skins);
+                    this.inactiveSkinsToBe.push(resdata[0]);
+                    console.log("this.inactiveSkinsToBe");
+                    console.log(this.inactiveSkinsToBe);
+                });
+            }
+        });
         let index;
         if (skinType.Hair == skin.skinType) {
             index = 0;

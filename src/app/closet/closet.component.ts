@@ -104,40 +104,12 @@ export class ClosetComponent implements OnInit {
         console.log(data);
       });
     }
-
-    // // let objSkin: Closet;
-    // const statusSkin: status = status.Active;
-    // let s: Skin[];
-    // for (let skin of this.allsessionsuserskins) {
-    //   // this.http.get<Closet>('http://localhost:8085/closet/Get?idSkinFK=' + skin.idskinFK).subscribe(data => {
-    //   //     objSkin = data;
-    //   // });
-    //   this.http.get<Skin>('http://localhost:8085/skins/Get?idSkin=' + skin.idskinFK).subscribe(data => {
-    //     s.push(data);
-    //   });
-    // } for (let skin of s) {
-    //   const idskin = skin.idskin;
-    //   const idPlayer = this.player.idplayer;
-    //   this.http.post('http://localhost:8085/closet/Update?idSkinFK=' + skin.idskin + "&idPlayerFk=" + idPlayer + "&status=" + statusSkin, { idskin, idPlayer, statusSkin }).subscribe(data => {
-    //     console.log(data);
-    //   });
-    //   //this.session.getPlayerInSession().changeImage(skin.imagePath, objSkin.skinType);
-    //   let counter = 0;
-    //   for (let item of this.session.getPlayerInSession().imagePath) {
-    //     counter++;
-    //     const idskinToChange = this.player.imagePath[counter];
-    //     const statusInactive = status.Inactive;
-    //     this.http.post('http://localhost:8085/closet/Update?idSkinFK=' + idskinToChange + "&idPlayerFk=" + idPlayer + "&status=" + statusInactive, { idskinToChange, idPlayer, statusInactive }).subscribe(data => {
-    //       console.log(data);
-    //     });
-    //   }
-    // }
   }
 
-  isItaWarrior(){
-    var bol=false;
-    if(this.session.playerSession.userType==userType.Warrior){
-      bol=true;
+  isItaWarrior() {
+    var bol = false;
+    if (this.session.playerSession.userType == userType.Warrior) {
+      bol = true;
     }
     return bol;
   }
