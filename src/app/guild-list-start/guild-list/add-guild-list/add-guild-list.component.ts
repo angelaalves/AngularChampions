@@ -15,48 +15,61 @@ import { formatDate } from '@angular/common';
 export class AddGuildListComponent implements OnInit {
   guildFlag:String="../../../assets/AppImages/DefaultFlag.png";
   warriorsSelected:Player[]=[];
+  flag: String;
+  warriorsSelected: Player[] = [];
   guildmasterSelected: Player;
   guildMasters: Player[];
   warriors: Player[];
+  flags: String[] = ["../../../assets/Flags/flag1.png", "../../../../assets/Flags/flag2.png",
+    "../../../../assets/Flags/flag3.png", "../../../../assets/Flags/flag4.png",
+    "../../../../assets/Flags/flag5.png", "../../../../assets/Flags/flag6.png",
+    "../../../../assets/Flags/flag7.png", "../../../../../assets/Flags/flag8.png",
+    "../../../../assets/Flags/flag9.png", "../../../../assets/Flags/flag10.png"];
 
-  constructor(private http: HttpClient,private guildService: GuildListService, private router: Router, private route: ActivatedRoute, private playerService: PlayerService) { 
+  constructor(private http: HttpClient, private guildService: GuildListService, private router: Router, private route: ActivatedRoute, private playerService: PlayerService) {
   }
 
-  ngOnInit() { 
-    this.guildMasters=this.playerService.getGuildMasters();
-    this.warriors=this.playerService.getWarriors();
+  ngOnInit() {
+    this.guildMasters = this.playerService.getGuildMasters();
+    this.warriors = this.playerService.getWarriors();
   }
 
-  addPlayer(){
-    this.router.navigate(['../add_user'], {relativeTo: this.route});
-  } 
+  addPlayer() {
+    this.router.navigate(['../add_user'], { relativeTo: this.route });
+  }
 
-  submit(){
-    this.router.navigate(['/ancient_profile'], {relativeTo: this.route});
+  submit() {
+    this.router.navigate(['/ancient_profile'], { relativeTo: this.route });
   }
-  
-  onGuildMasterSelection(guildmaster: Player){
-    this.guildmasterSelected=guildmaster;
+
+  changeFlag(flag: string) {
+    this.flag=flag;
   }
-  onWarriorSelection(warrior: Player){
+
+  onGuildMasterSelection(guildmaster: Player) {
+    this.guildmasterSelected = guildmaster;
+  }
+  onWarriorSelection(warrior: Player) {
     this.warriorsSelected.push(warrior);
   }
-  removePlayer(){
-    this.warriorsSelected.splice(this.warriorsSelected.length-1,1)
+  removePlayer() {
+    this.warriorsSelected.splice(this.warriorsSelected.length - 1, 1)
   }
 
-  createGuild(form: NgForm){
-    const name=form.value.newGuildName;
-    var playerIds: String[]=[];
-    const startDate=new Date();
-    const endDate=new Date().setMonth(startDate.getMonth()+6);
-    for(let playerId of this.warriorsSelected){
+  createGuild(form: NgForm) {
+    const name = form.value.newGuildName;
+    var playerIds: String[] = [];
+    const startDate = new Date();
+    const endDate = new Date().setMonth(startDate.getMonth() + 6);
+    for (let playerId of this.warriorsSelected) {
       playerIds.push(playerId.idplayer)
     }
     this.http.post('http://localhost:8085/guild/Create?guildName='+name+'&startDate='+formatDate(startDate, "yyyy-MM-dd","en-UK")+'&endDate='+formatDate(endDate, "yyyy-MM-dd","en-UK")+'&guildFlag='+this.guildFlag+'&status=Active',{}).subscribe(response=>{
       this.http.get('http://localhost:8085/guildPlayers/createRecent?startDate='+formatDate(startDate, "yyyy-MM-dd","en-UK")+'&guildmaster='+this.guildmasterSelected.idplayer+'&players='+playerIds.toString()).subscribe()
+    this.http.post('http://localhost:8085/guild/Create?guildName=' + name + '&startDate=' + formatDate(startDate, "yyyy-MM-dd", "en-UK") + '&endDate=' + formatDate(endDate, "yyyy-MM-dd", "en-UK") + '&guildFlag=../../assets/AppImages/DefaultFlag.png&status=Active', {}).subscribe(response => {
+      this.http.get('http://localhost:8085/guildPlayers/createRecent?startDate=' + formatDate(startDate, "yyyy-MM-dd", "en-UK") + '&guildmaster=' + this.guildmasterSelected.idplayer + '&players=' + playerIds.toString()).subscribe()
     });
-    this.router.navigate(['..'], {relativeTo: this.route});
+    this.router.navigate(['..'], { relativeTo: this.route });
   }
   selectFlag(){
     document.getElementById('upload-file').click();
