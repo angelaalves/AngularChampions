@@ -39,17 +39,10 @@ export class GuildComponent implements OnInit {
 
   changeFlag(flag: string) {
     this.flag = flag;
-    
-    this.http.post('http://localhost:8085/guild/Update?idGuild=' + this.guild.idguild + '&guildName=' + name + '&startDate=' + formatDate(this.guild.startDate, "yyyy-MM-dd", "en-UK") + '&endDate=' + formatDate(this.guild.endDate, "yyyy-MM-dd", "en-UK") + '&guildFlag=' + this.flag + '&status=Active', {}).subscribe();
-  }
-
-  uFlag() {
-    
+    this.http.post('http://localhost:8085/guild/Update?idGuild=' + this.guild.idguild + '&guildName=' + this.guild.guildName + '&startDate=' + formatDate(this.guild.startDate, "yyyy-MM-dd", "en-UK") + '&endDate=' + formatDate(this.guild.endDate, "yyyy-MM-dd", "en-UK") + '&guildFlag=' + this.flag + '&status=Active', {}).subscribe();
   }
 
   chooseFlag(fileInput: File) {
-    this.flag = '../../../assets/AppImages/' + fileInput.name;
-    console.log(this.flag);
-    
+    this.flag = '../../../assets/AppImages/' + fileInput.name; 
   }
 }
