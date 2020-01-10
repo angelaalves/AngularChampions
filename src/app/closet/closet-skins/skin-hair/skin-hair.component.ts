@@ -15,7 +15,7 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./skin-hair.component.css']
 })
 
-@Injectable({providedIn: 'root'})
+@Injectable({ providedIn: 'root' })
 export class SkinHairComponent implements OnInit {
   @Input() hair: Skin[];
   @Input() player: Player;
@@ -25,20 +25,15 @@ export class SkinHairComponent implements OnInit {
   shoppingCartSkins: Skin[] = [];
   skins: Skin[] = [];
 
-  constructor(private router: Router, private route: ActivatedRoute, private skinSelectedService: SkinSelectedService, 
-    private session: SessionService, private skinService : SkinService, private http: HttpClient) { }
+  constructor(private router: Router, private route: ActivatedRoute, private skinSelectedService: SkinSelectedService,
+    private session: SessionService, private skinService: SkinService, private http: HttpClient) { }
 
   ngOnInit() {
     this.player = this.session.getPlayerInSession();
-
     this.skinService.shoppingCartSkins.subscribe(shoppingCart => this.shoppingCartSkins = shoppingCart);
-
     this.skinService.changingSkins.subscribe(newSkinsSelected => this.skins = newSkinsSelected);
-
     this.playerInitialSkins = this.session.playerSession.imagePath;
-
     this.playerViewingSkins = this.session.playerSession.imagePath;
-
     this.http.get<Closet[]>('http://localhost:8085/closet/Get?idSkinFK= &idPlayerFk=' + this.session.getPlayerInSession().idplayer + "&status=", {}).subscribe(data => {
       this.allsessionsuserskins = data;
       for (let s of this.allsessionsuserskins) {
@@ -48,15 +43,15 @@ export class SkinHairComponent implements OnInit {
     });
   }
 
-  skinInUse(skin: Skin){
-    if(this.session.playerSession.imagePath.includes(skin.imagePath)){
+  skinInUse(skin: Skin) {
+    if (this.session.playerSession.imagePath.includes(skin.imagePath)) {
       return true;
     }
     return false;
   }
-  
-  hasEnoughXP(skin: Skin){
-    if(this.player.xp>=skin.minXP){
+
+  hasEnoughXP(skin: Skin) {
+    if (this.player.xp >= skin.minXP) {
       return true;
     }
     return false;
@@ -64,33 +59,33 @@ export class SkinHairComponent implements OnInit {
 
   playerHasBoughtSkin(skin: Skin) {
     for (let s of this.allsessionsuserskins) {
-      if (s.idskinFK==skin.idskin) {
+      if (s.idskinFK == skin.idskin) {
         return true;
       }
     }
     return false;
   }
 
-  imageNull(skin: Skin){
-    if(skin.imagePath=="../../assets/AppImages/None.png"){
+  imageNull(skin: Skin) {
+    if (skin.imagePath == "../../assets/AppImages/None.png") {
       return true;
     }
     return false;
   }
-  
+
   skinSelected(skinSelected: Skin) {
     this.playerViewingSkins = this.playerInitialSkins;
     this.session.playerSession.changeImage(skinSelected.imagePath, skinSelected.skinType);
 
-    if (this.playerHasBoughtSkin(skinSelected) == false) {
+    if (this.playerHasBoughtSkin(skinSelected) == false && this.hasEnoughXP(skinSelected) == true) {
       this.skinService.addToShoppingCart(skinSelected);
     }
     this.skinService.setAnySkinSelected(true);
     this.skinService.addNewSkinInUse(skinSelected);
   }
 
-  
-  skinSelectedNull(skinSelected: Skin){
+
+  skinSelectedNull(skinSelected: Skin) {
     this.playerViewingSkins = this.playerInitialSkins;
     this.session.playerSession.changeImage("./../../../assets/Hair/HairNull.png", skinType.Hair);
     this.skinService.setAnySkinSelected(true);

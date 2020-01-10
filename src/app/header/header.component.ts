@@ -45,7 +45,7 @@ export class HeaderComponent implements OnInit {
   isItCloset() {
     var bol = false;
     if (this.router.url === '/closet') {
-      if (this.playerlogged.userType == userType.Warrior) {
+      if (this.session.getPlayerInSession().userType == userType.Warrior) {
         bol = true;
       }
     }

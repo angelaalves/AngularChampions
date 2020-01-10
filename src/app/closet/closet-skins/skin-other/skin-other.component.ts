@@ -82,7 +82,7 @@ export class SkinOtherComponent implements OnInit {
     this.playerViewingSkins = this.playerInitialSkins;
     this.session.playerSession.changeImage(skinSelected.imagePath, skinSelected.skinType);
 
-    if (this.playerHasBoughtSkin(skinSelected) == false) {
+    if (this.playerHasBoughtSkin(skinSelected) == false  && this.hasEnoughXP(skinSelected) == true) {
       this.skinService.addToShoppingCart(skinSelected);
     }
     this.skinService.addNewSkinInUse(skinSelected);

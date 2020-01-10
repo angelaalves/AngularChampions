@@ -28,15 +28,10 @@ export class SkinSkincolorComponent implements OnInit {
 
   ngOnInit() {
     this.player = this.session.getPlayerInSession();
-
     this.skinService.shoppingCartSkins.subscribe(shoppingCart => this.shoppingCartSkins = shoppingCart);
-
-     this.skinService.changingSkins.subscribe(newSkinsSelected => this.skins = newSkinsSelected);
-
+    this.skinService.changingSkins.subscribe(newSkinsSelected => this.skins = newSkinsSelected);
     this.playerInitialSkins = this.session.playerSession.imagePath;
-
     this.playerViewingSkins = this.session.playerSession.imagePath;
-
     this.http.get<Closet[]>('http://localhost:8085/closet/Get?idSkinFK= &idPlayerFk=' + this.session.getPlayerInSession().idplayer + "&status=", {}).subscribe(data => {
       this.allsessionsuserskins = data;
       for (let s of this.allsessionsuserskins) {
@@ -53,8 +48,8 @@ export class SkinSkincolorComponent implements OnInit {
     return false;
   }
 
-  hasEnoughXP(skin: Skin){
-    if(this.player.xp>=skin.minXP){
+  hasEnoughXP(skin: Skin) {
+    if (this.player.xp >= skin.minXP) {
       return true;
     }
     return false;
@@ -73,7 +68,7 @@ export class SkinSkincolorComponent implements OnInit {
     this.playerViewingSkins = this.playerInitialSkins;
     this.session.playerSession.changeImage(skinSelected.imagePath, skinSelected.skinType);
 
-    if (this.playerHasBoughtSkin(skinSelected) == false) {
+    if (this.playerHasBoughtSkin(skinSelected) == false  && this.hasEnoughXP(skinSelected) == true) {
       this.skinService.addToShoppingCart(skinSelected);
     }
     this.skinService.setAnySkinSelected(true);

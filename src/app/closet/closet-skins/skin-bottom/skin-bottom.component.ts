@@ -46,8 +46,8 @@ export class SkinBottomComponent implements OnInit {
     return false;
   }
 
-  hasEnoughXP(skin: Skin){
-    if(this.player.xp>=skin.minXP){
+  hasEnoughXP(skin: Skin) {
+    if (this.player.xp >= skin.minXP) {
       return true;
     }
     return false;
@@ -81,7 +81,7 @@ export class SkinBottomComponent implements OnInit {
   skinSelected(skinSelected: Skin) {
     this.playerViewingSkins = this.playerInitialSkins;
     this.session.playerSession.changeImage(skinSelected.imagePath, skinSelected.skinType);
-    if (this.playerHasBoughtSkin(skinSelected) == false) {
+    if (this.playerHasBoughtSkin(skinSelected) == false && this.hasEnoughXP(skinSelected) == true) {
       this.skinService.addToShoppingCart(skinSelected);
     }
     this.skinService.setAnySkinSelected(true);
