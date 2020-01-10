@@ -41,7 +41,6 @@ export class ClosetComponent implements OnInit {
     this.player = this.session.playerSession;
     this.http.get<Closet[]>('http://localhost:8085/closet/Get?idSkinFK= &idPlayerFk=' + this.player.idplayer + "&status=", {}).subscribe(data => {
       this.allsessionsuserskins = data;
-      console.log("this.alluserskins ", this.allsessionsuserskins);
     });
     this.getSkins();
     this.totalcost = this.skinService.totalcost;
