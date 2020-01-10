@@ -30,6 +30,8 @@ export class ClosetComponent implements OnInit {
   allSkins: Skin[] = [];
   allsessionsuserskins: Closet[] = [];
 
+  totalcost = 0;
+
   private skin = new BehaviorSubject<Skin>(new Skin("", "", "", "", "", null));
   closetSkinSelected = this.skin.asObservable();
 
@@ -48,24 +50,24 @@ export class ClosetComponent implements OnInit {
   }
 
   getSkins() {
-      this.http.get<Skin[]>('http://localhost:8085/skins/getAll', {}).subscribe(data => {
-        this.allSkins = data;
-        for (var d of data) {
-          if (d.skinType == skinType.Bottom) {
-            this.bottoms.push(d);
-          } else if (d.skinType == skinType.SkinColor) {
-            this.skincolors.push(d);
-          } else if (d.skinType == skinType.Hair) {
-            this.hair.push(d);
-          } else if (d.skinType == skinType.Top) {
-            this.tops.push(d);
-          } else if (d.skinType == skinType.Shoes) {
-            this.shoes.push(d);
-          } else if (d.skinType == skinType.Others) {
-            this.others.push(d);
-          }
+    this.http.get<Skin[]>('http://localhost:8085/skins/getAll', {}).subscribe(data => {
+      this.allSkins = data;
+      for (var d of data) {
+        if (d.skinType == skinType.Bottom) {
+          this.bottoms.push(d);
+        } else if (d.skinType == skinType.SkinColor) {
+          this.skincolors.push(d);
+        } else if (d.skinType == skinType.Hair) {
+          this.hair.push(d);
+        } else if (d.skinType == skinType.Top) {
+          this.tops.push(d);
+        } else if (d.skinType == skinType.Shoes) {
+          this.shoes.push(d);
+        } else if (d.skinType == skinType.Others) {
+          this.others.push(d);
         }
-      })
+      }
+    })
   }
 
   redirectToBuySkin() {

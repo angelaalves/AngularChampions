@@ -30,11 +30,11 @@ export class SkinService {
     private skinExists: boolean = false;
     private skinRemove: boolean = false;
 
-    totalcost=0;
+    totalcost = 0;
 
     player: Player;
 
-    totalcost = 0;
+    constructor(private http: HttpClient, private session: SessionService){}
 
     ngOnInit() {
         this.skins = [];
@@ -55,7 +55,7 @@ export class SkinService {
         });
     }
 
-    isShoppingCartEmpty(){
+    isShoppingCartEmpty() {
         if (this.skinsToBeBought.length > 0) {
             return false;
         }
