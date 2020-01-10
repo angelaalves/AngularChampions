@@ -34,13 +34,13 @@ export class SkinService {
 
     player: Player;
 
-    constructor(private http: HttpClient, private session: SessionService) { }
+    totalcost = 0;
 
     ngOnInit() {
         this.skins = [];
         this.inactiveSkinsToBe = [];
         this.http.get<Closet[]>('http://localhost:8085/closet/Get?idSkinFK=&idPlayerFk=' + this.player.idplayer + "&status=" + status.Active, {}).subscribe(data => {
-            let activeSkins: String[]=[];
+            let activeSkins: String[] = [];
             for (let skin of data) {
                 if (skin.status == "Active") {
                     activeSkins.push(skin.idskinFK);
@@ -67,7 +67,7 @@ export class SkinService {
         this.inactiveSkinsToBe = [];
         this.player = this.session.getPlayerInSession();
         this.http.get<Closet[]>('http://localhost:8085/closet/Get?idPlayerFk=' + this.player.idplayer, {}).subscribe(data => {
-            let activeSkins: String[]=[];
+            let activeSkins: String[] = [];
             for (let skin of data) {
                 if (skin.status == "Active") {
                     activeSkins.push(skin.idskinFK);
@@ -78,17 +78,17 @@ export class SkinService {
                     this.skins.push(resdata[0]);
                     this.inactiveSkinsToBe.push(resdata[0]);
                     let index;
-                    if (skin.skinType==skinType.Hair ) {
+                    if (skin.skinType == skinType.Hair) {
                         index = 0;
-                    } else if (skin.skinType==skinType.SkinColor) {
+                    } else if (skin.skinType == skinType.SkinColor) {
                         index = 1;
-                    } else if (skin.skinType==skinType.Top) {
+                    } else if (skin.skinType == skinType.Top) {
                         index = 2;
-                    } else if (skin.skinType==skinType.Bottom) {
+                    } else if (skin.skinType == skinType.Bottom) {
                         index = 3;
-                    } else if (skin.skinType==skinType.Shoes) {
+                    } else if (skin.skinType == skinType.Shoes) {
                         index = 4;
-                    } else if (skin.skinType==skinType.Others) {
+                    } else if (skin.skinType == skinType.Others) {
                         index = 5;
                     }
                     this.inactiveSkinsToBe.push(this.skins[index]);

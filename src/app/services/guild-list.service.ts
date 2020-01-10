@@ -9,9 +9,7 @@ export class GuildListService implements OnInit {
 
     private guilds: Guild[] = [];
     
-    constructor(private http: HttpClient, private playerService: PlayerService) {
-
-    }
+    constructor(private http: HttpClient, private playerService: PlayerService) {}
 
     ngOnInit() {
         this.http.get<Guild[]>('http://localhost:8085/guild/getAll').subscribe(resData => {
@@ -68,7 +66,4 @@ export class GuildListService implements OnInit {
             }
         }
     }
-
-
-
 }

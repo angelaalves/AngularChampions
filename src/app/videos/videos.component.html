@@ -1,8 +1,8 @@
 <div id="divLeft">
-<img style="width:90%" src="../../assets/AppImages/Videos.png">
-    <label style=" font-size: 4ch;   transform: translate(35%,-60%);">Videos</label> 
+    <img style="width:90%" src="../../assets/AppImages/Videos.png">
+    <label style=" font-size: 4ch;   transform: translate(35%,-60%);">Videos</label>
     <div *ngIf="isItaWarrior()==false">
-        <button id="save"class="btn btn-primary" (click)="addNewVideo()">Add</button>
+        <button id="save" class="btn btn-primary" (click)="addNewVideo()">Add</button>
     </div>
 </div>
 <div id="divRight">
@@ -20,14 +20,14 @@
     <br>
     <br>
     <br>
-   
+
     <div class="videoscroll" id="style-8">
         <table class="table table-bordered">
             <thead style="border: 2px solid rgb(0, 0, 0)">
                 <tr>
                     <th scope="col">Seen</th>
                     <th scope="col">Video Name</th>
-                    <th scope="col">Time</th>
+                    <th scope="col">Priority</th>
                 </tr>
             </thead>
 
@@ -52,6 +52,5 @@
     </div>
     <div id="footer">
         <button type="submit" class="btn btn-primary" id="save" style="margin-right: 1%;" (click)="Save()">Save</button>
-
     </div>
 </div>

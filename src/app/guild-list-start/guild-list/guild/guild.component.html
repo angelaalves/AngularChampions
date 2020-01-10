@@ -1,8 +1,32 @@
-<div class="row">
-    <div class="col-xs-12" style="text-align: center;">
-        <img src="{{guild.guildFlag}}" alt="{{guild.guildName}}" style="max-height: 200px;">
+<form #changeFlag="ngForm" (ngSubmit)="changeFlag(changeFlag)" action="">
+    <div class="row">
+        <div class="col-xs-12" style="text-align: center;">
+            <img src="{{guild.guildFlag}}" alt="{{guild.guildName}}" style="max-height: 200px;">
+            <div class="row">
+                <div class="col-xs-3 col-xs-offset-4"
+                    style="cursor: pointer;transform: translate(16.5%, 7%); display: flex; flex-wrap: wrap;">
+                    <ul>
+                        <li class="dropdown" appDropdown style="display: inline-block;">
+                            <a style="cursor: pointer; margin-left: auto; margin-right: auto;" class="dropdown-toggle"
+                                role="button">
+                                <img src="../../../assets/AppImages/plus.png" alt="flag"
+                                    style="max-height: 50px;margin-left: auto;margin-right: auto; vertical-align: middle;flex: 25%;"><span></span>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-center">
+                                <li *ngFor="let flag of flags"> <img src={{flag}} alt="flag"
+                                        style="max-height: 100px;margin-left: auto;margin-right: auto; vertical-align: middle;"
+                                        (click)="change(flag)"><a style="cursor: pointer;"></a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <div class="pull-down" style="text-align: center; margin-inline-start: 2%;">
+                        <h3 class="list-group-item-heading" id="createGuildMaster">Change flag</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-</div>
+</form>
 <div class="row">
     <div class="col-xs-12" style="text-align: center;">
         <h2>{{guild.guildName}}</h2>
@@ -13,7 +37,7 @@
         <app-guild-member [player]="guildmaster"></app-guild-member>
     </div>
 </div>
-<hr >
+<hr>
 <div class="row">
     <div class="col-xs-3" *ngFor="let playerEl of players">
         <app-guild-member [player]="playerEl" [index]="playerEl.idplayer"></app-guild-member>

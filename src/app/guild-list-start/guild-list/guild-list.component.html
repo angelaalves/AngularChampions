@@ -7,7 +7,8 @@
     <div class="row">
         <div class="col-xs-3" *ngFor="let guildEl of guilds" id="divButtons"
             style="margin-left: auto;margin-right: auto;">
-            <app-guild-list-elem [guild]="guildEl" [index]="guildEl.idguild" style="background-color:transparent ; "></app-guild-list-elem>
+            <app-guild-list-elem [guild]="guildEl" [index]="guildEl.idguild" style="background-color:transparent;">
+            </app-guild-list-elem>
 
             <!--<div style="margin: 0 auto; text-align: center;">
                     <button type="submit" class="btn btn-primary" (click)="onGuild(i);"

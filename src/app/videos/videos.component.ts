@@ -1,5 +1,4 @@
-
-import { Component, OnInit, Injectable, Input } from '@angular/core';
+import { Component, OnInit, Injectable } from '@angular/core';
 import { AuthenticationService } from '../login/authentication/authentication.service';
 import { HttpClient } from '@angular/common/http';
 import { Video } from '../shared/video.model';
@@ -7,8 +6,6 @@ import { topic } from '../shared/topic.enum';
 import { FormGroup } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { watchedVideos } from '../shared/watchedVideos.model';
-
-
 import { SessionService } from '../services/session.service';
 import { userType } from '../shared/userType.enum';
 import { Player } from '../shared/player.model';
@@ -40,9 +37,6 @@ export class VideosComponent implements OnInit {
   public totaljava: number;
   public totalangular: number;
   public totalspring: number;
-  
-
-
 
   constructor(private router: Router, private route: ActivatedRoute, private session: SessionService, private http: HttpClient, private authService: AuthenticationService) {
     console.log(this.session.playerSession);
@@ -61,7 +55,7 @@ export class VideosComponent implements OnInit {
       }
     } return false;
   }
-  
+
   allVideos(): Video[] {
     this.http.get<Video[]>('http://localhost:8085/videos/getAll').subscribe(data => {
       this.videos = data;
@@ -81,13 +75,13 @@ export class VideosComponent implements OnInit {
       if (video.topic == "Angular") {
         this.Angular.push(video);
         this.totalangular = this.totalangular + (Number)(video.duration);
-      }if (video.topic == "Java") {
+      } if (video.topic == "Java") {
         this.Java.push(video);
         this.totaljava = this.totaljava + (Number)(video.duration);
-      }if (video.topic == "Spring") {
+      } if (video.topic == "Spring") {
         this.Spring.push(video);
         this.totalspring = this.totalspring + (Number)(video.duration);
-      }else (video.topic)
+      } else (video.topic)
     }
   }
 
@@ -123,7 +117,7 @@ export class VideosComponent implements OnInit {
             idplayer
           }).subscribe(data => {
           });
-          console.log(this.session.playerSession);
+        console.log(this.session.playerSession);
         const idPlayer = this.session.playerSession.idplayer;
         console.log(idPlayer);
         const userName = this.session.playerSession.userName;
@@ -132,14 +126,14 @@ export class VideosComponent implements OnInit {
         const password = this.session.playerSession.password;
         const gender = this.session.playerSession.gender;
         const userType = this.session.playerSession.userType;
-        console.log("1"+this.session.playerSession.xp);
+        console.log("1" + this.session.playerSession.xp);
 
-        
-        var xp=this.session.playerSession.xp;
-        xp = (Number(this.session.playerSession.xp)+30).toString();
+
+        var xp = this.session.playerSession.xp;
+        xp = (Number(this.session.playerSession.xp) + 30).toString();
         this.session.getPlayerInSession().xp = xp;
         this.XP();
-       
+
         const champiesToGive = this.session.playerSession.champiesToGive;
         const myChampies = this.session.playerSession.myChampies;
         const status = this.session.playerSession.status;
@@ -179,9 +173,9 @@ export class VideosComponent implements OnInit {
         const password = this.session.playerSession.password;
         const gender = this.session.playerSession.gender;
         const userType = this.session.playerSession.userType;
-        var xp=this.session.playerSession.xp;
-        xp = (Number(this.session.playerSession.xp)-30).toString();
-       this.session.getPlayerInSession().xp = xp;
+        var xp = this.session.playerSession.xp;
+        xp = (Number(this.session.playerSession.xp) - 30).toString();
+        this.session.getPlayerInSession().xp = xp;
         this.XP();
         const champiesToGive = this.session.playerSession.champiesToGive;
         const myChampies = this.session.playerSession.myChampies;
@@ -214,6 +208,7 @@ export class VideosComponent implements OnInit {
       }
     }
   }
+
   XP() {
     var playerData: Player = JSON.parse(localStorage.getItem('playerlogged'));
 
@@ -224,15 +219,14 @@ export class VideosComponent implements OnInit {
     }
   }
 
-
-  isItaWarrior(){
-    var bol=false;
-    if(this.session.playerSession.userType==userType.Warrior){
-      bol=true;
+  isItaWarrior() {
+    var bol = false;
+    if (this.session.playerSession.userType == userType.Warrior) {
+      bol = true;
     }
     return bol;
   }
-  
+
   checked(video: String) {
     var exists: boolean;
     exists = false;
@@ -265,7 +259,7 @@ export class VideosComponent implements OnInit {
     }
   }
 
-  addNewVideo(){
+  addNewVideo() {
     this.router.navigate(['/add_new_video'], { relativeTo: this.route });
   }
 }

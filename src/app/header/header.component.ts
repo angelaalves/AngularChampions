@@ -36,7 +36,7 @@ export class HeaderComponent implements OnInit {
     if (localStorage.getItem('playerlogged')) {
       this.session.isAuthenticated.next(true);
     }
-    if (this.session.getPlayerInSession().userType == 'Ancient') {
+    if (this.playerlogged.userType == 'Ancient') {
       this.session.isAncient.next(true);
     }
     this.skinService.shoppingCartSkins.subscribe(shoppingCart => this.shoppingCartSkins = shoppingCart);
@@ -45,7 +45,7 @@ export class HeaderComponent implements OnInit {
   isItCloset() {
     var bol = false;
     if (this.router.url === '/closet') {
-      if (this.session.playerSession.userType == userType.Warrior) {
+      if (this.playerlogged.userType == userType.Warrior) {
         bol = true;
       }
     }
@@ -59,13 +59,13 @@ export class HeaderComponent implements OnInit {
   }
 
   onProfile() {
-    if (this.session.getPlayerInSession().userType == "Ancient") {
+    if (this.playerlogged.userType == "Ancient") {
       this.router.navigate(['/ancient_profile'], { relativeTo: this.route });
     }
-    if (this.session.getPlayerInSession().userType == "GuildMaster") {
+    if (this.playerlogged.userType == "GuildMaster") {
       this.router.navigate(['/guildmaster_profile'], { relativeTo: this.route });
     }
-    if (this.session.getPlayerInSession().userType == "Warrior") {
+    if (this.playerlogged.userType == "Warrior") {
       this.router.navigate(['/warrior_profile'], { relativeTo: this.route });
     }
   }

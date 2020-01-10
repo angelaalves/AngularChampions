@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { GuildListService } from 'src/app/services/guild-list.service';
 import { NgForm } from '@angular/forms';
-import { Router, ActivatedRoute, Params } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Player } from 'src/app/shared/player.model';
 import { PlayerService } from 'src/app/services/player.service';
 import { HttpClient } from '@angular/common/http';
@@ -24,9 +24,6 @@ export class AddGuildListComponent implements OnInit {
     "../../../../assets/Flags/flag5.png", "../../../../assets/Flags/flag6.png",
     "../../../../assets/Flags/flag7.png", "../../../../../assets/Flags/flag8.png",
     "../../../../assets/Flags/flag9.png", "../../../../assets/Flags/flag10.png"];
-
-
-
 
   constructor(private http: HttpClient,private guildService: GuildListService,private session: SessionService, private router: Router, private route: ActivatedRoute, private playerService: PlayerService) { 
   }

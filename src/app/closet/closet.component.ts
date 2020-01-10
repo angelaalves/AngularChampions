@@ -14,7 +14,8 @@ import { userType } from '../shared/userType.enum';
 @Component({
   selector: 'app-closet',
   templateUrl: './closet.component.html',
-  styleUrls: ['./closet.component.css']
+  styleUrls: ['./closet.component.css'],
+  providers: [SkinService]
 })
 
 @Injectable({ providedIn: 'root' })
@@ -34,13 +35,13 @@ export class ClosetComponent implements OnInit {
 
   constructor(private session: SessionService, private http: HttpClient,
     private router: Router, private route: ActivatedRoute, private skinService: SkinService) {
-    
   }
 
   ngOnInit() {
-    this.player = this.session.getPlayerInSession();
+    this.player = this.session.playerSession;
     this.getSkins();
-    this.http.get<Closet[]>('http://localhost:8085/closet/Get?idSkinFK= &idPlayerFk=' + this.session.getPlayerInSession().idplayer + "&status=", {}).subscribe(data => {
+    this.totalcost = this.skinService.totalcost;
+    this.http.get<Closet[]>('http://localhost:8085/closet/Get?idSkinFK= &idPlayerFk=' + this.player.idplayer + "&status=", {}).subscribe(data => {
       this.allsessionsuserskins = data;
       console.log("this.alluserskins ", this.allsessionsuserskins);
     });
