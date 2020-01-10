@@ -3,7 +3,6 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Skin } from 'src/app/shared/skin.model';
 import { SessionService } from 'src/app/services/session.service';
 import { SkinService } from 'src/app/services/skin.service';
-import { SkinSelectedService } from '../skinSelected.service';
 import { Player } from 'src/app/shared/player.model';
 import { skinType } from 'src/app/shared/skinType.enum';
 import { Closet } from 'src/app/shared/closet.model';
@@ -24,7 +23,7 @@ export class SkinShoesComponent implements OnInit {
   shoppingCartSkins: Skin[] = [];
   skins: Skin[] = [];
 
-  constructor(private router: Router, private route: ActivatedRoute, private skinSelectedService: SkinSelectedService,
+  constructor(private router: Router, private route: ActivatedRoute,
     private session: SessionService, private skinService: SkinService, private http: HttpClient) { }
 
   ngOnInit() {

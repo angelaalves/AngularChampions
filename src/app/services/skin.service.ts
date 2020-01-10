@@ -37,21 +37,18 @@ export class SkinService {
     constructor(private http: HttpClient, private session: SessionService){}
 
     ngOnInit() {
-        this.skins = [];
-        this.inactiveSkinsToBe = [];
-        this.http.get<Closet[]>('http://localhost:8085/closet/Get?idSkinFK=&idPlayerFk=' + this.player.idplayer + "&status=" + status.Active, {}).subscribe(data => {
+        this.player = this.session.getPlayerInSession();
+        this.http.get<Closet[]>('http://localhost:8085/closet/Get?idPlayerFk=' + this.player.idplayer, {}).subscribe(data => {
             let activeSkins: String[] = [];
             for (let skin of data) {
                 if (skin.status == "Active") {
                     activeSkins.push(skin.idskinFK);
                 }
             }
-            for (let trueSkinActives of activeSkins) {
-                this.http.get<Skin>('http://localhost:8085/skins/Get?idSkin=' + trueSkinActives).subscribe(resdata => {
-                    this.skins.push(resdata);
-                    this.inactiveSkinsToBe.push(resdata);
-                });
-            }
+            this.http.get<Skin[]>('http://localhost:8085/skins/getSkinList?SkinIds=' + activeSkins.toString()).subscribe(resdata => {
+                this.skins=resdata;
+                console.log(this.skins)
+            });
         });
     }
 
@@ -63,41 +60,19 @@ export class SkinService {
     }
 
     addNewSkinInUse(skin: Skin) {
-        this.skins = [];
-        this.inactiveSkinsToBe = [];
-        this.player = this.session.getPlayerInSession();
-        this.http.get<Closet[]>('http://localhost:8085/closet/Get?idPlayerFk=' + this.player.idplayer, {}).subscribe(data => {
-            let activeSkins: String[] = [];
-            for (let skin of data) {
-                if (skin.status == "Active") {
-                    activeSkins.push(skin.idskinFK);
-                }
+        var found=false;
+        for (var i: number = 0; i < this.skins.length; i++) {
+            if (this.skins[i].skinType == skin.skinType) {
+                found=true
+                this.inactiveSkinsToBe.push(this.skins[i]);
+                this.skins[i] = skin
+                this.newSkinsSelected.next(this.skins)
             }
-            for (let trueSkinActives of activeSkins) {
-                this.http.get<Skin[]>('http://localhost:8085/skins/Get?idSkin=' + trueSkinActives).subscribe(resdata => {
-                    this.skins.push(resdata[0]);
-                    this.inactiveSkinsToBe.push(resdata[0]);
-                    let index;
-                    if (skin.skinType == skinType.Hair) {
-                        index = 0;
-                    } else if (skin.skinType == skinType.SkinColor) {
-                        index = 1;
-                    } else if (skin.skinType == skinType.Top) {
-                        index = 2;
-                    } else if (skin.skinType == skinType.Bottom) {
-                        index = 3;
-                    } else if (skin.skinType == skinType.Shoes) {
-                        index = 4;
-                    } else if (skin.skinType == skinType.Others) {
-                        index = 5;
-                    }
-                    this.inactiveSkinsToBe.push(this.skins[index]);
-                    this.newSkinsSelected.next(this.skins.splice(Number(index), 0, skin));
-                });
-            }
-            console.log(this.skins);
-            console.log(this.inactiveSkinsToBe);
-        });
+        }
+        if(found==false){
+            this.skins.push(skin)
+            this.newSkinsSelected.next(this.skins)
+        }
 
     }
 

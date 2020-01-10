@@ -5,7 +5,6 @@ import { Player } from 'src/app/shared/player.model';
 import { HttpClient } from '@angular/common/http';
 import { SessionService } from 'src/app/services/session.service';
 import { SkinService } from 'src/app/services/skin.service';
-import { SkinSelectedService } from '../skinSelected.service';
 import { ClosetComponent } from '../../closet.component';
 import { skinType } from 'src/app/shared/skinType.enum';
 import { Closet } from 'src/app/shared/closet.model';
@@ -26,7 +25,7 @@ export class SkinTopComponent implements OnInit {
   shoppingCartSkins: Skin[] = [];
   skins: Skin[] = [];
 
-  constructor(private session: SessionService, private router: Router, private route: ActivatedRoute, private http: HttpClient, private skinSelectedService: SkinSelectedService,
+  constructor(private session: SessionService, private router: Router, private route: ActivatedRoute, private http: HttpClient,
     private skinService: SkinService, private closet: ClosetComponent) { }
 
   ngOnInit() {

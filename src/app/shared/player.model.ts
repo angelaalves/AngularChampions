@@ -51,7 +51,7 @@ export class Player {
         } else if (skinType.Others == type) {
             index = 5;
         }
-        this.imagePath.splice(Number(index), 1, imgPath);
+        this.imagePath[index]=imgPath;
     }
 
     resetImage() {

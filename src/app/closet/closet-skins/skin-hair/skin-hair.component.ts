@@ -1,7 +1,6 @@
 import { Component, OnInit, Input, Injectable } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Skin } from 'src/app/shared/skin.model';
-import { SkinSelectedService } from '../skinSelected.service';
 import { SkinService } from 'src/app/services/skin.service';
 import { SessionService } from 'src/app/services/session.service';
 import { Player } from 'src/app/shared/player.model';
@@ -25,8 +24,8 @@ export class SkinHairComponent implements OnInit {
   shoppingCartSkins: Skin[] = [];
   skins: Skin[] = [];
 
-  constructor(private router: Router, private route: ActivatedRoute, private skinSelectedService: SkinSelectedService,
-    private session: SessionService, private skinService: SkinService, private http: HttpClient) { }
+  constructor(private router: Router, private route: ActivatedRoute, 
+    private session: SessionService, private skinService : SkinService, private http: HttpClient) { }
 
   ngOnInit() {
     this.player = this.session.getPlayerInSession();

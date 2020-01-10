@@ -2,7 +2,6 @@ import { Component, Input } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Player } from 'src/app/shared/player.model';
 import { Skin } from 'src/app/shared/skin.model';
-import { SkinSelectedService } from './skinSelected.service';
 import { SessionService } from 'src/app/services/session.service';
 
 @Component({
