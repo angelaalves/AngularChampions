@@ -30,9 +30,9 @@ export class SkinService {
     private skinExists: boolean = false;
     private skinRemove: boolean = false;
 
-    player: Player;
+    totalcost=0;
 
-    constructor(private http: HttpClient, private session: SessionService) { }
+    player: Player;
 
     constructor(private http: HttpClient, private session: SessionService) { }
 
@@ -51,11 +51,11 @@ export class SkinService {
                     this.skins.push(resdata);
                     this.inactiveSkinsToBe.push(resdata);
                 });
-            });
+            }
         });
     }
 
-    isShoppingCartEmpty() {
+    isShoppingCartEmpty(){
         if (this.skinsToBeBought.length > 0) {
             return false;
         }
@@ -94,7 +94,7 @@ export class SkinService {
                     this.inactiveSkinsToBe.push(this.skins[index]);
                     this.newSkinsSelected.next(this.skins.splice(Number(index), 0, skin));
                 });
-            });
+            }
             console.log(this.skins);
             console.log(this.inactiveSkinsToBe);
         });
@@ -108,7 +108,6 @@ export class SkinService {
             this.skinsToBeBought.forEach(s => {
                 if (s.idskin == skin.idskin) {
                     this.skinExists = true;
-                    break;
                 }
             });
             if (this.skinExists == false) {

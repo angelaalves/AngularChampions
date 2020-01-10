@@ -2,14 +2,14 @@ import { Component, OnInit, Injectable } from '@angular/core';
 import { Player } from '../shared/player.model';
 import { HttpClient } from '@angular/common/http';
 import { Skin } from '../shared/skin.model';
+import { skinType } from '../shared/skinType.enum';
+import { SessionService } from '../services/session.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { SkinService } from '../services/skin.service';
 import { BehaviorSubject } from 'rxjs';
 import { status } from 'src/app/shared/status.enum';
 import { Closet } from '../shared/closet.model';
 import { userType } from '../shared/userType.enum';
-import { SessionService } from '../services/session.service';
-import { skinType } from '../shared/skinType.enum';
 
 @Component({
   selector: 'app-closet',
@@ -28,27 +28,25 @@ export class ClosetComponent implements OnInit {
   others: Skin[] = [];
   allSkins: Skin[] = [];
   allsessionsuserskins: Closet[] = [];
-  totalcost: number = 0;
 
   private skin = new BehaviorSubject<Skin>(new Skin("", "", "", "", "", null));
   closetSkinSelected = this.skin.asObservable();
 
   constructor(private session: SessionService, private http: HttpClient,
     private router: Router, private route: ActivatedRoute, private skinService: SkinService) {
+    
+  }
+
+  ngOnInit() {
+    this.player = this.session.getPlayerInSession();
+    this.getSkins();
     this.http.get<Closet[]>('http://localhost:8085/closet/Get?idSkinFK= &idPlayerFk=' + this.session.getPlayerInSession().idplayer + "&status=", {}).subscribe(data => {
       this.allsessionsuserskins = data;
       console.log("this.alluserskins ", this.allsessionsuserskins);
     });
   }
 
-  ngOnInit() {
-    this.player = this.session.playerSession;
-    this.getSkins();
-    this.totalcost = this.skinService.totalcost;
-  }
-
   getSkins() {
-    return new Promise(resolve => {
       this.http.get<Skin[]>('http://localhost:8085/skins/getAll', {}).subscribe(data => {
         this.allSkins = data;
         for (var d of data) {
@@ -67,7 +65,6 @@ export class ClosetComponent implements OnInit {
           }
         }
       })
-    });
   }
 
   redirectToBuySkin() {
@@ -77,13 +74,11 @@ export class ClosetComponent implements OnInit {
   }
 
   resetToInitialSkins() {
-    this.totalcost = 0;
     this.skinService.setAnySkinSelected(false);
     this.session.playerSession.resetImage();
   }
 
   emptyCart() {
-    this.totalcost = 0;
     this.skinService.emptyCart();
     this.router.navigate(['../closet'], { relativeTo: this.route });
   }
@@ -98,16 +93,16 @@ export class ClosetComponent implements OnInit {
       this.http.post('http://localhost:8085/closet/Update?idSkinFK=' + idskinToChange + "&idPlayerFk=" + idPlayer + "&status=" + statusInactive, { idskinToChange, idPlayer, statusInactive }).subscribe(data => {
         console.log(data);
       });
-    });
+    }
 
-    activeSkins.forEach(active => {
+    for (let active of activeSkins) {
       const statusSkin: status = status.Active;
       const idskin = active.idskin;
       const idPlayer = this.player.idplayer;
       this.http.post('http://localhost:8085/closet/Update?idSkinFK=' + idskin + "&idPlayerFk=" + idPlayer + "&status=" + statusSkin, { idskin, idPlayer, statusSkin }).subscribe(data => {
         console.log(data);
       });
-    });
+    }
   }
 
   isItaWarrior() {
