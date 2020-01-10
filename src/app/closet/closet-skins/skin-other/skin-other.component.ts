@@ -54,6 +54,13 @@ export class SkinOtherComponent implements OnInit {
     }
     return false;
   }
+  
+  hasEnoughXP(skin: Skin){
+    if(this.player.xp>=skin.minXP){
+      return true;
+    }
+    return false;
+  }
 
   playerHasBoughtSkin(skin: Skin) {
     for (let s of this.allsessionsuserskins) {

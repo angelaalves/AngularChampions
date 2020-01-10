@@ -28,20 +28,28 @@ export class GuildComponent implements OnInit {
   constructor(private guildListService: GuildListService, private route: ActivatedRoute, private session: SessionService, private http: HttpClient, private router: Router) { }
 
   ngOnInit() {
-    this.guild = this.guildListService.getGuild(this.route.snapshot.params['idguild'])
+    this.guild = this.guildListService.getGuild(this.route.snapshot.params['idguild']);
     this.guildmaster = this.guild.guildmaster
     this.players = this.guild.members
     for (let player of this.players) {
 
     }
-    this.guild = this.guildListService.getGuildByPlayer(this.session.getPlayerInSession().idplayer);
+    this.flag = this.guild.guildFlag;
   }
 
-  change(flag: string) {
+  changeFlag(flag: string) {
     this.flag = flag;
+    
+    this.http.post('http://localhost:8085/guild/Update?idGuild=' + this.guild.idguild + '&guildName=' + name + '&startDate=' + formatDate(this.guild.startDate, "yyyy-MM-dd", "en-UK") + '&endDate=' + formatDate(this.guild.endDate, "yyyy-MM-dd", "en-UK") + '&guildFlag=' + this.flag + '&status=Active', {}).subscribe();
   }
 
-  changeFlag(form: NgForm) {
-    this.http.post('http://localhost:8085/guild/Update?idGuild=' + this.guild.idguild + '&guildName=' + name + '&startDate=' + formatDate(this.guild.startDate, "yyyy-MM-dd", "en-UK") + '&endDate=' + formatDate(this.guild.endDate, "yyyy-MM-dd", "en-UK") + '&guildFlag=' + this.flag + '&status=Active', {}).subscribe();
+  uFlag() {
+    
+  }
+
+  chooseFlag(fileInput: File) {
+    this.flag = '../../../assets/AppImages/' + fileInput.name;
+    console.log(this.flag);
+    
   }
 }

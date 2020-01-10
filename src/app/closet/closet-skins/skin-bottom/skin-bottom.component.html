@@ -1,8 +1,12 @@
 <div class="scrollmenu" id="style-8" style="margin-bottom: 3%;">
   <div *ngFor="let bottom of bottoms" style="display: inline-block; position: relative;">
-    <div *ngIf="imageNull(bottom)==false && playerHasBoughtSkin(bottom)==false" style="width:100px;height:100px;">
+    <div *ngIf="imageNull(bottom)==false && playerHasBoughtSkin(bottom)==false && hasEnoughXP(bottom)==true" style="width:100px;height:100px;">
       <img src={{bottom.imagePath}} style="max-width:100px;max-height:100px; position: absolute;" (click)="skinSelected(bottom)">
       <img src="../../../../assets/AppImages/forsale.png" style="max-width:100px;" (click)="skinSelected(bottom)">
+    </div>
+    <div *ngIf="imageNull(bottom)==false && playerHasBoughtSkin(bottom)==false && hasEnoughXP(bottom)==false" style="width:100px;height:100px;">
+      <img src={{bottom.imagePath}} style="max-width:100px;max-height:100px; position: absolute;" (click)="skinSelected(bottom)">
+      <img src="../../../../assets/AppImages/Notforsale.png" style="max-width:100px;" (click)="skinSelected(bottom)">
     </div>
     <div *ngIf="imageNull(bottom)==false && playerHasBoughtSkin(bottom)==true && skinInUse(bottom)==true"
       style="width:100px;height:100px; position: relative;">
