@@ -89,9 +89,9 @@ export class ClosetComponent implements OnInit {
   }
 
   applySkins() {
-    const activeSkins: Skin[] = this.skinService.getSkins();
-    const inactiveSkins: Skin[] = this.skinService.getInactiveSkinsToBe();
-    inactiveSkins.forEach(inactive => {
+    const activeSkins = this.skinService.getSkins();
+    const inactiveSkins = this.skinService.getInactiveSkinsToBe();
+    for (let inactive of inactiveSkins) {
       const idskinToChange = inactive.idskin;
       const idPlayer = this.player.idplayer;
       const statusInactive = status.Inactive;
