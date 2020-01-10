@@ -30,21 +30,23 @@ export class SkinService {
     private skinExists: boolean = false;
     private skinRemove: boolean = false;
 
-    player: Player; 
+    totalcost: number = 0;
 
-    constructor(private http: HttpClient, private session: SessionService) {}
+    player: Player;
+
+    constructor(private http: HttpClient, private session: SessionService) { }
 
     ngOnInit() {
+        this.skins = [];
+        this.inactiveSkinsToBe = [];
         this.http.get<Closet[]>('http://localhost:8085/closet/Get?idSkinFK=&idPlayerFk=' + this.player.idplayer + "&status=" + status.Active, {}).subscribe(data => {
             console.log(data);
-            for (let d of data) {
-                this.http.get<Skin>('http://localhost:8085/skins/Get?idSkin=' + d.idskinFK).subscribe(resdata => {
-                    console.log(resdata);
-                    this.skins.push(resdata);
-                    this.inactiveSkinsToBe.push(resdata);
-                    console.log("skin service: "+this.inactiveSkinsToBe);
+            data.forEach(d => {
+                this.http.get<Skin[]>('http://localhost:8085/skins/Get?idSkin=' + d.idskinFK).subscribe(resdata => {
+                    this.skins.push(resdata[0]);
+                    this.inactiveSkinsToBe.push(resdata[0]);
                 });
-            }
+            });
         });
     }
 
@@ -56,51 +58,47 @@ export class SkinService {
     }
 
     addNewSkinInUse(skin: Skin) {
+        this.skins = [];
+        this.inactiveSkinsToBe = [];
         this.player = this.session.getPlayerInSession();
         this.http.get<Closet[]>('http://localhost:8085/closet/Get?idPlayerFk=' + this.player.idplayer + "&status=" + status.Active, {}).subscribe(data => {
             console.log(data);
-            for (let d of data) {
-                console.log("dentro do for");
-                console.log(d.idskinFK);
+            data.forEach(d => {
                 this.http.get<Skin[]>('http://localhost:8085/skins/Get?idSkin=' + d.idskinFK).subscribe(resdata => {
-                    console.log(resdata[0]);
                     this.skins.push(resdata[0]);
-                    console.log("this.skins");
-                    console.log(this.skins);
                     this.inactiveSkinsToBe.push(resdata[0]);
-                    console.log("this.inactiveSkinsToBe");
-                    console.log(this.inactiveSkinsToBe);
+                    let index;
+                    if (skinType.Hair == skin.skinType) {
+                        index = 0;
+                    } else if (skinType.SkinColor == skin.skinType) {
+                        index = 1;
+                    } else if (skinType.Top == skin.skinType) {
+                        index = 2;
+                    } else if (skinType.Bottom == skin.skinType) {
+                        index = 3;
+                    } else if (skinType.Shoes == skin.skinType) {
+                        index = 4;
+                    } else if (skinType.Others == skin.skinType) {
+                        index = 5;
+                    }
+                    this.inactiveSkinsToBe.push(this.skins[index]);
+                    this.newSkinsSelected.next(this.skins.splice(Number(index), 0, skin));
                 });
-            }
+            });
+            console.log(this.skins);
+            console.log(this.inactiveSkinsToBe);
         });
-        let index;
-        if (skinType.Hair == skin.skinType) {
-            index = 0;
-        } else if (skinType.SkinColor == skin.skinType) {
-            index = 1;
-        } else if (skinType.Top == skin.skinType) {
-            index = 2;
-        } else if (skinType.Bottom == skin.skinType) {
-            index = 3;
-        } else if (skinType.Shoes == skin.skinType) {
-            index = 4;
-        } else if (skinType.Others == skin.skinType) {
-            index = 5;
-        }
-        console.log(this.skins);
-        this.inactiveSkinsToBe.push(this.skins[index]);
-        console.log(this.inactiveSkinsToBe);
-        this.newSkinsSelected.next(this.skins.splice(Number(index), 0, skin));
     }
 
     addToShoppingCart(skin: Skin) {
+        this.totalcost += Number(skin.champiesCost);
         this.skinExists = false;
         if (this.skinsToBeBought.length > 0) {
-            for (let s of this.skinsToBeBought) {
+            this.skinsToBeBought.forEach(s => {
                 if (s.idskin == skin.idskin) {
                     this.skinExists = true;
                 }
-            }
+            });
             if (this.skinExists == false) {
                 this.skinsToBeBought.push(skin);
                 this.shoppingCart.next(this.skinsToBeBought);
@@ -114,17 +112,20 @@ export class SkinService {
     }
 
     removeAllFromShoppingCart() {
-        const skinsToBeBought: Skin[] = []
+        this.totalcost = 0;
+        const skinsToBeBought: Skin[] = [];
         this.shoppingCart = new BehaviorSubject<Skin[]>(skinsToBeBought);
     }
 
     removeFromShoppingCart(skin: Skin) {
-        for (let s of this.skinsToBeBought) {
+        this.skinsToBeBought.forEach(s => {
             if (s.idskin == skin.idskin) {
                 this.skinRemove = true;
+                this.totalcost += Number(s.champiesCost);
             }
-        }
+        });
         if (this.skinRemove == true) {
+            this.totalcost -= Number(skin.champiesCost);
             this.skinsToBeBought.splice(this.skinsToBeBought.indexOf(skin), 1);
             this.shoppingCart.next(this.skinsToBeBought);
             return true;
@@ -134,6 +135,7 @@ export class SkinService {
     }
 
     emptyCart() {
+        this.totalcost = 0;
         const s: Skin[] = [];
         this.skinsToBeBought = s;
         this.shoppingCart.next(this.skinsToBeBought);

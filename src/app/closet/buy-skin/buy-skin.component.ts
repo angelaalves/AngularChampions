@@ -22,6 +22,7 @@ export class BuySkinComponent implements OnInit {
   activeSkins: Skin[] = [];
   shoppingCartSkins: Skin[] = [];
   bodyText: string = '';
+  totalcost: number = 0;
 
   constructor(private router: Router, private route: ActivatedRoute, private http: HttpClient, private session: SessionService,
     private skinService: SkinService, private modalService: ModalService) {
@@ -45,6 +46,7 @@ export class BuySkinComponent implements OnInit {
   }
 
   removeItem(skin: Skin) {
+    this.totalcost -= Number(skin.champiesCost);
     this.skinService.removeFromShoppingCart(skin);
   }
 
@@ -57,6 +59,7 @@ export class BuySkinComponent implements OnInit {
     const idplayer = this.session.getPlayerInSession().idplayer;
     for (let item of this.shoppingCartSkins) {
       var idSkin = item.idskin;
+      this.totalcost += Number(item.champiesCost);
       if (this.player.myChampies >= item.champiesCost && this.player.xp >= item.minXP) {
         this.http.post<any>('http://localhost:8085/closet/Create?idSkinFK=' + idSkin + '&idPlayerFk=' + idplayer + '&status=',
           {
@@ -64,30 +67,18 @@ export class BuySkinComponent implements OnInit {
             idplayer,
           }
         ).subscribe();
-        this.activeSkins.push(item); 
-        const userName= this.session.playerSession.userName;
-        const email= this.session.playerSession.email;
-        const password= this.session.playerSession.password;
-        const gender= this.session.playerSession.gender;
-         const  xp= this.session.playerSession.xp;
-         const champiesToGive= this.session.playerSession.champiesToGive;
-         const userType= this.session.playerSession.userType;
-         const status2= this.session.playerSession.status;
+        this.activeSkins.push(item);
+        const userName = this.session.playerSession.userName;
+        const email = this.session.playerSession.email;
+        const password = this.session.playerSession.password;
+        const gender = this.session.playerSession.gender;
+        const xp = this.session.playerSession.xp;
+        const champiesToGive = this.session.playerSession.champiesToGive;
+        const userType = this.session.playerSession.userType;
+        const status2 = this.session.playerSession.status;
         const myChampiesAfterBuyingSkin = Number(this.player.myChampies) - Number(item.champiesCost);
-        this.http.post<any>('http://localhost:8085/players/Update?idPlayer=' + idplayer + ' &userName='+userName+' &email='+email+' &password='+password+' &gender='+gender+' &userType='+userType+' &xp='+xp+' &champiesToGive='+champiesToGive+' &myChampies=' + myChampiesAfterBuyingSkin + '&status= '+status2,
-          {
-            idplayer,
-            userName,
-            email,
-            password,
-            gender,
-            userType,
-            xp,
-            champiesToGive,
-            myChampiesAfterBuyingSkin,
-            status2
-          }
-        ).subscribe();
+        this.http.post<any>('http://localhost:8085/players/Update?idPlayer=' + idplayer + ' &userName=' + userName + ' &email=' + email + ' &password=' + password + ' &gender=' + gender + ' &userType=' + userType + ' &xp=' + xp + ' &champiesToGive=' + champiesToGive + ' &myChampies=' + myChampiesAfterBuyingSkin + '&status= ' + status2,
+          { idplayer, userName, email, password, gender, userType, xp, champiesToGive, myChampiesAfterBuyingSkin, status2 }).subscribe();
         this.session.getPlayerInSession().myChampies = myChampiesAfterBuyingSkin.toString();
         this.Champies();
         let counter: number = -1;
@@ -97,11 +88,7 @@ export class BuySkinComponent implements OnInit {
           const skinStatus = status.Inactive;
           if (activeSkin.skinType === item.skinType) {
             this.http.post<any>('http://localhost:8085/closet/Update?idSkinFK=' + skinID + '&idPlayerFk=' + idplayer + '&status=' + skinStatus,
-              {
-                skinID,
-                idplayer,
-                skinStatus
-              }
+              { skinID, idplayer, skinStatus }
             );
           }
         }
@@ -114,9 +101,9 @@ export class BuySkinComponent implements OnInit {
       this.router.navigate(['../closet'], { relativeTo: this.route });
     }
   }
+
   Champies() {
     var playerData: Player = JSON.parse(localStorage.getItem('playerlogged'));
-
     if (!playerData) {
       return;
     } else {

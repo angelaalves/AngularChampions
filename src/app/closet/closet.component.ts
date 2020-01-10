@@ -2,14 +2,14 @@ import { Component, OnInit, Injectable } from '@angular/core';
 import { Player } from '../shared/player.model';
 import { HttpClient } from '@angular/common/http';
 import { Skin } from '../shared/skin.model';
-import { skinType } from '../shared/skinType.enum';
-import { SessionService } from '../services/session.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { SkinService } from '../services/skin.service';
 import { BehaviorSubject } from 'rxjs';
 import { status } from 'src/app/shared/status.enum';
 import { Closet } from '../shared/closet.model';
 import { userType } from '../shared/userType.enum';
+import { SessionService } from '../services/session.service';
+import { skinType } from '../shared/skinType.enum';
 
 @Component({
   selector: 'app-closet',
@@ -28,6 +28,7 @@ export class ClosetComponent implements OnInit {
   others: Skin[] = [];
   allSkins: Skin[] = [];
   allsessionsuserskins: Closet[] = [];
+  totalcost: number = 0;
 
   private skin = new BehaviorSubject<Skin>(new Skin("", "", "", "", "", null));
   closetSkinSelected = this.skin.asObservable();
@@ -43,6 +44,7 @@ export class ClosetComponent implements OnInit {
   ngOnInit() {
     this.player = this.session.playerSession;
     this.getSkins();
+    this.totalcost = this.skinService.totalcost;
   }
 
   getSkins() {
@@ -75,11 +77,13 @@ export class ClosetComponent implements OnInit {
   }
 
   resetToInitialSkins() {
+    this.totalcost = 0;
     this.skinService.setAnySkinSelected(false);
     this.session.playerSession.resetImage();
   }
 
   emptyCart() {
+    this.totalcost = 0;
     this.skinService.emptyCart();
     this.router.navigate(['../closet'], { relativeTo: this.route });
   }
@@ -87,23 +91,23 @@ export class ClosetComponent implements OnInit {
   applySkins() {
     const activeSkins: Skin[] = this.skinService.getSkins();
     const inactiveSkins: Skin[] = this.skinService.getInactiveSkinsToBe();
-    for (let inactive of inactiveSkins) {
+    inactiveSkins.forEach(inactive => {
       const idskinToChange = inactive.idskin;
       const idPlayer = this.player.idplayer;
       const statusInactive = status.Inactive;
       this.http.post('http://localhost:8085/closet/Update?idSkinFK=' + idskinToChange + "&idPlayerFk=" + idPlayer + "&status=" + statusInactive, { idskinToChange, idPlayer, statusInactive }).subscribe(data => {
         console.log(data);
       });
-    }
+    });
 
-    for (let active of activeSkins) {
+    activeSkins.forEach(active => {
       const statusSkin: status = status.Active;
       const idskin = active.idskin;
       const idPlayer = this.player.idplayer;
       this.http.post('http://localhost:8085/closet/Update?idSkinFK=' + idskin + "&idPlayerFk=" + idPlayer + "&status=" + statusSkin, { idskin, idPlayer, statusSkin }).subscribe(data => {
         console.log(data);
       });
-    }
+    });
   }
 
   isItaWarrior() {

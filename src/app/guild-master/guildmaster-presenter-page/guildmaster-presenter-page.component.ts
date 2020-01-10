@@ -25,8 +25,6 @@ export class GuildmasterPresenterPageComponent implements OnInit {
     const idplayer = this.session.getPlayerInSession().idplayer;
     this.http.get<String[]>('http://localhost:8085/closet/activeSkins?idPlayerFK=' + idplayer, {}).subscribe(data => {
       this.activeSkins = data;
-      console.log(this.activeSkins);
     });
-    console.log("active skins " + this.activeSkins);
   }
 }

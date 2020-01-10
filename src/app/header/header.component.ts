@@ -1,12 +1,12 @@
-import { Component, OnInit, Injectable, ViewContainerRef } from '@angular/core';
+import { Component, OnInit, Injectable } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { SessionService } from '../services/session.service';
 import { SkinService } from '../services/skin.service';
 import { Skin } from '../shared/skin.model';
 import { userType } from '../shared/userType.enum';
-import { listLazyRoutes } from '@angular/compiler/src/aot/lazy_routes';
-import { GuildListComponent } from '../guild-list-start/guild-list/guild-list.component';
 import { GuildListService } from '../services/guild-list.service';
+import { Player } from '../shared/player.model';
+import { ClosetComponent } from '../closet/closet.component';
 
 @Component({
   selector: 'app-header',
@@ -14,48 +14,51 @@ import { GuildListService } from '../services/guild-list.service';
   styleUrls: ['./header.component.css']
 })
 
-@Injectable({providedIn: 'root'})
+@Injectable({ providedIn: 'root' })
 export class HeaderComponent implements OnInit {
-  Authenticated=false;
+  Authenticated = false;
   shoppingCartSkins: Skin[] = [];
-  isAncient=false;
+  playerlogged: Player;
+  isAncient = false;
+  totalcost: number;
 
-  constructor(private router: Router, private route: ActivatedRoute, private session: SessionService, private skinService: SkinService, private guildListService: GuildListService) { }
-  
+  constructor(private router: Router, private route: ActivatedRoute, private session: SessionService, private skinService: SkinService, private guildListService: GuildListService, private closet: ClosetComponent) { }
+
   ngOnInit() {
-    this.session.isAuthenticated.subscribe(didAuthenticate=>{
-      this.Authenticated=didAuthenticate;
-    })
-    this.session.isAncient.subscribe(userType=>{
-      this.isAncient=userType;
-    })
-    if(localStorage.getItem('playerlogged')){
+    this.totalcost=this.skinService.totalcost;
+    this.playerlogged=this.session.getPlayerInSession();
+    this.session.isAuthenticated.subscribe(didAuthenticate => {
+      this.Authenticated = didAuthenticate;
+    });
+    this.session.isAncient.subscribe(userType => {
+      this.isAncient = userType;
+    });
+    if (localStorage.getItem('playerlogged')) {
       this.session.isAuthenticated.next(true);
     }
-    if(this.session.getPlayerInSession().userType=='Ancient'){
+    if (this.session.getPlayerInSession().userType == 'Ancient') {
       this.session.isAncient.next(true);
     }
     this.skinService.shoppingCartSkins.subscribe(shoppingCart => this.shoppingCartSkins = shoppingCart);
   }
 
-  isItCloset(){
-var bol=false;
-    if(this.router.url === '/closet'){
-      if(this.session.playerSession.userType==userType.Warrior){
-          bol=true;
-      }    
+  isItCloset() {
+    var bol = false;
+    if (this.router.url === '/closet') {
+      if (this.session.playerSession.userType == userType.Warrior) {
+        bol = true;
+      }
     }
     return bol;
   }
 
-
-  removeItem(skin: Skin){
+  removeItem(skin: Skin) {
     this.skinService.removeFromShoppingCart(skin);
     //prevents menu from closing when clicked inside
-    event.stopPropagation();​
+    event.stopPropagation();
   }
 
-  onProfile(){
+  onProfile() {
     if (this.session.getPlayerInSession().userType == "Ancient") {
       this.router.navigate(['/ancient_profile'], { relativeTo: this.route });
     }
@@ -66,35 +69,34 @@ var bol=false;
       this.router.navigate(['/warrior_profile'], { relativeTo: this.route });
     }
   }
-  onCloset(){
-    this.router.navigate(['closet'], {relativeTo: this.route});
+  onCloset() {
+    this.router.navigate(['closet'], { relativeTo: this.route });
   }
-  onReward(){
-    this.router.navigate(['rewards'], {relativeTo: this.route});
+  onReward() {
+    this.router.navigate(['rewards'], { relativeTo: this.route });
   }
-  onVideos(){
-    this.router.navigate(['videos'], {relativeTo: this.route});
+  onVideos() {
+    this.router.navigate(['videos'], { relativeTo: this.route });
   }
-  onGuild(){
-    if(this.session.getPlayerInSession().userType==userType.GuildMaster || this.session.getPlayerInSession().userType==userType.Ancient){
-      this.router.navigate(['guilds_list'], {relativeTo: this.route});
-    }else{
-      var guildID=this.guildListService.getGuildByPlayer(this.session.getPlayerInSession().idplayer).idguild
-      this.router.navigate(['guild', guildID], {relativeTo: this.route});
+  onGuild() {
+    if (this.session.getPlayerInSession().userType == userType.GuildMaster || this.session.getPlayerInSession().userType == userType.Ancient) {
+      this.router.navigate(['guilds_list'], { relativeTo: this.route });
+    } else {
+      var guildID = this.guildListService.getGuildByPlayer(this.session.getPlayerInSession().idplayer).idguild
+      this.router.navigate(['guild', guildID], { relativeTo: this.route });
     }
   }
-  onEvents(){
-    this.router.navigate(['events'], {relativeTo: this.route});
+  onEvents() {
+    this.router.navigate(['events'], { relativeTo: this.route });
   }
-  onNotifications(){
-    this.router.navigate(['notifications'], {relativeTo: this.route});
+  onNotifications() {
+    this.router.navigate(['notifications'], { relativeTo: this.route });
   }
-  onSignout(){
+  onSignout() {
     localStorage.removeItem('playerlogged')
     localStorage.removeItem('token')
-    this.Authenticated=false;
-    this.isAncient=false;
-    this.router.navigate(['login'], {relativeTo: this.route});
+    this.Authenticated = false;
+    this.isAncient = false;
+    this.router.navigate(['login'], { relativeTo: this.route });
   }
-
 }

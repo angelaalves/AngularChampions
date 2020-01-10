@@ -8,7 +8,6 @@
   }
   
   .divLeft {
-    /*width:1000px;*/
     padding-left: 10vw;
     height: 30vh;
     width: 30vw;
@@ -30,4 +29,3 @@ color:black;
   background-image: url('../../assets/AppImages/btnforeverything.png');
   background-size: cover;
 }
-

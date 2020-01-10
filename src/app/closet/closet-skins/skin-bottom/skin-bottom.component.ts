@@ -31,8 +31,6 @@ export class SkinBottomComponent implements OnInit {
   ngOnInit() {
     this.player = this.session.getPlayerInSession();
 
-    console.log(this.player);
-
     this.skinService.shoppingCartSkins.subscribe(shoppingCart => this.shoppingCartSkins = shoppingCart);
 
     this.skinService.changingSkins.subscribe(newSkinsSelected => this.skins = newSkinsSelected);
@@ -41,10 +39,8 @@ export class SkinBottomComponent implements OnInit {
 
     this.playerViewingSkins = this.session.playerSession.imagePath;
 
-    console.log(this.player);
     this.http.get<Closet[]>('http://localhost:8085/closet/Get?idSkinFK= &idPlayerFk=' + this.session.getPlayerInSession().idplayer + "&status=", {}).subscribe(data => {
       this.allsessionsuserskins = data;
-      console.log("this.alluserskins ", this.allsessionsuserskins);
     });
   }
 
