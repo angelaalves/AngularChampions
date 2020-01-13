@@ -85,11 +85,6 @@ export class ChangePasswordComponent implements OnInit {
         }
       }
       );
-
-      
-
-
-
   }
 
   changePasswordWarning() {
@@ -98,37 +93,3 @@ export class ChangePasswordComponent implements OnInit {
     }
   }
 }
-
-
-
-
-/* */
-
-/*
-private initForm() {
-  this.oldPassword = '';
-  this.newPassword = '';
-  this.confirmPassword = '';
-
-  this.changePasswordForm = new FormGroup({
-    'oldPassword': new FormControl(this.oldPassword, Validators.required),
-    'newPassword': new FormControl(this.newPassword, Validators.required),
-    'confirmPassword': new FormControl(this.confirmPassword, Validators.required)
-  });
-}
-
-submit(addUserForm: FormGroup) {
-  console.log(this.changePasswordForm);
-  // this.router.navigate(['/ancient_profile'], {relativeTo: this.route});
-}
-
-changePassword(changePasswordForm: FormGroup) {
-  (<FormArray>this.changePasswordForm.get('newPassword')).push(
-    new FormGroup({
-      'oldPassword': new FormControl(this.verifyOldPassword, Validators.required),
-      'newPassword': new FormControl(null, Validators.required),
-      'confirmPassword': new FormControl(null, Validators.required)
-    })
-  );
-}*/
-
