@@ -21,7 +21,7 @@ export class ClosetSkinsComponent {
 
   constructor(private router: Router, private route: ActivatedRoute) { }
 
-  addSkin(){
-    this.router.navigate(['/add_skin'], {relativeTo: this.route});
-  }  
+  addSkin() {
+    this.router.navigate(['/add_skin'], { relativeTo: this.route });
+  }
 }

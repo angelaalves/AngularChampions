@@ -29,6 +29,7 @@ export class ClosetComponent implements OnInit {
   others: Skin[] = [];
   allSkins: Skin[] = [];
   allsessionsuserskins: Closet[] = [];
+  totalcost = 0;
 
   //private skin = new BehaviorSubject<Skin>(new Skin("", "", "", "", "", null));
   //closetSkinSelected = this.skin.asObservable();

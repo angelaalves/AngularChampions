@@ -41,15 +41,6 @@ export class ChangePasswordComponent implements OnInit {
     this.player = this.session.playerSession;
   }
 
-  verifyOldPassword(form: NgForm) {
-
-  }
-
-  changePassword(form: NgForm) {
-
-
-
-  }
 
   onSubmit(form: NgForm) {
     if (!form.valid) {
@@ -76,6 +67,15 @@ export class ChangePasswordComponent implements OnInit {
             }
           ).subscribe(success => {
             console.log("Changed password successfully")
+            if (this.session.getPlayerInSession().userType == "Ancient") {
+              this.router.navigate(['/ancient_profile'], { relativeTo: this.route });
+            }
+            if (this.session.getPlayerInSession().userType == "GuildMaster") {
+              this.router.navigate(['/guildmaster_profile'], { relativeTo: this.route });
+            }
+            if (this.session.getPlayerInSession().userType == "Warrior") {
+              this.router.navigate(['/warrior_profile'], { relativeTo: this.route });
+            }
           }
           );
         }
@@ -83,19 +83,10 @@ export class ChangePasswordComponent implements OnInit {
           this.changePasswordWarning();
           console.log("different password")
         }
-        form.reset();
       }
       );
 
-      if (this.session.getPlayerInSession().userType == "Ancient") {
-        this.router.navigate(['/ancient_profile'], { relativeTo: this.route });
-      }
-      if (this.session.getPlayerInSession().userType == "GuildMaster") {
-        this.router.navigate(['/guildmaster_profile'], { relativeTo: this.route });
-      }
-      if (this.session.getPlayerInSession().userType == "Warrior") {
-        this.router.navigate(['/warrior_profile'], { relativeTo: this.route });
-      }
+      
 
 
 
