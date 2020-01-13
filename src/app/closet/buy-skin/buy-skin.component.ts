@@ -27,7 +27,7 @@ export class BuySkinComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.skinService.shoppingCartSkins.subscribe(shoppingCart => this.shoppingCartSkins = shoppingCart);
+    this.shoppingCartSkins=this.skinService.skinsToBeBought;
   }
 
   redirectBackToCloset() {
@@ -49,7 +49,7 @@ export class BuySkinComponent implements OnInit {
     for (let item of this.shoppingCartSkins) {
       var idSkin = item.idskin;
       this.totalcost += Number(item.champiesCost);
-      if (this.player.myChampies >= item.champiesCost && this.player.xp >= item.minXP) {
+      if (+this.player.myChampies >= +item.champiesCost && +this.player.xp >= +item.minXP) {
         this.http.post<any>('http://localhost:8085/closet/Create?idSkinFK=' + idSkin + '&idPlayerFk=' + idplayer + '&status=',
           {
             idSkin,
@@ -81,14 +81,14 @@ export class BuySkinComponent implements OnInit {
             );
           }
         }
-      } else if ((this.player.myChampies < item.champiesCost) || (this.player.xp < item.minXP)) {
+      } else /*if ((this.player.myChampies < item.champiesCost) || (this.player.xp < item.minXP))*/ {
         this.router.navigate(['../app-error-closet'], { relativeTo: this.route });
       }
       this.player.changeImage(item.imagePath, item.skinType);
       this.activeSkins.push(item);
       this.skinService.emptyCart();
-      this.router.navigate(['../closet'], { relativeTo: this.route });
     }
+    this.router.navigate(['../closet'], { relativeTo: this.route });
   }
 
   Champies() {

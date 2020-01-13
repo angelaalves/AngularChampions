@@ -78,7 +78,8 @@ export class SkinHairComponent implements OnInit {
 
     if (!this.playerHasBoughtSkin(skinSelected) && this.hasEnoughXP(skinSelected)) {
       this.skinService.addToShoppingCart(skinSelected);
-      console.log(this.skinService.isShoppingCartEmpty())
+      console.log("added to shopping cart")
+      console.log(this.skinService.shoppingCart)
     }
     this.skinService.setAnySkinSelected(true);
     this.skinService.addNewSkinInUse(skinSelected);
