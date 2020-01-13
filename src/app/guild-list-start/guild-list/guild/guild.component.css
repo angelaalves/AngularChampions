@@ -6,3 +6,61 @@
   *{
     font-family: karmatic-arcade;
   }
+
+
+@font-face{
+    src: url(../../../../fonts/pixelmix.ttf);
+    font-family: pixelmix;
+  }
+  
+  input{
+      font-family: pixelmix;
+  }
+
+  textarea{
+    font-family: pixelmix;
+}
+
+select{
+    font-family: pixelmix;
+}
+ 
+ 
+  td{
+    font-family: pixelmix;
+    width: 5vw;
+    opacity: 0.9;
+  }
+
+  th{
+    background: url("../../../../assets/AppImages/button width-700height-90.png") no-repeat ;
+    opacity: 0.9;
+    background-size: auto;
+    
+  }
+
+  option{
+    font-family: pixelmix;
+  }
+  select{
+    font-family: pixelmix;
+  }
+  
+
+
+  #style-8::-webkit-scrollbar-track
+  {
+    border: 1px solid black;
+    background-color:transparent;
+  }
+  
+  #style-8::-webkit-scrollbar
+  {
+    width: 10px;
+    background-color: transparent;
+  }
+  
+  #style-8::-webkit-scrollbar-thumb
+  {
+    background-color: #000000;	
+  }

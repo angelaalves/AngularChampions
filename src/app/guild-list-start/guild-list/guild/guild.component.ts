@@ -19,6 +19,7 @@ export class GuildComponent implements OnInit {
   id: number;
   flag: string;
   guild: Guild;
+  public events: Event[] = [];
   flags: String[] = ["../../../assets/Flags/flag1.png", "../../../../assets/Flags/flag2.png",
     "../../../../assets/Flags/flag3.png", "../../../../assets/Flags/flag4.png",
     "../../../../assets/Flags/flag5.png", "../../../../assets/Flags/flag6.png",
@@ -35,6 +36,11 @@ export class GuildComponent implements OnInit {
 
     }
     this.flag = this.guild.guildFlag;
+    this.http.get<Event[]>('http://localhost:8085/events/getAll').subscribe(data => {
+      this.events = data;
+      console.log(data);
+      console.log(this.events);
+    });
   }
 
   changeFlag(flag: string) {
