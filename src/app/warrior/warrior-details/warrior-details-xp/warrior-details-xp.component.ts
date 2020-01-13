@@ -20,7 +20,7 @@ export class WarriorDetailsXPComponent implements OnInit {
     this.percentageXP();
   }
   percentageXP(){
-    this.barXP=this.XP/1000;
+    this.barXP=this.XP/10;
  
  
   }
