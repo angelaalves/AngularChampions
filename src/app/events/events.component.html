@@ -25,7 +25,7 @@
                     <td *ngIf="hasEvent(event) == true" style="background-color: lightgreen;opacity: 0.7;">
                         {{event.eventName}}</td>
                     <td *ngIf="hasEvent(event) == true" style="background-color: lightgreen;opacity: 0.7;">
-                        {{event.eventDate }}</td>
+                        {{event.eventDate | date: 'mediumDate' }}</td>
 
 
                 </tr>
