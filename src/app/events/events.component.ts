@@ -54,7 +54,7 @@ export class EventsComponent implements OnInit {
   }
 
   getAttendedEvents() {
-    this.http.get<AttendedEvents[]>('http://localhost:8085/attendedEvents/Get?idPlayerFK=' + this.session.getPlayerInSession().idplayer).subscribe(data => {
+    this.http.get<AttendedEvents[]>('http://localhost:8085/attendedEvents/Get?idPlayerFK=' + this.session.playerSession.idplayer).subscribe(data => {
       this.attendedEventsByPlayer = data;
       for (let aux of this.attendedEventsByPlayer) {
         this.http.get<Event[]>('http://localhost:8085/events/get?idEvent=' + aux.ideventFK).subscribe(res => {

@@ -6,9 +6,6 @@ import { SessionService } from 'src/app/services/session.service';
 import { Skin } from 'src/app/shared/skin.model';
 import { Player } from 'src/app/shared/player.model';
 import { SkinService } from 'src/app/services/skin.service';
-import { ModalService } from 'src/app/services/model.service';
-import Swal from 'sweetalert2'
-
 
 @Component({
   selector: 'app-buy-skin',
@@ -25,20 +22,12 @@ export class BuySkinComponent implements OnInit {
   totalcost: number = 0;
 
   constructor(private router: Router, private route: ActivatedRoute, private http: HttpClient, private session: SessionService,
-    private skinService: SkinService, private modalService: ModalService) {
+    private skinService: SkinService) {
     this.player = this.session.getPlayerInSession();
   }
 
   ngOnInit() {
     this.skinService.shoppingCartSkins.subscribe(shoppingCart => this.shoppingCartSkins = shoppingCart);
-  }
-
-  openModal(id: string) {
-    this.modalService.open(id);
-  }
-
-  closeModal(id: string) {
-    this.modalService.close(id);
   }
 
   redirectBackToCloset() {
