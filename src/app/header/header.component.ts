@@ -30,17 +30,17 @@ export class HeaderComponent implements OnInit {
     this.session.isAuthenticated.subscribe(didAuthenticate => {
       this.Authenticated = didAuthenticate;
     });
-    this.session.isAncient.subscribe(userType => {
-      this.isAncient = userType;
-    });
+ 
     if (localStorage.getItem('playerlogged')) {
       this.session.isAuthenticated.next(true);
-    }
+      this.session.isAncient.subscribe(userType => {
+      this.isAncient = userType;
+    });
     if (this.playerlogged.userType == 'Ancient') {
       this.session.isAncient.next(true);
     }
     this.skinService.shoppingCartSkins.subscribe(shoppingCart => this.shoppingCartSkins = shoppingCart);
-  }
+  }}
 
   isItCloset() {
     var bol = false;
