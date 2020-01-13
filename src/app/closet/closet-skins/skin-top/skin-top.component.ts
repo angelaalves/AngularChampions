@@ -36,10 +36,6 @@ export class SkinTopComponent implements OnInit {
     this.playerViewingSkins = this.session.playerSession.imagePath;
     this.http.get<Closet[]>('http://localhost:8085/closet/Get?idSkinFK= &idPlayerFk=' + this.session.getPlayerInSession().idplayer + "&status=", {}).subscribe(data => {
       this.allsessionsuserskins = data;
-      for (let s of this.allsessionsuserskins) {
-        return true;
-      }
-      return false;
     });
   }
 
@@ -76,9 +72,9 @@ export class SkinTopComponent implements OnInit {
   skinSelected(skinSelected: Skin) {
     this.playerViewingSkins = this.playerInitialSkins;
     this.session.playerSession.changeImage(skinSelected.imagePath, skinSelected.skinType);
-
-    if (this.playerHasBoughtSkin(skinSelected) == false  && this.hasEnoughXP(skinSelected) == true) {
+    if (!this.playerHasBoughtSkin(skinSelected) && this.hasEnoughXP(skinSelected)) {
       this.skinService.addToShoppingCart(skinSelected);
+      console.log(this.skinService.getShoppingCart)
     }
     this.skinService.setAnySkinSelected(true);
     this.skinService.addNewSkinInUse(skinSelected);

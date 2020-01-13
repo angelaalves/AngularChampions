@@ -65,6 +65,7 @@ export class SkinService {
             if (this.skins[i].skinType == skin.skinType) {
                 found=true
                 this.inactiveSkinsToBe.push(this.skins[i]);
+                console.log(this.inactiveSkinsToBe)
                 this.skins[i] = skin
                 this.newSkinsSelected.next(this.skins)
             }
@@ -77,7 +78,7 @@ export class SkinService {
     }
 
     addToShoppingCart(skin: Skin) {
-        this.totalcost += Number(skin.champiesCost);
+        this.totalcost += +skin.champiesCost;
         this.skinExists = false;
         if (this.skinsToBeBought.length > 0) {
             this.skinsToBeBought.forEach(s => {

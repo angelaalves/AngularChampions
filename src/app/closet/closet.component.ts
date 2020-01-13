@@ -39,15 +39,13 @@ export class ClosetComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.player = this.session.playerSession;
-    this.http.get<Closet[]>('http://localhost:8085/closet/Get?idSkinFK= &idPlayerFk=' + this.player.idplayer + "&status=", {}).subscribe(data => {
-      this.allsessionsuserskins = data;
-    });
+    this.player = this.session.getPlayerInSession(); 
     this.getSkins();
-    this.totalcost = this.skinService.totalcost;
+    this.skinService.ngOnInit()
     this.http.get<Closet[]>('http://localhost:8085/closet/Get?idSkinFK= &idPlayerFk=' + this.player.idplayer + "&status=", {}).subscribe(data => {
       this.allsessionsuserskins = data;
     });
+    //this.totalcost = this.skinService.totalcost;
   }
 
   getSkins() {
@@ -98,12 +96,27 @@ export class ClosetComponent implements OnInit {
     inactiveSkins.forEach(active => {
       inactiveIds.push(active.idskin);
     })
-    this.http.post('http://localhost:8085/closet/changeStatusSkins?idSkins=' + activeIds.toString() + "&idPlayer=" + this.session.getPlayerInSession().idplayer + "&status=Active", {}).subscribe(data => {
-      console.log(data);
-    });
-    this.http.post('http://localhost:8085/closet/changeStatusSkins?idSkins=' + inactiveIds.toString() + "&idPlayer=" + this.session.getPlayerInSession().idplayer + "&status=Inactive", {}).subscribe(data => {
-      console.log(data);
-    });
+    console.log(inactiveIds)
+    this.http.get<Closet[]>('http://localhost:8085/closet/Get?idPlayer=' + this.session.getPlayerInSession().idplayer).subscribe(get => {
+      activeIds.forEach(id => {
+        var found = false;
+        get.forEach(closet => {
+          if (id == closet.idskinFK) {
+            found = true;
+          }
+        })
+        if (found == false) {
+          return;
+        }
+      })
+      this.http.post('http://localhost:8085/closet/changeStatusSkins?idSkins=' + activeIds.toString() + "&idPlayer=" + this.session.getPlayerInSession().idplayer + "&status=Active", {}).subscribe(data => {
+        console.log(data);
+        this.http.post('http://localhost:8085/closet/changeStatusSkins?idSkins=' + inactiveIds.toString() + "&idPlayer=" + this.session.getPlayerInSession().idplayer + "&status=Inactive", {}).subscribe(data => {
+          console.log(data);
+        });
+      });
+
+    })
   }
 
   isItaWarrior() {
