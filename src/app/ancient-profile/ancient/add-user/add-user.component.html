@@ -1,7 +1,6 @@
 <form #addUserForm="ngForm" (ngSubmit)="onSubmit(addUserForm); addUserForm.reset()" action="">
     <div id="Left">
         <img src="../../../../assets/AppImages/skinColor.png" width="300" height="300" alt="player">
-
     </div>
     <div id="Right">
         <div class="form-group">
@@ -17,7 +16,6 @@
                 <input type="radio" value="F" name="gender" ngModel required
                     style="margin-left:2%;margin-right:2%;">Female
             </div>
-
             <label style="margin-top: 3%;" for="playerType">PlayerType</label><br>
             <div style="margin-left: 5%; font-family: pixelmix;">
                 <input type="radio" value="ancient" name="playertype" ngModel required
@@ -31,11 +29,8 @@
             <input class="input-sm" type="email" name="email"
                 style="background: whitesmoke; border: 2px solid  rgb(66, 66, 66);margin-left: 5em; width: 80%;" ngModel
                 required email>
-
-
         </div>
     </div>
-
     <div id="footer">
         <button type="submit" class="btn btn-primary" [disabled]="!addUserForm.valid" id="AButton">Create User</button>
     </div>

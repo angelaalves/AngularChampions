@@ -8,8 +8,8 @@ import { tap } from 'rxjs/operators';
 export class GuildListService implements OnInit {
 
     private guilds: Guild[] = [];
-    
-    constructor(private http: HttpClient, private playerService: PlayerService) {}
+
+    constructor(private http: HttpClient, private playerService: PlayerService) { }
 
     ngOnInit() {
         this.http.get<Guild[]>('http://localhost:8085/guild/getAll').subscribe(resData => {
@@ -49,9 +49,7 @@ export class GuildListService implements OnInit {
             }
         }))
     }
-    getGuildPlayers(index: number) {
-        return this.guilds[index].getPlayers();
-    }
+
     getGuildByPlayer(idplayer: String) {
         if (this.guilds.length < 0) {
             this.getGuildsFromDataBase().subscribe(resData => {

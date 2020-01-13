@@ -39,7 +39,8 @@
 <hr>
 <div class="row">
     <div class="col-xs-3" *ngFor="let playerEl of players">
-        <app-guild-member [player]="playerEl" [index]="playerEl.idplayer" ></app-guild-member>
+        <app-guild-member [player]="playerEl" [index]="playerEl.idplayer" style="background-color:transparent;">
+        </app-guild-member>
     </div>
 </div>
 <div class="row" id="upcomingEvents">

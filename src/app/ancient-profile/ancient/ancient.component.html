@@ -1,12 +1,11 @@
 <div id="Left">
     <app-image-maker [hairImagePath]="ancient.getImagePath(0)" [skinImagePath]="ancient.getImagePath(1)"
         [shirtImagePath]="ancient.getImagePath(2)" [pantsImagePath]="ancient.getImagePath(3)"
-        [shoesImagePath]="ancient.getImagePath(4)" [othersImagePath]="ancient.getImagePath(5)" [size]=300></app-image-maker>
-        <h2 style="text-align:center;">{{ancient.userName}}</h2>
+        [shoesImagePath]="ancient.getImagePath(4)" [othersImagePath]="ancient.getImagePath(5)" [size]=300>
+    </app-image-maker>
+    <h2 style="text-align:center;">{{ancient.userName}}</h2>
 </div>
 <div id="Right">
     <app-ancient-details></app-ancient-details>
 </div>
-
-
 <app-ancient-definitions></app-ancient-definitions>

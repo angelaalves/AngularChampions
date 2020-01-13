@@ -59,25 +59,28 @@ export class HeaderComponent implements OnInit {
   }
 
   onProfile() {
-    if (this.playerlogged.userType == "Ancient") {
+    if (this.session.getPlayerInSession().userType == "Ancient") {
       this.router.navigate(['/ancient_profile'], { relativeTo: this.route });
     }
-    if (this.playerlogged.userType == "GuildMaster") {
+    if (this.session.getPlayerInSession().userType == "GuildMaster") {
       this.router.navigate(['/guildmaster_profile'], { relativeTo: this.route });
     }
-    if (this.playerlogged.userType == "Warrior") {
+    if (this.session.getPlayerInSession().userType == "Warrior") {
       this.router.navigate(['/warrior_profile'], { relativeTo: this.route });
     }
   }
   onCloset() {
     this.router.navigate(['closet'], { relativeTo: this.route });
   }
+
   onReward() {
     this.router.navigate(['rewards'], { relativeTo: this.route });
   }
+
   onVideos() {
     this.router.navigate(['videos'], { relativeTo: this.route });
   }
+
   onGuild() {
     if (this.session.getPlayerInSession().userType == userType.GuildMaster || this.session.getPlayerInSession().userType == userType.Ancient) {
       this.router.navigate(['guilds_list'], { relativeTo: this.route });
@@ -86,12 +89,16 @@ export class HeaderComponent implements OnInit {
       this.router.navigate(['guild', guildID], { relativeTo: this.route });
     }
   }
+
   onEvents() {
     this.router.navigate(['events'], { relativeTo: this.route });
   }
+
   onNotifications() {
     this.router.navigate(['notifications'], { relativeTo: this.route });
   }
+
+  
   onSignout() {
     localStorage.removeItem('playerlogged')
     localStorage.removeItem('token')

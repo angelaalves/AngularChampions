@@ -89,16 +89,16 @@ export class ClosetComponent implements OnInit {
 
   applySkins() {
     const activeSkins = this.skinService.getSkins();
-    var activeIds: String[]=[];
+    var activeIds: String[] = [];
     const inactiveSkins = this.skinService.getInactiveSkinsToBe();
-    var inactiveIds: String[]=[];
-    activeSkins.forEach(inactive=>{
+    var inactiveIds: String[] = [];
+    activeSkins.forEach(inactive => {
       activeIds.push(inactive.idskin);
     })
-    inactiveSkins.forEach(active=>{
+    inactiveSkins.forEach(active => {
       inactiveIds.push(active.idskin);
     })
-    this.http.post('http://localhost:8085/closet/changeStatusSkins?idSkins=' + activeIds.toString() + "&idPlayer=" + this.session.getPlayerInSession().idplayer + "&status=Active", { }).subscribe(data => {
+    this.http.post('http://localhost:8085/closet/changeStatusSkins?idSkins=' + activeIds.toString() + "&idPlayer=" + this.session.getPlayerInSession().idplayer + "&status=Active", {}).subscribe(data => {
       console.log(data);
     });
     this.http.post('http://localhost:8085/closet/changeStatusSkins?idSkins=' + inactiveIds.toString() + "&idPlayer=" + this.session.getPlayerInSession().idplayer + "&status=Inactive", {}).subscribe(data => {

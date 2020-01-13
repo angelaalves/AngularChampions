@@ -9,17 +9,14 @@ import { SessionService } from 'src/app/services/session.service';
 })
 @Injectable({ providedIn: 'root' })
 export class GuildMasterDetailsCoinsComponent implements OnInit {
-  
+
   @Input() coinsGive: number;
   @Input() coinsReceive: number;
- guildMaster:Player;
-    constructor(private session:SessionService) { 
+  guildMaster: Player;
 
-    }
-  
-    ngOnInit() {
-       this.guildMaster=this.session.getPlayerInSession();
-    }
-  
+  constructor(private session: SessionService) { }
+
+  ngOnInit() {
+    this.guildMaster = this.session.getPlayerInSession();
   }
-
+}

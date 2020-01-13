@@ -15,7 +15,7 @@ export class GuildMasterComponent implements OnInit {
   @Output() guildmaster: Player;
   id: number;
 
-  constructor(private session: SessionService, private router: Router, private route: ActivatedRoute) { }
+  constructor(private session: SessionService, private router: Router, private route: ActivatedRoute) {}
 
   ngOnInit() {
     this.guildmaster = this.session.getPlayerInSession();

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient, HttpEventType } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs';
 
 @Component({
@@ -7,16 +7,15 @@ import { BehaviorSubject } from 'rxjs';
   templateUrl: './preview-skin.component.html',
   styleUrls: ['./preview-skin.component.css']
 })
-export class PreviewSkinComponent implements OnInit {
+export class PreviewSkinComponent {
   fileData: File = null;
   private f = new BehaviorSubject<File>(this.fileData);
   file = this.f.asObservable();
   previewUrl: any = null;
   fileUploadProgress: string = null;
   uploadedFilePath: string = null;
+
   constructor(private http: HttpClient) { }
-  ngOnInit(): void {
-  }
 
   fileProgress(fileInput: any) {
     this.fileData = <File>fileInput.target.files[0];
@@ -31,14 +30,10 @@ export class PreviewSkinComponent implements OnInit {
     }
   }
 
-
-
   onSubmit() {
     const formData = new FormData();
     formData.append('file', this.fileData);
     console.log("Final");
     console.log(this.fileData);
-
-
   }
 }

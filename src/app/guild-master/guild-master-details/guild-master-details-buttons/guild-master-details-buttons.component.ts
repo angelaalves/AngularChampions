@@ -6,12 +6,9 @@ import { Router, ActivatedRoute } from '@angular/router';
   templateUrl: './guild-master-details-buttons.component.html',
   styleUrls: ['./guild-master-details-buttons.component.css']
 })
-export class GuildMasterDetailsButtonsComponent implements OnInit {
+export class GuildMasterDetailsButtonsComponent {
 
   constructor(private router: Router, private route: ActivatedRoute) { }
-
-  ngOnInit() {
-  }
 
   redirectToRewards(){
     this.router.navigate(['/rewards'], {relativeTo: this.route});

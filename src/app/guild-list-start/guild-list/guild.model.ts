@@ -1,6 +1,6 @@
 import { Player } from 'src/app/shared/player.model';
 
-export class Guild{
+export class Guild {
     public idguild: string;
     public guildName: string;
     public guildFlag: string;
@@ -10,26 +10,27 @@ export class Guild{
     public guildmaster: Player;
     public members: Player[];
 
-    constructor(idguild: string, guildName: string, guildFlag: string, startDate: string, endDate: string, status: string){
-        this.idguild=idguild;
-        this.guildName=guildName;
-        this.guildFlag=guildFlag;
-        this.startDate=startDate;
-        this.endDate=endDate;
-        this.status=status;
+    constructor(idguild: string, guildName: string, guildFlag: string, startDate: string, endDate: string, status: string) {
+        this.idguild = idguild;
+        this.guildName = guildName;
+        this.guildFlag = guildFlag;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.status = status;
     }
 
-    getPlayers(){
+    getPlayers() {
         return this.members;
     }
-    getGuildMaster(){
+
+    getGuildMaster() {
         return this.guildmaster;
     }
-    
-    setGuildMaster(guildmaster:Player){
-        this.guildmaster=guildmaster;
+
+    setGuildMaster(guildmaster: Player) {
+        this.guildmaster = guildmaster;
     }
-    setMembers(members: Player[]){
-        this.members=members;
+    setMembers(members: Player[]) {
+        this.members = members;
     }
 }

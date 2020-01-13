@@ -1,5 +1,5 @@
 import { Component, OnInit, Injectable, Input } from '@angular/core';
-import { Params, Router, ActivatedRoute } from '@angular/router';
+import { Params, ActivatedRoute } from '@angular/router';
 import { Player } from 'src/app/shared/player.model';
 import { HttpClient } from '@angular/common/http';
 import { SessionService } from 'src/app/services/session.service';
@@ -16,7 +16,7 @@ export class GuildmasterPresenterPageComponent implements OnInit {
   activeSkins: String[] = [];
   id: number;
 
-  constructor(private router: Router, private route: ActivatedRoute, private http: HttpClient, private session: SessionService) { }
+  constructor(private route: ActivatedRoute, private http: HttpClient, private session: SessionService) { }
 
   ngOnInit() {
     this.route.params.subscribe((params: Params) => {

@@ -1,5 +1,4 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-guild-master-details-xp',
@@ -7,20 +6,15 @@ import { Router, ActivatedRoute } from '@angular/router';
   styleUrls: ['./guild-master-details-xp.component.css']
 })
 
-
 export class GuildMasterDetailsXpComponent implements OnInit {
-  @Input() XP:number;
-  barXP:number;
-  constructor(private router: Router, private route: ActivatedRoute) { }
+  @Input() XP: number;
+  barXP: number;
 
   ngOnInit() {
-   this.percentageXP();
-    
+    this.percentageXP();
   }
 
-  percentageXP(){
-    this.barXP=this.XP/1000;
- 
- 
+  percentageXP() {
+    this.barXP = this.XP / 1000;
   }
 }

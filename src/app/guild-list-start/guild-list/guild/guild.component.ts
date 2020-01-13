@@ -4,7 +4,6 @@ import { Guild } from '../guild.model';
 import { ActivatedRoute, Router } from '@angular/router';
 import { GuildListService } from 'src/app/services/guild-list.service';
 import { SessionService } from 'src/app/services/session.service';
-import { NgForm } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { formatDate } from '@angular/common';
 
@@ -13,6 +12,7 @@ import { formatDate } from '@angular/common';
   templateUrl: './guild.component.html',
   styleUrls: ['./guild.component.css']
 })
+
 export class GuildComponent implements OnInit {
   players: Player[];
   guildmaster: Player;
@@ -32,9 +32,6 @@ export class GuildComponent implements OnInit {
     this.guild = this.guildListService.getGuild(this.route.snapshot.params['idguild']);
     this.guildmaster = this.guild.guildmaster
     this.players = this.guild.members
-    for (let player of this.players) {
-
-    }
     this.flag = this.guild.guildFlag;
     this.http.get<Event[]>('http://localhost:8085/events/getAll').subscribe(data => {
       this.events = data;
