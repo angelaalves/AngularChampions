@@ -97,4 +97,7 @@ export class SkinBottomComponent implements OnInit {
     this.skinService.setAnySkinSelected(true);
     this.skinService.addNewSkinInUse(skinSelected);
   }
+  
+
+
 }
