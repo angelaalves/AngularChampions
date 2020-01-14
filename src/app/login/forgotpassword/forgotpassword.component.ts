@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { NgForm } from '@angular/forms';
 import { SessionService } from 'src/app/services/session.service';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-forgotpassword',
@@ -10,7 +11,7 @@ import { SessionService } from 'src/app/services/session.service';
 })
 export class ForgotpasswordComponent implements OnInit {
 
-  constructor(private http: HttpClient, private session: SessionService) { }
+  constructor(private http: HttpClient, private session: SessionService,private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
   }
@@ -22,6 +23,8 @@ export class ForgotpasswordComponent implements OnInit {
     const email = form.value.email;
     this.http.post('http://localhost:8085/players/forgotPassword?playerEmail=' + email , {email}).subscribe(resData => {
       console.log(resData);
-    })
+    });
+      this.router.navigate(['/login'], { relativeTo: this.route });
+
   }
 }

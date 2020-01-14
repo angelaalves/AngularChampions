@@ -85,6 +85,7 @@ export class SkinBottomComponent implements OnInit {
     this.session.playerSession.changeImage(skinSelected.imagePath, skinSelected.skinType);
     if (!this.playerHasBoughtSkin(skinSelected) && this.hasEnoughXP(skinSelected)) {
       this.skinService.addToShoppingCart(skinSelected);
+      console.log(this.skinService.shoppingCartSkins)
     }
     this.skinService.setAnySkinSelected(true);
     this.skinService.addNewSkinInUse(skinSelected);

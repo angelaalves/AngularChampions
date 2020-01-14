@@ -30,22 +30,22 @@ export class HeaderComponent implements OnInit {
     this.session.isAuthenticated.subscribe(didAuthenticate => {
       this.Authenticated = didAuthenticate;
     });
- 
-    if (localStorage.getItem('playerlogged')) {
-      this.session.isAuthenticated.next(true);
-      this.session.isAncient.subscribe(userType => {
+    this.session.isAncient.subscribe(userType => {
       this.isAncient = userType;
     });
-    if (this.playerlogged.userType == 'Ancient') {
+    if (localStorage.getItem('playerlogged')) {
+      this.session.isAuthenticated.next(true);
+    }
+    if (this.session.getPlayerInSession().userType == 'Ancient') {
       this.session.isAncient.next(true);
     }
     this.skinService.shoppingCartSkins.subscribe(shoppingCart => this.shoppingCartSkins = shoppingCart);
-  }}
+  }
 
   isItCloset() {
     var bol = false;
     if (this.router.url === '/closet') {
-      if (this.session.getPlayerInSession().userType == userType.Warrior) {
+      if (this.session.playerSession.userType == userType.Warrior) {
         bol = true;
       }
     }
@@ -72,15 +72,12 @@ export class HeaderComponent implements OnInit {
   onCloset() {
     this.router.navigate(['closet'], { relativeTo: this.route });
   }
-
   onReward() {
     this.router.navigate(['rewards'], { relativeTo: this.route });
   }
-
   onVideos() {
     this.router.navigate(['videos'], { relativeTo: this.route });
   }
-
   onGuild() {
     if (this.session.getPlayerInSession().userType == userType.GuildMaster || this.session.getPlayerInSession().userType == userType.Ancient) {
       this.router.navigate(['guilds_list'], { relativeTo: this.route });
@@ -89,16 +86,12 @@ export class HeaderComponent implements OnInit {
       this.router.navigate(['guild', guildID], { relativeTo: this.route });
     }
   }
-
   onEvents() {
     this.router.navigate(['events'], { relativeTo: this.route });
   }
-
   onNotifications() {
     this.router.navigate(['notifications'], { relativeTo: this.route });
   }
-
-  
   onSignout() {
     localStorage.removeItem('playerlogged')
     localStorage.removeItem('token')

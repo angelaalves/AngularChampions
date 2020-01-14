@@ -5,7 +5,6 @@ import { SessionService } from '../services/session.service';
 import { AttendedEvents } from './attendedevents.model';
 import { FormGroup } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
-import { AuthenticationService } from '../login/authentication/authentication.service';
 import { eventType } from './event-type.enum';
 import { Player } from '../shared/player.model';
 
@@ -22,22 +21,21 @@ export class EventsComponent implements OnInit {
   public idOfEventsChecked: String[] = [];
   public idOfEventsUnchecked: String[] = [];
   public events: Event[] = [];
-  public KickOffXP = 6000;
-  public CheckPointXP = 6000;
-  public ChristmasXP = 4500;
-  public FamilyXP = 4500;
-  public HappyHourXP = 400;
-  public BoardGamesXP = 600;
-  public TripXP = 1500;
-  public TalkingSessionsXP = 300;
-  public OthersXP = 11;
+  public KickOffXP = 60;
+  public CheckPointXP = 60;
+  public ChristmasXP = 45;
+  public FamilyXP = 45;
+  public HappyHourXP = 4;
+  public BoardGamesXP = 6;
+  public TripXP = 15;
+  public TalkingSessionsXP = 3;
+  public OthersXP = 1;
 
-  constructor(private router: Router, private route: ActivatedRoute, private session: SessionService, private http: HttpClient) {
-  }
+  constructor(private router: Router, private route: ActivatedRoute, private session: SessionService, private http: HttpClient) {}
 
   ngOnInit() {
     this.allEvents();
-    this.getAttendedEvents()
+    this.getAttendedEvents();
   }
 
   hasEvent(event: Event) {
@@ -57,11 +55,10 @@ export class EventsComponent implements OnInit {
 
   getAttendedEvents() {
     this.http.get<AttendedEvents[]>('http://localhost:8085/attendedEvents/Get?idPlayerFK=' + this.session.playerSession.idplayer).subscribe(data => {
-      const obj = JSON.stringify(data);
       this.attendedEventsByPlayer = data;
       for (let aux of this.attendedEventsByPlayer) {
         this.http.get<Event[]>('http://localhost:8085/events/get?idEvent=' + aux.ideventFK).subscribe(res => {
-          const obj2 = JSON.stringify(res);
+          console.log(res);
           this.eventsAttendedByPlayer.push(res[0]);
         });
       }
@@ -69,7 +66,6 @@ export class EventsComponent implements OnInit {
   }
 
   Save() {
-
     if (this.idOfEventsChecked != undefined) {
       for (let idEvent of this.idOfEventsChecked) {
         const id = idEvent;
@@ -138,7 +134,6 @@ export class EventsComponent implements OnInit {
               status
             }).subscribe(data => {
             });
-
         });
       }
     }
@@ -208,7 +203,6 @@ export class EventsComponent implements OnInit {
               status
             }).subscribe(data => {
             });
-
         });
       }
     }
@@ -265,6 +259,4 @@ export class EventsComponent implements OnInit {
       this.idOfEventsUnchecked.splice(this.idOfEventsUnchecked.indexOf(event), 1);
     }
   }
-
 }
-

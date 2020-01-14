@@ -7,6 +7,7 @@ import { Closet } from '../shared/closet.model';
 import { SessionService } from './session.service';
 import { Player } from '../shared/player.model';
 import { status } from '../shared/status.enum';
+import { HeaderComponent } from '../header/header.component';
 
 @Injectable({ providedIn: 'root' })
 export class SkinService {
@@ -21,8 +22,8 @@ export class SkinService {
     private skinPaths = new Subject<String[]>();
     newViewingSkins = this.skinPaths.asObservable();
 
-    private skinsToBeBought: Skin[] = [];
-    private shoppingCart = new BehaviorSubject<Skin[]>(this.skinsToBeBought);
+    skinsToBeBought: Skin[] = [];
+    shoppingCart = new Subject<Skin[]>();
     shoppingCartSkins = this.shoppingCart.asObservable();
 
     private anySkinSelected: boolean;
@@ -164,5 +165,8 @@ export class SkinService {
 
     setAnySkinSelected(b: boolean) {
         this.anySkinSelected = b;
+    }
+    clearInactiveSkinsToBe() {
+        this.inactiveSkinsToBe = [];
     }
 }
