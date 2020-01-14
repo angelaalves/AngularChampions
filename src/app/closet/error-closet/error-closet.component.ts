@@ -14,7 +14,7 @@ export class ErrorClosetComponent implements OnInit {
   }
 
   redirectCloset(){
-    this.router.navigate(['../change_password'], {relativeTo: this.route});
+    this.router.navigate(['../closet'], {relativeTo: this.route});
   }
 
 }

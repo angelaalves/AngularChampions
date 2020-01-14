@@ -26,7 +26,7 @@ export class GuildComponent implements OnInit {
     "../../../../assets/Flags/flag7.png", "../../../../../assets/Flags/flag8.png",
     "../../../../assets/Flags/flag9.png", "../../../../assets/Flags/flag10.png"];
 
-  constructor(private guildListService: GuildListService, private route: ActivatedRoute, private session: SessionService, private http: HttpClient, private router: Router) { }
+  constructor(private guildListService: GuildListService, private route: ActivatedRoute, private session: SessionService, private http: HttpClient, private router: Router){ }
 
   ngOnInit() {
     this.guild = this.guildListService.getGuild(this.route.snapshot.params['idguild']);

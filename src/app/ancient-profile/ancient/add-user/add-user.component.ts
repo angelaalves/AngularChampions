@@ -51,7 +51,7 @@ export class AddUserComponent implements OnInit {
     const playerType = form.value.playertype;
     const statusPlayer = status.Active;
 
-    this.http.post<Player>('http://localhost:8085/players/CreateNewPlayer?idPlayer= &userName=' + name +
+    this.http.post<Player>('http://localhost:8085/players/CreateNewPlayer?userName=' + name +
       '&email=' + email + "&gender=" + gender + "&userType=" + playerType,
       {
         name,
