@@ -71,7 +71,10 @@ export class ClosetComponent implements OnInit {
 
   resetToInitialSkins() {
     this.skinService.setAnySkinSelected(false);
-    this.session.playerSession.resetImage();
+    this.http.get<String[]>('http://localhost:8085/closet/activeSkins?idPlayerFK='+this.session.getPlayerInSession().idplayer).subscribe(activeSkin=>{
+      this.session.getPlayerInSession().imagePath=activeSkin
+    })
+    //this.session.playerSession.resetImage();
   }
 
   emptyCart() {
@@ -90,13 +93,15 @@ export class ClosetComponent implements OnInit {
     inactiveSkins.forEach(active => {
       inactiveIds.push(active.idskin);
     })
-    this.http.post('http://localhost:8085/closet/changeStatusSkins?idSkins=' + activeIds.toString() + "&idPlayer=" + this.session.getPlayerInSession().idplayer + "&status=Active", {}).subscribe(data => {
-      console.log(data);
-      this.http.post('http://localhost:8085/closet/changeStatusSkins?idSkins=' + inactiveIds.toString() + "&idPlayer=" + this.session.getPlayerInSession().idplayer + "&status=Inactive", {}).subscribe(data => {
-        this.skinService.clearInactiveSkinsToBe();
+    if (activeIds.length > 0) {
+      this.http.post('http://localhost:8085/closet/changeStatusSkins?idSkins=' + activeIds.toString() + "&idPlayer=" + this.session.getPlayerInSession().idplayer + "&status=Active", {}).subscribe(data => {
         console.log(data);
+        this.http.post('http://localhost:8085/closet/changeStatusSkins?idSkins=' + inactiveIds.toString() + "&idPlayer=" + this.session.getPlayerInSession().idplayer + "&status=Inactive", {}).subscribe(data => {
+          this.skinService.clearInactiveSkinsToBe();
+          console.log(data);
+        });
       });
-    });
+    }
   }
 
   isItaWarrior() {

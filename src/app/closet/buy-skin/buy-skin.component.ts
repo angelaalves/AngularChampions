@@ -66,8 +66,8 @@ export class BuySkinComponent implements OnInit {
         const userType = this.session.playerSession.userType;
         const status2 = this.session.playerSession.status;
         const myChampiesAfterBuyingSkin = Number(this.player.myChampies) - Number(item.champiesCost);
-        this.http.post<any>('http://localhost:8085/players/Update?idPlayer=' + idplayer + ' &userName=' + userName + ' &email=' + email + ' &password=' + password + ' &gender=' + gender + ' &userType=' + userType + ' &xp=' + xp + ' &champiesToGive=' + champiesToGive + ' &myChampies=' + myChampiesAfterBuyingSkin + '&status= ' + status2,
-          { idplayer, userName, email, password, gender, userType, xp, champiesToGive, myChampiesAfterBuyingSkin, status2 }).subscribe();
+        this.http.post('http://localhost:8085/players/Update?idPlayer=' + idplayer + ' &userName=' + userName + ' &email=' + email + ' &password=' + this.session.getPlayerInSession().password + '&gender=' + gender + ' &userType=' + userType + ' &xp=' + xp + ' &champiesToGive=' + champiesToGive + ' &myChampies=' + myChampiesAfterBuyingSkin.toString() + '&status=Active',
+          {}).subscribe();
         this.session.getPlayerInSession().myChampies = myChampiesAfterBuyingSkin.toString();
         this.Champies();
         let counter: number = -1;
@@ -81,12 +81,14 @@ export class BuySkinComponent implements OnInit {
             );
           }
         }
-      } else /*if ((this.player.myChampies < item.champiesCost) || (this.player.xp < item.minXP))*/ {
-        this.router.navigate(['../app-error-closet'], { relativeTo: this.route });
-      }
       this.player.changeImage(item.imagePath, item.skinType);
       this.activeSkins.push(item);
       this.skinService.emptyCart();
+      } else{
+        this.router.navigate(['../app-error-closet'], { relativeTo: this.route });
+        return;
+      }
+      
     }
     this.router.navigate(['../closet'], { relativeTo: this.route });
   }
