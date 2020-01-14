@@ -5,17 +5,15 @@
             [shirtImagePath]="player.imagePath[2]" [pantsImagePath]="player.imagePath[3]"
             [shoesImagePath]="player.imagePath[4]" [othersImagePath]="player.imagePath[5]" [size]=150>
         </app-image-maker>
-        <img src="../../../../../assets/AppImages/Winning.png"
-            style="max-width: 150px; max-height: 150px; position: absolute; transform: translateX(180px);">
-        <div *ngFor="let player of players" class="row">
-            <div *ngIf="isChampion(player)" class="col-xs-12">
-                <img src="../../../../../assets/AppImages/Winning.png"
-                    style="max-width: 150px; max-height: 150px; position: absolute; transform: translateX(180px);">
-            </div>
+        <!-- <img src="../../../../../assets/AppImages/Winning.png"
+            style="max-width: 150px; max-height: 150px; position: absolute; transform: translateX(180px);"> -->
+        <div *ngIf="isChampion(player)" class="col-xs-12">
+            <img src="../../../../../assets/AppImages/Winning.png"
+                style="max-width: 150px; max-height: 150px; position: absolute; transform: translateX(180px);">
         </div>
     </span>
     <div class="pull-down" style="text-align: center;">
-        <h3 class="list-group-item-heading"style="color:black;">{{ player.userName }}</h3>
+        <h3 class="list-group-item-heading" style="color:black;">{{ player.userName }}</h3>
         <h4 class="list-group-item-text" style="color:black;">XP {{ player.xp }}</h4>
     </div>
 </a>
