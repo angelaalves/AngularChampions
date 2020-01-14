@@ -7,6 +7,7 @@ import { userType } from '../shared/userType.enum';
 import { GuildListService } from '../services/guild-list.service';
 import { Player } from '../shared/player.model';
 import { ClosetComponent } from '../closet/closet.component';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-header',
@@ -20,12 +21,11 @@ export class HeaderComponent implements OnInit {
   shoppingCartSkins: Skin[] = [];
   playerlogged: Player;
   isAncient = false;
-  totalcost: number;
+  totalcost=0;
 
   constructor(private router: Router, private route: ActivatedRoute, private session: SessionService, private skinService: SkinService, private guildListService: GuildListService, private closet: ClosetComponent) { }
 
   ngOnInit() {
-    this.totalcost=this.skinService.totalcost;
     this.playerlogged=this.session.getPlayerInSession();
     this.session.isAuthenticated.subscribe(didAuthenticate => {
       this.Authenticated = didAuthenticate;
@@ -40,6 +40,9 @@ export class HeaderComponent implements OnInit {
       this.session.isAncient.next(true);
     }
     this.skinService.shoppingCartSkins.subscribe(shoppingCart => this.shoppingCartSkins = shoppingCart);
+    this.skinService.totalcost.subscribe(cost=>{
+      this.totalcost=this.totalcost+cost;
+    })
   }
 
   isItCloset() {

@@ -71,8 +71,8 @@ export class ClosetComponent implements OnInit {
 
   resetToInitialSkins() {
     this.skinService.setAnySkinSelected(false);
-    this.http.get<String[]>('http://localhost:8085/closet/activeSkins?idPlayerFK='+this.session.getPlayerInSession().idplayer).subscribe(activeSkin=>{
-      this.session.getPlayerInSession().imagePath=activeSkin
+    this.http.get<String[]>('http://localhost:8085/closet/activeSkins?idPlayerFK=' + this.session.getPlayerInSession().idplayer).subscribe(activeSkin => {
+      this.session.getPlayerInSession().imagePath = activeSkin
     })
     //this.session.playerSession.resetImage();
   }
@@ -83,7 +83,7 @@ export class ClosetComponent implements OnInit {
   }
 
   applySkins() {
-    var found=false;
+    var found = false;
     const activeSkins = this.skinService.getSkins();
     var activeIds: String[] = [];
     const inactiveSkins = this.skinService.getInactiveSkinsToBe();
@@ -94,28 +94,30 @@ export class ClosetComponent implements OnInit {
     inactiveSkins.forEach(active => {
       inactiveIds.push(active.idskin);
     })
-    this.http.get<Closet[]>('http://localhost:8085/closet/Get?idPlayerFk='+this.session.getPlayerInSession().idplayer).subscribe(here=>{
-      activeIds.forEach(Id=>{
-        here.forEach(closet=>{
-          if(Id==closet.idskinFK){
-            found=true;
+    this.http.get<Closet[]>('http://localhost:8085/closet/Get?idPlayerFk=' + this.session.getPlayerInSession().idplayer).subscribe(here => {
+      activeIds.forEach(Id => {
+        found = false;
+        here.forEach(closet => {
+          if (Id == closet.idskinFK) {
+            found = true;
           }
         })
-        if(!found){
-          activeIds=[];
+        if (!found) {
+          activeIds = [];
           return;
         }
       })
-    });
-    if (activeIds.length >= 0) {
-      this.http.post('http://localhost:8085/closet/changeStatusSkins?idSkins=' + activeIds.toString() + "&idPlayer=" + this.session.getPlayerInSession().idplayer + "&status=Active", {}).subscribe(data => {
-        console.log(data);
-        this.http.post('http://localhost:8085/closet/changeStatusSkins?idSkins=' + inactiveIds.toString() + "&idPlayer=" + this.session.getPlayerInSession().idplayer + "&status=Inactive", {}).subscribe(data => {
-          this.skinService.clearInactiveSkinsToBe();
+      if (activeIds.length > 0) {
+        this.http.post('http://localhost:8085/closet/changeStatusSkins?idSkins=' + activeIds.toString() + "&idPlayer=" + this.session.getPlayerInSession().idplayer + "&status=Active", {}).subscribe(data => {
           console.log(data);
+          this.http.post('http://localhost:8085/closet/changeStatusSkins?idSkins=' + inactiveIds.toString() + "&idPlayer=" + this.session.getPlayerInSession().idplayer + "&status=Inactive", {}).subscribe(data => {
+            this.skinService.clearInactiveSkinsToBe();
+            console.log(data);
+          });
         });
-      });
-    }
+      }
+    });
+
   }
 
   isItaWarrior() {

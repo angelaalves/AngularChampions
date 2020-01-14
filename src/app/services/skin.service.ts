@@ -31,7 +31,7 @@ export class SkinService {
     private skinExists: boolean = false;
     private skinRemove: boolean = false;
 
-    totalcost = 0;
+    totalcost = new Subject<number>();
 
     player: Player;
 
@@ -79,7 +79,7 @@ export class SkinService {
     }
 
     addToShoppingCart(skin: Skin) {
-        this.totalcost += +skin.champiesCost;
+        this.totalcost.next(+skin.champiesCost)
         this.skinExists = false;
         if (this.skinsToBeBought.length > 0) {
             this.skinsToBeBought.forEach(s => {
@@ -107,11 +107,11 @@ export class SkinService {
         this.skinsToBeBought.forEach(s => {
             if (s.idskin == skin.idskin) {
                 this.skinRemove = true;
-                this.totalcost += Number(s.champiesCost);
+                //this.totalcost.next(+skin.champiesCost*(-1));
             }
         });
         if (this.skinRemove == true) {
-            this.totalcost -= Number(skin.champiesCost);
+            this.totalcost.next(+skin.champiesCost*(-1));
             this.skinsToBeBought.splice(this.skinsToBeBought.indexOf(skin), 1);
             this.shoppingCart.next(this.skinsToBeBought);
             return true;
@@ -121,7 +121,7 @@ export class SkinService {
     }
 
     emptyCart() {
-        this.totalcost = 0;
+        this.totalcost.next(0);
         const s: Skin[] = [];
         this.skinsToBeBought = s;
         this.shoppingCart.next(this.skinsToBeBought);

@@ -55,6 +55,12 @@ export class VideosComponent implements OnInit {
       }
     } return false;
   }
+  isGuildMaster(){
+    if(this.session.getPlayerInSession().userType=="GuildMaster"){
+      return true;
+    }
+    return false;
+  }
 
   allVideos(): Video[] {
     this.http.get<Video[]>('http://localhost:8085/videos/getAll').subscribe(data => {

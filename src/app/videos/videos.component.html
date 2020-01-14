@@ -24,7 +24,7 @@
         <table class="table table-bordered">
             <thead style="border: 2px solid rgb(0, 0, 0)">
                 <tr>
-                    <th scope="col">Seen</th>
+                    <th scope="col" *ngIf="!isGuildMaster()">Seen</th>
                     <th scope="col">Video Name</th>
                     <th scope="col">Priority</th>
                 </tr>
@@ -32,15 +32,16 @@
 
             <tbody style="background-color: rgb(233, 231, 231); border: 2px solid rgb(0, 0, 0)">
                 <tr *ngFor="let video of videos | tableFilter2: topic">
-                    <td *ngIf="hasvideo(video) == true" style="background-color: lightgreen;opacity: 0.7;"><input
-                            type="checkbox" (click)="unchecked(video.idvideo)" checked="true"><br></td>
+                    <td *ngIf="hasvideo(video) == true && !isGuildMaster()"
+                        style="background-color: lightgreen;opacity: 0.7;"><input type="checkbox"
+                            (click)="unchecked(video.idvideo)" checked="true"><br></td>
                     <td *ngIf="hasvideo(video) == true" style="background-color: lightgreen;opacity: 0.7;">
                         {{ video.videoName }}</td>
                     <td *ngIf="hasvideo(video) == true" style="background-color: lightgreen;opacity: 0.7;">
                         {{ video.duration }}</td>
                 </tr>
                 <tr *ngFor="let video of videos | tableFilter2: topic">
-                    <td *ngIf="hasvideo(video) == false"><input type="checkbox" (click)="checked(video.idvideo)"><br>
+                    <td *ngIf="hasvideo(video) == false && !isGuildMaster()"><input type="checkbox" (click)="checked(video.idvideo)"><br>
                     </td>
                     <td *ngIf="hasvideo(video) == false" style="background-color: rgb(228, 228, 228)">
                         {{ video.videoName }}</td>
