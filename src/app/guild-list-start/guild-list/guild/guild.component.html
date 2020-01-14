@@ -33,7 +33,7 @@
 </div>
 <div class="row">
     <div class="col-xs-3 col-xs-offset-4" style="transform: translate(15%,0%);">
-        <app-guild-member [player]="guildmaster" ></app-guild-member>
+        <app-guild-member [player]="guildmaster"></app-guild-member>
     </div>
 </div>
 <hr>
@@ -43,32 +43,25 @@
         </app-guild-member>
     </div>
 </div>
-<div class="row" id="upcomingEvents">
-    <div class="col-xs-12">
+<div class="row" id="upcomingEvents" style="margin-left: 3%;">
+    <div class="col-xs-4">
         <h3>Upcoming Events</h3>
-        <div class="eventscroll" id="style-8">
+        <div class="eventscroll" id="style-8" style="margin-left: 2%;">
             <table class="table table-bordered">
-    
                 <thead style="border: 2px solid rgb(0, 0, 0)">
                     <tr>
-                        <th scope="col">Went</th>
                         <th scope="col">Event</th>
                         <th scope="col">Date</th>
-    
-    
                     </tr>
                 </thead>
-    
                 <tbody style="background-color: rgb(233, 231, 231); border: 2px solid rgb(0, 0, 0)">
-                      
                     <tr *ngFor="let event of events;">
-                          <td  style="background-color: rgb(228, 228, 228)">
+                        <td style="background-color: rgb(228, 228, 228)">
                             {{ event.eventName }}</td>
-                        <td >{{ event.eventDate}}</td>
+                        <td>{{ event.eventDate}}</td>
                     </tr>
                 </tbody>
-    
             </table>
-    
+        </div>
     </div>
 </div>
