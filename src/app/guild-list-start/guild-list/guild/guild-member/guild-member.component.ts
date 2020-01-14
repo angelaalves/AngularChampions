@@ -36,7 +36,7 @@ export class GuildMemberComponent implements OnInit {
   }
 
   isChampion(player: Player) {
-    if(this.champion==player && this.champion.userType=="Warrior"){
+    if(this.champion==player && this.player.userType==playerType.Warrior.toString()){
       return true;
     }
     return false;

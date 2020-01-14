@@ -6,8 +6,6 @@ import { skinType } from '../shared/skinType.enum';
 import { SessionService } from '../services/session.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { SkinService } from '../services/skin.service';
-import { BehaviorSubject } from 'rxjs';
-import { status } from 'src/app/shared/status.enum';
 import { Closet } from '../shared/closet.model';
 import { userType } from '../shared/userType.enum';
 
@@ -33,9 +31,7 @@ export class ClosetComponent implements OnInit {
   //closetSkinSelected = this.skin.asObservable();
 
   constructor(private session: SessionService, private http: HttpClient,
-    private router: Router, private route: ActivatedRoute, private skinService: SkinService) {
-
-  }
+    private router: Router, private route: ActivatedRoute, private skinService: SkinService) { }
 
   ngOnInit() {
     this.player = this.session.getPlayerInSession();
@@ -64,7 +60,7 @@ export class ClosetComponent implements OnInit {
           this.others.push(d);
         }
       }
-    })
+    });
   }
 
   redirectToBuySkin() {
@@ -101,7 +97,6 @@ export class ClosetComponent implements OnInit {
         console.log(data);
       });
     });
-
   }
 
   isItaWarrior() {
