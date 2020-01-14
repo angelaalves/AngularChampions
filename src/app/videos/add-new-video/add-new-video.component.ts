@@ -31,16 +31,8 @@ export class AddNewVideoComponent implements OnInit {
 
     const videoName = form.value.videoName;
     const videoTopic = form.value.videoTopic;
-    const priority = form.value.videoPriority;
-    var videoPriority = "";
-    if (priority == "High") {
-      videoPriority = "1";
-    } else if (priority == "Medium") {
-      videoPriority = "2";
-    } else {
-      videoPriority = "3";
-    }
-    
+    const videoPriority = form.value.videoPriority;
+    console.log(videoPriority);
     var xhr = new XMLHttpRequest();
     xhr.open('POST', 'http://localhost:8085/videos/Create?videoName=' + videoName + '&duration=' + videoPriority +
       '&topic=' + videoTopic, true);
