@@ -7,7 +7,7 @@ export class Event{
     public eventName: string;
     public eventType: eventType;
 
-    constructor(idevent: string,eventDate: String, eventName: string, eventType: eventType){
+    constructor(idevent: string, eventDate: String, eventName: string, eventType: eventType){
         this.idevent=idevent;
         this.eventDate=eventDate;
         this.eventName=eventName;
