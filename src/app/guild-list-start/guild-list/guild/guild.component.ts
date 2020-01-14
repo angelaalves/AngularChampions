@@ -30,8 +30,8 @@ export class GuildComponent implements OnInit {
 
   ngOnInit() {
     this.guild = this.guildListService.getGuild(this.route.snapshot.params['idguild']);
-    this.guildmaster = this.guild.guildmaster
-    this.players = this.guild.members
+    this.guildmaster = this.guild.guildmaster;
+    this.players = this.guild.members;
     this.flag = this.guild.guildFlag;
     this.http.get<Event[]>('http://localhost:8085/events/getAll').subscribe(data => {
       this.events = data;

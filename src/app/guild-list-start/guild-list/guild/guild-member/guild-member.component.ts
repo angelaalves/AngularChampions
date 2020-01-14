@@ -18,7 +18,7 @@ export class GuildMemberComponent implements OnInit {
   constructor(private guildListService: GuildListService, private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.players = this.guildListService.getGuild(this.route.snapshot.params['idguild']).getPlayers();
+    this.players = this.guildListService.getGuild(this.route.snapshot.params['idguild']).members;
     this.champion = this.players[0];
     this.players.forEach(player => {
       if (Number(this.champion.xp) < Number(player.xp)) {

@@ -15,6 +15,6 @@ export class GuildMasterDetailsXpComponent implements OnInit {
   }
 
   percentageXP() {
-    this.barXP = this.XP / 1000;
+    this.barXP = this.XP / 10;
   }
 }

@@ -63,7 +63,7 @@ export class AddUserComponent implements OnInit {
       this.http.get<Player[]>('http://localhost:8085/players/Get?idPlayer= &userName=' + name + '&email= &password= &gender= &userType= &xp= &champiesToGive= &myChampies= &status= ').subscribe(res => {
         var idplayer: string;
         idplayer = res[0].idplayer;
-        this.playerService.addPlayer(new Player(idplayer, name, email, password, skins, xp, champiesToGive, myChampies, playerType, gender, statusPlayer));
+        this.playerService.addPlayer(new Player(idplayer, name, res[0].email, res[0].password, skins, res[0].xp, res[0].champiesToGive, res[0].myChampies, res[0].userType, res[0].gender, res[0].status));
         if (res[0].userType == userType.Warrior) {
           this.addActiveSkins(idplayer, gender);
         } else {

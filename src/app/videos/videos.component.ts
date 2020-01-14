@@ -130,7 +130,7 @@ export class VideosComponent implements OnInit {
 
 
         var xp = this.session.playerSession.xp;
-        xp = (Number(this.session.playerSession.xp) + 30).toString();
+        xp = (Number(this.session.playerSession.xp) + 1).toString();
         this.session.getPlayerInSession().xp = xp;
         this.XP();
 
@@ -174,7 +174,7 @@ export class VideosComponent implements OnInit {
         const gender = this.session.playerSession.gender;
         const userType = this.session.playerSession.userType;
         var xp = this.session.playerSession.xp;
-        xp = (Number(this.session.playerSession.xp) - 30).toString();
+        xp = (Number(this.session.playerSession.xp) - 1).toString();
         this.session.getPlayerInSession().xp = xp;
         this.XP();
         const champiesToGive = this.session.playerSession.champiesToGive;
