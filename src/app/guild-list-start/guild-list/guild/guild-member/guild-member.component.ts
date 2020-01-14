@@ -21,22 +21,24 @@ export class GuildMemberComponent implements OnInit {
     this.players = this.guildListService.getGuild(this.route.snapshot.params['idguild']).members;
     this.champion = this.players[0];
     this.players.forEach(player => {
-      if (Number(this.champion.xp) < Number(player.xp)) {
-        this.champion = player;
-      } else if (Number(this.champion.xp) == Number(player.xp)) {
-        if (Number(this.champion.myChampies) == Number(player.myChampies)) {
-          if (Number(this.champion.champiesToGive) > Number(player.champiesToGive)) {
+      if (player.userType == "Warrior") {
+        if (Number(this.champion.xp) < Number(player.xp)) {
+          this.champion = player;
+        } else if (Number(this.champion.xp) == Number(player.xp)) {
+          if (Number(this.champion.myChampies) == Number(player.myChampies)) {
+            if (Number(this.champion.champiesToGive) > Number(player.champiesToGive)) {
+              this.champion = player;
+            }
+          } else if (Number(this.champion.myChampies) < Number(player.myChampies)) {
             this.champion = player;
           }
-        } else if (Number(this.champion.myChampies) < Number(player.myChampies)) {
-          this.champion = player;
         }
       }
     });
   }
 
   isChampion(player: Player) {
-    if(this.champion==player && this.player.userType==playerType.Warrior.toString()){
+    if (this.champion == player) {
       return true;
     }
     return false;
