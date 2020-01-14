@@ -45,6 +45,9 @@ export class AddNewVideoComponent implements OnInit {
         videoTopic
       }
     ).subscribe();
+ 
+      this.router.navigate(['/guildmaster_profile'], { relativeTo: this.route });
+   
 
   }
 
