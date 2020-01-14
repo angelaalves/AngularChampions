@@ -33,14 +33,6 @@
     font-family: pixelmix;
   }
   
-  input{
+  input, textarea, select{
       font-family: pixelmix;
   }
-
-  textarea{
-    font-family: pixelmix;
-}
-
-select{
-    font-family: pixelmix;
-}
