@@ -13,7 +13,7 @@ import { NgForm, FormGroup, FormControl, Validators, FormArray } from '@angular/
 export class AddNewVideoComponent implements OnInit {
   addNewVideoForm: FormGroup;
 
-  constructor(private http: HttpClient,private router: Router, private route: ActivatedRoute) { }
+  constructor(private http: HttpClient, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.route.params
@@ -24,23 +24,31 @@ export class AddNewVideoComponent implements OnInit {
       )
   }
 
-  onSubmit(form: NgForm){
+  onSubmit(form: NgForm) {
     if (!form.valid) {
       return;
     }
 
     const videoName = form.value.videoName;
     const videoTopic = form.value.videoTopic;
-    const videoPriority = form.value.videoPriority;
-
+    const priority = form.value.videoPriority;
+    var videoPriority = "";
+    if (priority == "High") {
+      videoPriority = "1";
+    } else if (priority == "Medium") {
+      videoPriority = "2";
+    } else {
+      videoPriority = "3";
+    }
+    
     var xhr = new XMLHttpRequest();
     xhr.open('POST', 'http://localhost:8085/videos/Create?videoName=' + videoName + '&duration=' + videoPriority +
-    '&topic=' + videoTopic , true);
+      '&topic=' + videoTopic, true);
 
     this.http.post<any>('http://localhost:8085/videos/Create?videoName=' + videoName + '&duration=' + videoPriority +
-    '&topic=' + videoTopic,
+      '&topic=' + videoTopic,
       {
-        videoName, 
+        videoName,
         videoPriority,
         videoTopic
       }
@@ -49,9 +57,9 @@ export class AddNewVideoComponent implements OnInit {
   }
 
   private initForm() {
-    let videoName='';
-    let videoPriority='';
-    let videoTopic="";
+    let videoName = '';
+    let videoPriority = '';
+    let videoTopic = "";
 
     this.addNewVideoForm = new FormGroup({
       'videoName': new FormControl(videoName, Validators.required),
@@ -69,10 +77,10 @@ export class AddNewVideoComponent implements OnInit {
         'videoTopic': new FormControl(null, Validators.required)
       })
     );
-  } 
+  }
 
 
 
- 
+
 
 }
