@@ -8,6 +8,7 @@ import { SkinService } from 'src/app/services/skin.service';
 import { ClosetComponent } from '../../closet.component';
 import { skinType } from 'src/app/shared/skinType.enum';
 import { Closet } from 'src/app/shared/closet.model';
+import { AppConfigurationsComponent } from 'src/app/app-configurations/app-configurations.component';
 
 @Component({
   selector: 'app-skin-top',
@@ -25,8 +26,8 @@ export class SkinTopComponent implements OnInit {
   shoppingCartSkins: Skin[] = [];
   skins: Skin[] = [];
 
-  constructor(private session: SessionService, private router: Router, private route: ActivatedRoute, private http: HttpClient,
-    private skinService: SkinService, private closet: ClosetComponent) { }
+  constructor(private session: SessionService, private http: HttpClient,
+    private skinService: SkinService, private configuration: AppConfigurationsComponent) { }
 
   ngOnInit() {
     this.player = this.session.getPlayerInSession();
@@ -34,7 +35,7 @@ export class SkinTopComponent implements OnInit {
     this.skinService.changingSkins.subscribe(newSkinsSelected => this.skins = newSkinsSelected);
     this.playerInitialSkins = this.session.playerSession.imagePath;
     this.playerViewingSkins = this.session.playerSession.imagePath;
-    this.http.get<Closet[]>('http://localhost:8085/closet/Get?idSkinFK= &idPlayerFk=' + this.session.getPlayerInSession().idplayer + "&status=", {}).subscribe(data => {
+    this.http.get<Closet[]>('http://'+this.configuration.getBackEndIP()+':'+this.configuration.getBackEndPort()+'/closet/Get?idSkinFK= &idPlayerFk=' + this.session.getPlayerInSession().idplayer + "&status=", {}).subscribe(data => {
       this.allsessionsuserskins = data;
     });
   }

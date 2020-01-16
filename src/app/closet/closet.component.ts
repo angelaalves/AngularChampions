@@ -8,6 +8,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { SkinService } from '../services/skin.service';
 import { Closet } from '../shared/closet.model';
 import { userType } from '../shared/userType.enum';
+import { AppConfigurationsComponent } from '../app-configurations/app-configurations.component';
 
 @Component({
   selector: 'app-closet',
@@ -31,19 +32,19 @@ export class ClosetComponent implements OnInit {
   //closetSkinSelected = this.skin.asObservable();
 
   constructor(private session: SessionService, private http: HttpClient,
-    private router: Router, private route: ActivatedRoute, private skinService: SkinService) { }
+    private router: Router, private route: ActivatedRoute, private skinService: SkinService, private configuration: AppConfigurationsComponent) { }
 
   ngOnInit() {
     this.player = this.session.getPlayerInSession();
     this.getSkins();
     this.skinService.ngOnInit()
-    this.http.get<Closet[]>('http://localhost:8085/closet/Get?idSkinFK= &idPlayerFk=' + this.session.getPlayerInSession().idplayer + "&status=", {}).subscribe(data => {
+    this.http.get<Closet[]>('http://'+this.configuration.getBackEndIP()+':'+this.configuration.getBackEndPort()+'/closet/Get?idSkinFK= &idPlayerFk=' + this.session.getPlayerInSession().idplayer + "&status=", {}).subscribe(data => {
       this.allsessionsuserskins = data;
     });
   }
 
   getSkins() {
-    this.http.get<Skin[]>('http://localhost:8085/skins/getAll', {}).subscribe(data => {
+    this.http.get<Skin[]>('http://'+this.configuration.getBackEndIP()+':'+this.configuration.getBackEndPort()+'/skins/getAll', {}).subscribe(data => {
       this.allSkins = data;
       for (var d of data) {
         if (d.skinType == skinType.Bottom) {
@@ -71,7 +72,7 @@ export class ClosetComponent implements OnInit {
 
   resetToInitialSkins() {
     this.skinService.setAnySkinSelected(false);
-    this.http.get<String[]>('http://localhost:8085/closet/activeSkins?idPlayerFK=' + this.session.getPlayerInSession().idplayer).subscribe(activeSkin => {
+    this.http.get<String[]>('http://'+this.configuration.getBackEndIP()+':'+this.configuration.getBackEndPort()+'/closet/activeSkins?idPlayerFK=' + this.session.getPlayerInSession().idplayer).subscribe(activeSkin => {
       this.session.getPlayerInSession().imagePath = activeSkin
     })
     //this.session.playerSession.resetImage();
@@ -94,7 +95,7 @@ export class ClosetComponent implements OnInit {
     inactiveSkins.forEach(active => {
       inactiveIds.push(active.idskin);
     })
-    this.http.get<Closet[]>('http://localhost:8085/closet/Get?idPlayerFk=' + this.session.getPlayerInSession().idplayer).subscribe(here => {
+    this.http.get<Closet[]>('http://'+this.configuration.getBackEndIP()+':'+this.configuration.getBackEndPort()+'/closet/Get?idPlayerFk=' + this.session.getPlayerInSession().idplayer).subscribe(here => {
       activeIds.forEach(Id => {
         found = false;
         here.forEach(closet => {
@@ -108,9 +109,9 @@ export class ClosetComponent implements OnInit {
         }
       })
       if (activeIds.length > 0) {
-        this.http.post('http://localhost:8085/closet/changeStatusSkins?idSkins=' + activeIds.toString() + "&idPlayer=" + this.session.getPlayerInSession().idplayer + "&status=Active", {}).subscribe(data => {
+        this.http.post('http://'+this.configuration.getBackEndIP()+':'+this.configuration.getBackEndPort()+'/closet/changeStatusSkins?idSkins=' + activeIds.toString() + "&idPlayer=" + this.session.getPlayerInSession().idplayer + "&status=Active", {}).subscribe(data => {
           console.log(data);
-          this.http.post('http://localhost:8085/closet/changeStatusSkins?idSkins=' + inactiveIds.toString() + "&idPlayer=" + this.session.getPlayerInSession().idplayer + "&status=Inactive", {}).subscribe(data => {
+          this.http.post('http://'+this.configuration.getBackEndIP()+':'+this.configuration.getBackEndPort()+'/closet/changeStatusSkins?idSkins=' + inactiveIds.toString() + "&idPlayer=" + this.session.getPlayerInSession().idplayer + "&status=Inactive", {}).subscribe(data => {
             this.skinService.clearInactiveSkinsToBe();
             console.log(data);
           });

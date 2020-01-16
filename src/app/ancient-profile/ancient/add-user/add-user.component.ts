@@ -8,6 +8,7 @@ import { HttpClient } from '@angular/common/http';
 import { userType } from 'src/app/shared/userType.enum';
 import { Skin } from 'src/app/shared/skin.model';
 import { Closet } from 'src/app/shared/closet.model';
+import { AppConfigurationsComponent } from 'src/app/app-configurations/app-configurations.component';
 
 @Component({
   selector: 'app-add-user',
@@ -20,7 +21,7 @@ export class AddUserComponent implements OnInit {
   addUserForm: FormGroup;
   allskins: Skin[];
 
-  constructor(private router: Router, private route: ActivatedRoute, private playerService: PlayerService, private http: HttpClient) { }
+  constructor(private router: Router, private route: ActivatedRoute, private playerService: PlayerService, private http: HttpClient, private configurations: AppConfigurationsComponent) { }
 
   ngOnInit() {
     this.route.params.subscribe(
@@ -28,10 +29,8 @@ export class AddUserComponent implements OnInit {
         this.initForm();
       }
     )
-    this.http.get<Skin[]>('http://localhost:8085/skins/getAll').subscribe(res => {
+    this.http.get<Skin[]>('http://'+this.configurations.getBackEndIP()+':'+this.configurations.getBackEndPort()+'/skins/getAll').subscribe(res => {
       this.allskins = res;
-      console.log(res);
-      console.log(this.allskins);
     });
   }
 
@@ -39,19 +38,13 @@ export class AddUserComponent implements OnInit {
     if (!form.valid) {
       return;
     }
-
     const name = form.value.name;
     const email = form.value.email;
-    const password = form.value.password;
     const skins = [];
-    const xp = "0";
-    const champiesToGive = "20";
-    const myChampies = "0";
     const gender = form.value.gender;
     const playerType = form.value.playertype;
-    const statusPlayer = status.Active;
 
-    this.http.post<Player>('http://localhost:8085/players/CreateNewPlayer?userName=' + name +
+    this.http.post<Player>('http://'+this.configurations.getBackEndIP()+':'+this.configurations.getBackEndPort()+'/players/CreateNewPlayer?userName=' + name +
       '&email=' + email + "&gender=" + gender + "&userType=" + playerType,
       {
         name,
@@ -60,7 +53,7 @@ export class AddUserComponent implements OnInit {
         playerType
       }
     ).subscribe(success => {
-      this.http.get<Player[]>('http://localhost:8085/players/Get?idPlayer= &userName=' + name + '&email= &password= &gender= &userType= &xp= &champiesToGive= &myChampies= &status= ').subscribe(res => {
+      this.http.get<Player[]>('http://'+this.configurations.getBackEndIP()+':'+this.configurations.getBackEndPort()+'/players/Get?idPlayer= &userName=' + name + '&email= &password= &gender= &userType= &xp= &champiesToGive= &myChampies= &status= ').subscribe(res => {
         var idplayer: string;
         idplayer = res[0].idplayer;
         this.playerService.addPlayer(new Player(idplayer, name, res[0].email, res[0].password, skins, res[0].xp, res[0].champiesToGive, res[0].myChampies, res[0].userType, res[0].gender, res[0].status));
@@ -86,7 +79,7 @@ export class AddUserComponent implements OnInit {
         console.log(skin);
         console.log("allskin")
         console.log(skin);
-        this.http.post<Closet>('http://localhost:8085/closet/Update?idSkinFK=' + idskin + '&idPlayerFk=' + idplayer +
+        this.http.post<Closet>('http://'+this.configurations.getBackEndIP()+':'+this.configurations.getBackEndPort()+'/closet/Update?idSkinFK=' + idskin + '&idPlayerFk=' + idplayer +
           '&status=' + status,
           {
             idskin,
@@ -104,7 +97,7 @@ export class AddUserComponent implements OnInit {
       for (let skin of skinsToActive) {
         const idskin = skin;
         const status = 'Active';
-        this.http.post<Closet>('http://localhost:8085/closet/Update?idSkinFK=' + idskin + '&idPlayerFk=' + idplayer +
+        this.http.post<Closet>('http://'+this.configurations.getBackEndIP()+':'+this.configurations.getBackEndPort()+'/closet/Update?idSkinFK=' + idskin + '&idPlayerFk=' + idplayer +
           '&status=' + status,
           {
             idskin,
@@ -124,7 +117,7 @@ export class AddUserComponent implements OnInit {
     for (let skin of this.allskins) {
       const idskin = skin.idskin;
       const status = 'Inactive';
-      this.http.post<Closet>('http://localhost:8085/closet/Create?idSkinFK=' + idskin + '&idPlayerFk=' + idplayer +
+      this.http.post<Closet>('http://'+this.configurations.getBackEndIP()+':'+this.configurations.getBackEndPort()+'/closet/Create?idSkinFK=' + idskin + '&idPlayerFk=' + idplayer +
         '&status=' + status,
         {
           idskin,
@@ -146,7 +139,7 @@ export class AddUserComponent implements OnInit {
       for (let skin of skinsToAdd) {
         const idskin = skin;
         const status = 'Inactive';
-        this.http.post<Closet>('http://localhost:8085/closet/Create?idSkinFK=' + idskin + '&idPlayerFk=' + idplayer +
+        this.http.post<Closet>('http://'+this.configurations.getBackEndIP()+':'+this.configurations.getBackEndPort()+'/closet/Create?idSkinFK=' + idskin + '&idPlayerFk=' + idplayer +
           '&status=' + status,
           {
             idskin,
@@ -165,7 +158,7 @@ export class AddUserComponent implements OnInit {
       for (let skin of skinsToAdd) {
         const idskin = skin;
         const status = 'Inactive';
-        this.http.post<Closet>('http://localhost:8085/closet/Create?idSkinFK=' + idskin + '&idPlayerFk=' + idplayer +
+        this.http.post<Closet>('http://'+this.configurations.getBackEndIP()+':'+this.configurations.getBackEndPort()+'/closet/Create?idSkinFK=' + idskin + '&idPlayerFk=' + idplayer +
           '&status=' + status,
           {
             idskin,

@@ -7,6 +7,7 @@ import { FormGroup } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { eventType } from './event-type.enum';
 import { Player } from '../shared/player.model';
+import { AppConfigurationsComponent } from '../app-configurations/app-configurations.component';
 
 @Component({
   selector: 'app-events',
@@ -21,17 +22,17 @@ export class EventsComponent implements OnInit {
   public idOfEventsChecked: String[] = [];
   public idOfEventsUnchecked: String[] = [];
   public events: Event[] = [];
-  public KickOffXP = 60;
-  public CheckPointXP = 60;
-  public ChristmasXP = 45;
-  public FamilyXP = 45;
-  public HappyHourXP = 4;
-  public BoardGamesXP = 6;
-  public TripXP = 15;
-  public TalkingSessionsXP = 3;
+  public KickOffXP = 15;
+  public CheckPointXP = 15;
+  public ChristmasXP = 10;
+  public FamilyXP = 10;
+  public HappyHourXP = 3;
+  public BoardGamesXP = 4;
+  public TripXP = 5;
+  public TalkingSessionsXP = 2;
   public OthersXP = 1;
 
-  constructor(private router: Router, private route: ActivatedRoute, private session: SessionService, private http: HttpClient) {}
+  constructor(private router: Router, private route: ActivatedRoute, private session: SessionService, private http: HttpClient, private configuration: AppConfigurationsComponent) {}
 
   ngOnInit() {
     this.allEvents();
@@ -48,16 +49,16 @@ export class EventsComponent implements OnInit {
   }
 
   allEvents() {
-    this.http.get<Event[]>('http://localhost:8085/events/getAll').subscribe(data => {
+    this.http.get<Event[]>('http://'+this.configuration.getBackEndIP()+':'+this.configuration.getBackEndPort()+'/events/getAll').subscribe(data => {
       this.events = data;
     });
   }
 
   getAttendedEvents() {
-    this.http.get<AttendedEvents[]>('http://localhost:8085/attendedEvents/Get?idPlayerFK=' + this.session.playerSession.idplayer).subscribe(data => {
+    this.http.get<AttendedEvents[]>('http://'+this.configuration.getBackEndIP()+':'+this.configuration.getBackEndPort()+'/attendedEvents/Get?idPlayerFK=' + this.session.playerSession.idplayer).subscribe(data => {
       this.attendedEventsByPlayer = data;
       for (let aux of this.attendedEventsByPlayer) {
-        this.http.get<Event[]>('http://localhost:8085/events/get?idEvent=' + aux.ideventFK).subscribe(res => {
+        this.http.get<Event[]>('http://'+this.configuration.getBackEndIP()+':'+this.configuration.getBackEndPort()+'/events/get?idEvent=' + aux.ideventFK).subscribe(res => {
           console.log(res);
           this.eventsAttendedByPlayer.push(res[0]);
         });
@@ -70,14 +71,14 @@ export class EventsComponent implements OnInit {
       for (let idEvent of this.idOfEventsChecked) {
         const id = idEvent;
         const idplayer = this.session.playerSession.idplayer;
-        this.http.post<any>('http://localhost:8085/attendedEvents/Create?idEventsFK=' + id + '&idPlayerFK=' + idplayer,
+        this.http.post<any>('http://'+this.configuration.getBackEndIP()+':'+this.configuration.getBackEndPort()+'/attendedEvents/Create?idEventsFK=' + id + '&idPlayerFK=' + idplayer,
           {
             id,
             idplayer
           }).subscribe(data => {
           });
         var eventaux: Event;
-        this.http.get<Event[]>('http://localhost:8085/events/get?idEvent=' + idEvent).subscribe(res => {
+        this.http.get<Event[]>('http://'+this.configuration.getBackEndIP()+':'+this.configuration.getBackEndPort()+'/events/get?idEvent=' + idEvent).subscribe(res => {
           const obj2 = JSON.stringify(res);
           eventaux = res[0];
           const idPlayer = this.session.playerSession.idplayer;
@@ -120,7 +121,7 @@ export class EventsComponent implements OnInit {
           const champiesToGive = this.session.playerSession.champiesToGive;
           const myChampies = this.session.playerSession.myChampies;
           const status = this.session.playerSession.status;
-          this.http.post<any>('http://localhost:8085/players/Update?idPlayer=' + idPlayer + '&userName=' + userName + '&email=' + email + '&password=' + password + '&gender=' + gender + '&userType=' + userType + '&xp=' + xp + '&champiesToGive=' + champiesToGive + '&myChampies=' + myChampies + '&status=' + status,
+          this.http.post<any>('http://'+this.configuration.getBackEndIP()+':'+this.configuration.getBackEndPort()+'/players/Update?idPlayer=' + idPlayer + '&userName=' + userName + '&email=' + email + '&password=' + password + '&gender=' + gender + '&userType=' + userType + '&xp=' + xp + '&champiesToGive=' + champiesToGive + '&myChampies=' + myChampies + '&status=' + status,
             {
               idPlayer,
               userName,
@@ -141,12 +142,12 @@ export class EventsComponent implements OnInit {
       for (let idEvent of this.idOfEventsUnchecked) {
         const id = idEvent;
         const idplayer = this.session.playerSession.idplayer;
-        this.http.post<any>('http://localhost:8085/attendedEvents/Delete?idEventsFK=' + id + '&idPlayerFK=' + idplayer,
+        this.http.post<any>('http://'+this.configuration.getBackEndIP()+':'+this.configuration.getBackEndPort()+'/attendedEvents/Delete?idEventsFK=' + id + '&idPlayerFK=' + idplayer,
           {
             id,
             idplayer
           }).subscribe(data => { });
-        this.http.get<Event[]>('http://localhost:8085/events/get?idEvent=' + idEvent).subscribe(res => {
+        this.http.get<Event[]>('http://'+this.configuration.getBackEndIP()+':'+this.configuration.getBackEndPort()+'/events/get?idEvent=' + idEvent).subscribe(res => {
           const obj2 = JSON.stringify(res);
           eventaux = res[0];
           const idPlayer = this.session.playerSession.idplayer;
@@ -189,7 +190,7 @@ export class EventsComponent implements OnInit {
           const champiesToGive = this.session.playerSession.champiesToGive;
           const myChampies = this.session.playerSession.myChampies;
           const status = this.session.playerSession.status;
-          this.http.post<any>('http://localhost:8085/players/Update?idPlayer=' + idPlayer + '&userName=' + userName + '&email=' + email + '&password=' + password + '&gender=' + gender + '&userType=' + userType + '&xp=' + xp + '&champiesToGive=' + champiesToGive + '&myChampies=' + myChampies + '&status=' + status,
+          this.http.post<any>('http://'+this.configuration.getBackEndIP()+':'+this.configuration.getBackEndPort()+'/players/Update?idPlayer=' + idPlayer + '&userName=' + userName + '&email=' + email + '&password=' + password + '&gender=' + gender + '&userType=' + userType + '&xp=' + xp + '&champiesToGive=' + champiesToGive + '&myChampies=' + myChampies + '&status=' + status,
             {
               idPlayer,
               userName,

@@ -6,6 +6,7 @@ import { SessionService } from 'src/app/services/session.service';
 import { Skin } from 'src/app/shared/skin.model';
 import { Player } from 'src/app/shared/player.model';
 import { SkinService } from 'src/app/services/skin.service';
+import { AppConfigurationsComponent } from 'src/app/app-configurations/app-configurations.component';
 
 @Component({
   selector: 'app-buy-skin',
@@ -22,7 +23,7 @@ export class BuySkinComponent implements OnInit {
   totalcost: number = 0;
 
   constructor(private router: Router, private route: ActivatedRoute, private http: HttpClient, private session: SessionService,
-    private skinService: SkinService) {
+    private skinService: SkinService, private configuration: AppConfigurationsComponent) {
     this.player = this.session.getPlayerInSession();
   }
 
@@ -50,7 +51,7 @@ export class BuySkinComponent implements OnInit {
       var idSkin = item.idskin;
       this.totalcost += Number(item.champiesCost);
       if (+this.player.myChampies >= +item.champiesCost && +this.player.xp >= +item.minXP) {
-        this.http.post<any>('http://localhost:8085/closet/Create?idSkinFK=' + idSkin + '&idPlayerFk=' + idplayer + '&status=',
+        this.http.post<any>('http://'+this.configuration.getBackEndIP()+':'+this.configuration.getBackEndPort()+'/closet/Create?idSkinFK=' + idSkin + '&idPlayerFk=' + idplayer + '&status=',
           {
             idSkin,
             idplayer,
@@ -66,7 +67,7 @@ export class BuySkinComponent implements OnInit {
         const userType = this.session.playerSession.userType;
         const status2 = this.session.playerSession.status;
         const myChampiesAfterBuyingSkin = Number(this.player.myChampies) - Number(item.champiesCost);
-        this.http.post('http://localhost:8085/players/Update?idPlayer=' + idplayer + ' &userName=' + userName + ' &email=' + email + ' &password=' + this.session.getPlayerInSession().password + '&gender=' + gender + ' &userType=' + userType + ' &xp=' + xp + ' &champiesToGive=' + champiesToGive + ' &myChampies=' + myChampiesAfterBuyingSkin.toString() + '&status=Active',
+        this.http.post('http://'+this.configuration.getBackEndIP()+':'+this.configuration.getBackEndPort()+'/players/Update?idPlayer=' + idplayer + ' &userName=' + userName + ' &email=' + email + ' &password=' + this.session.getPlayerInSession().password + '&gender=' + gender + ' &userType=' + userType + ' &xp=' + xp + ' &champiesToGive=' + champiesToGive + ' &myChampies=' + myChampiesAfterBuyingSkin.toString() + '&status=Active',
           {}).subscribe();
         this.session.getPlayerInSession().myChampies = myChampiesAfterBuyingSkin.toString();
         this.Champies();
@@ -76,7 +77,7 @@ export class BuySkinComponent implements OnInit {
           const skinID = activeSkin.idskin;
           const skinStatus = status.Inactive;
           if (activeSkin.skinType === item.skinType) {
-            this.http.post<any>('http://localhost:8085/closet/Update?idSkinFK=' + skinID + '&idPlayerFk=' + idplayer + '&status=' + skinStatus,
+            this.http.post<any>('http://'+this.configuration.getBackEndIP()+':'+this.configuration.getBackEndPort()+'/closet/Update?idSkinFK=' + skinID + '&idPlayerFk=' + idplayer + '&status=' + skinStatus,
               { skinID, idplayer, skinStatus }
             );
           }

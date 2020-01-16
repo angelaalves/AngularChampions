@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Event } from '../event.model';
 import { HttpClient } from '@angular/common/http';
+import { AppConfigurationsComponent } from 'src/app/app-configurations/app-configurations.component';
 
 @Component({
   selector: 'app-events-elem',
@@ -13,7 +14,7 @@ export class EventsElemComponent implements OnInit {
 
   events: Event[] = [];
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private configuration: AppConfigurationsComponent) { }
 
   ngOnInit() {
 

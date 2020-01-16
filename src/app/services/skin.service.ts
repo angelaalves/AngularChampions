@@ -74,7 +74,7 @@ export class SkinService {
     }
 
     addToShoppingCart(skin: Skin) {
-        this.totalcost.next(+skin.champiesCost)
+        
         this.skinExists = false;
         if (this.skinsToBeBought.length > 0) {
             this.skinsToBeBought.forEach(s => {
@@ -85,6 +85,7 @@ export class SkinService {
             if (this.skinExists == false) {
                 this.skinsToBeBought.push(skin);
                 this.shoppingCart.next(this.skinsToBeBought);
+                this.totalcost.next(+skin.champiesCost)
                 return skin;
             }
         } else {

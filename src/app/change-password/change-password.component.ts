@@ -4,6 +4,7 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { SessionService } from '../services/session.service';
 import { Player } from '../shared/player.model';
+import { AppConfigurationsComponent } from '../app-configurations/app-configurations.component';
 
 
 @Component({
@@ -15,7 +16,7 @@ import { Player } from '../shared/player.model';
 
 export class ChangePasswordComponent implements OnInit {
 
-  wrongPassword = false;
+  correctPassword = false;
 
   oldPassword: string;
   newPassword: string;
@@ -24,7 +25,7 @@ export class ChangePasswordComponent implements OnInit {
   player: Player;
   public changePasswordFailed: boolean = true;
 
-  constructor(private router: Router, private route: ActivatedRoute, private http: HttpClient, private session: SessionService, private formBuilder: FormBuilder) { }
+  constructor(private router: Router, private route: ActivatedRoute, private http: HttpClient, private session: SessionService, private formBuilder: FormBuilder, private configuration: AppConfigurationsComponent) { }
 
   changePasswordForm = this.formBuilder.group({
     oldPassword: new FormControl('', [
@@ -50,16 +51,14 @@ export class ChangePasswordComponent implements OnInit {
     const oldPassword = form.value.oldPassword;
     const confirmPassword = form.value.confirmPassword;
 
-    console.log("email: " + this.player.email + " password: " + this.player.password);
-    this.http.get<boolean>('http://localhost:8085/players/verifyPassword?email=' + this.player.email + '&password=' + oldPassword)
+    this.http.get<boolean>('http://'+this.configuration.getBackEndIP()+':'+this.configuration.getBackEndPort()+'/players/verifyPassword?email=' + this.player.email + '&password=' + oldPassword)
       .subscribe(data => {
-        this.wrongPassword = data;
-        if (this.wrongPassword === false) {
+        this.correctPassword = data;
+        if (this.correctPassword == true) {
           this.changePasswordFailed = false;
-          console.log(this.wrongPassword);
           this.player.password = oldPassword;
           console.log("same passwords");
-          this.http.post<Player>('http://localhost:8085/players/Update?idPlayer=' + this.player.idplayer + '&userName=' + this.player.userName +
+          this.http.post<Player>('http://'+this.configuration.getBackEndIP()+':'+this.configuration.getBackEndPort()+'/players/Update?idPlayer=' + this.player.idplayer + '&userName=' + this.player.userName +
             '&email=' + this.player.email + '&password=' + confirmPassword + "&gender=" + this.player.gender + "&userType=" + this.player.userType + '&xp=' + this.player.xp + '&champiesToGive=' + this.player.champiesToGive
             + '&myChampies=' + this.player.myChampies + '&status=' + this.player.status,
             {

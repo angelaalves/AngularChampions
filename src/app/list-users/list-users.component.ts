@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { Router, ActivatedRoute } from '@angular/router';
 import { SessionService } from '../services/session.service';
 import { userType } from '../shared/userType.enum';
+import { AppConfigurationsComponent } from '../app-configurations/app-configurations.component';
 
 
 @Component({
@@ -22,14 +23,14 @@ export class ListUsersComponent implements OnInit {
   public type: userType;
 
 
-  constructor(private playerService: PlayerService, private http: HttpClient, private router: Router, private session: SessionService) { }
+  constructor(private http: HttpClient,private configuration: AppConfigurationsComponent) { }
 
 
 
   ngOnInit() {
     // this.chooseList()
 
-    this.http.get<Player[]>('http://localhost:8085/players/getAll', {}).subscribe(data => {
+    this.http.get<Player[]>('http://'+this.configuration.getBackEndIP()+':'+this.configuration.getBackEndPort()+'/players/getAll', {}).subscribe(data => {
       this.players = data;
       for (let player of this.players) {
         if (player.userType == "Ancient") {

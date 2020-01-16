@@ -1,0 +1,17 @@
+<form action="" #configurationsForm="ngForm" (ngSubmit)="onSubmit(configurationsForm); loginForm.reset()">
+    <div class="form-row">
+        <div class="form-group">
+            <label for="ip">Back End IP</label>
+            <input type="text" alt="getBackEndIP()" id="ip" name="ip" ngModel>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group">
+            <label for="port">Back End Port</label>
+            <input type="text" alt="getBackEndPort()" id="port" name="name" ngModel>
+        </div>
+    </div>
+    <div class="form-row">
+        <button class="btn btn-submit" type="submit">save</button>
+    </div>
+</form>

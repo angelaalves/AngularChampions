@@ -2,6 +2,7 @@ import { Component, OnInit, Injectable } from '@angular/core';
 import { FormGroup, NgForm, FormControl, FormBuilder, Validators, FormArray } from '@angular/forms';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import { AppConfigurationsComponent } from 'src/app/app-configurations/app-configurations.component';
 
 @Component({
   selector: 'app-add-events',
@@ -13,7 +14,7 @@ import { HttpClient } from '@angular/common/http';
 export class AddEventsComponent implements OnInit {
   addEventForm: FormGroup;
 
-  constructor(private router: Router, private route: ActivatedRoute, private formBuilder: FormBuilder,private http: HttpClient) { }
+  constructor(private router: Router, private route: ActivatedRoute,private http: HttpClient, private configuration: AppConfigurationsComponent) { }
 
   ngOnInit() {
     this.route.params
@@ -33,9 +34,9 @@ export class AddEventsComponent implements OnInit {
     const date = form.value.date;
     const eventType = form.value.eventType;
     var xhr = new XMLHttpRequest();
-    xhr.open('POST', 'http://localhost:8085/events/Create?eventName=' + name + '&eventDate=' + date +
+    xhr.open('POST', 'http://'+this.configuration.getBackEndIP()+':'+this.configuration.getBackEndPort()+'/events/Create?eventName=' + name + '&eventDate=' + date +
       '&eventType=' + eventType , true);
-    this.http.post<any>('http://localhost:8085/events/Create?eventName=' + name + '&eventDate=' + date +
+    this.http.post<any>('http://'+this.configuration.getBackEndIP()+':'+this.configuration.getBackEndPort()+'/events/Create?eventName=' + name + '&eventDate=' + date +
     '&eventType=' + eventType,
       {
         name, 

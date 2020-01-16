@@ -67,6 +67,7 @@ import { ForgotpasswordComponent } from './login/forgotpassword/forgotpassword.c
 import { WarningLoginComponent } from './login/warning-login/warning-login.component';
 import { ChangePasswordWarningComponent } from './change-password/change-password-warning/change-password-warning.component';
 import { ErrorClosetComponent } from './closet/error-closet/error-closet.component';
+import { AppConfigurationsComponent } from './app-configurations/app-configurations.component';
 
 
 
@@ -135,7 +136,8 @@ import { ErrorClosetComponent } from './closet/error-closet/error-closet.compone
     WarningLoginComponent,
     ChangePasswordWarningComponent,
     AddNewVideoComponent,
-    ErrorClosetComponent
+    ErrorClosetComponent,
+    AppConfigurationsComponent
   ],
   imports: [
     //NgbModule,

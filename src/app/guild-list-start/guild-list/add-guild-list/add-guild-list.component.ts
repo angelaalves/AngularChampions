@@ -7,6 +7,7 @@ import { PlayerService } from 'src/app/services/player.service';
 import { HttpClient } from '@angular/common/http';
 import { formatDate } from '@angular/common';
 import { SessionService } from 'src/app/services/session.service';
+import { AppConfigurationsComponent } from 'src/app/app-configurations/app-configurations.component';
 
 @Component({
   selector: 'app-add-guild-list',
@@ -25,7 +26,7 @@ export class AddGuildListComponent implements OnInit {
     "../../../../assets/Flags/flag7.png", "../../../../../assets/Flags/flag8.png",
     "../../../../assets/Flags/flag9.png", "../../../../assets/Flags/flag10.png"];
 
-  constructor(private http: HttpClient,private guildService: GuildListService,private session: SessionService, private router: Router, private route: ActivatedRoute, private playerService: PlayerService) { 
+  constructor(private http: HttpClient,private session: SessionService, private router: Router, private route: ActivatedRoute, private playerService: PlayerService, private configuration: AppConfigurationsComponent) { 
   }
 
   ngOnInit() {
@@ -60,8 +61,8 @@ export class AddGuildListComponent implements OnInit {
     for (let playerId of this.warriorsSelected) {
       playerIds.push(playerId.idplayer)
     }
-    this.http.post('http://localhost:8085/guild/Create?guildName=' + name + '&startDate=' + formatDate(startDate, "yyyy-MM-dd", "en-UK") + '&endDate=' + formatDate(endDate, "yyyy-MM-dd", "en-UK") + '&guildFlag=' + this.flag + '&status=Active', {}).subscribe(response => {
-      this.http.get('http://localhost:8085/guildPlayers/createRecent?startDate=' + formatDate(startDate, "yyyy-MM-dd", "en-UK") + '&guildmaster=' + this.guildmasterSelected.idplayer + '&players=' + playerIds.toString()).subscribe(done => {
+    this.http.post('http://'+this.configuration.getBackEndIP()+':'+this.configuration.getBackEndPort()+'/guild/Create?guildName=' + name + '&startDate=' + formatDate(startDate, "yyyy-MM-dd", "en-UK") + '&endDate=' + formatDate(endDate, "yyyy-MM-dd", "en-UK") + '&guildFlag=' + this.flag + '&status=Active', {}).subscribe(response => {
+      this.http.get('http://'+this.configuration.getBackEndIP()+':'+this.configuration.getBackEndPort()+'/guildPlayers/createRecent?startDate=' + formatDate(startDate, "yyyy-MM-dd", "en-UK") + '&guildmaster=' + this.guildmasterSelected.idplayer + '&players=' + playerIds.toString()).subscribe(done => {
         this.router.navigate(['..'], { relativeTo: this.route });
       });
     });
