@@ -40,7 +40,6 @@ import { GuildComponent } from './guild-list-start/guild-list/guild/guild.compon
 import { GuildMemberComponent } from './guild-list-start/guild-list/guild/guild-member/guild-member.component';
 import { AncientComponent } from './ancient-profile/ancient/ancient.component';
 import { AncientDetailsComponent } from './ancient-profile/ancient/ancient-details/ancient-details.component';
-import { AncientDefinitionsComponent } from './ancient-profile/ancient/ancient-definitions/ancient-definitions.component';
 import { AddUserComponent } from './ancient-profile/ancient/add-user/add-user.component';
 import { GuildListComponent } from './guild-list-start/guild-list/guild-list.component';
 import { GuildListElemComponent } from './guild-list-start/guild-list/guild-list-elem/guild-list-elem.component';
@@ -97,7 +96,6 @@ import { ErrorClosetComponent } from './closet/error-closet/error-closet.compone
     GuildMasterDetailsXpComponent,
     AncientComponent,
     AncientDetailsComponent,
-    AncientDefinitionsComponent,
     AddUserComponent,
     GuildListComponent,
     GuildListElemComponent,
