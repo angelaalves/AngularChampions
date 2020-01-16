@@ -2,7 +2,6 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Player } from 'src/app/shared/player.model';
 import { GuildListService } from 'src/app/services/guild-list.service';
 import { ActivatedRoute } from '@angular/router';
-import { playerType } from 'src/app/shared/playerType.enum';
 
 @Component({
   selector: 'app-guild-member',

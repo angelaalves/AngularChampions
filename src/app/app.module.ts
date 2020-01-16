@@ -11,7 +11,6 @@ import { WarriorDetailsComponent } from './warrior/warrior-details/warrior-detai
 import { WarriorDetailsXPComponent } from './warrior/warrior-details/warrior-details-xp/warrior-details-xp.component';
 import { WarriorDetailsCoinsComponent } from './warrior/warrior-details/warrior-details-coins/warrior-details-coins.component';
 import { WarriorDetailsButtonsComponent } from './warrior/warrior-details/warrior-details-buttons/warrior-details-buttons.component';
-import { WarriorDefinitionsComponent } from './warrior/warrior-definitions/warrior-definitions.component';
 import { ClosetComponent } from './closet/closet.component';
 import { AppRoutingModule } from './app-routing.module';
 import { SetPasswordComponent } from './set-password/set-password.component';
@@ -85,7 +84,6 @@ import { ErrorClosetComponent } from './closet/error-closet/error-closet.compone
     WarriorDetailsXPComponent,
     WarriorDetailsCoinsComponent,
     WarriorDetailsButtonsComponent,
-    WarriorDefinitionsComponent,
     ClosetComponent,
     SetPasswordComponent,
     ChangePasswordComponent,

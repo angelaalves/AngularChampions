@@ -15,9 +15,7 @@ export class PresenterPageComponent implements OnInit {
   @Input() warrior: Player;
   id: number;
 
-  constructor(private router: Router, private route: ActivatedRoute, private playerService: PlayerService, private session: SessionService) {
-
-  }
+  constructor(private router: Router, private route: ActivatedRoute, private playerService: PlayerService, private session: SessionService) {}
 
   ngOnInit() {
     this.route.params.subscribe((params: Params) => {

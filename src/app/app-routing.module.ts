@@ -36,8 +36,6 @@ const appRoutes: Routes = [
     { path: 'login', component: LoginComponent},
     { path: 'login_warning_message', component: WarningLoginComponent},
     { path: 'set_password', component: SetPasswordComponent },
-    { path: 'change_password', component: ChangePasswordComponent },
-    { path: 'change_password_warning', component: ChangePasswordWarningComponent },
     { path: 'warrior_profile', component: WarriorComponent },
     { path: 'guild/:idguild', component: GuildComponent },
     { path: 'guildmaster_profile', component: GuildMasterComponent },

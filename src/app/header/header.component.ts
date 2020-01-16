@@ -7,7 +7,6 @@ import { userType } from '../shared/userType.enum';
 import { GuildListService } from '../services/guild-list.service';
 import { Player } from '../shared/player.model';
 import { ClosetComponent } from '../closet/closet.component';
-import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-header',
@@ -95,6 +94,11 @@ export class HeaderComponent implements OnInit {
   onNotifications() {
     this.router.navigate(['notifications'], { relativeTo: this.route });
   }
+
+  onDefinitions() {
+    this.router.navigate(['definitions'], { relativeTo: this.route })
+  }
+  
   onSignout() {
     localStorage.removeItem('playerlogged')
     localStorage.removeItem('token')

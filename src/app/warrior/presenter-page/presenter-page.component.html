@@ -1,18 +1,15 @@
-
 <span class="divLeft">
     <app-image-maker [hairImagePath]="warrior.getImagePath(0)" [skinImagePath]="warrior.getImagePath(1)"
-    [shirtImagePath]="warrior.getImagePath(2)" [pantsImagePath]="warrior.getImagePath(3)" [shoesImagePath]="warrior.getImagePath(4)"
-    [othersImagePath]="warrior.getImagePath(5)" [size]=300></app-image-maker>
+        [shirtImagePath]="warrior.getImagePath(2)" [pantsImagePath]="warrior.getImagePath(3)"
+        [shoesImagePath]="warrior.getImagePath(4)" [othersImagePath]="warrior.getImagePath(5)" [size]=300>
+    </app-image-maker>
     <h2 style="text-align:center;">{{warrior.userName}}</h2>
-    <app-warrior-definitions></app-warrior-definitions>
-
 </span>
 <span class="divRight">
-   
     <app-warrior-details-xp [XP]="this.warrior.xp"></app-warrior-details-xp>
     <hr>
-
-    <app-warrior-details-coins [coinsGive]="this.warrior.champiesToGive" [coinsReceive]="this.warrior.myChampies"></app-warrior-details-coins>
+    <app-warrior-details-coins [coinsGive]="this.warrior.champiesToGive" [coinsReceive]="this.warrior.myChampies">
+    </app-warrior-details-coins>
     <hr>
- <app-warrior-details-buttons></app-warrior-details-buttons>
-</span>   
+    <app-warrior-details-buttons></app-warrior-details-buttons>
+</span>
