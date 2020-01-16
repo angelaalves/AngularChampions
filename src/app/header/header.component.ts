@@ -104,6 +104,7 @@ export class HeaderComponent implements OnInit {
     localStorage.removeItem('token')
     this.Authenticated = false;
     this.isAncient = false;
+    this.skinService.emptyCart();
     this.router.navigate(['login'], { relativeTo: this.route });
   }
 }

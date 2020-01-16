@@ -79,7 +79,6 @@ export class SkinBottomComponent implements OnInit {
     return false;
   }
 
-
   skinSelected(skinSelected: Skin) {
     this.playerViewingSkins = this.playerInitialSkins;
     this.session.playerSession.changeImage(skinSelected.imagePath, skinSelected.skinType);
@@ -97,7 +96,4 @@ export class SkinBottomComponent implements OnInit {
     this.skinService.setAnySkinSelected(true);
     this.skinService.addNewSkinInUse(skinSelected);
   }
-  
-
-
 }
