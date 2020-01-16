@@ -6,7 +6,6 @@ import { Skin } from '../shared/skin.model';
 import { userType } from '../shared/userType.enum';
 import { GuildListService } from '../services/guild-list.service';
 import { Player } from '../shared/player.model';
-import { ClosetComponent } from '../closet/closet.component';
 
 @Component({
   selector: 'app-header',
@@ -22,7 +21,7 @@ export class HeaderComponent implements OnInit {
   isAncient = false;
   totalcost=0;
 
-  constructor(private router: Router, private route: ActivatedRoute, private session: SessionService, private skinService: SkinService, private guildListService: GuildListService, private closet: ClosetComponent) { }
+  constructor(private router: Router, private route: ActivatedRoute, private session: SessionService, private skinService: SkinService, private guildListService: GuildListService) { }
 
   ngOnInit() {
     this.playerlogged=this.session.getPlayerInSession();

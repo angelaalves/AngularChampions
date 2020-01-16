@@ -1,24 +1,25 @@
 import { Injectable, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { PlayerService } from './player.service';
-import { Guild } from '../guild-list-start/guild-list/guild.model';
+import { Guild } from '../shared/guild.model';
 import { tap } from 'rxjs/operators';
+import { AppConfigurationsComponent } from '../app-configurations/app-configurations.component';
 
 @Injectable({ providedIn: 'root' })
 export class GuildListService implements OnInit {
 
     private guilds: Guild[] = [];
 
-    constructor(private http: HttpClient, private playerService: PlayerService) { }
+    constructor(private http: HttpClient, private playerService: PlayerService, private configuration: AppConfigurationsComponent) { }
 
     ngOnInit() {
-        this.http.get<Guild[]>('http://localhost:8085/guild/getAll').subscribe(resData => {
+        this.http.get<Guild[]>('http://'+this.configuration.getBackEndIP()+':'+this.configuration.getBackEndPort()+'/guild/getAll').subscribe(resData => {
             this.guilds = resData;
             for (let guild of this.guilds) {
-                this.http.get<String>('http://localhost:8085/guildPlayers/getGuildMaster?idGuild=' + guild.idguild).subscribe(guildMasterId => {
+                this.http.get<String>('http://'+this.configuration.getBackEndIP()+':'+this.configuration.getBackEndPort()+'/guildPlayers/getGuildMaster?idGuild=' + guild.idguild).subscribe(guildMasterId => {
                     guild.guildmaster = this.playerService.getGuildMaster(guildMasterId)
                 })
-                this.http.get<String[]>('http://localhost:8085/guildPlayers/getMembers?idGuild=' + guild.idguild).subscribe(membersIds => {
+                this.http.get<String[]>('http://'+this.configuration.getBackEndIP()+':'+this.configuration.getBackEndPort()+'/guildPlayers/getMembers?idGuild=' + guild.idguild).subscribe(membersIds => {
                     guild.members = this.playerService.getGuildWarriors(membersIds)
                 })
             }
@@ -36,14 +37,13 @@ export class GuildListService implements OnInit {
         return this.guilds;
     }
     getGuildsFromDataBase() {
-        return this.http.get<Guild[]>('http://localhost:8085/guild/getAll').pipe(tap(resData => {
+        return this.http.get<Guild[]>('http://'+this.configuration.getBackEndIP()+':'+this.configuration.getBackEndPort()+'/guild/getAll').pipe(tap(resData => {
             this.guilds = resData;
             for (let guild of this.guilds) {
-                console.log(guild.idguild);
-                this.http.get<String>('http://localhost:8085/guildPlayers/getGuildMaster?idGuild=' + guild.idguild).subscribe(guildMasterId => {
+                this.http.get<String>('http://'+this.configuration.getBackEndIP()+':'+this.configuration.getBackEndPort()+'/guildPlayers/getGuildMaster?idGuild=' + guild.idguild).subscribe(guildMasterId => {
                     guild.guildmaster = this.playerService.getGuildMaster(guildMasterId)
                 })
-                this.http.get<String[]>('http://localhost:8085/guildPlayers/getMembers?idGuild=' + guild.idguild).subscribe(membersIds => {
+                this.http.get<String[]>('http://'+this.configuration.getBackEndIP()+':'+this.configuration.getBackEndPort()+'/guildPlayers/getMembers?idGuild=' + guild.idguild).subscribe(membersIds => {
                     guild.members = this.playerService.getGuildWarriors(membersIds)
                 })
             }

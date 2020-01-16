@@ -1,5 +1,4 @@
 import { Component, OnInit, Input, Injectable } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
 import { Skin } from 'src/app/shared/skin.model';
 import { SkinService } from 'src/app/services/skin.service';
 import { SessionService } from 'src/app/services/session.service';
@@ -75,11 +74,8 @@ export class SkinHairComponent implements OnInit {
   skinSelected(skinSelected: Skin) {
     this.playerViewingSkins = this.playerInitialSkins;
     this.session.playerSession.changeImage(skinSelected.imagePath, skinSelected.skinType);
-
     if (!this.playerHasBoughtSkin(skinSelected) && this.hasEnoughXP(skinSelected)) {
       this.skinService.addToShoppingCart(skinSelected);
-      console.log("added to shopping cart")
-      console.log(this.skinService.shoppingCart)
     }
     this.skinService.setAnySkinSelected(true);
     this.skinService.addNewSkinInUse(skinSelected);

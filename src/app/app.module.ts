@@ -15,7 +15,6 @@ import { ClosetComponent } from './closet/closet.component';
 import { AppRoutingModule } from './app-routing.module';
 import { SetPasswordComponent } from './set-password/set-password.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
-import { ClosetImageComponent } from './closet/closet-image/closet-image.component';
 import { ClosetSkinsComponent } from './closet/closet-skins/closet-skins.component';
 import { LoginComponent } from './login/login.component';
 import { GuildMasterComponent } from './guild-master/guild-master.component';
@@ -30,7 +29,6 @@ import { VideosComponent } from './videos/videos.component';
 import { RewardsToApproveComponent } from './rewards/rewards-to-approve/rewards-to-approve.component';
 import { AddSkinComponent } from './closet/add-skin/add-skin.component';
 import { ListUsersComponent } from './list-users/list-users.component';
-import { AuthenticationComponent } from './login/authentication/authentication.component';
 import { HttpClientModule } from '@angular/common/http';
 import { AddEventsComponent } from './events/add-events/add-events.component';
 import { AncientProfileComponent } from './ancient-profile/ancient-profile.component';
@@ -85,7 +83,6 @@ import { AppConfigurationsComponent } from './app-configurations/app-configurati
     ClosetComponent,
     SetPasswordComponent,
     ChangePasswordComponent,
-    ClosetImageComponent,
     ClosetSkinsComponent,
     LoginComponent,
     GuildComponent,
@@ -112,7 +109,6 @@ import { AppConfigurationsComponent } from './app-configurations/app-configurati
     ListUsersComponent,
     VideosComponent,
     AddSkinComponent,
-    AuthenticationComponent,
     AddEventsComponent,
     AncientProfileComponent,
     GuildListStartComponent,

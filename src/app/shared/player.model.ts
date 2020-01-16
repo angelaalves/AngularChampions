@@ -2,8 +2,6 @@ import { userType } from './userType.enum';
 import { gender } from './playerGender.enum';
 import { status } from './status.enum';
 import { skinType } from './skinType.enum';
-import { SessionService } from '../services/session.service';
-import { HttpClient } from '@angular/common/http';
 
 export class Player {
     public idplayer: string;

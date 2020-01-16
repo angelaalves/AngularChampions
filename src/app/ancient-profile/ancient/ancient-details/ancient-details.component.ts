@@ -36,9 +36,6 @@ export class AncientDetailsComponent implements OnInit {
   }
 
   redirectListPlayers(){
-   // this.pipe.transform(this.players, userType.Warrior);
-    //this.list.setType(userType.Warrior);
-    //console.log( this.list.type);
     this.router.navigate(['../list_users'], {relativeTo: this.route});
   }
 

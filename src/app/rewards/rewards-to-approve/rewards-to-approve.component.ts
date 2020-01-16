@@ -6,6 +6,7 @@ import { Player } from 'src/app/shared/player.model';
 import { IDToUsername } from 'src/app/shared/IDMatchedToUsername.model';
 import { SessionService } from 'src/app/services/session.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { AppConfigurationsComponent } from 'src/app/app-configurations/app-configurations.component';
 
 @Component({
   selector: 'app-rewards-to-approve',
@@ -24,7 +25,7 @@ export class RewardsToApproveComponent implements OnInit {
   public players: Player[] = [];
   public idAndNameOfPlayers: IDToUsername[] = [];
 
-  constructor(private http: HttpClient, private playerService: PlayerService, private router: Router, private route: ActivatedRoute, private session: SessionService) { }
+  constructor(private http: HttpClient, private playerService: PlayerService, private router: Router, private route: ActivatedRoute, private session: SessionService, private configuration: AppConfigurationsComponent) { }
 
   ngOnInit() {
     this.players = this.playerService.getListOfPlayers();
@@ -33,7 +34,7 @@ export class RewardsToApproveComponent implements OnInit {
   }
 
   getRewards() {
-    this.http.get<Reward[]>('http://localhost:8085/rewards/getAllRewardsToApprove', {}).subscribe(data => {
+    this.http.get<Reward[]>('http://'+this.configuration.getBackEndIP()+':'+this.configuration.getBackEndPort()+'/rewards/getAllRewardsToApprove', {}).subscribe(data => {
       for (let d of data) {
         const split = d.dateOfReward.split("T");
         console.log(split[0]);
@@ -106,18 +107,17 @@ export class RewardsToApproveComponent implements OnInit {
     for (let r of this.rewardsApproved) {
       rewardsApprovedId.push(r.idreward)
     }
-    this.http.post('http://localhost:8085/rewards/Approve?idReward=' + rewardsApprovedId.toString(),
+    this.http.post('http://'+this.configuration.getBackEndIP()+':'+this.configuration.getBackEndPort()+'/rewards/Approve?idReward=' + rewardsApprovedId.toString(),
       {}).subscribe(data => {
         console.log("approved");
       });
     for (let r of this.rewardsDisapproved) {
       rewardsDisapprovedId.push(r.idreward)
     }
-    this.http.post('http://localhost:8085/rewards/Disapprove?idReward=' + rewardsDisapprovedId.toString(),
+    this.http.post('http://'+this.configuration.getBackEndIP()+':'+this.configuration.getBackEndPort()+'/rewards/Disapprove?idReward=' + rewardsDisapprovedId.toString(),
       {}).subscribe(data => {
         console.log("disapproved");
       });
-    //this.getRewards();
 
     if (this.session.getPlayerInSession().userType == "Ancient") {
       this.router.navigate(['/ancient_profile'], { relativeTo: this.route });

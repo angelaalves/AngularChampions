@@ -1,9 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Player } from '../shared/player.model';
-import { PlayerService } from '../services/player.service';
 import { HttpClient } from '@angular/common/http';
-import { Router, ActivatedRoute } from '@angular/router';
-import { SessionService } from '../services/session.service';
 import { userType } from '../shared/userType.enum';
 import { AppConfigurationsComponent } from '../app-configurations/app-configurations.component';
 
@@ -28,8 +25,6 @@ export class ListUsersComponent implements OnInit {
 
 
   ngOnInit() {
-    // this.chooseList()
-
     this.http.get<Player[]>('http://'+this.configuration.getBackEndIP()+':'+this.configuration.getBackEndPort()+'/players/getAll', {}).subscribe(data => {
       this.players = data;
       for (let player of this.players) {

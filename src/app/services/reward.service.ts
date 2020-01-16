@@ -7,6 +7,5 @@ export class RewardService {
 
     addToArray(reward: Reward) {
         this.rewardsToApprove.push(reward);
-        console.log("estou no add to array"+this.rewardsToApprove);
     }
 }

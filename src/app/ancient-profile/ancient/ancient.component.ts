@@ -19,7 +19,7 @@ export class AncientComponent implements OnInit {
   ancient: Player;
   id: number;
 
-  constructor(private router: Router, private route: ActivatedRoute, private playerService: PlayerService, private session: SessionService) { }
+  constructor(private session: SessionService) { }
 
   ngOnInit() {
  this.ancient= this.session.getPlayerInSession();

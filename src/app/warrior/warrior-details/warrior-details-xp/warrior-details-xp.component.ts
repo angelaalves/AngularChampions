@@ -1,8 +1,6 @@
-import { Component, OnInit, Input, Injectable } from '@angular/core';
-import { Router, ActivatedRoute, Params } from '@angular/router';
-import { PlayerService } from 'src/app/services/player.service';
-import { Player } from 'src/app/shared/player.model';
-import { SessionService } from 'src/app/services/session.service';
+import { Component, OnInit, Input } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
+
 
 @Component({
   selector: 'app-warrior-details-xp',

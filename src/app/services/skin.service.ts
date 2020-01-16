@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { Closet } from '../shared/closet.model';
 import { SessionService } from './session.service';
 import { Player } from '../shared/player.model';
+import { AppConfigurationsComponent } from '../app-configurations/app-configurations.component';
 
 @Injectable({ providedIn: 'root' })
 export class SkinService {
@@ -32,20 +33,19 @@ export class SkinService {
 
     player: Player;
 
-    constructor(private http: HttpClient, private session: SessionService) { }
+    constructor(private http: HttpClient, private session: SessionService, private configuration: AppConfigurationsComponent) { }
 
     ngOnInit() {
         this.player = this.session.getPlayerInSession();
-        this.http.get<Closet[]>('http://localhost:8085/closet/Get?idPlayerFk=' + this.player.idplayer, {}).subscribe(data => {
+        this.http.get<Closet[]>('http://'+this.configuration.getBackEndIP()+':'+this.configuration.getBackEndPort()+'/closet/Get?idPlayerFk=' + this.player.idplayer, {}).subscribe(data => {
             let activeSkins: String[] = [];
             for (let skin of data) {
                 if (skin.status == "Active") {
                     activeSkins.push(skin.idskinFK);
                 }
             }
-            this.http.get<Skin[]>('http://localhost:8085/skins/getSkinList?SkinIds=' + activeSkins.toString()).subscribe(resdata => {
+            this.http.get<Skin[]>('http://'+this.configuration.getBackEndIP()+':'+this.configuration.getBackEndPort()+'/skins/getSkinList?SkinIds=' + activeSkins.toString()).subscribe(resdata => {
                 this.skins = resdata;
-                console.log(this.skins)
             });
         });
     }
@@ -103,7 +103,6 @@ export class SkinService {
         this.skinsToBeBought.forEach(s => {
             if (s.idskin == skin.idskin) {
                 this.skinRemove = true;
-                //this.totalcost.next(+skin.champiesCost*(-1));
             }
         });
         if (this.skinRemove == true) {

@@ -3,11 +3,10 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { NgForm, ControlContainer } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { Player } from '../shared/player.model';
-import { RewardService } from '../services/reward.service';
 import { SessionService } from '../services/session.service';
 import { PlayerService } from '../services/player.service';
-import { format } from 'url';
 import { Subject } from 'rxjs';
+import { AppConfigurationsComponent } from '../app-configurations/app-configurations.component';
 
 @Component({
   selector: 'app-rewards',
@@ -29,7 +28,7 @@ export class RewardsComponent implements OnInit {
   champies: string;
 
   champiesgiven: String = "";
-  constructor(private router: Router, private route: ActivatedRoute, private http: HttpClient, private rewardsToApprove: RewardService, private sessionService: SessionService, private playerService: PlayerService) { }
+  constructor(private router: Router, private route: ActivatedRoute, private http: HttpClient, private sessionService: SessionService, private playerService: PlayerService, private configuration: AppConfigurationsComponent) { }
 
   ngOnInit() {
     this.valueSelected.subscribe(value => {
@@ -62,8 +61,8 @@ export class RewardsComponent implements OnInit {
     const playerReceiver = form.value.receiver;
     const timeSpent = form.value.time;
     const reason = form.value.reason;
-    this.http.post('http://localhost:8085/rewards/Reward?playerGiver=' + playerGiver + '&playerReceiver=' + playerReceiver + '&time=' + timeSpent + '&justification=' + reason, { playerGiver, playerReceiver, timeSpent, reason }).subscribe(resData => {
-      this.http.post<Player>('http://localhost:8085/players/Get?userName=' + playerGiver, {}).subscribe(resData => {
+    this.http.post('http://'+this.configuration.getBackEndIP()+':'+this.configuration.getBackEndPort()+'/rewards/Reward?playerGiver=' + playerGiver + '&playerReceiver=' + playerReceiver + '&time=' + timeSpent + '&justification=' + reason, { playerGiver, playerReceiver, timeSpent, reason }).subscribe(resData => {
+      this.http.post<Player>('http://'+this.configuration.getBackEndIP()+':'+this.configuration.getBackEndPort()+'/players/Get?userName=' + playerGiver, {}).subscribe(resData => {
 
         //Create player so we can give him an imagepath
         var player = new Player(resData[0].idplayer, resData[0].userName, resData[0].email, resData[0].password, this.sessionService.getPlayerInSession().imagePath, resData[0].xp,

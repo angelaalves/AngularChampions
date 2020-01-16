@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Event } from '../event.model';
+import { Event } from '../../shared/event.model';
 import { HttpClient } from '@angular/common/http';
 import { AppConfigurationsComponent } from 'src/app/app-configurations/app-configurations.component';
 

@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { GuildListService } from 'src/app/services/guild-list.service';
 import { NgForm } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Player } from 'src/app/shared/player.model';

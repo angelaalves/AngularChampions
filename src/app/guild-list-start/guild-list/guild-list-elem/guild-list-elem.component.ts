@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Guild } from '../guild.model';
+import { Guild } from '../../../shared/guild.model';
 import { Player } from 'src/app/shared/player.model';
 
 @Component({

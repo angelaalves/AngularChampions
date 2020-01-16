@@ -33,7 +33,5 @@ export class PreviewSkinComponent {
   onSubmit() {
     const formData = new FormData();
     formData.append('file', this.fileData);
-    console.log("Final");
-    console.log(this.fileData);
   }
 }

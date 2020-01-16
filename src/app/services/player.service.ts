@@ -3,6 +3,7 @@ import { userType } from '../shared/userType.enum';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { watchedVideos } from '../shared/watchedVideos.model';
+import { AppConfigurationsComponent } from '../app-configurations/app-configurations.component';
 
 @Injectable({ providedIn: 'root' })
 export class PlayerService {
@@ -13,15 +14,15 @@ export class PlayerService {
     guildmasters: Player[] = [];
     watchedvideos: watchedVideos[] = [];
 
-    constructor(private http: HttpClient) {
+    constructor(private http: HttpClient, private configuration: AppConfigurationsComponent) {
         this.getPlayers();
     }
 
     getPlayers() {
-        return this.http.get<Player[]>('http://localhost:8085/players/getAll', {}).subscribe(data => {
+        return this.http.get<Player[]>('http://'+this.configuration.getBackEndIP()+':'+this.configuration.getBackEndPort()+'/players/getAll', {}).subscribe(data => {
             this.players = data;
             for (let i = 0; i < this.players.length; i++) {
-                this.http.get<String[]>('http://localhost:8085/closet/activeSkins?idPlayerFK=' + this.players[i].idplayer).subscribe(response => {
+                this.http.get<String[]>('http://'+this.configuration.getBackEndIP()+':'+this.configuration.getBackEndPort()+'/closet/activeSkins?idPlayerFK=' + this.players[i].idplayer).subscribe(response => {
                     this.players[i].imagePath = response;
                     if (this.players[i].userType == userType.Warrior) {
                         this.warriors.push(this.players[i]);
@@ -46,7 +47,6 @@ export class PlayerService {
     }
 
     addPlayer(player: Player) {
-        console.log(player);
         this.players.push(player);
     }
 
@@ -55,13 +55,12 @@ export class PlayerService {
     }
 
     getWatchedVideos(player: Player) {
-        this.http.get<watchedVideos[]>('http://localhost:8085/watchedVideos/get?idPlayerFK=' + player.idplayer, {}).subscribe(data => {
-            console.log(data);
+        this.http.get<watchedVideos[]>('http://'+this.configuration.getBackEndIP()+':'+this.configuration.getBackEndPort()+'/watchedVideos/get?idPlayerFK=' + player.idplayer, {}).subscribe(data => {
             this.watchedvideos = data;
         });
     }
     getActiveSkins(idplayer: String) {
-        this.http.get<string[]>('http://localhost:8085/closet/activeSkins?idPlayerFK=' + idplayer).subscribe(data => {
+        this.http.get<string[]>('http://'+this.configuration.getBackEndIP()+':'+this.configuration.getBackEndPort()+'/closet/activeSkins?idPlayerFK=' + idplayer).subscribe(data => {
             return data;
         })
     }

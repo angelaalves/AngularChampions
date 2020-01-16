@@ -12,8 +12,6 @@
                 <label style="font-size: 2ch;">To</label>
                 <select style="margin-left: 3%; background-color: whitesmoke; border: 2px solid  rgb(66, 66, 66)"
                     value="receiver" name="receiver" ngModel>
-                    <!-- <option style="margin-left: 3%; background-color: whitesmoke; border: 2px solid rgb(65, 126, 218)">
-                        Choose warrior</option> -->
                     <option *ngFor="let warriorEl of warriors" (click)="onPlayerSelection(warriorEl)"
                         style="margin-left: 3%; background-color: whitesmoke; border: 2px solid  rgb(66, 66, 66)"
                         selected>

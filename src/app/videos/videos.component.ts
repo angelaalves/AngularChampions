@@ -1,5 +1,4 @@
 import { Component, OnInit, Injectable } from '@angular/core';
-import { AuthenticationService } from '../login/authentication/authentication.service';
 import { HttpClient } from '@angular/common/http';
 import { Video } from '../shared/video.model';
 import { topic } from '../shared/topic.enum';
@@ -9,6 +8,7 @@ import { watchedVideos } from '../shared/watchedVideos.model';
 import { SessionService } from '../services/session.service';
 import { userType } from '../shared/userType.enum';
 import { Player } from '../shared/player.model';
+import { AppConfigurationsComponent } from '../app-configurations/app-configurations.component';
 
 @Component({
   selector: 'app-videos',
@@ -38,7 +38,7 @@ export class VideosComponent implements OnInit {
   public totalangular: number;
   public totalspring: number;
 
-  constructor(private router: Router, private route: ActivatedRoute, private session: SessionService, private http: HttpClient, private authService: AuthenticationService) {
+  constructor(private router: Router, private route: ActivatedRoute, private session: SessionService, private http: HttpClient, private configuration: AppConfigurationsComponent) {
     console.log(this.session.playerSession);
   }
 
@@ -63,7 +63,7 @@ export class VideosComponent implements OnInit {
   }
 
   allVideos(): Video[] {
-    this.http.get<Video[]>('http://localhost:8085/videos/getAll').subscribe(data => {
+    this.http.get<Video[]>('http://'+this.configuration.getBackEndIP()+':'+this.configuration.getBackEndPort()+'/videos/getAll').subscribe(data => {
       this.videos = data;
       this.videosbytopic();
     });
@@ -98,12 +98,12 @@ export class VideosComponent implements OnInit {
     this.idOfVideosChecked = [];
     this.idOfVideosUnchecked = [];
 
-    this.http.get<watchedVideos[]>('http://localhost:8085/watchedVideos/Get?idPlayerFK=' + this.session.playerSession.idplayer).subscribe(data => {
+    this.http.get<watchedVideos[]>('http://'+this.configuration.getBackEndIP()+':'+this.configuration.getBackEndPort()+'/watchedVideos/Get?idPlayerFK=' + this.session.playerSession.idplayer).subscribe(data => {
       const obj = JSON.stringify(data);
       this.watchedVideosByPlayer = data;
 
       for (let aux of this.watchedVideosByPlayer) {
-        this.http.get<Video[]>('http://localhost:8085/videos/Get?idVideo=' + aux.idvideoFK).subscribe(res => {
+        this.http.get<Video[]>('http://'+this.configuration.getBackEndIP()+':'+this.configuration.getBackEndPort()+'/videos/Get?idVideo=' + aux.idvideoFK).subscribe(res => {
           const obj2 = JSON.stringify(res);
           this.videosWatchedByPlayer.push(res[0]);
         });
@@ -117,7 +117,7 @@ export class VideosComponent implements OnInit {
         const id = idVideo;
         const idplayer = this.session.playerSession.idplayer;
 
-        this.http.post<any>('http://localhost:8085/watchedVideos/Create?idVideoFK=' + id + '&idPlayerFK=' + idplayer,
+        this.http.post<any>('http://'+this.configuration.getBackEndIP()+':'+this.configuration.getBackEndPort()+'/watchedVideos/Create?idVideoFK=' + id + '&idPlayerFK=' + idplayer,
           {
             id,
             idplayer
@@ -143,7 +143,7 @@ export class VideosComponent implements OnInit {
         const champiesToGive = this.session.playerSession.champiesToGive;
         const myChampies = this.session.playerSession.myChampies;
         const status = this.session.playerSession.status;
-        this.http.post<any>('http://localhost:8085/players/Update?idPlayer=' + idPlayer + '&userName=' + userName + '&email=' + email + '&password=' + password + '&gender=' + gender + '&userType=' + userType + '&xp=' + xp + '&champiesToGive=' + champiesToGive + '&myChampies=' + myChampies + '&status=' + status,
+        this.http.post<any>('http://'+this.configuration.getBackEndIP()+':'+this.configuration.getBackEndPort()+'/players/Update?idPlayer=' + idPlayer + '&userName=' + userName + '&email=' + email + '&password=' + password + '&gender=' + gender + '&userType=' + userType + '&xp=' + xp + '&champiesToGive=' + champiesToGive + '&myChampies=' + myChampies + '&status=' + status,
           {
             idPlayer,
             userName,
@@ -160,14 +160,12 @@ export class VideosComponent implements OnInit {
 
       }
     }
-    console.log("this.session.playerSession.xp" + this.session.playerSession.xp);
-    console.log("xp " + xp);
     if (this.idOfVideosUnchecked != undefined) {
       for (let idVideo of this.idOfVideosUnchecked) {
         const id = idVideo;
         const idplayer = this.session.playerSession.idplayer;
 
-        this.http.post<any>('http://localhost:8085/watchedVideos/Delete?idVideoFK=' + id + '&idPlayerFK=' + idplayer,
+        this.http.post<any>('http://'+this.configuration.getBackEndIP()+':'+this.configuration.getBackEndPort()+'/watchedVideos/Delete?idVideoFK=' + id + '&idPlayerFK=' + idplayer,
           {
             id,
             idplayer
@@ -186,7 +184,7 @@ export class VideosComponent implements OnInit {
         const champiesToGive = this.session.playerSession.champiesToGive;
         const myChampies = this.session.playerSession.myChampies;
         const status = this.session.playerSession.status;
-        this.http.post<any>('http://localhost:8085/players/Update?idPlayer=' + idPlayer + '&userName=' + userName + '&email=' + email + '&password=' + password + '&gender=' + gender + '&userType=' + userType + '&xp=' + xp + '&champiesToGive=' + champiesToGive + '&myChampies=' + myChampies + '&status=' + status,
+        this.http.post<any>('http://'+this.configuration.getBackEndIP()+':'+this.configuration.getBackEndPort()+'/players/Update?idPlayer=' + idPlayer + '&userName=' + userName + '&email=' + email + '&password=' + password + '&gender=' + gender + '&userType=' + userType + '&xp=' + xp + '&champiesToGive=' + champiesToGive + '&myChampies=' + myChampies + '&status=' + status,
           {
             idPlayer,
             userName,

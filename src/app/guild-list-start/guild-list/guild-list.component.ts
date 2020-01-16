@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Guild } from './guild.model';
+import { Guild } from '../../shared/guild.model';
 import { Router, ActivatedRoute } from '@angular/router';
 import { GuildListService } from 'src/app/services/guild-list.service';
 

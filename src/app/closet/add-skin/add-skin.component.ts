@@ -4,7 +4,6 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { skinType } from 'src/app/shared/skinType.enum';
 import { PreviewSkinComponent } from './preview-skin/preview-skin.component';
-import { saveAs } from 'file-saver';
 @Component({
   selector: 'app-add-skin',
   templateUrl: './add-skin.component.html',
@@ -16,7 +15,7 @@ export class AddSkinComponent implements OnInit {
   addSkinForm: FormGroup;
 fileData: File=null;
 
-  constructor(private preview:PreviewSkinComponent, private router: Router, private route: ActivatedRoute, private formBuilder: FormBuilder, private http: HttpClient) {
+  constructor(private preview:PreviewSkinComponent, private router: Router, private route: ActivatedRoute, private http: HttpClient) {
     this.preview.file.subscribe(f=>this.fileData=f);
    }
 
@@ -58,16 +57,12 @@ fileData: File=null;
     if (!form.valid) {
       return;
     }
-
     const idSkin = "1";
     const skinName = form.value.skinName;
     const imagePath = form.value.filePath;
     const minXP = form.value.minXP;
     const champiesCost = form.value.numberOfChampies;
     const skinType = form.value.skinType;
-
-    console.log('addUserForm', form.value);
-
     this.http.post<any>('http://localhost:8085/skins/Create?idSkin=' + idSkin + '&skinName=' + skinName + '&imagePath=' + imagePath + '&minXP=' + minXP +
       '&champiesCost=' + champiesCost + '&skinType=' + skinType,
       {
@@ -79,9 +74,6 @@ fileData: File=null;
         skinType
       }
     ).subscribe();
-
-    console.log(this.addSkinForm);
-
     this.router.navigate(['/ancient_profile'], { relativeTo: this.route });
 
 

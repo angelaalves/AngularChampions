@@ -17,7 +17,7 @@ export class WarriorDetailsComponent implements OnInit {
   @Input() coinsGive:number;
   @Input() coinsReceive:number;
   @Input()warrior:Player;
-  constructor(private router: Router, private route: ActivatedRoute) { 
+  constructor() { 
 
   }
 

@@ -28,9 +28,6 @@ export class ClosetComponent implements OnInit {
   allSkins: Skin[] = [];
   allsessionsuserskins: Closet[] = [];
 
-  //private skin = new BehaviorSubject<Skin>(new Skin("", "", "", "", "", null));
-  //closetSkinSelected = this.skin.asObservable();
-
   constructor(private session: SessionService, private http: HttpClient,
     private router: Router, private route: ActivatedRoute, private skinService: SkinService, private configuration: AppConfigurationsComponent) { }
 
@@ -75,7 +72,6 @@ export class ClosetComponent implements OnInit {
     this.http.get<String[]>('http://'+this.configuration.getBackEndIP()+':'+this.configuration.getBackEndPort()+'/closet/activeSkins?idPlayerFK=' + this.session.getPlayerInSession().idplayer).subscribe(activeSkin => {
       this.session.getPlayerInSession().imagePath = activeSkin
     })
-    //this.session.playerSession.resetImage();
   }
 
   emptyCart() {
@@ -110,10 +106,8 @@ export class ClosetComponent implements OnInit {
       })
       if (activeIds.length > 0) {
         this.http.post('http://'+this.configuration.getBackEndIP()+':'+this.configuration.getBackEndPort()+'/closet/changeStatusSkins?idSkins=' + activeIds.toString() + "&idPlayer=" + this.session.getPlayerInSession().idplayer + "&status=Active", {}).subscribe(data => {
-          console.log(data);
           this.http.post('http://'+this.configuration.getBackEndIP()+':'+this.configuration.getBackEndPort()+'/closet/changeStatusSkins?idSkins=' + inactiveIds.toString() + "&idPlayer=" + this.session.getPlayerInSession().idplayer + "&status=Inactive", {}).subscribe(data => {
             this.skinService.clearInactiveSkinsToBe();
-            console.log(data);
           });
         });
       }

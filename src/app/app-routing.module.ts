@@ -27,8 +27,8 @@ import { BuySkinComponent } from './closet/buy-skin/buy-skin.component';
 import { AddNewVideoComponent } from './videos/add-new-video/add-new-video.component';
 import { ForgotpasswordComponent } from './login/forgotpassword/forgotpassword.component';
 import { WarningLoginComponent } from './login/warning-login/warning-login.component';
-import { ChangePasswordWarningComponent } from './change-password/change-password-warning/change-password-warning.component';
 import { ErrorClosetComponent } from './closet/error-closet/error-closet.component';
+import { AppConfigurationsComponent } from './app-configurations/app-configurations.component';
 
 const appRoutes: Routes = [
     { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -42,7 +42,6 @@ const appRoutes: Routes = [
             { path: '', component: AncientComponent },
             { path: 'add_guild', component: AddGuildListComponent },
             { path: 'add_events', component: AddEventsComponent },
-            { path: 'add_skin', component: AddSkinComponent },
             { path: 'add_user', component: AddUserComponent }
         ]
     },
@@ -69,7 +68,8 @@ const appRoutes: Routes = [
     { path: 'add_skin', component: AddSkinComponent },
     { path: 'image', component: ImageMakerComponent },
     { path: 'forgot_password', component: ForgotpasswordComponent },
-    { path: 'app-error-closet', component: ErrorClosetComponent}
+    { path: 'app-error-closet', component: ErrorClosetComponent},
+    { path: 'configurations', component: AppConfigurationsComponent}
 ]
 
 

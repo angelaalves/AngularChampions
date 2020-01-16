@@ -1,17 +1,21 @@
+<div style="align-content: center;">
 <form action="" #configurationsForm="ngForm" (ngSubmit)="onSubmit(configurationsForm); loginForm.reset()">
     <div class="form-row">
         <div class="form-group">
             <label for="ip">Back End IP</label>
-            <input type="text" alt="getBackEndIP()" id="ip" name="ip" ngModel>
+            <input type="text" alt="getBackEndIP()" id="ip" name="ip" class="form-control"
+                style="background: whitesmoke; border: 2px solid rgb(66, 66, 66);max-width: 300px;" ngModel>
         </div>
     </div>
     <div class="form-row">
         <div class="form-group">
             <label for="port">Back End Port</label>
-            <input type="text" alt="getBackEndPort()" id="port" name="name" ngModel>
+            <input type="text" alt="getBackEndPort()" id="port" name="name" class="form-control"
+                style="background: whitesmoke; border: 2px solid rgb(66, 66, 66);max-width: 300px;" ngModel>
         </div>
     </div>
     <div class="form-row">
         <button class="btn btn-submit" type="submit">save</button>
     </div>
 </form>
+</div>

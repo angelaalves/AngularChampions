@@ -26,7 +26,7 @@ export class AncientImageComponent implements OnInit {
   ancient: Player;
   id: number;
 
-  constructor(private router: Router, private route: ActivatedRoute, private playerService: PlayerService) { }
+  constructor() { }
 
   ngOnInit() {
   }

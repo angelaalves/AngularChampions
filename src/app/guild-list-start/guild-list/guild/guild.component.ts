@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Player } from 'src/app/shared/player.model';
-import { Guild } from '../guild.model';
+import { Guild } from '../../../shared/guild.model';
 import { ActivatedRoute, Router } from '@angular/router';
 import { GuildListService } from 'src/app/services/guild-list.service';
-import { SessionService } from 'src/app/services/session.service';
 import { HttpClient } from '@angular/common/http';
 import { formatDate } from '@angular/common';
 import { AppConfigurationsComponent } from 'src/app/app-configurations/app-configurations.component';

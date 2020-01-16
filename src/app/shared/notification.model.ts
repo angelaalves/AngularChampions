@@ -1,6 +1,3 @@
-import { typeWithParameters } from '@angular/compiler/src/render3/util';
-import { VirtualTimeScheduler } from 'rxjs';
-
 export class Notification {
   idnotification: String;
   idplayerSenderFK: String;

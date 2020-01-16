@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { Event } from './event.model';
+import { Event } from '../shared/event.model';
 import { HttpClient } from '@angular/common/http';
 import { SessionService } from '../services/session.service';
-import { AttendedEvents } from './attendedevents.model';
+import { AttendedEvents } from '../shared/attendedevents.model';
 import { FormGroup } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
-import { eventType } from './event-type.enum';
+import { eventType } from '../shared/event-type.enum';
 import { Player } from '../shared/player.model';
 import { AppConfigurationsComponent } from '../app-configurations/app-configurations.component';
 

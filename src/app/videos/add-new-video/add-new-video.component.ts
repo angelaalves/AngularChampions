@@ -2,6 +2,7 @@ import { Component, OnInit, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { NgForm, FormGroup, FormControl, Validators, FormArray } from '@angular/forms';
+import { AppConfigurationsComponent } from 'src/app/app-configurations/app-configurations.component';
 
 @Component({
   selector: 'app-add-new-video',
@@ -13,7 +14,7 @@ import { NgForm, FormGroup, FormControl, Validators, FormArray } from '@angular/
 export class AddNewVideoComponent implements OnInit {
   addNewVideoForm: FormGroup;
 
-  constructor(private http: HttpClient, private router: Router, private route: ActivatedRoute) { }
+  constructor(private http: HttpClient, private router: Router, private route: ActivatedRoute, private configuration: AppConfigurationsComponent) { }
 
   ngOnInit() {
     this.route.params
@@ -32,12 +33,11 @@ export class AddNewVideoComponent implements OnInit {
     const videoName = form.value.videoName;
     const videoTopic = form.value.videoTopic;
     const videoPriority = form.value.videoPriority;
-    console.log(videoPriority);
     var xhr = new XMLHttpRequest();
-    xhr.open('POST', 'http://localhost:8085/videos/Create?videoName=' + videoName + '&duration=' + videoPriority +
+    xhr.open('POST', 'http://'+this.configuration.getBackEndIP()+':'+this.configuration.getBackEndPort()+'/videos/Create?videoName=' + videoName + '&duration=' + videoPriority +
       '&topic=' + videoTopic, true);
 
-    this.http.post<any>('http://localhost:8085/videos/Create?videoName=' + videoName + '&duration=' + videoPriority +
+    this.http.post<any>('http://'+this.configuration.getBackEndIP()+':'+this.configuration.getBackEndPort()+'/videos/Create?videoName=' + videoName + '&duration=' + videoPriority +
       '&topic=' + videoTopic,
       {
         videoName,

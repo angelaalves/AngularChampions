@@ -1,3 +1,15 @@
+@font-face{
+  src: url(../fonts/ka1.ttf);
+  font-family: karmatic-arcade;
+}
+
+*{
+  font-family: karmatic-arcade;
+  color: black;
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
 .App-Container{
     position: absolute;
     overflow: auto;

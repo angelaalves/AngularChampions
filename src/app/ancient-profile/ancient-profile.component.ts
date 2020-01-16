@@ -14,7 +14,7 @@ export class AncientProfileComponent implements OnInit {
 
   public ancient: Player;
 
-  constructor(private session: SessionService, private closet: ClosetComponent) { }
+  constructor(private session: SessionService) { }
 
   ngOnInit() {
     this.ancient = this.session.getPlayerInSession();

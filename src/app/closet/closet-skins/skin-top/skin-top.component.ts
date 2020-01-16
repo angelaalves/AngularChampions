@@ -1,11 +1,9 @@
 import { Component, OnInit, Input, Injectable } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
 import { Skin } from 'src/app/shared/skin.model';
 import { Player } from 'src/app/shared/player.model';
 import { HttpClient } from '@angular/common/http';
 import { SessionService } from 'src/app/services/session.service';
 import { SkinService } from 'src/app/services/skin.service';
-import { ClosetComponent } from '../../closet.component';
 import { skinType } from 'src/app/shared/skinType.enum';
 import { Closet } from 'src/app/shared/closet.model';
 import { AppConfigurationsComponent } from 'src/app/app-configurations/app-configurations.component';
@@ -75,7 +73,6 @@ export class SkinTopComponent implements OnInit {
     this.session.playerSession.changeImage(skinSelected.imagePath, skinSelected.skinType);
     if (!this.playerHasBoughtSkin(skinSelected) && this.hasEnoughXP(skinSelected)) {
       this.skinService.addToShoppingCart(skinSelected);
-      console.log(this.skinService.getShoppingCart)
     }
     this.skinService.setAnySkinSelected(true);
     this.skinService.addNewSkinInUse(skinSelected);
