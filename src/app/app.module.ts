@@ -19,7 +19,6 @@ import { ClosetImageComponent } from './closet/closet-image/closet-image.compone
 import { ClosetSkinsComponent } from './closet/closet-skins/closet-skins.component';
 import { LoginComponent } from './login/login.component';
 import { GuildMasterComponent } from './guild-master/guild-master.component';
-import { GuildMasterDefinitionsComponent } from './guild-master/guild-master-definitions/guild-master-definitions.component';
 import { GuildMasterDetailsComponent } from './guild-master/guild-master-details/guild-master-details.component';
 import { GuildMasterDetailsButtonsComponent } from './guild-master/guild-master-details/guild-master-details-buttons/guild-master-details-buttons.component';
 import { GuildMasterDetailsCoinsComponent } from './guild-master/guild-master-details/guild-master-details-coins/guild-master-details-coins.component';
@@ -56,7 +55,6 @@ import { SkinSkincolorComponent } from './closet/closet-skins/skin-skincolor/ski
 import { SkinTopComponent } from './closet/closet-skins/skin-top/skin-top.component';
 import { SkinBottomComponent } from './closet/closet-skins/skin-bottom/skin-bottom.component';
 import { SkinHairComponent } from './closet/closet-skins/skin-hair/skin-hair.component';
-import { ProfilePageComponent } from './profile-page/profile-page.component';
 import { PreviewSkinComponent } from './closet/add-skin/preview-skin/preview-skin.component';
 import { SessionService } from './services/session.service';
 import { GuildmasterPresenterPageComponent } from './guild-master/guildmaster-presenter-page/guildmaster-presenter-page.component';
@@ -93,7 +91,6 @@ import { ErrorClosetComponent } from './closet/error-closet/error-closet.compone
     GuildComponent,
     GuildMemberComponent,
     GuildMasterComponent,
-    GuildMasterDefinitionsComponent,
     GuildMasterDetailsComponent,
     GuildMasterDetailsButtonsComponent,
     GuildMasterDetailsCoinsComponent,
@@ -103,18 +100,18 @@ import { ErrorClosetComponent } from './closet/error-closet/error-closet.compone
     AncientDefinitionsComponent,
     AddUserComponent,
     GuildListComponent,
-    GuildListElemComponent, 
+    GuildListElemComponent,
     EventsComponent,
     NotificationsComponent,
-    RewardsComponent, 
+    RewardsComponent,
     VideosComponent,
     RewardsComponent,
     RewardsToApproveComponent,
     AddGuildListComponent,
-    VideosComponent, 
-    AddSkinComponent, 
-    ListUsersComponent, 
-    VideosComponent, 
+    VideosComponent,
+    AddSkinComponent,
+    ListUsersComponent,
+    VideosComponent,
     AddSkinComponent,
     AuthenticationComponent,
     AddEventsComponent,
@@ -128,7 +125,6 @@ import { ErrorClosetComponent } from './closet/error-closet/error-closet.compone
     SkinSkincolorComponent,
     SkinTopComponent,
     SkinBottomComponent,
-    ProfilePageComponent,
     GuildmasterPresenterPageComponent,
     PresenterPageComponent,
     PreviewSkinComponent,
@@ -151,9 +147,9 @@ import { ErrorClosetComponent } from './closet/error-closet/error-closet.compone
     HttpClientModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    
+
   ],
-  providers: [PlayerService, SessionService, ListUsersComponent, TableFilterPipe, TableFilterPipe2 ,SkinService,PreviewSkinComponent],
+  providers: [PlayerService, SessionService, ListUsersComponent, TableFilterPipe, TableFilterPipe2, SkinService, PreviewSkinComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

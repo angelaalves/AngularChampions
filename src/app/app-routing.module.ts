@@ -14,7 +14,6 @@ import { ClosetComponent } from './closet/closet.component';
 import { NgModule, Component } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { SetPasswordComponent } from './set-password/set-password.component';
-import { ChangePasswordComponent } from './change-password/change-password.component';
 import { WarriorComponent } from './warrior/warrior.component';
 import { GuildComponent } from './guild-list-start/guild-list/guild/guild.component';
 import { AncientComponent } from './ancient-profile/ancient/ancient.component';

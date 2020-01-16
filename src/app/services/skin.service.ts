@@ -1,13 +1,10 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Subject } from 'rxjs';
 import { Skin } from '../shared/skin.model';
-import { skinType } from '../shared/skinType.enum';
 import { HttpClient } from '@angular/common/http';
 import { Closet } from '../shared/closet.model';
 import { SessionService } from './session.service';
 import { Player } from '../shared/player.model';
-import { status } from '../shared/status.enum';
-import { HeaderComponent } from '../header/header.component';
 
 @Injectable({ providedIn: 'root' })
 export class SkinService {
@@ -35,7 +32,7 @@ export class SkinService {
 
     player: Player;
 
-    constructor(private http: HttpClient, private session: SessionService){}
+    constructor(private http: HttpClient, private session: SessionService) { }
 
     ngOnInit() {
         this.player = this.session.getPlayerInSession();
@@ -47,7 +44,7 @@ export class SkinService {
                 }
             }
             this.http.get<Skin[]>('http://localhost:8085/skins/getSkinList?SkinIds=' + activeSkins.toString()).subscribe(resdata => {
-                this.skins=resdata;
+                this.skins = resdata;
                 console.log(this.skins)
             });
         });
@@ -61,21 +58,19 @@ export class SkinService {
     }
 
     addNewSkinInUse(skin: Skin) {
-        var found=false;
+        var found = false;
         for (var i: number = 0; i < this.skins.length; i++) {
             if (this.skins[i].skinType == skin.skinType) {
-                found=true
+                found = true
                 this.inactiveSkinsToBe.push(this.skins[i]);
-                console.log(this.inactiveSkinsToBe)
                 this.skins[i] = skin
                 this.newSkinsSelected.next(this.skins)
             }
         }
-        if(found==false){
+        if (found == false) {
             this.skins.push(skin)
             this.newSkinsSelected.next(this.skins)
         }
-
     }
 
     addToShoppingCart(skin: Skin) {
@@ -111,7 +106,7 @@ export class SkinService {
             }
         });
         if (this.skinRemove == true) {
-            this.totalcost.next(+skin.champiesCost*(-1));
+            this.totalcost.next(+skin.champiesCost * (-1));
             this.skinsToBeBought.splice(this.skinsToBeBought.indexOf(skin), 1);
             this.shoppingCart.next(this.skinsToBeBought);
             return true;

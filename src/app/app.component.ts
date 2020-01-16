@@ -1,12 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { SessionService } from './services/session.service';
-import { HttpClient } from '@angular/common/http';
-import { Router, ActivatedRoute } from '@angular/router';
 import { Player } from './shared/player.model';
 import { GuildListService } from './services/guild-list.service';
 import { PlayerService } from './services/player.service';
-import { userType } from './shared/userType.enum';
-
 
 @Component({
   selector: 'app-root',
@@ -28,9 +24,6 @@ export class AppComponent implements OnInit {
     }
     this.playerService
     this.guildService.ngOnInit();
-    
+
   }
-
-
-
 }
