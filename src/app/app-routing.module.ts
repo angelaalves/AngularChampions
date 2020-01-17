@@ -29,6 +29,7 @@ import { ForgotpasswordComponent } from './login/forgotpassword/forgotpassword.c
 import { WarningLoginComponent } from './login/warning-login/warning-login.component';
 import { ErrorClosetComponent } from './closet/error-closet/error-closet.component';
 import { AppConfigurationsComponent } from './app-configurations/app-configurations.component';
+import { PathGuardComponent } from './services/pathGuard.service';
 
 const appRoutes: Routes = [
     { path: '', redirectTo: '/login', pathMatch: 'full' },

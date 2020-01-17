@@ -8,7 +8,7 @@ import { Form, NgForm } from '@angular/forms';
 })
 @Injectable({providedIn:'root'})
 export class AppConfigurationsComponent implements OnInit {
-  private backEndIp = "192.168.0.84";
+  private backEndIp = "localhost";
   private backEndPort = "8085";
 
   constructor() { }
