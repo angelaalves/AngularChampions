@@ -14,7 +14,6 @@ export class AppConfigurationsComponent implements OnInit {
   constructor(private http: HttpClient) { }
 
   ngOnInit() {
-    this.configurationsReader()
   }
 
   configurationsReader() {
@@ -22,8 +21,6 @@ export class AppConfigurationsComponent implements OnInit {
       var elements = data.split("\n");
       this.backEndIp = elements[0].split(":")[1];
       this.backEndPort = elements[1].split(":")[1];
-      console.log(this.backEndIp)
-      console.log(this.backEndPort)
     })
   }
 
@@ -52,6 +49,6 @@ export class AppConfigurationsComponent implements OnInit {
     if (form.value.port != "") {
       this.setBackEndPort = form.value.port;
     }
-    this.http.post('http://' + this.backEndIp + ":" + this.backEndPort + "/configuration/saveConfigFile?IP=" + this.backEndIp + "&port=" + this.backEndPort + "&DBAdmin=" + form.value.DBAdmin + "&DBPassword=" + form.value.DBPassword, {}).subscribe()
+    this.http.post('http://' + this.backEndIp + ":" + this.backEndPort + "/configuration/saveConfigFile?IP=" + this.backEndIp + "&port=" + this.backEndPort + "&DBip=" + form.value.DBip + "&DBport=" + form.value.DBport + "&DBAdmin=" + form.value.DBAdmin + "&DBPassword=" + form.value.DBPassword, {}).subscribe()
   }
 }
