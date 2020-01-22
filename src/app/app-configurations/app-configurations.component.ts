@@ -1,19 +1,30 @@
 import { Component, OnInit, Injectable } from '@angular/core';
 import { Form, NgForm } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-app-configurations',
   templateUrl: './app-configurations.component.html',
   styleUrls: ['./app-configurations.component.css']
 })
-@Injectable({providedIn:'root'})
+@Injectable({ providedIn: 'root' })
 export class AppConfigurationsComponent implements OnInit {
-  private backEndIp = "localhost";
+  private backEndIp: string = "localhost";
   private backEndPort = "8085";
-
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   ngOnInit() {
+    this.configurationsReader()
+  }
+
+  configurationsReader() {
+    this.http.get("assets/configurations.txt", { responseType: 'text' }).subscribe(data => {
+      var elements = data.split("\n");
+      this.backEndIp = elements[0].split(":")[1];
+      this.backEndPort = elements[1].split(":")[1];
+      console.log(this.backEndIp)
+      console.log(this.backEndPort)
+    })
   }
 
   setBackEndIp(IP: string) {
@@ -41,5 +52,6 @@ export class AppConfigurationsComponent implements OnInit {
     if (form.value.port != "") {
       this.setBackEndPort = form.value.port;
     }
+    this.http.post('http://' + this.backEndIp + ":" + this.backEndPort + "/configuration/saveConfigFile?IP=" + this.backEndIp + "&port=" + this.backEndPort + "&DBAdmin=" + form.value.DBAdmin + "&DBPassword=" + form.value.DBPassword, {}).subscribe()
   }
 }

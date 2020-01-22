@@ -3,6 +3,7 @@ import { SessionService } from './services/session.service';
 import { Player } from './shared/player.model';
 import { GuildListService } from './services/guild-list.service';
 import { PlayerService } from './services/player.service';
+import { AppConfigurationsComponent } from './app-configurations/app-configurations.component';
 
 @Component({
   selector: 'app-root',
@@ -12,7 +13,9 @@ import { PlayerService } from './services/player.service';
 export class AppComponent implements OnInit {
   title = 'Project-Champions';
 
-  constructor(private session: SessionService, private guildService: GuildListService, private playerService: PlayerService) { }
+  constructor(private session: SessionService, private guildService: GuildListService, private playerService: PlayerService, private configService: AppConfigurationsComponent) {
+    this.configService.configurationsReader(); 
+  }
 
   ngOnInit() {
     const playerData: Player = JSON.parse(localStorage.getItem('playerlogged'));
@@ -24,6 +27,6 @@ export class AppComponent implements OnInit {
     }
     this.playerService
     this.guildService.ngOnInit();
-
+    
   }
 }
